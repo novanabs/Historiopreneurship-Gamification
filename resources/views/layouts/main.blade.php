@@ -61,13 +61,26 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-header">MENU</li>
             <li class="nav-item">
-              <a href="{{ route('dashboard.index') }}" class="nav-link">
+                @can('admin')
+                <a class="nav-link" href="{{ route('dashboard.showUser') }}">
+                    <i class="bi bi-speedometer"></i>
+                   <p>Dashboard Admin</p>
+                </a>
+                @endcan
+            </li>
+            <li class="nav-item">
+                {{-- Admin tidak melihat ini --}}
+                @if (auth()->user()->peran != 'admin')
+                   <a href="{{ route('dashboard.index') }}" class="nav-link">
                 <i class="bi bi-layout-text-window-reverse"></i>
                 <p>
                   Dashboard
                 </p>
-              </a>
+              </a> 
+                @endif
+              
             </li>
+            
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="bi bi-info-circle"></i>
@@ -234,14 +247,7 @@
               </ul>
             </li>
             </li>
-            <li class="nav-item">
-                @can('admin')
-                <a class="nav-link" href="{{ route('dashboard.showUser') }}">
-                    <i class="bi bi-people"></i> 
-                   <p>Data Pengguna</p>
-                </a>
-                @endcan
-            </li>
+            
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

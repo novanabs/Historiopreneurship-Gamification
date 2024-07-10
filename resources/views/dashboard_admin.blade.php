@@ -5,16 +5,16 @@
     <div class="mt-3">
         <div class="row">
             <div class="col-md-10">
-                <h1>Tabel Data Pengguna</h1>
+                <h1 class="text-center">Dashboard Admin</h1>
+                <h3>Tabel Data Pengguna</h3>
 
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">No</th>
                             <th scope="col">Nama</th>
-                            <th scope="col">NIM</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Level</th>
+                            <th scope="col">Peran</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,9 +25,16 @@
                         <tr>
                             <th scope="row">{{ $n }}</th>
                             <td>{{ $user->nama_lengkap }}</td>
-                            <td>{{ $user->nim }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ ($user->is_admin)== 1 ? "Admin" : "User" }}</td>
+
+                            {{-- Pembeda peran --}}
+                            @if ($user->peran == 'admin')
+                                <td>Admin</td>
+                            @elseif ($user->peran == 'guru')
+                                <td>Guru</td>
+                            @else
+                                <td>Siswa</td>
+                            @endif
                         </tr>
                         @php
                             $n++;

@@ -16,23 +16,23 @@ class UserSeeder extends Seeder
     public function run(): void
     {
 
-        // User::create([
-        //     'nama_lengkap' => 'Administrator',
-        //     'no_hp' => '081',
-        //     'peran' => 'admin',
-        //     'email' => 'admin@gmail.com',
-        //     'password' => Hash::make('12345678'),
-        //     'alamat' => 'Dijalan'
-        // ]);
+        User::create([
+            'nama_lengkap' => 'Administrator',
+            'no_hp' => '081',
+            'peran' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('12345678'),
+            'alamat' => 'Dijalan'
+        ]);
 
-        // User::create([
-        //     'nama_lengkap' => 'Guru',
-        //     'no_hp' => '082',
-        //     'peran' => 'guru',
-        //     'email' => 'guru@gmail.com',
-        //     'password' => Hash::make('12345678'),
-        //     'alamat' => 'Dijalan'
-        // ]);
+        User::create([
+            'nama_lengkap' => 'Guru',
+            'no_hp' => '082',
+            'peran' => 'guru',
+            'email' => 'guru@gmail.com',
+            'password' => Hash::make('12345678'),
+            'alamat' => 'Dijalan'
+        ]);
 
         User::create([
             'nama_lengkap' => 'Siswa',

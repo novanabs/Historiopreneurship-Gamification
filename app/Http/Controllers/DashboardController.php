@@ -16,6 +16,6 @@ class DashboardController extends Controller
     public function showUser()
     {
         $data['users'] = User::all();
-        return view('data_user',$data);
+        return view('dashboard_admin',$data);
     }
 }
