@@ -21,10 +21,13 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
+
         if (Auth::attempt($credentials, $request->checkRemember)) {
             $request->session()->regenerate();
             return redirect()->intended('/');
         }
+
+       
 
         return back()->withErrors([
             'email' => 'Tidak ada akun yang cocok dengan inputan anda'
@@ -32,7 +35,9 @@ class LoginController extends Controller
     }
     public function logout(Request $request): RedirectResponse
     {
+        // dd(Auth::user());
         Auth::logout();
+      
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

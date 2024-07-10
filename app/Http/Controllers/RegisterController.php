@@ -17,17 +17,22 @@ class RegisterController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        // dd($request);
         $validator = $request->validate([
             'namaInput' => 'required',
+            'no_hpInput' => 'required',
             'emailInput' => 'required|email',
-            'nimInput' => 'required|numeric',
-            'passwordInput' => 'required|min:8|confirmed',
+            'alamatInput' => 'required',
+            'peranInput' => 'required',
+            'passwordInput' => 'required|min:4|confirmed',
         ]);
-
+        // dd($validator);
         $query = User::create([
-            'name' => $request->namaInput,
+            'nama_lengkap' => $request->namaInput,
+            'no_hp' => $request->no_hpInput,
             'email' => $request->emailInput,
-            'nim' => $request->nimInput,
+            'alamat' => $request->alamatInput,
+            'peran' => $request->peranInput,
             'password' => Hash::make($request->passwordInput)
         ]);
         return redirect()->route('login');

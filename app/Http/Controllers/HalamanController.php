@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class HalamanController extends Controller
+{
+    function A () {
+        return view('pages.A');
+    }
+
+    function B () {
+        return view('pages.B');
+    }
+
+    function C () {
+        return view('pages.C');
+    }
+}

@@ -15,7 +15,7 @@ class CheckUserLevel
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->guest() || auth()->user()->is_admin != 1) {
+        if (auth()->guest() || auth()->user()->peran != 'admin') {
             abort(403);
         }
         

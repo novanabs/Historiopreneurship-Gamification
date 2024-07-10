@@ -24,6 +24,16 @@
                                 </div>                            
                                 @enderror
                             </div>
+
+                            <div class="mb-3">
+                                <label for="no_hpInput" class="form-label">No HP</label>
+                                <input type="text" class="form-control @error('no_hpInput') is-invalid @enderror" id="no_hpInput" name="no_hpInput" value="{{ old('no_hpInput') }}">
+                                @error('no_hpInput')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>                            
+                                @enderror
+                            </div>
                             
                             <div class="mb-3">
                                 <label for="emailInput" class="form-label">Email</label>
@@ -34,16 +44,17 @@
                                 </div>                            
                                 @enderror
                             </div>
-                            
+
                             <div class="mb-3">
-                                <label for="nimInput" class="form-label">NIM</label>
-                                <input type="text" class="form-control @error('nimInput') is-invalid @enderror" id="nimInput" name="nimInput" value="{{ old('nimInput') }}">
-                                @error('nimInput')
+                                <label for="alamatInput" class="form-label">Alamat</label>
+                                <input type="text" class="form-control @error('alamatInput') is-invalid @enderror" id="alamatInput" name="alamatInput" value="{{ old('alamatInput') }}">
+                                @error('alamatInput')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>                            
                                 @enderror
                             </div>
+
                             
                             <div class="mb-3">
                                 <label for="passwordInput" class="form-label">Password</label>
@@ -59,6 +70,27 @@
                                 <label for="passwordInput_confirmation" class="form-label">Konfirmasi Password</label>
                                 <input type="password" class="form-control @error('passwordInput_confirmation') is-invalid @enderror" id="passwordInput_confirmation" name="passwordInput_confirmation">
                                 @error('passwordInput_confirmation')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>                            
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="peranInput" class="form-label">Peran</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="peranInput" id="flexRadioDefault1" value="guru">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                      Guru
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="peranInput" id="flexRadioDefault2" value="siswa">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                      Siswa
+                                    </label>
+                                  </div>
+                                @error('peranInput')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>                            

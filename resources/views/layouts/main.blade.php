@@ -14,9 +14,10 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
-    <div class="wrapper">
+    <div class="wrapper ">
     {{-- Navbar --}}
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -25,7 +26,7 @@
         </ul>
     
         <!-- Right navbar links -->
-        <ul class="navbar-nav ml-auto">   
+        <ul class="navbar-nav ml-auto ">   
           <li>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                   @auth
@@ -55,7 +56,7 @@
           {{-- <img src="#" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
           <span class="brand-text font-weight-light">Historiopreneurship</span>
         </a>
-    <div class="sidebar">
+    <div class="sidebar " data-bs-spy="scroll">
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-header">MENU</li>
@@ -77,43 +78,43 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('pages.A') }}#CPL" class="nav-link">
                         <i class="bi bi-dot"></i>
                         <p>CPL</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('pages.A') }}#CPMK" class="nav-link">
                         <i class="bi bi-dot"></i>
                         <p>CPMK</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('pages.A') }}#peran-dosen" class="nav-link">
                         <i class="bi bi-dot"></i>
                         <p>Peran Dosen</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('pages.A') }}#sarana-dan-prasaran" class="nav-link">
                         <i class="bi bi-dot"></i>
                         <p>Sarana dan Prasana</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('pages.A') }}#kolaborasi-narasumber" class="nav-link">
                         <i class="bi bi-dot"></i>
                         <p>Kolaborasi Narasumber</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('pages.A') }}#cara-penggunaan" class="nav-link">
                         <i class="bi bi-dot"></i>
                         <p>Cara Penggunaan</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('pages.A') }}#tahapan" class="nav-link">
                         <i class="bi bi-dot"></i>
                         <p>Tahapan</p>
                     </a>
@@ -130,9 +131,45 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('info.index') }}" class="nav-link">
+                    <a href="{{ route('pages.B') }}" class="nav-link">
                         <i class="bi bi-dot"></i>
-                        <p>SUB</p>
+                        <p>Kegiatan Pembelajaran 1</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('pages.B') }}" class="nav-link">
+                        <i class="bi bi-dot"></i>
+                        <p>Kegiatan Pembelajara 2</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('pages.B') }}" class="nav-link">
+                        <i class="bi bi-dot"></i>
+                        <p>Lembar Analisis Kelompok</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('pages.B') }}" class="nav-link">
+                        <i class="bi bi-dot"></i>
+                        <p>Lembar Analisis Individu</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('pages.B') }}" class="nav-link">
+                        <i class="bi bi-dot"></i>
+                        <p>Kegiatan Pembelajaran 3</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('pages.B') }}" class="nav-link">
+                        <i class="bi bi-dot"></i>
+                        <p>Laporan Kegiatan</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('pages.B') }}" class="nav-link">
+                        <i class="bi bi-dot"></i>
+                        <p>Refleksi</p>
                     </a>
                 </li>
               </ul>
@@ -140,16 +177,58 @@
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="bi bi-2-square-fill"></i>
-                <p>
-                  Kewirausahaan dan Kepariwisataan
+                <p class="text-start">
+                  Kewirausahaan & Kepariwisataan
                   <i class="right bi bi-chevron-left"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('pages.C') }}" class="nav-link">
                         <i class="bi bi-dot"></i>
-                        <p>SUB</p>
+                        <p>Lembar Analisa Kelompok 1</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('pages.C') }}" class="nav-link">
+                        <i class="bi bi-dot"></i>
+                        <p>Lembar Analisa Kelompok 2</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('pages.C') }}" class="nav-link">
+                        <i class="bi bi-dot"></i>
+                        <p>Lembar Diskusi Kelompok</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('pages.C') }}" class="nav-link">
+                        <i class="bi bi-dot"></i>
+                        <p>Lembar Proyek Individu</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('pages.C') }}" class="nav-link">
+                        <i class="bi bi-dot"></i>
+                        <p>Refleksi</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('pages.C') }}" class="nav-link">
+                        <i class="bi bi-dot"></i>
+                        <p>Praktik Lapangan 1</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('pages.C') }}" class="nav-link">
+                        <i class="bi bi-dot"></i>
+                        <p>Praktik Lapangan 2</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('pages.C') }}" class="nav-link">
+                        <i class="bi bi-dot"></i>
+                        <p>Refleksi</p>
                     </a>
                 </li>
               </ul>
@@ -168,8 +247,14 @@
         <!-- /.sidebar-menu -->
       </div>
     </aside>
+    
 
       <section class="container mt-3">
+        <div class="row">
+          <div class="col text-center">
+              <h1>HISTORIOPRENEURSHIP</h1>
+          </div>
+      </div>
         @yield('container')
     </section>
     
