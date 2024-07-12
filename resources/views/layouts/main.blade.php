@@ -61,6 +61,24 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-header">MENU</li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('latihan') }}">
+                    <i class="bi bi-speedometer"></i>
+                   <p>Latihan</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('kuis') }}">
+                    <i class="bi bi-speedometer"></i>
+                   <p>Kuis</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('evaluasi') }}">
+                    <i class="bi bi-speedometer"></i>
+                   <p>Evaluasi</p>
+                </a>
+            </li>
+            <li class="nav-item">
                 @can('admin')
                 <a class="nav-link" href="{{ route('dashboard.showUser') }}">
                     <i class="bi bi-speedometer"></i>

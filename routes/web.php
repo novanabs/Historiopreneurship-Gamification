@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HalamanController;
+use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 
@@ -33,4 +34,8 @@ Route::group(['middleware' => ['admin']], function(){
 
 });
 
+// Latihan
+Route::get('/latihan', [LatihanController::class, 'latihan'])->name('latihan');
+Route::get('/kuis', [LatihanController::class, 'kuis'])->name('kuis');
+Route::get('/evaluasi', [LatihanController::class, 'evaluasi'])->name('evaluasi');
 
