@@ -67,6 +67,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('info') }}">
+                    <i class="bi bi-speedometer"></i>
+                   <p>info sebelum mulai</p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('kuis') }}">
                     <i class="bi bi-speedometer"></i>
                    <p>Kuis</p>

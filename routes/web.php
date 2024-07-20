@@ -36,6 +36,8 @@ Route::group(['middleware' => ['admin']], function(){
 
 // Latihan
 Route::get('/latihan', [LatihanController::class, 'latihan'])->name('latihan');
+Route::put('/latihan', [LatihanController::class, 'latihan']);
 Route::get('/kuis', [LatihanController::class, 'kuis'])->name('kuis');
 Route::get('/evaluasi', [LatihanController::class, 'evaluasi'])->name('evaluasi');
+Route::get('/info', [LatihanController::class, 'info'])->name('info');
 
