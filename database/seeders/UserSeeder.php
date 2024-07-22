@@ -42,6 +42,24 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'alamat' => 'Dijalan'
         ]);
+        
+        User::create([
+            'nama_lengkap' => 'Siswa1',
+            'no_hp' => '0831',
+            'peran' => 'siswa',
+            'email' => 'siswa1@gmail.com',
+            'password' => Hash::make('12345678'),
+            'alamat' => 'Dijalan'
+        ]);
+
+        User::create([
+            'nama_lengkap' => 'Siswa2',
+            'no_hp' => '0832',
+            'peran' => 'siswa',
+            'email' => 'siswa2@gmail.com',
+            'password' => Hash::make('12345678'),
+            'alamat' => 'Dijalan'
+        ]);
 
     }
 }

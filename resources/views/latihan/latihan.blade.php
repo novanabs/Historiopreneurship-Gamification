@@ -5,32 +5,33 @@
 
 
 <?php
+    
     $_SESSION['data_soal'] = json_decode($soal->data_soal, true);
     // dd($_SESSION['data_soal']);
-    $_SESSION['soal_sekarang'] = 0;
-    $_SESSION['jawaban'] = 0;
-    $_SESSION['nilai'] = 0;
+    
 
     $data_soal = $_SESSION['data_soal'];
     $soal_sekarang = $_SESSION['soal_sekarang'];
     $jawaban = $_SESSION['jawaban'];
     $nilai = $_SESSION['nilai'];
 
-    // Menyimpan jawaban
+    // Navigasi Soal
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         // if(isset($_POST['jawaban'])){
         //     $jawaban[$soal_sekarang] = $_POST['jawaban'];
         // }
-
+        
 
         // Navigasi Soal
-        if(isset($_POST['next'])){
-            $soal_sekarang++;
+        if(isset($_POST['next'])){           
+             $soal_sekarang+=1;
         } elseif(isset($_POST['prev'])) {
-            $soal_sekarang--;
+            dd($_SERVER['REQUEST_METHOD']);
+             $soal_sekarang-=1;
         } elseif(isset($_POST['submit'])){
             dd();
         }
+        
         
     }
     $soal = $data_soal[$soal_sekarang];
