@@ -167,10 +167,8 @@
         console.log($soal_sekarang)
         if($soal_sekarang == 4){
             document.getElementById('next').disabled = true;
-            document.getElementById('prev').disabled = false;
         }else if($soal_sekarang == 0){
             document.getElementById('prev').disabled = true;
-            document.getElementById('next').disabled = false;
         }else{
             document.getElementById('prev').disabled = false;
             document.getElementById('next').disabled = false;
