@@ -10,9 +10,9 @@
                 <h2>A. Informasi Umum</h2>
             </div>
         </div>
-        <div class="row" id="CPL">
+        <div class="row materi-a" id="CPL">
             <div class="col">
-                <h3>Capaian Pembejaran Lulusan (CPL)</h3>
+                <h3>Capaian Pembelajaran Lulusan (CPL)</h3>
                 <p>CPL yang ingin dicapai dalam pembelajaran ini adalah mahasiswa
                     mampu mengaplikasikan teori dan nilai-nilai kewirausahaan dalam
                     kehidupan nyata berdasarkan potensi kewirausahaan kesejarahan
@@ -22,7 +22,7 @@
                     based learning. </p>
             </div>
         </div>
-        <div class="row" id="CPMK">
+        <div class="row materi-a" id="CPMK">
             <div class="col">
                 <h3>Capaian Pembelajaran Mata Kuliah (CPMK)</h3>
                 <p>Melalui media ajar berbasis <i>Project based learning</i> (PjBL) ini, diharapkan:</p>
@@ -100,7 +100,7 @@
                     dalam berbagai bidang pariwisata yang sudah teridentifikasi. </p>
             </div>
         </div>
-        <div class="row" id="peran-dosen">
+        <div class="row materi-a" id="peran-dosen">
             <div class="col">
                 <h2>Peran Dosen</h2>
                 <ol>
@@ -115,7 +115,7 @@
                 </ol>
             </div>
         </div>
-        <div class="row" id="sarana-dan-prasarana">
+        <div class="row materi-a" id="sarana-dan-prasarana">
             <div class="col">
                 <h2>Sarana dan Prasarana</h2>
                 <p><b>Sarana Pembelajaran</b></p>
@@ -142,7 +142,7 @@
                 </ol>
             </div>
         </div>
-        <div class="row" id="kolaborasi-narasumber">
+        <div class="row materi-a" id="kolaborasi-narasumber">
             <div class="col">
                 <h2>Kolaborasi dan Narasumber</h2>
                 <p class="text-justify">
@@ -154,7 +154,7 @@ sekunder.
                 </p>
             </div>
         </div>
-        <div class="row" id="cara-penggunaan">
+        <div class="row materi-a" id="cara-penggunaan">
             <div class="col">
                 <h2>Cara Penggunaan</h2>
                 <ul>
@@ -223,4 +223,26 @@ sekunder.
             </div>
         </div>
     </div>
+    <script>
+        
+        // Navigasi Soal
+        const data_sub = [0,1,2,3,4,5,6];
+
+        // Mengambil semua class
+        const materi_a = document.getElementsByClassName('materi-a');
+
+        console.log(materi_a)
+        for(let i=0;i<=5;i++){
+            console.log(materi_a[i])
+        }
+
+        // materi_a[0].style.display = '';
+
+
+
+
+        
+        
+    </script>
 @endsection
+

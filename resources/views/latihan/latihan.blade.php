@@ -95,11 +95,11 @@
                 <div class="card-header">
                     <table class="table table-sm">
                         <tr class="text-center">
-                            <td class="soal btn bg-secondary-subtle">1</td>
-                            <td class="soal btn bg-secondary-subtle">2</td>
-                            <td class="soal btn bg-secondary-subtle">3</td>
-                            <td class="soal btn bg-secondary-subtle">4</td>
-                            <td class="soal btn bg-secondary-subtle">5</td>
+                            <td class="soal btn list_soal">1</td>
+                            <td class="soal btn list_soal">2</td>
+                            <td class="soal btn list_soal">3</td>
+                            <td class="soal btn list_soal">4</td>
+                            <td class="soal btn list_soal">5</td>
                         </tr>
                     </table>
                 </div>
@@ -160,6 +160,19 @@
         $pilihan_4.innerHTML = $data_soal[$nomor]['pilihan'][3]['teks']
     }
 
+    // Update list soal
+    let nomor_soal_di_list = document.getElementsByClassName('list_soal')
+    nomor_soal_di_list[0].style.background = 'green';
+    nomor_soal_di_list[0].style.text = 'green';
+    console.log(nomor_soal_di_list[0].innerHTML
+    )
+    function nomor_soal($no){
+        for(let i=0;i<=4;i++){
+            
+        }
+    }
+
+
     isi_soal($soal_sekarang)
 
      // Matikan Tombol
@@ -194,6 +207,9 @@
         isi_soal($soal_sekarang)
         nav_tombol()
     }
+
+    // List Soal
+    
     
    
     
