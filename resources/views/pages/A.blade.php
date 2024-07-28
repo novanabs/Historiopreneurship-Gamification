@@ -4,10 +4,23 @@
 @section('container')
 
 <div class="mt-3">
+    {{-- Status Bar --}}
+    <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 0.001%" id="status_bar"></div>
+      </div>
     
-        <div class="row" id="CPL">
+    
+        <div class="row mt-3" id="CPL">
             <div class="col">
                 <h2>A. Informasi Umum</h2>
+            </div>
+        </div>
+        <div class="row mb-3 mt-3">
+            <div class="col-6">
+                <button class="btn btn-primary" onclick="prev()" id="prev">Sebelumnya</button>
+            </div>
+            <div class="col-6 text-end">
+                <button class="btn btn-primary" onclick="next()" id="next">Selanjutnya</button>
             </div>
         </div>
         <div class="row materi-a" id="CPL">
@@ -83,7 +96,7 @@
                     </tr>
                 </table>
             </div>
-        </div>
+        
         <div class="row" id="hal">
             <div class="col">
                 <h2>HAL YANG HARUS DIPERHATIKAN SEBELUM MEMULAI PROSES PEMBELAJARAN </h2>
@@ -100,6 +113,7 @@
                     dalam berbagai bidang pariwisata yang sudah teridentifikasi. </p>
             </div>
         </div>
+    </div>
         <div class="row materi-a" id="peran-dosen">
             <div class="col">
                 <h2>Peran Dosen</h2>
@@ -129,7 +143,7 @@
                         Google Playstore.</li>
                 </ol>
             </div>
-        </div>
+        
         <div class="row">
             <div class="col">
                 <p><b>Prasarana Pembelajaran</b></p>
@@ -142,6 +156,7 @@
                 </ol>
             </div>
         </div>
+    </div>
         <div class="row materi-a" id="kolaborasi-narasumber">
             <div class="col">
                 <h2>Kolaborasi dan Narasumber</h2>
@@ -172,7 +187,7 @@ sekunder.
                     <li>Waktu yang direkomendasikan untuk pelaksanaan buku ajar ajar ini adalah 1 semester atau 14 kali tatap muka dengan durasi kurang lebih 28 JP. Sebaiknya ada jeda waktu antar aktivitas agar di satu sisi para dosen mempunyai waktu yang cukup untuk melakukan persiapan materi untuk memantik diskusi dan refleksi mahasiswa. Mahasiswa juga mempunyai waktu untuk berpikir, berefleksi, dan menjalankan masing-masing aktivitas dengan baik.</li>
                 </ul>
             </div>
-        </div>
+        
         <div class="row" id="tahapan">
             <div class="col">
                 <h2>Tahapan Kegiatan Pembelajaran Projeck Based Learning</h2>
@@ -223,20 +238,72 @@ sekunder.
             </div>
         </div>
     </div>
+    </div>
     <script>
-        
-        // Navigasi Soal
-        const data_sub = [0,1,2,3,4,5,6];
-
-        // Mengambil semua class
+        // Mengambil semua class sub
         const materi_a = document.getElementsByClassName('materi-a');
 
-        console.log(materi_a)
-        for(let i=0;i<=5;i++){
-            console.log(materi_a[i])
+        // Navigasi Soal
+        var $sub = 0;
+
+        // Hide semua bab
+        function hide_semua_sub(){
+            for(let i=0;i<=5;i++){
+                console.log(materi_a[i])
+                materi_a[i].style.display = 'none';
+            }
+        }
+        hide_semua_sub();
+        
+        // Menampilkan sub
+        function show_sub($no){
+            materi_a[$no].style.display = 'block';
+        }
+        show_sub($sub);
+
+        // Navigasi tombol
+        function nav_tombol(){
+            if($sub == 5){
+                document.getElementById('next').disabled = true;
+            }else if($sub == 0){
+                document.getElementById('prev').disabled = true;
+            }else{
+                document.getElementById('prev').disabled = false;
+                document.getElementById('next').disabled = false;
+            }
+        }
+        nav_tombol();
+
+        // Status Bar
+        const status_bar = document.getElementById('status_bar');
+        function update_status(){
+            let persen = $sub * 20;
+            status_bar.style.width = `${persen}%`;
         }
 
-        // materi_a[0].style.display = '';
+        // Testing
+        console.log(materi_a)
+        
+        function next(){
+            console.log('Selanjutnya')
+            hide_semua_sub();
+            $sub++;
+            show_sub($sub);
+            nav_tombol()
+            update_status()
+        }
+        
+        function prev(){
+            console.log('Sebelumnya')
+            hide_semua_sub();
+            $sub--;
+            show_sub($sub);
+            nav_tombol()
+            update_status()
+        }
+
+
+     
 
 
 
