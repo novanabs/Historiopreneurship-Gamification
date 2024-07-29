@@ -20,7 +20,7 @@ class LatihanController extends Controller
     
 
     public function latihan(){
-        $soal['soal'] = Soal::find('123');
+        $soal['soal'] = Soal::first();
         $_SESSION['soal_sekarang'] = 0;
         $_SESSION['jawaban'] = 0;
         $_SESSION['nilai'] = 0;
@@ -35,5 +35,8 @@ class LatihanController extends Controller
     }
     public function info(){
         return view('latihan.info');
+    }
+    public function dragndrop(){
+        return view('latihan.dragndrop');
     }
 }

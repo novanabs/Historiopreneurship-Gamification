@@ -112,7 +112,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('kuis') }}">
+                <a class="nav-link" href="{{ route('dragndrop') }}">
                     <i class="bi bi-speedometer"></i>
                    <p>Kuis</p>
                 </a>
