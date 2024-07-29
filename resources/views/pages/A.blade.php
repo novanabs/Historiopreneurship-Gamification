@@ -245,6 +245,7 @@ sekunder.
 
         // Navigasi Soal
         var $sub = 0;
+        var $progress = 0;
 
         // Hide semua bab
         function hide_semua_sub(){
@@ -252,6 +253,7 @@ sekunder.
                 console.log(materi_a[i])
                 materi_a[i].style.display = 'none';
             }
+            console.log($sub,$progress)
         }
         hide_semua_sub();
         
@@ -275,32 +277,37 @@ sekunder.
         nav_tombol();
 
         // Status Bar
+        
         const status_bar = document.getElementById('status_bar');
         function update_status(){
-            let persen = $sub * 20;
+            let persen = $progress * 20;
             status_bar.style.width = `${persen}%`;
         }
 
         // Testing
-        console.log(materi_a)
+        // console.log(materi_a)
         
         function next(){
-            console.log('Selanjutnya')
+            console.log('Selanjutnya',$sub)
             hide_semua_sub();
             $sub++;
+            if($sub > $progress){
+                $progress++; 
+            }      
             show_sub($sub);
             nav_tombol()
             update_status()
         }
         
         function prev(){
-            console.log('Sebelumnya')
+            console.log('Sebelumnya',$sub)
             hide_semua_sub();
             $sub--;
             show_sub($sub);
             nav_tombol()
-            update_status()
         }
+
+       
 
 
      
