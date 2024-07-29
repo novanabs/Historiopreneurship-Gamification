@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\DosenController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HalamanController;
 use App\Http\Controllers\LatihanController;
@@ -41,3 +42,8 @@ Route::get('/kuis', [LatihanController::class, 'kuis'])->name('kuis');
 Route::get('/evaluasi', [LatihanController::class, 'evaluasi'])->name('evaluasi');
 Route::get('/info', [LatihanController::class, 'info'])->name('info');
 
+// Controller Dosen
+Route::get('/dataKelas',[DosenController::class,'datakelas'])->name('dataKelas');
+Route::get('/dataLatihan',[DosenController::class,'dataLatihan'])->name('dataLatihan');
+Route::get('/dataMahasiswa',[DosenController::class,'dataMahasiswa'])->name('dataMahasiswa');
+Route::get('/dataNilai',[DosenController::class,'dataNilai'])->name('dataNilai');

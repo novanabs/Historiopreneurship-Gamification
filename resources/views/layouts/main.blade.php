@@ -11,6 +11,15 @@
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
     {{-- Bootsrap Icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+    <style>
+        #leftCol {
+            position: fixed;
+            overflow-y: scroll;
+            overflow: hidden;
+            top: 0;
+            bottom: 0;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -50,16 +59,46 @@
             </li>
         </ul>
       </nav>
-    <aside class="main-sidebar sidebar-dark-primary elevation-4 position-fixed">
+    <aside class="main-sidebar sidebar-dark-primary elevation-4 position-fixed" id="leftCol">
         <!-- Brand Logo -->
         <a href="#" class="brand-link">
           {{-- <img src="#" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
           <span class="brand-text font-weight-light">Historiopreneurship</span>
         </a>
-    <div class="sidebar " data-bs-spy="scroll">
+    <div class="sidebar ">
         <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-header">MENU</li>
+
+            {{-- Halaman Guru --}}
+            @if (auth()->user()->peran == 'guru')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dataKelas') }}">
+                    <i class="bi bi-speedometer"></i>
+                   <p>Data Kelas</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dataMahasiswa') }}">
+                    <i class="bi bi-speedometer"></i>
+                   <p>Data Mahasiswa</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dataNilai') }}">
+                    <i class="bi bi-speedometer"></i>
+                   <p>Data Nilai</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dataLatihan') }}">
+                    <i class="bi bi-speedometer"></i>
+                   <p>Data Latihan</p>
+                </a>
+            </li>
+                
+            @endif
+            @can('admin')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('latihan') }}">
                     <i class="bi bi-speedometer"></i>
@@ -85,13 +124,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                @can('admin')
+                
                 <a class="nav-link" href="{{ route('dashboard.showUser') }}">
                     <i class="bi bi-speedometer"></i>
                    <p>Dashboard Admin</p>
                 </a>
-                @endcan
             </li>
+            @endcan
             <li class="nav-item">
                 {{-- Admin tidak melihat ini --}}
                 @if (auth()->user()->peran != 'admin')
@@ -270,6 +309,18 @@
                 </li>
               </ul>
             </li>
+            <li class="nav-item mb-5">
+                {{-- Admin tidak melihat ini --}}
+                @if (auth()->user()->peran != 'admin')
+                   <a href="" class="nav-link">
+                <i class="bi bi-layout-text-window-reverse"></i>
+                <p>
+                  Evaluasi
+                </p>
+              </a> 
+                @endif
+              
+            </li>
             </li>
             
           </ul>
@@ -277,16 +328,20 @@
         <!-- /.sidebar-menu -->
       </div>
     </aside>
-    
-
-      <section class="container mt-3">
-        <div class="row">
-          <div class="col text-center">
-              <h1>HISTORIOPRENEURSHIP</h1>
+    <div class="content-wrapper">
+        <section class="container mt-3">
+            <div class="row">
+              <div class="col text-center mt-5">
+                  <h1>HISTORIOPRENEURSHIP</h1>
+              </div>
           </div>
-      </div>
-        @yield('container')
-    </section>
+          <div class="container">
+            @yield('container')
+          </div>
+        </section>
+    </div>
+
+      
     
     </div>
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
