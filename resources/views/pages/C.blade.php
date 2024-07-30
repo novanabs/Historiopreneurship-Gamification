@@ -503,6 +503,217 @@ Kalian bebas menyusun, merancang dan mengatur proyek yang kalian kerjakan.
                 <p class="text-center text-lg mt-3">
                     <b>Evaluasi Proses dan Hasil Proyek</b>
                 </p>
+
+                <ol>
+                    <li class="mt-3"><label for="">Bagaimana pendapat kalian tentang hasil proyek yang telah kalian buat</label>  <br> <textarea name="" id=""rows="5"></textarea></li>
+                    <li class="mt-3"><label for="">Apa yang bisa Anda lakukan agar proyek Anda menjadi lebih baik atau lebih sempurna</label>  <br> <textarea name="" id=""rows="5"></textarea></li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="text-lg">
+                    <b>Belajar Karakter Berwirausaha</b>
+                </p>
+
+                <p><b>Persiapan</b></p>
+                <ol>
+                    <li>Mahasiswa menentukan topik berwirausaha yang berkarakter dan
+                        dampak dari COVID 19 di berbagai sektor yang berhubungan dengan
+                        ekonomi.</li>
+                    <li>Mempersiapan tempat dan sound system oleh panitia.</li>
+                    <li>Mempersiapkan 2 narasumber tokoh wirausahawan lokal untuk
+                        berbagi mengenai Wirausaha Yang Bertanggung JawabPokok materi
+                        yang disampaikan adalah : 
+                        <ol type="a">
+                            <li>Pengalaman mulai berwiraswasta.</li>
+                            <li>Alasan kenapa memilih bisnis tersebut.</li>
+                            <li>Bagaimana permasalahan dan peluang yang timbul dari bisnis
+                                tersebut.</li>
+                            <li>Karakter Wirausahawan.</li>
+                            <li>Dampak COVID 19 terhadap perekonomian</li>
+                            <li>Motivasi peserta didik</li>
+                        </ol>
+                    </li>
+                </ol>
+                <p><b>Pelaksanaan</b></p>
+                <ol>
+                    <li>Mahasiswa membuat dokumen jurnal belajar.</li>
+                    <li>Mahasiswa memfasilitasi sebagai Moderator dan Pewara Acara.</li>
+                    <li>Peserta didik mendengarkan dan secara aktif didorong untuk aktif
+                        menggali informasi dari narasumber.</li>
+                    <li>Peserta didik diberikan tugas dengan mencatat rangkuman informasi
+                        yang telah disampaikan narasumber selama acara berlangsung.</li>
+                    <li>Peserta didik diberikan tugas dengan mencatat rangkuman informasi
+                        yang telah disampaikan narasumber selama acara berlangsung.</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="text-lg"><b>Orasi "Jika Aku Menjadi?"</b></p>
+                <p><b>Deskripsi</b></p>
+                <p>Seorang wirausahawan harus memiliki karakter yang visioner. Dalam
+                    menumbuhkan karakter tersebut, peserta didik diberikan kesempatannya
+                    untuk menyusun visi dan misinya ketika berkeinginan menjadi seorang
+                    pengusaha. Dengan diberikan tenggat waktu, peserta didik dituntut untuk
+                    menuangkan visi dan misinya secara spontan sehingga diharapkan peserta
+                    didik berani mengutarakan visi dan misinya serta memahami salah satu
+                    karakter wirausahawan.
+                    </p>
+                <p><b>Persiapan</b></p>
+                <ol>
+                    <li>Peserta didik diminta mempersiapkan alat tulis dan secarik kertas.
+                    </li>
+                    <li>Mahasiswa mempersiapkan pertanyaan yang harus dijawab oleh  rekan
+                        lainnya:
+                    <ol type="a">
+                        <li>Jika kamu memiliki modal dan menjadi seorang wirausahawan, kamu
+                            ingin menjadi pengusaha apa? 
+                            </li>
+                        <li>Kalau kamu sudah menentukan menjadi pengusaha apa, maka apa visi
+                            dan misimu menjadi seorang pengusaha? </li>
+                    </ol>
+                    </li>
+
+                </ol>
+                <p><b>Pelaksanaan</b></p>
+                <ol>
+                    <li>Peserta didik diberikan pertanyaan yang telah disiapkan.</li>
+                    <li>Peserta diminta menjawab pertanyaan tersebut di secarik kertas dengan
+                        tenggat waktu 15 menit.</li>
+                    <li>Meminta audien maju ke depan berorasi tentang visi dan misinya ketika
+                        menjadi wirausahawan.</li>
+                    <li>Memberikan refleksi singkat dan mengijikan teman-temannya untuk
+                        bertanya.</li>
+                    <li>Peserta didik diajak untuk meneriakkan “Aku ingin menjadi Pengusaha
+                        ............. Aku pasti sukses!” Secara bersamaan.</li>
+                </ol>
+                <p>Hasil karya dan Cara Berorasi di depan umum pada kegiatan ini bukan
+                    menjadi pokok pembelajaran, namun memperlihatkan kecepatan, dan
+                    kemandiriannya dalam menentukan visi dan misinya sendiri untuk menjadi
+                    seorang wirausahawan.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h3>REFLEKSI</h3>
+                <p>Setelah mempelajari buku ajar ini, bagaimana pemahaman kalian terhadap materi? 
+ 
+                    Isilah penilaian diri ini dengan sejujur-jujurnya dan sebenar-benarnya sesuai dengan
+                    perasaan kalian ketika mengerjakan suplemen bahan materi ini! Bubuhkanlah tanda centang
+                    (√) pada salah satu gambar yang dapat mewakili perasaan kalian setelah mempelajari materi
+                    ini!</p>
+                <img src="" alt="Emoticon">
+                <p><b>Jawablah pertanyaan berikut!</b></p>
+                <ol>
+                    <li class="mt-3"><label for="">Apa yang sudah kalian pelajari?</label>  <br> <textarea name="" id=""rows="5"></textarea></li>
+                    <li class="mt-3"><label for="">Apa yang kalian kuasai dari materi ini?</label>  <br> <textarea name="" id=""rows="5"></textarea></li>
+                    <li class="mt-3"><label for="">Bagian apa yang belum kalian kuasai?</label>  <br> <textarea name="" id=""rows="5"></textarea></li>
+                    <li class="mt-3"><label for="">Apa upaya kalian untuk menguasai yang belum kalian kuasai?</label>  <br> <textarea name="" id=""rows="5"></textarea></li>
+                </ol>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <h3>RUBRIK HASIL ANALISA</h3>
+                <ol>
+                    <li><b>KATEGORI 1</b><br>Jika hasil analisa mengambarkan jawaban
+                        yang tidak lengkap, tidak terstruktur dan
+                        tidak tepat sasaran  </li>
+                    <li class="mt-3"><b>KATEGORI 2</b><br>Jika hasil analisa mengambarkan jawaban
+                        yang cukup lengkap, cukup terstruktur dan 
+                        cukup tepat sasaran </li>
+                    <li class="mt-3"><b>KATEGORI 3</b><br>Jika hasil analisa mengambarkan jawaban
+                        yang lengkap, terstruktur dan tepat sasaran  </li>
+                    <li class="mt-3"><b>KATEGORI 4</b><br>Jika hasil analisa mengambarkan jawaban
+                        yang sangat lengkap, sangat terstruktur dan
+                        sangat tepat sasaran  </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>Praktik Lapangan 1</h3>
+                <p class="text-lg">AKTIVITAS 5</p>
+                <p class="text-sm">2 JP x @ 50 menit = 100 menit</p>
+                <p>Produk dan jasa yang telah kalian rancang, akan disimulasikan pada pertemuan ini.
+                    Simulasikanlah dengan teman-teman di kelas kalian terlebih dahulu sebelum dipraktikkan ke
+                    lingkup yang lebih luas. Tulislah saran dari teman-teman di kelas terkait Produk dan jasa
+                    yang sudah kalian jual kepada mereka.</p>
+                    <label for="" class="mt-3">Saran terhadap produk dan jasa:</label>
+                    <textarea name="" id=""rows="5"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>Praktik Lapangan 2</h3>
+                <p class="text-lg">AKTIVITAS 6</p>
+                <p class="text-sm">2 JP x @ 50 menit = 100 menit</p>
+                <p>Pada pertemuan kali ini, saatnya kalian menjual produk dan jasa terkait kewirausahaan
+                    kesejarahan yang telah kalian rancang kepada lingkup yang lebih luas, seperti masyarakat
+                    umum, teman di luar kelas/fakultas, teman di luar universitas, pengguna sosial media, dan lainlain.
+                    Tulislah produk dan yang berhasil kalian jual beserta jumlahnya.
+                    </p>
+                
+                <p class="text-lg text-center"><b>Tabel jumlah produk dan jasa yang terjual</b></p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="text-center">
+                            <td>No</td>
+                            <td>Nama Konsumen</td>
+                            <td>Jumlah</td>
+                            <td>Keterangan</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h3>REFLEKSI</h3>
+                <p>Setelah mempelajari buku ajar ini, bagaimana pemahaman kalian terhadap materi? 
+ 
+                    Isilah penilaian diri ini dengan sejujur-jujurnya dan sebenar- benarnya sesuai dengan
+                    perasaan kalian ketika mengerjakan suplemen bahan materi ini! Bubuhkanlah tanda centang
+                    (√) pada salah satu gambar yang dapat mewakili perasaan kalian setelah mempelajari materi
+                    ini! </p>
+                <img src="" alt="Emoticon">
+                <p><b>Jawablah pertanyaan berikut!</b></p>
+                <ol>
+                    <li class="mt-3"><label for="">Apa yang sudah kalian pelajari?</label>  <br> <textarea name="" id=""rows="5"></textarea></li>
+                    <li class="mt-3"><label for="">Apa yang kalian kuasai dari materi ini?</label>  <br> <textarea name="" id=""rows="5"></textarea></li>
+                    <li class="mt-3"><label for="">Bagian apa yang belum kalian kuasai?</label>  <br> <textarea name="" id=""rows="5"></textarea></li>
+                    <li class="mt-3"><label for="">Apa upaya kalian untuk menguasai yang belum kalian kuasai?</label>  <br> <textarea name="" id=""rows="5"></textarea></li>
+                </ol>
             </div>
         </div>
     </div>

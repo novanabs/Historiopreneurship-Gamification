@@ -23,6 +23,11 @@
             top: 0;
             bottom: 0;
         }
+
+        .dafus {
+            text-indent: -35px;
+            padding-left: 36px;
+        }
     </style>
 </head>
 
@@ -320,6 +325,18 @@
                 <i class="bi bi-layout-text-window-reverse"></i>
                 <p>
                   Evaluasi
+                </p>
+              </a> 
+                @endif
+              
+            </li>
+            <li class="nav-item mb-5">
+                {{-- Admin tidak melihat ini --}}
+                @if (auth()->user()->peran != 'admin')
+                   <a href="{{route('pages.dafus')}}" class="nav-link">
+                <i class="bi bi-layout-text-window-reverse"></i>
+                <p>
+                  Daftar Pustaka
                 </p>
               </a> 
                 @endif

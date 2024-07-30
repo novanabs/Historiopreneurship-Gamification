@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/A-Informasi-Umum', [HalamanController::class, 'A'])->name('pages.A');
     Route::get('/B-Kesejarahan', [HalamanController::class, 'B'])->name('pages.B');
     Route::get('/C-Kewirausahaan-dan-Kepariwisataan', [HalamanController::class, 'C'])->name('pages.C');
+    Route::get('/Daftar-Pustaka',[HalamanController::class, 'daftarPustaka'])->name('pages.dafus');
 });
 
 // Middleware admin

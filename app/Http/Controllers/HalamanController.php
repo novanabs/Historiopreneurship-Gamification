@@ -17,4 +17,8 @@ class HalamanController extends Controller
     function C () {
         return view('pages.C');
     }
+
+    function daftarPustaka () {
+        return view('pages.daftarPustaka');
+    }
 }
