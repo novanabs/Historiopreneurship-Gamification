@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
     {{-- Bootsrap Icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+    <!-- data table -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <style>
         body{
             overflow: hidden;
@@ -366,7 +368,10 @@
     
     </div>
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    <!-- data tables -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/adminlte.min.js') }}"></script>
+
 </body>
 </html>
