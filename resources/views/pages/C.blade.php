@@ -3,11 +3,30 @@
 
 @section('container')
 
+    {{-- Status Bar --}}
+    <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 0.001%" id="status_bar"></div>
+    </div>
+
     
     <div class="mt-3">
         <div class="row">
             <div class="col">
-                <h2>Kewirausahaan dan Kepariwisataan </h2>
+                <h2>C. Kewirausahaan dan Kepariwisataan </h2>
+            </div>
+                {{-- Tombol Navigasi --}}
+                <div class="row mb-3 mt-3">
+                    <div class="col-6">
+                        <button class="btn btn-primary" onclick="prev()" id="prev">Sebelumnya</button>
+                    </div>
+                    <div class="col-6 text-end">
+                        <button class="btn btn-primary" onclick="next()" id="next">Selanjutnya</button>
+                    </div>
+                </div>
+            <div class="row materi-c" id="kewirausahaan-dan-kepariwisataan">
+                <div class="col">
+                
+                <h3>Kewirausahaan dan Kepariwisataan</h3>
                 <p class="text-sm">14 JP x @ 50 menit = 700 menit
                 </p>
                 <p>
@@ -172,7 +191,7 @@ yang baik.
                 </ol>
             </div>
         </div>
-        <div class="row">
+        <div class="row materi-c" id="lembar-analisa-kelompok-1">
             <div class="col">
                 <h2>Lembar Analisis Kelompok</h2>
                 <p class="text-lg">AKTIVITAS 1</p>
@@ -208,7 +227,7 @@ yang baik.
                 </ol>
             </div>
         </div>
-        <div class="row">
+        <div class="row materi-b" id="lembar-analisa-kelompok-2">
             <div class="col">
                 <h3>LEMBAR ANALISA KELOMPOK</h3>
                 <p class="text-lg">AKTIVITAS 2</p>
@@ -223,7 +242,11 @@ yang baik.
                 
             </div>
         </div>
-        <div class="row">
+
+        <div class="materi-b" id="lembar-diskusi-kelompok">
+
+        
+        <div class="">
             <div class="col">
                 <h3>LEMBAR DISKUSI KELOMPOK</h3>
                 <p class="text-lg">AKTIVITAS 3</p>
@@ -258,6 +281,9 @@ yang baik.
                 </ol>
             </div>
         </div>
+    </div>
+
+    
         <div class="row">
             <div class="col">
                 <h3>LEMBAR PROYEK INDIVIDU</h3>
@@ -324,13 +350,159 @@ Kalian bebas menyusun, merancang dan mengatur proyek yang kalian kerjakan.
         </div>
         <div class="row">
             <div class="col">
-                <p><i>=== Tabel Rincian Jadwal Kegiatan Proyek dan Daftar Checklist Monitoring Proyek ===</i></p>
+                <p class="text-lg text-center mt-4"><b>Penyusunan Jadwal Pelaksanaan Proyek</b></p>
+                <p>Susunlah jadwal penyelesaian proyek tersebut. Setelah itu tunjukkan pada dosen kalian agar diberikan persetujuan pembuatan proyek tersebut.  </p>
+                <p class="text-center"><i>=== Tabel Rincian Jadwal Kegiatan Proyek ===</i></p>
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <td>No</td>
+                            <td>Rincian Kegiatan</td>
+                            <td>Keterangan</td>
+                            <td>Waktu Pelaksanaan</td> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <p class="text-lg text-center mt-4"><b>Penyusunan dan Presentasi Proyek</b></p>
-                <p>Sekarang tugas kalian adalah mempresentasikan proyek yang telah kalian buat.</p>
+                <p class="text-lg text-center mt-4"><b>Penyelesaian Proyek dan Monitoring</b></p>
+                <p>Setelah jadwal disusun dan disetujui, selanjutnya yaitu mengisi form monitoring proyek berikut.</p>
+                <p class="mt-3 text-center">
+                    <i>Daftar Checklist Monitoring Proyek</i>
+                    <table class="table table-bordered">
+                        <thead class="text-center">
+                            <tr>
+                                <td rowspan="2">No</td>
+                                <td rowspan="2">Jenis Kegiatan</td>
+                                <td colspan="2">Keterangan</td>
+                            </tr>
+                            <tr>
+                                <td>Sudah</td>
+                                <td>Sudah</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><b>Persiapan</b></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Masing-masing anggota kelompok mendapat tugas sesuai bagiannya</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Membuat rencana penyelesaian proyek</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Membuat jadwal penyelesaian proyek</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Menuliskan alat dan bahan yang digunakan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Menuliskan cara kerja yang akan dilaksanakn</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><b>Pelaksanaan</b></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Pembagian tugas secara merata kepada anggota kelompok</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Proyek terlaksana sesuai dengan rencana yang dibuat</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Proyek selesai sesuai jadwal yang telah dirancang</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><b>Presentasi</b></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Peralatan presentasi</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Produk memiliki nilai jual atau manfaat</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="text-center text-lg mt-3">
+                    <b>Penyusunan dan Presentasi Proyek</b>
+                </p>
+                <p class="text-center">Sekarang tugas kalian adalah mempresentasikan proyek yang telah kalian buat</p>
+
+                <p class="text-center text-lg mt-3">
+                    <b>Evaluasi Proses dan Hasil Proyek</b>
+                </p>
             </div>
         </div>
     </div>

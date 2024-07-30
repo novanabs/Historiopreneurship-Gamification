@@ -3,6 +3,11 @@
 
 @section('container')
 
+    {{-- Status Bar --}}
+    <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 0.001%" id="status_bar"></div>
+    </div>
+
     
     <div class="mt-3">
         <div class="row">
@@ -10,7 +15,16 @@
                 <h2>B. Kesejarahan</h2>
             </div>
         </div>
-        <div class="row">
+        {{-- Tombol Navigasi --}}
+        <div class="row mb-3 mt-3">
+            <div class="col-6">
+                <button class="btn btn-primary" onclick="prev()" id="prev">Sebelumnya</button>
+            </div>
+            <div class="col-6 text-end">
+                <button class="btn btn-primary" onclick="next()" id="next">Selanjutnya</button>
+            </div>
+        </div>
+        <div class="row materi-b" id="kegiatan-pembelajaran-1">
             <div class="col">
                 <h3>Kegiatan Pembelajaran 1</h3>
                 <p class="text-sm">2 JP x @50 menit = 100 menit.</p>
@@ -241,7 +255,7 @@ lama.
                             Kalimantan Selatan.</p>
             </div>
         </div>
-        <div class="row">
+        <div class="row materi-b" id="kegiatan-pembelajaran-2">
             <div class="col">
                 <h3>Kegiatan Pembelajaran 2</h3>
                 <p class="text-sm">6 JP x @50 menit = 300 menit
@@ -260,7 +274,7 @@ lama.
                 </ol>
             </div>
         </div>
-        <div class="row">
+        <div class="row materi-b" id="lembar-analisa-kelompok">
             <div class="col">
                 <h3>LEMBAR ANALISA KELOMPOK</h3>
                 <p class="text-lg">AKTIVITAS EKSPLORASI MAHASISWA</p>
@@ -276,7 +290,6 @@ lama.
                     <li>Nama: </li>
                 </ol>
             </div>
-        </div>
         <div class="row mt-3">
             <div class="col">
                 <label for="objek1">Objek 1</label><br>
@@ -338,14 +351,17 @@ lama.
                 <textarea name="objek10" id="" rows="5"></textarea>
             </div>
         </div>
-        <div class="row">
+    </div>
+        <div class="row materi-b" id="lembar-analisa-individu">
             <div class="col">
+                <h2>LEMBAR ANALISA INDIVIDU</h2>
+                <h3>AKTIVITAS UNTUK KERJA</h3>
                 <p>Berdasarkan hasil identifikasi dari setiap kelompok, analisa dan asesmen lah hasil pemetaan
                     tersebut dengan melengkapi kolom di bawah ini. Selanjutnya, diskusikan di kelas. 
                  </p>
                 <p class="text-lg">LENGKAPILAH KOLOM DI BAWAH INI!</p>
             </div>
-        </div>
+        
         <div class="row">
             <div class="col">
                 <div class="row mt-3">
@@ -599,7 +615,8 @@ lama.
                 </table>
             </div>
         </div>
-        <div class="row">
+    </div>
+        <div class="row materi-b" id="kegiatan-pembelajaran-3">
             <div class="col">
                 <h3>Kegiatan Pembelajaran 3</h3>
                 <p class="text-sm">4 JP x @50 menit = 200 menit </p>
@@ -616,7 +633,7 @@ lama.
                     selanjutnya diskusikan di kelas. </p>
             </div>
         </div>
-        <div class="row">
+        <div class="row materi-b" id="refleksi">
             <div class="col">
                 <h2>REFLEKSI</h2>
                 <p>Setelah mempelajari buku ajar ini, bagaimana pemahaman kalian terhadap materi? 
@@ -638,4 +655,74 @@ lama.
         </div>
 
     </div>
+
+    <script>
+        // Mengambil semua class sub
+        const materi_a = document.getElementsByClassName('materi-b');
+
+        // Navigasi Soal
+        var $sub = 0;
+        var $progress = 0;
+
+        // Hide semua bab
+        function hide_semua_sub(){
+            for(let i=0;i<=5;i++){
+                console.log(materi_a[i])
+                materi_a[i].style.display = 'none';
+            }
+            console.log($sub,$progress)
+        }
+        hide_semua_sub();
+        
+        // Menampilkan sub
+        function show_sub($no){
+            materi_a[$no].style.display = 'block';
+        }
+        show_sub($sub);
+
+        // Navigasi tombol
+        function nav_tombol(){
+            if($sub == 5){
+                document.getElementById('next').disabled = true;
+            }else if($sub == 0){
+                document.getElementById('prev').disabled = true;
+            }else{
+                document.getElementById('prev').disabled = false;
+                document.getElementById('next').disabled = false;
+            }
+        }
+        nav_tombol();
+
+        // Status Bar
+        
+        const status_bar = document.getElementById('status_bar');
+        function update_status(){
+            let persen = $progress * 20;
+            status_bar.style.width = `${persen}%`;
+        }
+
+        // Testing
+        console.log(materi_a)
+        
+        function next(){
+            console.log('Selanjutnya',$sub)
+            hide_semua_sub();
+            $sub++;
+            if($sub > $progress){
+                $progress++; 
+            }      
+            show_sub($sub);
+            nav_tombol()
+            update_status()
+        }
+        
+        function prev(){
+            console.log('Sebelumnya',$sub)
+            hide_semua_sub();
+            $sub--;
+            show_sub($sub);
+            nav_tombol()
+        }
+        
+    </script>
 @endsection
