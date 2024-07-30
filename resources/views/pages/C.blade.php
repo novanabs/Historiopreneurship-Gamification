@@ -10,6 +10,8 @@
 
     
     <div class="mt-3">
+        
+         
         <div class="row">
             <div class="col">
                 <h2>C. Kewirausahaan dan Kepariwisataan </h2>
@@ -23,8 +25,10 @@
                         <button class="btn btn-primary" onclick="next()" id="next">Selanjutnya</button>
                     </div>
                 </div>
-            <div class="row materi-c" id="kewirausahaan-dan-kepariwisataan">
-                <div class="col">
+        </div>
+        <div class="materi-c" id="kewirausahaan-dan-kepariwisataan">
+            <div class="row" >
+             <div class="col">
                 
                 <h3>Kewirausahaan dan Kepariwisataan</h3>
                 <p class="text-sm">14 JP x @ 50 menit = 700 menit
@@ -191,7 +195,12 @@ yang baik.
                 </ol>
             </div>
         </div>
-        <div class="row materi-c" id="lembar-analisa-kelompok-1">
+           
+    </div>
+    <div class="materi-c" id="lembar-analisa-kelompok-1">
+
+    
+        <div class="row">
             <div class="col">
                 <h2>Lembar Analisis Kelompok</h2>
                 <p class="text-lg">AKTIVITAS 1</p>
@@ -227,7 +236,11 @@ yang baik.
                 </ol>
             </div>
         </div>
-        <div class="row materi-b" id="lembar-analisa-kelompok-2">
+    </div>
+    <div class="materi-c" id="lembar-analisa-kelompok-2">
+
+    
+        <div class="row" >
             <div class="col">
                 <h3>LEMBAR ANALISA KELOMPOK</h3>
                 <p class="text-lg">AKTIVITAS 2</p>
@@ -242,11 +255,12 @@ yang baik.
                 
             </div>
         </div>
+    </div>
 
-        <div class="materi-b" id="lembar-diskusi-kelompok">
+        <div class="materi-c" id="lembar-diskusi-kelompok">
 
         
-        <div class="">
+        <div class="row">
             <div class="col">
                 <h3>LEMBAR DISKUSI KELOMPOK</h3>
                 <p class="text-lg">AKTIVITAS 3</p>
@@ -283,6 +297,9 @@ yang baik.
         </div>
     </div>
 
+    <div class="materi-c" id="lembar-proyek-individu">
+
+    
     
         <div class="row">
             <div class="col">
@@ -595,7 +612,10 @@ Kalian bebas menyusun, merancang dan mengatur proyek yang kalian kerjakan.
                     seorang wirausahawan.</p>
             </div>
         </div>
+    </div>
+    <div class="materi-c" id="refleksi-1">
 
+   
         <div class="row">
             <div class="col">
                 <h3>REFLEKSI</h3>
@@ -633,7 +653,8 @@ Kalian bebas menyusun, merancang dan mengatur proyek yang kalian kerjakan.
                 </ol>
             </div>
         </div>
-        <div class="row">
+    </div>
+        <div class="row materi-c" id="praktik-lapangan-1">
             <div class="col">
                 <h3>Praktik Lapangan 1</h3>
                 <p class="text-lg">AKTIVITAS 5</p>
@@ -646,7 +667,7 @@ Kalian bebas menyusun, merancang dan mengatur proyek yang kalian kerjakan.
                     <textarea name="" id=""rows="5"></textarea>
             </div>
         </div>
-        <div class="row">
+        <div class="row materi-c" id="praktik-lapangan-2">
             <div class="col">
                 <h3>Praktik Lapangan 2</h3>
                 <p class="text-lg">AKTIVITAS 6</p>
@@ -697,7 +718,7 @@ Kalian bebas menyusun, merancang dan mengatur proyek yang kalian kerjakan.
             </div>
         </div>
 
-        <div class="row">
+        <div class="row materi-c" id="refleksi-2">
             <div class="col">
                 <h3>REFLEKSI</h3>
                 <p>Setelah mempelajari buku ajar ini, bagaimana pemahaman kalian terhadap materi? 
@@ -715,6 +736,75 @@ Kalian bebas menyusun, merancang dan mengatur proyek yang kalian kerjakan.
                     <li class="mt-3"><label for="">Apa upaya kalian untuk menguasai yang belum kalian kuasai?</label>  <br> <textarea name="" id=""rows="5"></textarea></li>
                 </ol>
             </div>
-        </div>
     </div>
+
+    <script>
+        // Mengambil semua class sub
+        const materi_a = document.getElementsByClassName('materi-c');
+
+        // Navigasi Soal
+        var $sub = 0;
+        var $progress = 0;
+
+        // Hide semua bab
+        function hide_semua_sub(){
+            for(let i=0;i<=7;i++){
+                console.log(materi_a[i])
+                materi_a[i].style.display = 'none';
+            }
+            console.log($sub,$progress)
+        }
+        hide_semua_sub();
+        
+        // Menampilkan sub
+        function show_sub($no){
+            materi_a[$no].style.display = 'block';
+        }
+        show_sub($sub);
+
+        // Navigasi tombol
+        function nav_tombol(){
+            if($sub == 6){
+                document.getElementById('next').disabled = true;
+            }else if($sub == 0){
+                document.getElementById('prev').disabled = true;
+            }else{
+                document.getElementById('prev').disabled = false;
+                document.getElementById('next').disabled = false;
+            }
+        }
+        nav_tombol();
+
+        // Status Bar
+        
+        const status_bar = document.getElementById('status_bar');
+        function update_status(){
+            let persen = $progress * 16.66666667;
+            status_bar.style.width = `${persen}%`;
+        }
+
+        // Testing
+        console.log(materi_a)
+        
+        function next(){
+            console.log('Selanjutnya',$sub)
+            hide_semua_sub();
+            $sub++;
+            if($sub > $progress){
+                $progress++; 
+            }      
+            show_sub($sub);
+            nav_tombol()
+            update_status()
+        }
+        
+        function prev(){
+            console.log('Sebelumnya',$sub)
+            hide_semua_sub();
+            $sub--;
+            show_sub($sub);
+            nav_tombol()
+        }
+        
+    </script>
 @endsection
