@@ -746,9 +746,11 @@ Kalian bebas menyusun, merancang dan mengatur proyek yang kalian kerjakan.
         var $sub = 0;
         var $progress = 0;
 
+        console.log(materi_a.length)
+
         // Hide semua bab
         function hide_semua_sub(){
-            for(let i=0;i<=7;i++){
+            for(let i=0;i<=8;i++){
                 console.log(materi_a[i])
                 materi_a[i].style.display = 'none';
             }
@@ -764,7 +766,7 @@ Kalian bebas menyusun, merancang dan mengatur proyek yang kalian kerjakan.
 
         // Navigasi tombol
         function nav_tombol(){
-            if($sub == 6){
+            if($sub == 8){
                 document.getElementById('next').disabled = true;
             }else if($sub == 0){
                 document.getElementById('prev').disabled = true;
@@ -779,7 +781,7 @@ Kalian bebas menyusun, merancang dan mengatur proyek yang kalian kerjakan.
         
         const status_bar = document.getElementById('status_bar');
         function update_status(){
-            let persen = $progress * 16.66666667;
+            let persen = $progress * 12.5;
             status_bar.style.width = `${persen}%`;
         }
 

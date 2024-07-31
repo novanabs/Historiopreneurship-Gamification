@@ -664,6 +664,8 @@ lama.
         var $sub = 0;
         var $progress = 0;
 
+        console.log(materi_a.length)
+
         // Hide semua bab
         function hide_semua_sub(){
             for(let i=0;i<=5;i++){
