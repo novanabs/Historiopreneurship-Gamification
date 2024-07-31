@@ -186,6 +186,7 @@
             <ol>
                 <li>Pilih Gambar yang menurut Anda Benar</li>
                 <li>Seret Gambar ke kotak Jawaban</li>
+                <li>Untuk Mengganti Jawaban seret kembali gambar ke atas kotak soal</li>
                 <li>Tekan Submit ketika jawaban sudah dirasa benar</li>
                 <li>Tekan Reset ketika Anda ingin mengulang </li>
             </ol>
