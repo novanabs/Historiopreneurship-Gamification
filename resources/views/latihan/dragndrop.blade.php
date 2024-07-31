@@ -38,6 +38,15 @@
             justify-content: center;
         }
 
+        .panduan {
+            gap: 10px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
         .jawaban {
             width: 200px;
             height: 150px;
@@ -171,7 +180,16 @@
 
 <body>
     <div class="container">
-        <h1 class="title">Manakah 5 objek wisata yang ada di Kalimantan Selatan</h1>
+        <h1 class="title">Manakah 5 objek wisata yang ada di Kalimantan Selatan?</h1>
+        <div class ="panduan">
+            <h4>Panduan Pengerjaan</h4>
+            <ol>
+                <li>Pilih Gambar yang menurut Anda Benar</li>
+                <li>Seret Gambar ke kotak Jawaban</li>
+                <li>Tekan Submit ketika jawaban sudah dirasa benar</li>
+                <li>Tekan Reset ketika Anda ingin mengulang </li>
+            </ol>
+        </div>
         <div class="soal">
             <div class="jawaban" draggable="true" id="jawaban1" data-correct="true">
                 <img src="img/1.jpg" alt="Gambar 1">
@@ -235,15 +253,19 @@
     <script>
         const jawabanElements = document.querySelectorAll('.jawaban');
         const kotakJawaban = document.getElementById('kotakJawaban');
+        const soalContainer = document.querySelector('.soal');
         const modal = document.getElementById('myModal');
         const modalText = document.getElementById('modal-text');
         const resetModal = document.getElementById('resetModal');
         let correctAnswers = 0;
-        let totalAnswers = 0;
 
         jawabanElements.forEach(jawaban => {
             jawaban.addEventListener('dragstart', (e) => {
                 e.dataTransfer.setData('text/plain', jawaban.id);
+            });
+
+            jawaban.addEventListener('dragend', () => {
+                jawaban.classList.remove('dragged');
             });
         });
 
@@ -262,7 +284,6 @@
 
             const jawabanId = e.dataTransfer.getData('text/plain');
             const jawabanElement = document.getElementById(jawabanId);
-            const isCorrect = jawabanElement.dataset.correct === 'true';
 
             if (kotakJawaban.childElementCount >= 5) {
                 showModal('Anda hanya bisa menaruh 5 jawaban.');
@@ -271,11 +292,36 @@
 
             kotakJawaban.appendChild(jawabanElement);
             jawabanElement.draggable = false;
+            jawabanElement.classList.add('dragged');
 
-            if (isCorrect) {
+            // Check if it's a correct answer
+            if (jawabanElement.dataset.correct === 'true') {
                 correctAnswers++;
             }
-            totalAnswers++;
+        });
+
+        soalContainer.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+
+        soalContainer.addEventListener('drop', (e) => {
+            e.preventDefault();
+
+            const jawabanId = e.dataTransfer.getData('text/plain');
+            const jawabanElement = document.getElementById(jawabanId);
+
+            // Only allow dropping items that were previously in kotakJawaban
+            if (jawabanElement.parentNode === kotakJawaban) {
+                kotakJawaban.removeChild(jawabanElement);
+                soalContainer.appendChild(jawabanElement);
+                jawabanElement.draggable = true;
+                jawabanElement.classList.remove('dragged');
+
+                // Update correctAnswers
+                if (jawabanElement.dataset.correct === 'true') {
+                    correctAnswers--;
+                }
+            }
         });
 
         function checkResults() {
@@ -288,18 +334,14 @@
 
         function confirmReset() {
             resetModal.style.display = "none";
-            // Reset game variables
             correctAnswers = 0;
-            totalAnswers = 0;
 
-            // Reset kotakJawaban
             kotakJawaban.innerHTML = '';
             kotakJawaban.style.backgroundColor = '#f0f0f0';
 
-            // Enable dragging for all jawaban elements
             jawabanElements.forEach(jawaban => {
                 jawaban.draggable = true;
-                document.querySelector('.soal').appendChild(jawaban);
+                soalContainer.appendChild(jawaban);
             });
         }
 
