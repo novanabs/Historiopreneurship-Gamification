@@ -142,8 +142,8 @@
                 </a>
             </li>
             @endcan
-            <li class="nav-item">
-                {{-- Admin tidak melihat ini --}}
+            <li class="nav-header">MATERI</li>
+            {{-- <li class="nav-item">
                 @if (auth()->user()->peran != 'admin')
                    <a href="{{ route('dashboard.index') }}" class="nav-link">
                 <i class="bi bi-layout-text-window-reverse"></i>
@@ -152,8 +152,7 @@
                 </p>
               </a> 
                 @endif
-              
-            </li>
+            </li> --}}
             
             <li class="nav-item">
               <a href="#" class="nav-link">
@@ -231,14 +230,14 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('pages.B') }}" class="nav-link">
-                        <i class="bi bi-dot"></i>
-                        <p>Lembar Analisis Kelompok</p>
+                            <i class="bi bi-dot"></i>
+                            <p class="text-left">Analisis Kelompok</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('pages.B') }}" class="nav-link">
                         <i class="bi bi-dot"></i>
-                        <p>Lembar Analisis Individu</p>
+                        <p>Analisis Individu</p>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -265,7 +264,7 @@
               <a href="#" class="nav-link">
                 <i class="bi bi-2-square-fill"></i>
                 <p class="text-start">
-                  Kewirausahaan & Kepariwisataan
+                  KWU & Kepariwisataan
                   <i class="right bi bi-chevron-left"></i>
                 </p>
               </a>
@@ -273,25 +272,25 @@
                 <li class="nav-item">
                     <a href="{{ route('pages.C') }}" class="nav-link">
                         <i class="bi bi-dot"></i>
-                        <p>Lembar Analisa Kelompok 1</p>
+                        <p>Analisa Kelompok 1</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('pages.C') }}" class="nav-link">
                         <i class="bi bi-dot"></i>
-                        <p>Lembar Analisa Kelompok 2</p>
+                        <p>Analisa Kelompok 2</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('pages.C') }}" class="nav-link">
                         <i class="bi bi-dot"></i>
-                        <p>Lembar Diskusi Kelompok</p>
+                        <p>Diskusi Kelompok</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('pages.C') }}" class="nav-link">
                         <i class="bi bi-dot"></i>
-                        <p>Lembar Proyek Individu</p>
+                        <p>Proyek Individu</p>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -320,7 +319,7 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item mb-5">
+            <li class="nav-item">
                 {{-- Admin tidak melihat ini --}}
                 @if (auth()->user()->peran != 'admin')
                    <a href="" class="nav-link">
