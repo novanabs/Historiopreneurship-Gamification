@@ -322,7 +322,19 @@
             <li class="nav-item">
                 {{-- Admin tidak melihat ini --}}
                 @if (auth()->user()->peran != 'admin')
-                   <a href="" class="nav-link">
+                   <a href="{{ route('dragndrop') }}" class="nav-link">
+                <i class="bi bi-layout-text-window-reverse"></i>
+                <p>
+                  Kuis
+                </p>
+              </a> 
+                @endif
+              
+            </li>
+            <li class="nav-item">
+                {{-- Admin tidak melihat ini --}}
+                @if (auth()->user()->peran != 'admin')
+                   <a href="{{ route('evaluasi') }}" class="nav-link">
                 <i class="bi bi-layout-text-window-reverse"></i>
                 <p>
                   Evaluasi
