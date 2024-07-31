@@ -79,10 +79,12 @@
     <div class="sidebar ">
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-header">MENU</li>
+            
 
             {{-- Halaman Guru --}}
+            
             @if (auth()->user()->peran == 'guru')
+            <li class="nav-header">MENU</li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('dataKelas') }}">
                     <i class="bi bi-speedometer"></i>
