@@ -788,9 +788,16 @@
         var $sub = 0;
         var $progress = 0;
 
+        console.log(materi_a.length)
+
         // Hide semua bab
+<<<<<<< HEAD
         function hide_semua_sub() {
             for (let i = 0; i <= 7; i++) {
+=======
+        function hide_semua_sub(){
+            for(let i=0;i<=8;i++){
+>>>>>>> 834fa6e2f1dad320b812d9d4b84d18e2ca3201e3
                 console.log(materi_a[i])
                 materi_a[i].style.display = 'none';
             }
@@ -805,8 +812,13 @@
         show_sub($sub);
 
         // Navigasi tombol
+<<<<<<< HEAD
         function nav_tombol() {
             if ($sub == 6) {
+=======
+        function nav_tombol(){
+            if($sub == 8){
+>>>>>>> 834fa6e2f1dad320b812d9d4b84d18e2ca3201e3
                 document.getElementById('next').disabled = true;
             } else if ($sub == 0) {
                 document.getElementById('prev').disabled = true;
@@ -820,8 +832,13 @@
         // Status Bar
 
         const status_bar = document.getElementById('status_bar');
+<<<<<<< HEAD
         function update_status() {
             let persen = $progress * 16.66666667;
+=======
+        function update_status(){
+            let persen = $progress * 12.5;
+>>>>>>> 834fa6e2f1dad320b812d9d4b84d18e2ca3201e3
             status_bar.style.width = `${persen}%`;
         }
 

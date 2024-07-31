@@ -76,14 +76,11 @@
             </div>
             <div class="row">
                 {{-- Navigasi Next dan Prev --}}
-                <div class="col-4">
-                    <input class="btn btn-primary mt-3" type="submit" name="prev" value="Sebelumnya" id="prev" onclick="prev()">
+                <div class="col-6">
+                    <input class="btn btn-primary mt-6" type="submit" name="prev" value="Sebelumnya" id="prev" onclick="prev()">
                 </div>
-                <div class="col-4 text-center">
-                    <button class="btn btn-warning mt-3">Ragu</button> 
-                </div>
-                <div class="col-4 text-end">
-                    <input class="btn btn-primary mt-3" type="submit" name="next" value="Selanjutnya" id="next" onclick="next()">
+                <div class="col-6 text-end">
+                    <input class="btn btn-primary mt-6" type="submit" name="next" value="Selanjutnya" id="next" onclick="next()">
                 </div>
             </div>
         </div>

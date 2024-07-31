@@ -683,6 +683,7 @@
     // Mengambil semua class sub
     const materi_a = document.getElementsByClassName('materi-b');
 
+<<<<<<< HEAD
     // Navigasi Soal
     var $sub = 0;
     var $progress = 0;
@@ -692,6 +693,17 @@
         for (let i = 0; i <= 5; i++) {
             console.log(materi_a[i])
             materi_a[i].style.display = 'none';
+=======
+        console.log(materi_a.length)
+
+        // Hide semua bab
+        function hide_semua_sub(){
+            for(let i=0;i<=5;i++){
+                console.log(materi_a[i])
+                materi_a[i].style.display = 'none';
+            }
+            console.log($sub,$progress)
+>>>>>>> 834fa6e2f1dad320b812d9d4b84d18e2ca3201e3
         }
         console.log($sub, $progress)
     }
