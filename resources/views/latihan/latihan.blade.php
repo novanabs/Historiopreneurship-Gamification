@@ -41,7 +41,7 @@
 
 <p id="kumpulan-soal" hidden>{{$data_dari_json}}</p>
 
-<div class="mt-3">
+<div class=" mb-3">
     <h1>Latihan</h1>
 
     <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
@@ -101,7 +101,7 @@
         <div class="col-4 p-2">
             <div class="card shadow">
                 <div class="card-header">
-                    Soal
+                    Daftar Soal
                 </div>
                 <div class="card-header">
                     <table class="table table-sm">
@@ -134,6 +134,10 @@
 {{-- Script Interaktiftas soal --}}
 
 <script>
+    // Membuat tampilan penuh
+    document.getElementById('leftCol').hidden = true;
+    document.getElementById('navbarHead').hidden = true;
+    document.getElementById('content-wrapper').classList.remove('content-wrapper')
 
     // Countdown Timer
     const menit = document.getElementById('menit');
@@ -221,9 +225,9 @@ window.onload = function () {
     }
 
     // Update list soal
-    let nomor_soal_di_list = document.getElementsByClassName('list_soal')
-    nomor_soal_di_list[0].style.background = 'green';
-    nomor_soal_di_list[0].style.text = 'green';
+    // let nomor_soal_di_list = document.getElementsByClassName('list_soal')
+    // nomor_soal_di_list[0].style.background = 'green';
+    // nomor_soal_di_list[0].style.text = 'green';
     // console.log(nomor_soal_di_list[0].innerHTML)
 
 
@@ -286,6 +290,8 @@ window.onload = function () {
         console.log(jawaban_mhs);
     }
 
+
+    // Cek soal yang telah terjawab
     function jawaban_check(){
         console.log('Soal Sekarang => ',$soal_sekarang)
         if(jawaban_mhs[$soal_sekarang] == null){
@@ -302,33 +308,13 @@ window.onload = function () {
                 }
             }
         }
-
-    // Selalu menampilkan soal yang telah di Check
-
-    // function jawaban_check(){
-    //     // Yang telah terjawab
-    //     console.log('===================================================')
-    //     console.log('Jawaban kosong', jawaban_mhs[$soal_sekarang-1] !== null);
-    //     console.log('Jawaban soal', jawaban_mhs[$soal_sekarang-1])
-    //     console.log($soal_sekarang)
-    //         if(jawaban_mhs[$soal_sekarang-1] !== null){ // Jika belum terjawab
-    //             console.log('Belum dijawab')
-    //             uncheck()
-    //         }else{
-    //             console.log('Sudah dijawab')
-    //             for(let pil = 0; pil < 4; pil++){ // Masuk ke pilgan
-                    
-    //                 if($pilgan[pil].value == jawaban_mhs[$soal_sekarang-1]){
-    //                     console.log('$pilgan[pil].value',$pilgan[pil].value);
-    //                 console.log('jawaban_mhs[$soal_sekarang',jawaban_mhs[$soal_sekarang-1]);
-    //                     console.log('Jawaban', jawaban_mhs[$soal_sekarang-1])
-    //                     $pilgan[pil].checked = true;
-    //                 }
-    //             }
-    //         }
-                
-    //     }
     
+        // Navigasi daftar soal
+        const list_soal = document.getElementsByClassName('list_soal');
+        for(let l = 0;l < list_soal.length; l++){
+            console.log(list_soal[l])
+            list_soal[l].style.background = 'whitesmoke'
+        }
 
     
 

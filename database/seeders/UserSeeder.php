@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             'no_hp' => '082',
             'peran' => 'guru',
             'email' => 'guru@gmail.com',
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make('123456789'),
             'alamat' => 'Dijalan'
         ]);
 
