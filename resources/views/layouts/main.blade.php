@@ -416,8 +416,8 @@
         const $bab = document.getElementsByClassName('bab');
         // const $get_sub = document.getElementsByClassName('sub');
         const $get_sub = document.querySelectorAll('.sub');
-        console.log('Bab', $bab);
-        console.log('GetSub', $get_sub)
+        // console.log('Bab', $bab);
+        // console.log('GetSub', $get_sub)
 
         for(let j=0; j < $bab.length; j++){
             // const $per_bab = $bab[j].querySelector('a.nav-link.bab p');
