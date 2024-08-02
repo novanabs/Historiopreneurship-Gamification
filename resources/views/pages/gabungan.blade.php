@@ -1,4 +1,3 @@
-
 @extends('layouts.main')
 
 @section('container')
@@ -240,75 +239,5 @@ sekunder.
         </div>
     </div>
     </div>
-    <script>
-        // Mengambil semua class sub
-        const materi_a = document.getElementsByClassName('materi-a');
 
-        // Navigasi Soal
-        var $sub = 0;
-        var $progress = 0;
-
-        // Hide semua bab
-        function hide_semua_sub(){
-            for(let i=0;i<=6;i++){
-                // console.log(materi_a[i])
-                materi_a[i].style.display = 'none';
-            }
-        }
-        hide_semua_sub();
-        
-        // Menampilkan sub
-        function show_sub($no){
-            materi_a[$no].style.display = 'block';
-        }
-        show_sub($sub);
-
-        // Navigasi tombol
-        function nav_tombol(){
-            if($sub == 6){
-                document.getElementById('next').disabled = true;
-            }else if($sub == 0){
-                document.getElementById('prev').disabled = true;
-            }else{
-                document.getElementById('prev').disabled = false;
-                document.getElementById('next').disabled = false;
-            }
-        }
-        nav_tombol();
-
-        // Status Bar
-        
-        const status_bar = document.getElementById('status_bar');
-        function update_status(){
-            let persen = $progress * 16.66666667;
-            status_bar.style.width = `${persen}%`;
-        }
-
-        // Testing
-        // console.log(materi_a)
-        
-        function next(){
-            console.log('Selanjutnya',$sub)
-            hide_semua_sub();
-            $sub++;
-            if($sub > $progress){
-                $progress++; 
-            }      
-            show_sub($sub);
-            nav_tombol()
-            update_status()
-        }
-        
-        function prev(){
-            console.log('Sebelumnya',$sub)
-            hide_semua_sub();
-            $sub--;
-            show_sub($sub);
-            nav_tombol()
-        }
-
-    //    
-
-    </script>
 @endsection
-

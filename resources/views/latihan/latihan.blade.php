@@ -106,11 +106,11 @@
                 <div class="card-header">
                     <table class="table table-sm">
                         <tr class="text-center">
-                            <td class="soal btn list_soal">1</td>
-                            <td class="soal btn list_soal">2</td>
-                            <td class="soal btn list_soal">3</td>
-                            <td class="soal btn list_soal">4</td>
-                            <td class="soal btn list_soal">5</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">1</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">2</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">3</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">4</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">5</td>
                         </tr>
                     </table>
                 </div>
@@ -254,7 +254,6 @@ window.onload = function () {
     // Navigasi
     function next(){
         console.log('Next')
-        simpan_jawaban();
         $soal_sekarang++;
         jawaban_check()
         hapus_soal()
@@ -266,7 +265,6 @@ window.onload = function () {
     }
     function prev(){
         console.log('Prev')
-        simpan_jawaban();
         
         $soal_sekarang--;
         jawaban_check();
@@ -276,6 +274,8 @@ window.onload = function () {
         nomor_soal($soal_sekarang+1);
     }
 
+    // Navigasi daftar soal
+    const list_soal = document.getElementsByClassName('list_soal');
     
 
     // Bank Soal
@@ -288,6 +288,8 @@ window.onload = function () {
             }
         }
         console.log(jawaban_mhs);
+        list_soal[$soal_sekarang].style.background = 'green'
+        list_soal[$soal_sekarang].style.color = 'white'
     }
 
 
@@ -302,19 +304,24 @@ window.onload = function () {
             for(let pil = 0; pil < 4; pil++){ // Masuk ke pilgan
                     if($pilgan[pil].value == jawaban_mhs[$soal_sekarang]){
                         
-                        console.log('Jawaban', jawaban_mhs[$soal_sekarang])
+                        
                         $pilgan[pil].checked = true;
                     }
                 }
             }
         }
     
-        // Navigasi daftar soal
-        const list_soal = document.getElementsByClassName('list_soal');
-        for(let l = 0;l < list_soal.length; l++){
-            console.log(list_soal[l])
-            list_soal[l].style.background = 'whitesmoke'
-        }
+        
+        
+
+        // Check OnClick, langsung simpan jawaban
+        const radio = document.querySelectorAll('input[name="exampleRadios"]');
+
+        radio.forEach(radio => {
+            radio.addEventListener('click', simpan_jawaban)
+        })
+
+
 
     
 

@@ -149,7 +149,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('latihan') }}">
                     <i class="bi bi-speedometer"></i>
-                   <p>Latihan</p>
+                   <p>Evaluasi</p>
                 </a>
             </li>
             <li class="nav-item">
@@ -197,43 +197,43 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item ">
-                    <a href="{{ route('pages.A') }}#CPL" class="nav-link sub active">
+                    <a href="{{ route('pages.A') }}#Halaman-CPL" class="nav-link sub active" name='CPL'>
                         <i class="bi bi-dot"></i>
                         <p>CPL</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#CPMK" class="nav-link sub">
+                    <a href="{{ route('pages.A') }}#Halaman-CPMK" class="nav-link sub" name="CPMK">
                         <i class="bi bi-dot"></i>
                         <p>CPMK</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#peran-dosen" class="nav-link sub">
+                    <a href="{{ route('pages.A') }}#Halaman-Peran-Dosen" class="nav-link sub" name="peran-dosen">
                         <i class="bi bi-dot"></i>
                         <p>Peran Dosen</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#sarana-dan-prasaran" class="nav-link sub">
+                    <a href="{{ route('pages.A') }}#Halaman-Sarana-dan-Prasarana" class="nav-link sub" name="sarana-dan-prasarana">
                         <i class="bi bi-dot"></i>
                         <p>Sarana dan Prasana</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#kolaborasi-narasumber" class="nav-link sub">
+                    <a href="{{ route('pages.A') }}#Halaman-Kolaborasi-Narasumber" class="nav-link sub" name="kolaborasi-narasumber">
                         <i class="bi bi-dot"></i>
                         <p>Kolaborasi Narasumber</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#cara-penggunaan" class="nav-link sub">
+                    <a href="{{ route('pages.A') }}#Halaman-Cara-Penggunaan" class="nav-link sub" name="cara-penggunaan">
                         <i class="bi bi-dot"></i>
                         <p>Cara Penggunaan</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#tahapan" class="nav-link sub">
+                    <a href="{{ route('pages.A') }}#Halaman-Tahapan" class="nav-link sub" name="tahapan">
                         <i class="bi bi-dot"></i>
                         <p>Tahapan</p>
                     </a>
@@ -247,37 +247,37 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#kegiatan-pembelajaran-1" class="nav-link sub">
+                    <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-1" class="nav-link sub" name="kegiatan-pembelajaran-1">
                         <i class="bi bi-dot"></i>
                         <p>Kegiatan Pembelajaran 1</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#kegiata-pembelajaran-2" class="nav-link sub">
+                    <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-2" class="nav-link sub" name="kegiatan-pembelajaran-2">
                         <i class="bi bi-dot"></i>
                         <p>Kegiatan Pembelajara 2</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#lembar-analisi-kelompok" class="nav-link sub">
+                    <a href="{{ route('pages.B') }}#Halaman-Lembar-Analisa-Kelompok" class="nav-link sub" name="lembar-analisa-kelompok">
                             <i class="bi bi-dot"></i>
                             <p class="text-left">Analisis Kelompok</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#lembar-analisis-individu" class="nav-link sub">
+                    <a href="{{ route('pages.B') }}#Halaman-Lembar-Analisa-Individu" class="nav-link sub" name="lembar-analisa-individu">
                         <i class="bi bi-dot"></i>
                         <p>Analisis Individu</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#kegiatan-pembelajaran" class="nav-link sub">
+                    <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-3" class="nav-link sub" name="kegiatan-pembelajaran-3">
                         <i class="bi bi-dot"></i>
                         <p>Kegiatan Pembelajaran 3</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#refleksi" class="nav-link sub">
+                    <a href="{{ route('pages.B') }}#Halaman-Refleksi" class="nav-link sub" name="refleksi">
                         <i class="bi bi-dot"></i>
                         <p>Refleksi</p>
                     </a>
@@ -291,56 +291,56 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#kewirausahaan-dan-kepariwisataan" class="nav-link sub">
+                    <a href="{{ route('pages.C') }}#Halaman-Kewirausahaan-dan-kepariwisataan" class="nav-link sub" name="kewirausahaan-dan-kepariwisataan">
                         <i class="bi bi-dot"></i>
                         <p>KWU & Kepariwisataan</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#lembar-analisa-kelompok-1" class="nav-link sub">
+                    <a href="{{ route('pages.C') }}#Halaman-Lembar-Analisa-Kelompok-1" class="nav-link sub" name="lembar-analisa-kelompok-1">
                         <i class="bi bi-dot"></i>
                         <p>Analisa Kelompok 1</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#lembar-analisa-kelompok-2" class="nav-link sub">
+                    <a href="{{ route('pages.C') }}#Lembar-Analisa-Kelompok-2" class="nav-link sub" name="lembar-analisa-kelompok-2">
                         <i class="bi bi-dot"></i>
                         <p>Analisa Kelompok 2</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#lembar-diskusi-kelompok" class="nav-link sub">
+                    <a href="{{ route('pages.C') }}#Lembar-Diskusi-Kelompok" class="nav-link sub" name="lembar-diskusi-kelompok">
                         <i class="bi bi-dot"></i>
                         <p>Diskusi Kelompok</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#lembar-proyek-individu" class="nav-link sub">
+                    <a href="{{ route('pages.C') }}#Lembar-Proyek-Individu" class="nav-link sub" name="lembar-proyek-individu">
                         <i class="bi bi-dot"></i>
                         <p>Proyek Individu</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#refleksi-1" class="nav-link sub">
+                    <a href="{{ route('pages.C') }}#Refleksi-1" class="nav-link sub" name="refleksi-1">
                         <i class="bi bi-dot"></i>
                         <p>Refleksi</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#praktik-lapangan-1" class="nav-link sub text-muted disabled">
-                        <i class="bi bi-lock"></i>
+                    <a href="{{ route('pages.C') }}#Refleksi-2" class="nav-link sub" name="praktik-lapangan-1">
+                        <i class="bi bi-dot"></i>
                         <p>Praktik Lapangan 1</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#praktik-lapangan-2" class="nav-link sub text-muted disabled">
-                        <i class="bi bi-lock"></i>
+                    <a href="{{ route('pages.C') }}#Praktik-Lapangan-2" class="nav-link sub" name="praktik-lapangan-2">
+                        <i class="bi bi-dot"></i>
                         <p>Praktik Lapangan 2</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#refleksi-2" class="nav-link sub text-muted disabled">
-                        <i class="bi bi-lock"></i>
+                    <a href="{{ route('pages.C') }}#Refleksi-2" class="nav-link sub" name="refleksi-2">
+                        <i class="bi bi-dot"></i>
                         <p>Refleksi</p>
                     </a>
                 </li>
@@ -441,6 +441,25 @@
                 this.classList.add('active');
             });
         });
+
+        // Nav Link Navigate
+        const nav_link = document.querySelectorAll('.nav-link.sub');
+        console.log(nav_link)
+
+        function cekking(event){
+            console.log('Event', event);
+            console.log('Target', event.currentTarget);
+            console.log('Tombol di tekan', event.currentTarget.name);
+            hide_semua_sub();
+            document.getElementById(event.currentTarget.name).style.display = 'block'
+        }
+        
+
+        nav_link.forEach(nav_link => {
+            nav_link.addEventListener('click', cekking)
+        })
+            
+        
 
     </script>
 
