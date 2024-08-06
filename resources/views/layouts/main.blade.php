@@ -197,7 +197,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item ">
-                    <a href="{{ route('pages.A') }}#Halaman-CPL" class="nav-link sub active" name='CPL'>
+                    <a href="{{ route('pages.A') }}#Halaman-CPL" class="nav-link sub" name='CPL'>
                         <i class="bi bi-dot"></i>
                         <p>CPL</p>
                     </a>

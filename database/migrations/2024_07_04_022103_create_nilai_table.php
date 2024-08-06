@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('nilai', function (Blueprint $table) {
-            $table->string('email');
-            $table->id('id_soal');
+            $table->string('email')->index();
+            $table->unsignedBigInteger('id_soal')->index();
+            $table->id();
             $table->json('data_jawaban_penilai');
             $table->integer('nilai_akhir');
             $table->integer('percobaan_ke');

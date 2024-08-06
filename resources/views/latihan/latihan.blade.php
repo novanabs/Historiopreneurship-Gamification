@@ -41,11 +41,11 @@
 
 <p id="kumpulan-soal" hidden>{{$data_dari_json}}</p>
 
-<div class=" mb-3">
+<div class=" mb-3" id="halaman-latihan">
     <h1>Latihan</h1>
 
     <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: {{'1'}}%"></div>
+        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 0.001%" id="bar"></div>
       </div>
     <div class="row">
         
@@ -106,7 +106,7 @@
                 <div class="card-header">
                     <table class="table table-sm">
                         <tr class="text-center">
-                            <td class="soal btn list_soal" style="background: whitesmoke">1</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke" name='1'>1</td>
                             <td class="soal btn list_soal" style="background: whitesmoke">2</td>
                             <td class="soal btn list_soal" style="background: whitesmoke">3</td>
                             <td class="soal btn list_soal" style="background: whitesmoke">4</td>
@@ -122,14 +122,55 @@
             <div class="card shadow">
                 <div class="row">
                     <div class="col text-center">
-                        <button class="btn btn-success m-2">Selesai</button>
+                        <button class="btn btn-success m-2"  data-bs-toggle="modal" data-bs-target="#exampleModal">Selesai</button>
                     </div>
                 </div>
                 
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Selesai</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Apakah anda yakin?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" onclick="selesai()">Selesai</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<div class="mt-3" id="hasil" style="display: none">
+    <div class="row">
+        <div class="col text-center">
+            <div class="card">
+                <div class="card-header">
+                    HASIL
+                </div>
+                <div class="card-body">
+                    <p class="text-center"><b>Benar : </b><span id="benar"></span></p>
+                    <p class="text-center"><b>Salah : </b><span id="salah"></span></p>
+                    <p class="text-center"><b>Skor : </b><span id="skor"></span></p>
+                    <a href="{{route('info')}}"><button class="btn btn-primary">Kembali</button></a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+  
 
 {{-- Script Interaktiftas soal --}}
 
@@ -236,10 +277,12 @@ window.onload = function () {
      // Matikan Tombol
      function nav_tombol(){
         // console.log($soal_sekarang)
-        if($soal_sekarang == 4){
+        if($soal_sekarang == 4 ){
             document.getElementById('next').disabled = true;
+            document.getElementById('prev').disabled = false;
         }else if($soal_sekarang == 0){
             document.getElementById('prev').disabled = true;
+            document.getElementById('next').disabled = false;
         }else{
             document.getElementById('prev').disabled = false;
             document.getElementById('next').disabled = false;
@@ -274,14 +317,16 @@ window.onload = function () {
         nomor_soal($soal_sekarang+1);
     }
 
-    // Navigasi daftar soal
-    const list_soal = document.getElementsByClassName('list_soal');
-    
 
     // Bank Soal
+    var terjawab = 0;
     const kunci_jawaban = ['a', 'b', 'b', 'd', 'a'];
     let jawaban_mhs = {0:null,1:null,2:null,3:null,4:null};
     function simpan_jawaban(){
+        if(jawaban_mhs[$soal_sekarang] == null){
+            terjawab+=1;
+            progressBar()
+        }
         for(let k = 0; k < 4; k++){
             if($pilgan[k].checked){
                 jawaban_mhs[$soal_sekarang] = $pilgan[k].value
@@ -290,6 +335,7 @@ window.onload = function () {
         console.log(jawaban_mhs);
         list_soal[$soal_sekarang].style.background = 'green'
         list_soal[$soal_sekarang].style.color = 'white'
+        
     }
 
 
@@ -303,8 +349,6 @@ window.onload = function () {
             uncheck()
             for(let pil = 0; pil < 4; pil++){ // Masuk ke pilgan
                     if($pilgan[pil].value == jawaban_mhs[$soal_sekarang]){
-                        
-                        
                         $pilgan[pil].checked = true;
                     }
                 }
@@ -320,6 +364,63 @@ window.onload = function () {
         radio.forEach(radio => {
             radio.addEventListener('click', simpan_jawaban)
         })
+
+        // Navigasi daftar soal
+    function go_list(event){
+        console.log('Ditekan')
+        console.log(event.currentTarget.innerHTML)
+        $soal_sekarang = event.currentTarget.innerHTML - 1
+        hapus_soal()
+        isi_soal($soal_sekarang)
+        nav_tombol()
+        nomor_soal($soal_sekarang+1);
+        jawaban_check()
+    }
+    const list_soal = document.querySelectorAll('.list_soal');
+    console.log(list_soal)
+    list_soal.forEach(list_soal => {
+        list_soal.addEventListener('click', go_list)
+    })
+
+    // ProgressBar
+    let bar = document.getElementById('bar')
+    console.log(bar)
+    function progressBar(){
+        console.log(terjawab)
+        let persen = terjawab * 20;
+        bar.style.width = `${persen}%`;
+        console.log(bar)
+    }
+    
+    // Selesai
+    const lamanLatihan = document.getElementById('halaman-latihan');
+    const hasil = document.getElementById('hasil');
+    const show_skor = document.getElementById('skor');
+    const jawaban_benar = document.getElementById('benar');
+    const jawaban_salah = document.getElementById('salah');
+    let benar = 0;
+    let salah = 0;
+    function periksaJawaban(){
+        for(let m = 0; m < 5;m++){
+            console.log(kunci_jawaban[m], jawaban_mhs[m])
+            if(kunci_jawaban[m] == jawaban_mhs[m]){
+                benar+=1
+            }else{
+                salah+=1
+            }
+        }
+        show_skor.innerHTML = benar * 20;
+        jawaban_benar.innerHTML = benar;
+        jawaban_salah.innerHTML = salah;
+    }
+
+    function selesai(){
+        periksaJawaban()
+        console.log('Sudah selesai')
+        console.log(lamanLatihan)
+        lamanLatihan.innerHTML = ''
+        hasil.style.display = 'block';
+    }
 
 
 

@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kecepatan_akses', function (Blueprint $table) {
-            $table->string('email');
+            $table->id();
+            $table->string('email')->index();
             $table->enum('jenis_materi',['materi1','materi2','materi3']);
             $table->date('waktu_akses_awal');
             $table->date('waktu_pengelesaian_kuis');

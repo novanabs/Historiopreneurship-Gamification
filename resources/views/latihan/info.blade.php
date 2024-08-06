@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <p class="text-center"><b>BAB : </b>Kesejarahan</p>
                     <p class="text-center"><b>Jumlah Soal : </b>5</p>
-                    <p class="text-center"><b>Durasi Pengerjaan : </b>20 Menit</p>
+                    <p class="text-center"><b>Durasi Pengerjaan : </b>30 Menit</p>
                     <p class="text-sm text-center">Waktu akan dimulai saat anda menekan tombol mulai</p>
                     <a href="{{route('latihan')}}"><button class="btn btn-primary">Mulai</button></a>
                     

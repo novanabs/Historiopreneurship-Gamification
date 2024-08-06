@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_badge', function (Blueprint $table) {
-            $table->string('email');
-            $table->string('id_badge');
+            $table->string('email')->index();
+            $table->unsignedBigInteger('id_badge');
+            $table->index('id_badge');
         });
     }
 
