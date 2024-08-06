@@ -44,13 +44,14 @@
 <div class=" mb-3" id="halaman-latihan">
     <h1>Latihan</h1>
 
-    <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 0.001%" id="bar"></div>
-      </div>
+    
     <div class="row">
         
         <div class="col-8 p-2">
-            <div class="card shadow">
+            <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 0.001%" id="bar"></div>
+              </div>
+            <div class="card shadow mt-2">
                 <div class="card-header">
                     <div class="row">
                         <div class="col">
