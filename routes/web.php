@@ -6,6 +6,7 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HalamanController;
 use App\Http\Controllers\LatihanController;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 
@@ -49,3 +50,7 @@ Route::get('/dataKelas',[DosenController::class,'datakelas'])->name('dataKelas')
 Route::get('/dataLatihan',[DosenController::class,'dataLatihan'])->name('dataLatihan');
 Route::get('/dataMahasiswa',[DosenController::class,'dataMahasiswa'])->name('dataMahasiswa');
 Route::get('/dataNilai',[DosenController::class,'dataNilai'])->name('dataNilai');
+
+// Session Controller Untuk Sidebar agar tidak menutup
+Route::post('/laman', [SessionController::class, 'laman'])->name('laman');
+Route::post('/lamanSub', [SessionController::class, 'lamanSub'])->name('lamanSub');

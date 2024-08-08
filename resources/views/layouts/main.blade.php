@@ -147,7 +147,7 @@
             @endif
             @can('admin')
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('latihan') }}">
+                <a class="nav-link" href="{{ route('evaluasi') }}">
                     <i class="bi bi-speedometer"></i>
                    <p>Evaluasi</p>
                 </a>
@@ -179,189 +179,182 @@
             </li>
             @endcan
             <li class="nav-header">MATERI</li>
-            {{-- <li class="nav-item">
-                @if (auth()->user()->peran != 'admin')
-                   <a href="{{ route('dashboard.index') }}" class="nav-link">
-                <i class="bi bi-layout-text-window-reverse"></i>
-                <p>
-                  Dashboard
-                </p>
-              </a> 
-                @endif
-            </li> --}}
             
-            <li class="nav-item">
-              <a href="#" class="nav-link bab">
-                <i class="bi bi-info-circle"></i>
-                <p>Informasi Umum</p><i class="right bi bi-chevron-left"></i>
-              </a>
+            {{-- A. INFORMASI UMUM --}}
+            <li class="nav-item {{ session('active_menu') == 'menu1' ? 'menu-is-opening menu-open' : '' }}">
+                <a href="{{ route('pages.A') }}" class="nav-link bab {{ session('active_menu') == 'menu1' ? 'active' : '' }}" onclick="setSidebarStatus('open', 'menu1')">
+                    <i class="bi bi-info-circle"></i>
+                    <p>Informasi Umum</p><i class="right bi bi-chevron-left"></i>
+                  </a>
+              
               <ul class="nav nav-treeview">
-                <li class="nav-item ">
-                    <a href="{{ route('pages.A') }}#Halaman-CPL" class="nav-link sub" name='CPL'>
+                <li class="nav-item">
+                    <a href="{{ route('pages.A') }}#Halaman-CPL" class="nav-link sub {{ session('active_menu_sub') == 'CPL' ? 'active' : '' }}" name='CPL' onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>CPL</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#Halaman-CPMK" class="nav-link sub" name="CPMK">
+                    <a href="{{ route('pages.A') }}#Halaman-CPMK" class="nav-link sub {{ session('active_menu_sub') == 'CPMK' ? 'active' : '' }}" name="CPMK" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>CPMK</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#Halaman-Peran-Dosen" class="nav-link sub" name="peran-dosen">
+                    <a href="{{ route('pages.A') }}#Halaman-Peran-Dosen" class="nav-link sub {{ session('active_menu_sub') == 'peran-dosen' ? 'active' : '' }}" name="peran-dosen" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Peran Dosen</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#Halaman-Sarana-dan-Prasarana" class="nav-link sub" name="sarana-dan-prasarana">
+                    <a href="{{ route('pages.A') }}#Halaman-Sarana-dan-Prasarana" class="nav-link sub {{ session('active_menu_sub') == 'sarana-dan-prasarana' ? 'active' : '' }}" name="sarana-dan-prasarana" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Sarana dan Prasana</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#Halaman-Kolaborasi-Narasumber" class="nav-link sub" name="kolaborasi-narasumber">
+                    <a href="{{ route('pages.A') }}#Halaman-Kolaborasi-Narasumber" class="nav-link sub {{ session('active_menu_sub') == 'kolaborasi-narasumber' ? 'active' : '' }}" name="kolaborasi-narasumber" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Kolaborasi Narasumber</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#Halaman-Cara-Penggunaan" class="nav-link sub" name="cara-penggunaan">
+                    <a href="{{ route('pages.A') }}#Halaman-Cara-Penggunaan" class="nav-link sub {{ session('active_menu_sub') == 'cara-penggunaan' ? 'active' : '' }}" name="cara-penggunaan" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Cara Penggunaan</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#Halaman-Tahapan" class="nav-link sub" name="tahapan">
+                    <a href="{{ route('pages.A') }}#Halaman-Tahapan" class="nav-link sub {{ session('active_menu_sub') == 'tahapan' ? 'active' : '' }}" name="tahapan" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Tahapan</p>
                     </a>
                 </li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link bab">
+
+            {{-- B.KESEJARAHAN --}}
+            <li class="nav-item  {{ session('active_menu') == 'menu2' ? 'menu-is-opening menu-open' : '' }}">
+              <a href="{{ route('pages.B') }}" class="nav-link bab {{ session('active_menu') == 'menu2' ? 'active' : '' }}" onclick="setSidebarStatus('open', 'menu2')">
                 <i class="bi bi-1-square-fill"></i>
                 <p>Kesejarahan</p><i class="right bi bi-chevron-left"></i>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-1" class="nav-link sub" name="kegiatan-pembelajaran-1">
+                    <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-1" class="nav-link sub {{ session('active_menu_sub') == 'kegiatan-pembelajaran-1' ? 'active' : '' }}" name="kegiatan-pembelajaran-1" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Kegiatan Pembelajaran 1</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-2" class="nav-link sub" name="kegiatan-pembelajaran-2">
+                    <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-2" class="nav-link sub {{ session('active_menu_sub') == 'kegiatan-pembelajaran-2' ? 'active' : '' }}" name="kegiatan-pembelajaran-2" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
-                        <p>Kegiatan Pembelajara 2</p>
+                        <p>Kegiatan Pembelajaran 2</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#Halaman-Lembar-Analisa-Kelompok" class="nav-link sub" name="lembar-analisa-kelompok">
+                    <a href="{{ route('pages.B') }}#Halaman-Lembar-Analisa-Kelompok" class="nav-link sub {{ session('active_menu_sub') == 'lembar-analisa-kelompok' ? 'active' : '' }}" name="lembar-analisa-kelompok" onclick="setSidebarStatusSub(this)">
                             <i class="bi bi-dot"></i>
                             <p class="text-left">Analisis Kelompok</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#Halaman-Lembar-Analisa-Individu" class="nav-link sub" name="lembar-analisa-individu">
+                    <a href="{{ route('pages.B') }}#Halaman-Lembar-Analisa-Individu" class="nav-link sub {{ session('active_menu_sub') == 'lembar-analisa-individu' ? 'active' : '' }}" name="lembar-analisa-individu" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Analisis Individu</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-3" class="nav-link sub" name="kegiatan-pembelajaran-3">
+                    <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-3" class="nav-link sub {{ session('active_menu_sub') == 'kegiatan-pembelajaran-3' ? 'active' : '' }}" name="kegiatan-pembelajaran-3" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Kegiatan Pembelajaran 3</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#Halaman-Refleksi" class="nav-link sub" name="refleksi">
+                    <a href="{{ route('pages.B') }}#Halaman-Refleksi" class="nav-link sub {{ session('active_menu_sub') == 'refleksi' ? 'active' : '' }}" name="refleksi" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Refleksi</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('dragndrop') }}" class="nav-link">
+                        <i class="bi bi-dot"></i>
+                        <p>
+                          Latihan
+                        </p>
+                      </a> 
+                </li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link bab">
+
+            {{-- C. KWU & KEWIRAUSAHAAN --}}
+            <li class="nav-item  {{ session('active_menu') == 'menu3' ? 'menu-is-opening menu-open' : '' }}">
+              <a href="{{ route('pages.C') }}" class="nav-link bab {{ session('active_menu') == 'menu3' ? 'active' : '' }}" onclick="setSidebarStatus('open', 'menu3')">
                 <i class="bi bi-2-square-fill"></i>
                 <p class="text-start">KWU & Kepariwisataan</p><i class="right bi bi-chevron-left"></i>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Halaman-Kewirausahaan-dan-kepariwisataan" class="nav-link sub" name="kewirausahaan-dan-kepariwisataan">
+                    <a href="{{ route('pages.C') }}#Halaman-Kewirausahaan-dan-kepariwisataan" class="nav-link sub {{ session('active_menu_sub') == 'kewirausahaan-dan-kepariwisataan' ? 'active' : '' }}" name="kewirausahaan-dan-kepariwisataan" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>KWU & Kepariwisataan</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Halaman-Lembar-Analisa-Kelompok-1" class="nav-link sub" name="lembar-analisa-kelompok-1">
+                    <a href="{{ route('pages.C') }}#Halaman-Lembar-Analisa-Kelompok-1" class="nav-link sub {{ session('active_menu_sub') == 'lembar-analisa-kelompok-1' ? 'active' : '' }}" name="lembar-analisa-kelompok-1" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Analisa Kelompok 1</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Lembar-Analisa-Kelompok-2" class="nav-link sub" name="lembar-analisa-kelompok-2">
+                    <a href="{{ route('pages.C') }}#Lembar-Analisa-Kelompok-2" class="nav-link sub {{ session('active_menu_sub') == 'lembar-analisa-kelompok-2' ? 'active' : '' }}" name="lembar-analisa-kelompok-2" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Analisa Kelompok 2</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Lembar-Diskusi-Kelompok" class="nav-link sub" name="lembar-diskusi-kelompok">
+                    <a href="{{ route('pages.C') }}#Lembar-Diskusi-Kelompok" class="nav-link sub {{ session('active_menu_sub') == 'lembar-diskusi-kelompok' ? 'active' : '' }}" name="lembar-diskusi-kelompok" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Diskusi Kelompok</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Lembar-Proyek-Individu" class="nav-link sub" name="lembar-proyek-individu">
+                    <a href="{{ route('pages.C') }}#Lembar-Proyek-Individu" class="nav-link sub {{ session('active_menu_sub') == 'lembar-proyek-individu' ? 'active' : '' }}" name="lembar-proyek-individu" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Proyek Individu</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Refleksi-1" class="nav-link sub" name="refleksi-1">
+                    <a href="{{ route('pages.C') }}#Refleksi-1" class="nav-link sub {{ session('active_menu_sub') == 'refleksi-1' ? 'active' : '' }}" name="refleksi-1" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Refleksi</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Refleksi-2" class="nav-link sub" name="praktik-lapangan-1">
+                    <a href="{{ route('pages.C') }}#Refleksi-2" class="nav-link sub {{ session('active_menu_sub') == 'praktik-lapangan-1' ? 'active' : '' }}" name="praktik-lapangan-1" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Praktik Lapangan 1</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Praktik-Lapangan-2" class="nav-link sub" name="praktik-lapangan-2">
+                    <a href="{{ route('pages.C') }}#Praktik-Lapangan-2" class="nav-link sub {{ session('active_menu_sub') == 'praktik-lapangan-2' ? 'active' : '' }}" name="praktik-lapangan-2" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Praktik Lapangan 2</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Refleksi-2" class="nav-link sub" name="refleksi-2">
+                    <a href="{{ route('pages.C') }}#Refleksi-2" class="nav-link sub {{ session('active_menu_sub') == 'refleksi-2' ? 'active' : '' }}" name="refleksi-2" onclick="setSidebarStatusSub(this)">
                         <i class="bi bi-dot"></i>
                         <p>Refleksi</p>
                     </a>
                 </li>
+                
               </ul>
             </li>
             <li class="nav-item">
                 {{-- Admin tidak melihat ini --}}
                 @if (auth()->user()->peran != 'admin')
-                   <a href="{{ route('dragndrop') }}" class="nav-link">
-                <i class="bi bi-layout-text-window-reverse"></i>
-                <p>
-                  Latihan
-                </p>
-              </a> 
-                @endif
-              
-            </li>
-            <li class="nav-item">
-                {{-- Admin tidak melihat ini --}}
-                @if (auth()->user()->peran != 'admin')
-                   <a href="{{ route('evaluasi') }}" class="nav-link">
+                   <a href="{{ route('info') }}" class="nav-link">
                 <i class="bi bi-layout-text-window-reverse"></i>
                 <p>
                   Evaluasi
@@ -402,16 +395,52 @@
         </section>
     </div>
 
+    <!-- Form tersembunyi untuk mengirim permintaan POST BAB-->
+    <form id="sidebarStatusForm" action="{{ route('laman') }}" method="POST" style="display:none;">
+        @csrf
+        <input type="hidden" name="status" id="sidebarStatusInput">
+        <input type="hidden" name="menu" id="menuInput">
+    </form>
+
+    <!-- Form tersembunyi untuk mengirim permintaan POST SUB-->
+    <form id="sidebarStatusFormSub" action="{{ route('lamanSub') }}" method="POST" style="display:none;">
+        @csrf
+        <input type="hidden" name="menuSub" id="menuInputSub">
+    </form>
+
 
 
     </div>
+    {{-- BAB --}}
+    <script>
+        function setSidebarStatus(status, menu) {
+            // Set nilai input tersembunyi
+            document.getElementById('sidebarStatusInput').value = status;
+            document.getElementById('menuInput').value = menu;
+
+            // Submit form tersembunyi
+            document.getElementById('sidebarStatusForm').submit();
+        }
+    </script>
+
+    {{-- SUB --}}
+    <script>
+        function setSidebarStatusSub(element) {
+            // Set nilai input tersembunyi
+            document.getElementById('menuInputSub').value = element.name;
+
+            // Submit form tersembunyi
+            document.getElementById('sidebarStatusFormSub').submit();
+        }
+    </script>
+
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- data tables -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/adminlte.min.js') }}"></script>
 
-    <script>
+    <script> 
         // Ambil bab dan sub
         const $bab = document.getElementsByClassName('bab');
         // const $get_sub = document.getElementsByClassName('sub');
@@ -451,13 +480,16 @@
             console.log('Target', event.currentTarget);
             console.log('Tombol di tekan', event.currentTarget.name);
             hide_semua_sub();
-            document.getElementById(event.currentTarget.name).style.display = 'block'
+            // document.getElementById(event.currentTarget.name).style.display = 'block'
         }
         
 
         nav_link.forEach(nav_link => {
             nav_link.addEventListener('click', cekking)
         })
+
+        // Membuat sidebar tetap tampil
+        
             
         
 
