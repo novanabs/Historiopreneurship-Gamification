@@ -12,13 +12,14 @@ class SessionController extends Controller
         // Mendefinisikan A B C tertutup
 
         // Simpan status sidebar di session
-        Session::put('sidebar_status', $request->input('status'));
+        Session::put('active_menu_sub', $request->input('menuBabSub'));
         Session::put('active_menu', $request->input('menu'));
-        Session::put('active_menu_sub', '');
+
+        // dd(Session::all());
 
 
         // Redirect ke halaman yang diinginkan
-        return redirect()->back();
+        return redirect()->route($request->input('menu'));
     }
     public function lamanSub(Request $request){
 

@@ -812,7 +812,12 @@
         function show_sub($no) {
             materi_a[$no].style.display = 'block';
         }
-        show_sub($sub);
+        // show_sub($sub);
+        
+        // Show Sub by Session
+        const halaman_saat_ini = document.getElementById('halaman_saat_ini').innerHTML;
+        console.log(halaman_saat_ini);
+        document.getElementById(halaman_saat_ini).style.display = 'block'
 
         // Navigasi tombol
         function nav_tombol(){
