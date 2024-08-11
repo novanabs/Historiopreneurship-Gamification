@@ -290,75 +290,38 @@
                 <br>Lakukanlah analisa secara berkelompok!
             </p>
             <p>Anggota Kelompok</p>
-            <ol>
-                <li>Nama: </li>
-                <li>Nama: </li>
-                <li>Nama: </li>
-                <li>Nama: </li>
-                <li>Nama: </li>
-            </ol>
+            @if($anggotaKelompok->isNotEmpty())
+                <ol>
+                    @foreach ($anggotaKelompok as $anggota)
+                        <li>Nama: {{ $anggota->nama_lengkap }}</li>
+                    @endforeach
+                </ol>
+            @else
+                <p>Tidak ada anggota kelompok ditemukan.</p>
+            @endif
         </div>
-        <div class="row mt-3">
-            <div class="col">
-                <label for="objek1">Objek 1</label><br>
-                <textarea name="objek1" id="" rows="5"></textarea>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col">
-                <label for="objek2">Objek 2</label><br>
-                <textarea name="objek2" id="" rows="5"></textarea>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col">
-                <label for="objek3">Objek 3</label><br>
-                <textarea name="objek3" id="" rows="5"></textarea>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col">
-                <label for="objek4">Objek 4</label><br>
-                <textarea name="objek4" id="" rows="5"></textarea>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col">
-                <label for="objek5">Objek 5</label><br>
-                <textarea name="objek5" id="" rows="5"></textarea>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col">
-                <label for="objek6">Objek 6</label><br>
-                <textarea name="objek6" id="" rows="5"></textarea>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col">
-                <label for="objek7">Objek 7</label><br>
-                <textarea name="objek7" id="" rows="5"></textarea>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col">
-                <label for="objek8">Objek 8</label><br>
-                <textarea name="objek8" id="" rows="5"></textarea>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col">
-                <label for="objek9">Objek 9</label><br>
-                <textarea name="objek9" id="" rows="5"></textarea>
-            </div>
-        </div>
+        <form method="post" action="{{route('simpanJawabanKelompok')}}">
+            @csrf
+            @if($id_kelompok)
+                <input type="hidden" name="id_kelompok" value="{{ $id_kelompok }}">
+            @endif
 
-        <div class="row mt-3">
-            <div class="col">
-                <label for="objek10">Objek 10</label><br>
-                <textarea name="objek10" id="" rows="5"></textarea>
+            @foreach (range(1, 10) as $i)
+                <div class="row mt-3">
+                    <div class="col">
+                        <label for="objek{{ $i }}" data-value="{{ $i }}">Objek {{ $i }}</label><br>
+                        <textarea name="objek{{ $i }}" id="objek{{ $i }}"
+                            rows="5">{{ old('objek' . $i, $jawabanKelompok->where('no_objek', $i)->first()->jawaban ?? '') }}</textarea>
+                    </div>
+                </div>
+            @endforeach
+
+            <div class="row mt-3">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Simpan Jawaban</button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
     <div class="row materi-b" id="lembar-analisa-individu">
         <div class="col">
@@ -369,35 +332,49 @@
             </p>
             <p class="text-lg">LENGKAPILAH KOLOM DI BAWAH INI!</p>
         </div>
-
-        <div class="row">
-            <div class="col">
-                <div class="row mt-3">
-                    <div class="col">
-                        <label for="objekWisata">Objek Wisata</label><br>
-                        <textarea name="objekWisata" id="" rows="5"></textarea>
+        <!-- Analisis Individu -->
+        <form method="post" action="{{ route('simpanAnalisisIndividu') }}">
+            @csrf
+            <div class="row">
+                <div class="col">
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label for="objekWisata">Objek Wisata</label><br>
+                            <textarea name="objekWisata" id="objekWisata"
+                                rows="5">{{ old('objekWisata', $jawabanIndividu['wisata'] ?? '') }}</textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col">
-                        <label for="objekWisata">Objek Kesejarahan</label><br>
-                        <textarea name="objekWisata" id="" rows="5"></textarea>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label for="objekKesejarahan">Objek Kesejarahan</label><br>
+                            <textarea name="objekKesejarahan" id="objekKesejarahan"
+                                rows="5">{{ old('objekKesejarahan', $jawabanIndividu['kesejarahan'] ?? '') }}</textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col">
-                        <label for="objekWisata">Urgensi Objek Kesejarahan</label><br>
-                        <textarea name="objekWisata" id="" rows="5"></textarea>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label for="urgensiObjekKesejarahan">Urgensi Objek Kesejarahan</label><br>
+                            <textarea name="urgensiObjekKesejarahan" id="urgensiObjekKesejarahan"
+                                rows="5">{{ old('urgensiObjekKesejarahan', $jawabanIndividu['urgensi objek kesejarahan'] ?? '') }}</textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col">
-                        <label for="objekWisata">Urgensi Kesejarahan</label><br>
-                        <textarea name="objekWisata" id="" rows="5"></textarea>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label for="urgensiKesejarahan">Urgensi Kesejarahan</label><br>
+                            <textarea name="urgensiKesejarahan" id="urgensiKesejarahan"
+                                rows="5">{{ old('urgensiKesejarahan', $jawabanIndividu['urgensi kesejarahan'] ?? '') }}</textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary">Simpan Jawaban</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+
+
         <div class="row mt-4">
             <div class="col">
                 <h3 class="text-center">INDIKATOR PENILAIAN KELAYAKAN OBJEK KESEJARAHAN </h3>
@@ -652,28 +629,61 @@
                 perasaan kalian ketika mengerjakan suplemen bahan materi ini! Bubuhkanlah tanda centang
                 (√) pada salah satu gambar yang dapat mewakili perasaan kalian setelah mempelajari materi
                 ini! </p>
+            <form method="post" action="{{ route('simpanRefleksi') }}">
+                @csrf
+                <!-- Respon Emoticon -->
+                <div class="icon-radio col mt-3">
+                    <label><input type="radio" name="respon" value="sangat puas" {{ old('respon', $jawabanRefleksi->first()->respon ?? '') == 'sangat puas' ? 'checked' : '' }} />
+                        <i class="fa-solid fa-face-laugh-beam"></i>
+                    </label>
+                    <label><input type="radio" name="respon" value="puas" {{ old('respon', $jawabanRefleksi->first()->respon ?? '') == 'puas' ? 'checked' : '' }} />
+                        <i class="fa-solid fa-face-smile"></i>
+                    </label>
+                    <label><input type="radio" name="respon" value="biasa saja" {{ old('respon', $jawabanRefleksi->first()->respon ?? '') == 'biasa saja' ? 'checked' : '' }} />
+                        <i class="fa-solid fa-face-grin-beam-sweat"></i>
+                    </label>
+                    <label><input type="radio" name="respon" value="kurang puas" {{ old('respon', $jawabanRefleksi->first()->respon ?? '') == 'kurang puas' ? 'checked' : '' }} />
+                        <i class="fa-solid fa-face-sad-cry"></i>
+                    </label>
+                    <label><input type="radio" name="respon" value="sangat kurang puas" {{ old('respon', $jawabanRefleksi->first()->respon ?? '') == 'sangat kurang puas' ? 'checked' : '' }} />
+                        <i class="fa-solid fa-face-dizzy"></i>
+                    </label>
+                </div>
 
-            <!-- emoticon -->
-            <div class="icon-radio">
-                <label><input type="radio" name="icon" /> <i class="fa-solid fa-face-laugh-beam"></i></label>
-                <label><input type="radio" name="icon" /> <i class="fa-solid fa-face-smile"></i></label>
-                <label><input type="radio" name="icon" /> <i class="fa-solid fa-face-grin-beam-sweat"></i></label>
-                <label><input type="radio" name="icon" /> <i class="fa-solid fa-face-sad-cry"></i></label>
-                <label><input type="radio" name="icon" /> <i class="fa-solid fa-face-dizzy"></i></label>
-            </div>
-
-            <p><b>Jawablah pertanyaan berikut!</b></p>
-            <ol>
-                <li class="mt-3"><label for="">Apa yang sudah kalian pelajari?</label> <br> <textarea name="" id=""
-                        rows="5"></textarea></li>
-                <li class="mt-3"><label for="">Apa yang kalian kuasai dari materi ini?</label> <br> <textarea name=""
-                        id="" rows="5"></textarea></li>
-                <li class="mt-3"><label for="">Bagian apa yang belum kalian kuasai?</label> <br> <textarea name="" id=""
-                        rows="5"></textarea></li>
-                <li class="mt-3"><label for="">Apa upaya kalian untuk menguasai yang belum kalian kuasai?</label> <br>
-                    <textarea name="" id="" rows="5"></textarea>
-                </li>
-            </ol>
+                <!-- Soal Refleksi -->
+                <p><b>Jawablah pertanyaan berikut!</b></p>
+                <div class="row mt-3">
+                    <ol>
+                        <li class="mt-3">
+                            <label for="sudah_dipelajari">Apa yang sudah kalian pelajari?</label> <br>
+                            <textarea name="sudah_dipelajari" id="sudah_dipelajari"
+                                rows="5">{{ old('sudah_dipelajari', $jawabanRefleksi['sudah dipelajari']->jawaban ?? '') }}</textarea>
+                        </li>
+                        <li class="mt-3">
+                            <label for="dikuasai">Apa yang kalian kuasai dari materi ini?</label> <br>
+                            <textarea name="dikuasai" id="dikuasai"
+                                rows="5">{{ old('dikuasai', $jawabanRefleksi['dikuasai']->jawaban ?? '') }}</textarea>
+                        </li>
+                        <li class="mt-3">
+                            <label for="belum_dikuasai">Bagian apa yang belum kalian kuasai?</label> <br>
+                            <textarea name="belum_dikuasai" id="belum_dikuasai"
+                                rows="5">{{ old('belum_dikuasai', $jawabanRefleksi['belum dikuasai']->jawaban ?? '') }}</textarea>
+                        </li>
+                        <li class="mt-3">
+                            <label for="upaya_menguasai">Apa upaya kalian untuk menguasai yang belum kalian
+                                kuasai?</label>
+                            <br>
+                            <textarea name="upaya_menguasai" id="upaya_menguasai"
+                                rows="5">{{ old('upaya_menguasai', $jawabanRefleksi['upaya untuk menguasai']->jawaban ?? '') }}</textarea>
+                        </li>
+                    </ol>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Simpan Jawaban</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 

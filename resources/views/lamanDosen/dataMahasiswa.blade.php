@@ -19,24 +19,47 @@
                 <thead>
                     <tr>
                         <th scope="col">Nomor</th>
-                        <th scope="col">Kelas</th>
                         <th scope="col">Nama Mahasiswa</th>
-                        <th scope="col">Nilai</th>
+                        <th scope="col">Kelas</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Tindakan</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>A1</td>
-                        <td>Salman</td>
-                        <td>90</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</td>
-                        <td>A2</td>
-                        <td>Ramadhani</td>
-                        <td>80</td>
-                    </tr>
+                    @php
+                        $no = 1;
+                    @endphp
+
+                    @foreach($Mahasiswas as $Mahasiswa)
+                        <tr>
+                            <th scope="row">{{ $no }}</th>
+                            <td>{{ $Mahasiswa->nama_lengkap }}</td>
+                            <td>{{ $Mahasiswa->kelas }}</td>
+                            <td>{{ $Mahasiswa->email }}</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Masukkan Kelompok
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        @for ($i = 1; $i <= 4; $i++)
+                                            <li>
+                                                <form action="{{ route('dataMahasiswa.saveGroup') }}" method="POST" style="display: inline;">
+                                                    @csrf
+                                                    <input type="hidden" name="email" value="{{ $Mahasiswa->email }}">
+                                                    <input type="hidden" name="id_kelompok" value="{{ $i }}">
+                                                    <button type="submit" class="dropdown-item">{{ $i }}</button>
+                                                </form>
+                                            </li>
+                                        @endfor
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        @php
+                            $no++;
+                        @endphp
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -46,15 +69,16 @@
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="//cdn.datatables.net/2.1.2/js/dataTables.min.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Inisialisasi DataTable
         var table = $('#tabelMahasiswa').DataTable();
 
         // Event listener untuk dropdown filter kelas
-        $('#filterKelas').on('change', function() {
+        $('#filterKelas').on('change', function () {
             var selectedValue = $(this).val();
-            table.column(1).search(selectedValue).draw(); // Kolom kedua (index 1) adalah kolom "Kelas"
+            table.column(2).search(selectedValue).draw(); // Kolom ketiga (index 2) adalah kolom "Kelas"
         });
     });
 </script>
+
 @endsection
