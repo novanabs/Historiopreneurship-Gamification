@@ -9,6 +9,7 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HalamanController;
 use App\Http\Controllers\LatihanController;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 
@@ -55,5 +56,13 @@ Route::get('/jawaban/{id_kelompok}', [JawabanKelompokController::class, 'lihatJa
 Route::get('/dataKelas',[DosenController::class,'datakelas'])->name('dataKelas');
 Route::get('/dataLatihan',[DosenController::class,'dataLatihan'])->name('dataLatihan');
 Route::get('/dataMahasiswa',[DosenController::class,'dataMahasiswa'])->name('dataMahasiswa');
+<<<<<<< HEAD
 Route::post('/dataMahasiswa', [DosenController::class, 'saveGroup'])->name('dataMahasiswa.saveGroup');
 Route::get('/dataNilai',[DosenController::class,'dataNilai'])->name('dataNilai');
+=======
+Route::get('/dataNilai',[DosenController::class,'dataNilai'])->name('dataNilai');
+
+// Session Controller Untuk Sidebar agar tidak menutup
+Route::post('/laman', [SessionController::class, 'laman'])->name('laman');
+Route::post('/lamanSub', [SessionController::class, 'lamanSub'])->name('lamanSub');
+>>>>>>> 7185c9bc6952898c374e0cf46a5a15b5293e3a8a

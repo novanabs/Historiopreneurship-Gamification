@@ -8,8 +8,13 @@ use App\Models\Kelompok;
 use App\Models\RefleksiKesejarahan;
 use App\Models\User;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+=======
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Session;
+>>>>>>> 7185c9bc6952898c374e0cf46a5a15b5293e3a8a
 
 class HalamanController extends Controller
 {

@@ -6,11 +6,17 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
     public function show()
     {
+        Session::put('sidebar', [
+            'A' => 'false',
+            'B' => 'false',
+            'C' => 'false'
+        ]);
         return view('login');
     }
 

@@ -8,6 +8,7 @@
     <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 0.001%"
         id="status_bar"></div>
 </div>
+<div id="halaman_saat_ini">{{ session('active_menu_sub') }}</div>
 
 
 <div class="mt-3">
@@ -694,8 +695,10 @@
                 Simulasikanlah dengan teman-teman di kelas kalian terlebih dahulu sebelum dipraktikkan ke
                 lingkup yang lebih luas. Tulislah saran dari teman-teman di kelas terkait Produk dan jasa
                 yang sudah kalian jual kepada mereka.</p>
-            <label for="" class="mt-3">Saran terhadap produk dan jasa:</label>
-            <textarea name="" id="" rows="5"></textarea>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Silahkan kumpulkan tugas anda!</label>
+                    <input class="form-control" type="file" id="formFile">
+                </div>
         </div>
     </div>
     <div class="row materi-c" id="praktik-lapangan-2">
@@ -709,7 +712,12 @@
                 Tulislah produk dan yang berhasil kalian jual beserta jumlahnya.
             </p>
 
-            <p class="text-lg text-center"><b>Tabel jumlah produk dan jasa yang terjual</b></p>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Silahkan kumpulkan tugas anda!</label>
+                <input class="form-control" type="file" id="formFile">
+            </div>
+
+            <p class="text-lg text-center"><b>Lampiran tabel jumlah produk dan jasa yang terjual</b></p>
             <table class="table table-bordered">
                 <thead>
                     <tr class="text-center">
@@ -804,7 +812,12 @@
         function show_sub($no) {
             materi_a[$no].style.display = 'block';
         }
-        show_sub($sub);
+        // show_sub($sub);
+        
+        // Show Sub by Session
+        const halaman_saat_ini = document.getElementById('halaman_saat_ini').innerHTML;
+        console.log(halaman_saat_ini);
+        document.getElementById(halaman_saat_ini).style.display = 'block'
 
         // Navigasi tombol
         function nav_tombol(){
