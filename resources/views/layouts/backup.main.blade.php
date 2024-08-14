@@ -413,7 +413,44 @@
         </section>
     </div>
 
+    <!-- Form tersembunyi untuk mengirim permintaan POST BAB-->
+    <form id="sidebarStatusForm" action="{{ route('laman') }}" method="POST" style="display:none;">
+        @csrf
+        <input type="hidden" name="menuBabSub" id="sidebarStatusInput">
+        <input type="hidden" name="menu" id="menuInput">
+    </form>
+
+    <!-- Form tersembunyi untuk mengirim permintaan POST SUB-->
+    <form id="sidebarStatusFormSub" action="{{ route('lamanSub') }}" method="POST" style="display:none;">
+        @csrf
+        <input type="hidden" name="menuSub" id="menuInputSub">
+    </form>
+
+
+
     </div>
+    {{-- BAB --}}
+    <script>
+        function setSidebarStatus(status, menu) {
+            // Set nilai input tersembunyi
+            document.getElementById('sidebarStatusInput').value = status;
+            document.getElementById('menuInput').value = menu;
+
+            // Submit form tersembunyi
+            document.getElementById('sidebarStatusForm').submit();
+        }
+    </script>
+
+    {{-- SUB --}}
+    <script>
+        function setSidebarStatusSub(element) {
+            // Set nilai input tersembunyi
+            document.getElementById('menuInputSub').value = element.name;
+
+            // Submit form tersembunyi
+            document.getElementById('sidebarStatusFormSub').submit();
+        }
+    </script>
 
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- data tables -->

@@ -787,6 +787,7 @@
             </ol>
         </div>
     </div>
+</div>
 
     <script>
         // Mengambil semua class sub

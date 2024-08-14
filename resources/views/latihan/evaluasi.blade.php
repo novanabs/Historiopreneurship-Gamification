@@ -8,7 +8,6 @@
     
     $_SESSION['data_soal'] = json_decode($soal->data_soal, true);
     // dd($_SESSION['data_soal']);
-    
 
     $data_soal = $_SESSION['data_soal'];
     $data_dari_json = json_encode($soal->data_soal);
