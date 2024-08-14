@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Analisis_individu_kewirausahaan;
 use App\Models\AnalisisIndividuKesejarahan;
 use App\Models\AnalisisKelompokKesejarahan;
+use App\Models\AnalisisKelompokKewirausahaan;
 use App\Models\Kelompok;
-use App\Models\RefleksiKesejarahan;
+use App\Models\Refleksi;
 use App\Models\User;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-=======
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Session;
->>>>>>> 7185c9bc6952898c374e0cf46a5a15b5293e3a8a
+
 
 class HalamanController extends Controller
 {
@@ -34,9 +35,14 @@ class HalamanController extends Controller
             ->toArray();
 
         // Ambil jawaban refleksi yang sudah ada berdasarkan email pengguna
-        $jawabanRefleksi = RefleksiKesejarahan::where('created_by', $userEmail)
+
+        // Mengelompokkan jawaban berdasarkan kategori dan aspek
+        $jawabanRefleksi = Refleksi::where('created_by', $userEmail)
             ->get()
-            ->keyBy('aspek');
+            ->groupBy('kategori')
+            ->map(function ($items) {
+                return $items->keyBy('aspek');
+            });
 
         // Dapatkan id_kelompok dari tabel kelompok berdasarkan email pengguna
         $kelompok = Kelompok::where('email', $userEmail)->first();
@@ -61,14 +67,47 @@ class HalamanController extends Controller
 
         return view('pages.B', compact('jawabanKelompok', 'id_kelompok', 'anggotaKelompok', 'jawabanIndividu', 'jawabanRefleksi'));
     }
-
-
-
-
-    function C()
+    public function C()
     {
-        return view('pages.C');
+        // Dapatkan email pengguna yang sedang login
+        $userEmail = Auth::user()->email;
+    
+        // Ambil jawaban individu yang sudah ada
+        $jawabanIndividu = Analisis_individu_kewirausahaan::where('created_by', $userEmail)
+            ->pluck('jawaban', 'aspek')
+            ->toArray();
+    
+        // Mengelompokkan jawaban berdasarkan kategori dan aspek
+        $jawabanRefleksi = Refleksi::where('created_by', $userEmail)
+            ->get()
+            ->groupBy('kategori')
+            ->map(function ($items) {
+                return $items->keyBy('aspek');
+            });
+    
+        // Dapatkan id_kelompok dari tabel kelompok berdasarkan email pengguna
+        $kelompok = Kelompok::where('email', $userEmail)->first();
+    
+        if ($kelompok) {
+            $id_kelompok = $kelompok->id_kelompok;
+    
+            // Ambil semua anggota kelompok berdasarkan id_kelompok dengan join ke tabel users
+            $anggotaKelompok = Kelompok::where('id_kelompok', $id_kelompok)
+                ->join('users', 'kelompok.email', '=', 'users.email')
+                ->select('kelompok.*', 'users.nama_lengkap')
+                ->get(); // Convert to collection
+    
+            // Ambil jawaban berdasarkan id_kelompok untuk halaman C
+            $jawabanKelompok = AnalisisKelompokKewirausahaan::where('id_kelompok', $id_kelompok)->get();
+        } else {
+            $id_kelompok = null;
+            $anggotaKelompok = collect(); // Kosongkan jika id_kelompok tidak ditemukan
+            $jawabanKelompok = collect(); // Kosongkan jika id_kelompok tidak ditemukan
+        }
+    
+        return view('pages.C', compact('jawabanKelompok', 'id_kelompok', 'anggotaKelompok', 'jawabanIndividu', 'jawabanRefleksi'));
     }
+    
 
     function daftarPustaka()
     {

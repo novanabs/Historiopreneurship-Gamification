@@ -209,6 +209,16 @@
                 <h2>Lembar Analisis Kelompok</h2>
                 <p class="text-lg">AKTIVITAS 1</p>
                 <p class="text-sm">1 JP x @ 50 menit = 50 menit</p>
+                <p>Anggota Kelompok</p>
+                @if($anggotaKelompok->isNotEmpty())
+                    <ol>
+                        @foreach ($anggotaKelompok as $anggota)
+                            <li><b>Nama:</b> {{ $anggota->nama_lengkap }}</li>
+                        @endforeach
+                    </ol>
+                @else
+                    <p>Tidak ada anggota kelompok ditemukan.</p>
+                @endif
                 <p class="mt-2 text-lg">DESKRIPSIKANLAH PERSPEKTIF KALIAN TERHADAP PERMASALAHAN
                     BERIKUT!
                 </p>
@@ -233,14 +243,38 @@
         <div class="row">
             <div class="col">
                 <h3 class="text-center">PENGALAMAN BERBELANJA PADA SITUS e-COMMERCE</h3>
-                <ol>
-                    <li class="mt-3"><label for="">Pengalaman yang didapat:</label> <br> <textarea name="" id=""
-                            rows="5"></textarea></li>
-                    <li class="mt-3"><label for="">Kelebihan berbelanja melalu situs <i>e-commerce</i></label> <br>
-                        <textarea name="" id="" rows="5"></textarea></li>
-                    <li class="mt-3"><label for="">Kekurangan belanja melalui situs <i>e-commerce</i></label> <br>
-                        <textarea name="" id="" rows="5"></textarea></li>
-                </ol>
+                <!-- Aktivitas 1 -->
+                <form action="{{ route('simpanAktivitas') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="kategori" value="aktivitas 1">
+
+                    <div class="row mt 3">
+                        <ol>
+                            <li class="mt-3">
+                                <label for="pengalaman">Pengalaman yang didapat:</label> <br>
+                                <textarea name="jawaban[pengalaman]" id="pengalaman"
+                                    rows="5">{{ old('jawaban.pengalaman', $jawabanKelompok->where('kategori', 'aktivitas 1')->where('aspek', 'Pengalaman yang didapat')->first()->jawaban ?? '') }}</textarea>
+                            </li>
+                            <li class="mt-3">
+                                <label for="kelebihan">Kelebihan berbelanja melalui situs <i>e-commerce</i>:</label>
+                                <br>
+                                <textarea name="jawaban[kelebihan]" id="kelebihan"
+                                    rows="5">{{ old('jawaban.kelebihan', $jawabanKelompok->where('kategori', 'aktivitas 1')->where('aspek', 'kelebihan e-commerce')->first()->jawaban ?? '') }}</textarea>
+                            </li>
+                            <li class="mt-3">
+                                <label for="kekurangan">Kekurangan belanja melalui situs <i>e-commerce</i>:</label> <br>
+                                <textarea name="jawaban[kekurangan]" id="kekurangan"
+                                    rows="5">{{ old('jawaban.kekurangan', $jawabanKelompok->where('kategori', 'aktivitas 1')->where('aspek', 'kekurangan e-commerce')->first()->jawaban ?? '') }}</textarea>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary">Kirim</button>
+                        </div>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
@@ -253,25 +287,75 @@
                 <p class="text-lg">AKTIVITAS 2</p>
                 <p class="text-sm">1 JP x @ 50 menit = 50 menit</p>
                 <p class="mt-2 text-lg">LAKUKAN ANALISA TERHADAP PERMASALAHAN BERIKUT!</p>
-
-                <label for="" class="mt-4">Jenis-jenis teknologi yang berpengaruh terhadap dunia pemasaran produkproduk
-                    yang berkaitan dengan kewirausahaan kesejarahan:
-                </label> <br> <textarea name="" id="" rows="5"></textarea>
-                <label for="" class="mt-4">Bagaimana pengaruh teknologi tersebut terhadap proses pemasaran kewirausahaan
-                    kesejarahan: </label> <br> <textarea name="" id="" rows="5"></textarea>
-                <label for="" class="mt-4">Kelebihan dan kekurangan penggunaan teknologi dalam proses pemasaran
-                    kewirausahaan kesejarahan:</label> <br> <textarea name="" id="" rows="5"></textarea>
-                <label for="" class="mt-4">Analisislah kondisi proses pemasaran sebelum dan sesudah ditemukannya
-                    teknologi khususnya platform pemasaran digital: </label> <br> <textarea name="" id=""
-                    rows="5"></textarea>
-
+                <p>Anggota Kelompok</p>
+                @if($anggotaKelompok->isNotEmpty())
+                    <ol>
+                        @foreach ($anggotaKelompok as $anggota)
+                            <li><b>Nama:</b> {{ $anggota->nama_lengkap }}</li>
+                        @endforeach
+                    </ol>
+                @else
+                    <p>Tidak ada anggota kelompok ditemukan.</p>
+                @endif
+                <div class="row">
+                    <form action="{{ route('simpanAktivitas') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="kategori" value="aktivitas 2">
+                        <div class="row">
+                            <div class="col">
+                                <label for="JenisTeknologi" class="mt-4">Jenis-jenis teknologi yang berpengaruh terhadap
+                                    dunia
+                                    pemasaran
+                                    produkproduk
+                                    yang berkaitan dengan kewirausahaan kesejarahan:
+                                </label> <br>
+                                <textarea name="jawaban[JenisTeknologi]" id="JenisTeknologi"
+                                    rows="5">{{ old('jawaban.JenisTeknologi', $jawabanKelompok->where('kategori', 'aktivitas 2')->where('aspek', 'Jenis-jenis teknologi')->first()->jawaban ?? '') }}</textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="pengaruhTeknologi" class="mt-4">Bagaimana pengaruh teknologi tersebut
+                                    terhadap proses
+                                    pemasaran
+                                    kewirausahaan
+                                    kesejarahan: </label> <br> <textarea name="jawaban[pengaruhTeknologi]"
+                                    id="pengaruhTeknologi"
+                                    rows="5">{{ old('jawaban.pengaruhTeknologi', $jawabanKelompok->where('kategori', 'aktivitas 2')->where('aspek', 'Pengaruh Teknologi')->first()->jawaban ?? '') }}</textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="kelebihanKekuranganTeknologi" class="mt-4">Kelebihan dan kekurangan
+                                    penggunaan teknologi dalam proses
+                                    pemasaran
+                                    kewirausahaan kesejarahan:</label> <br> <textarea
+                                    name="jawaban[kelebihanKekuranganTeknologi]" id="kelebihanKekuranganTeknologi"
+                                    rows="5">{{ old('jawaban.kelebihanKekuranganTeknologi', $jawabanKelompok->where('kategori', 'aktivitas 2')->where('aspek', 'Kelebihan dan Kekurangan penggunaan teknologi')->first()->jawaban ?? '') }}</textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="kondisiProses" class="mt-4">Analisislah kondisi proses pemasaran sebelum dan
+                                    sesudah
+                                    ditemukannya
+                                    teknologi khususnya platform pemasaran digital: </label> <br>
+                                <textarea name="jawaban[kondisiProses]" id="kondisiProses"
+                                    rows="5">{{ old('jawaban.kondisiProses', $jawabanKelompok->where('kategori', 'aktivitas 2')->where('aspek', 'kondisi proses sebelum dan sesudah')->first()->jawaban ?? '') }}</textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary">Kirim</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="materi-c" id="lembar-diskusi-kelompok">
-
-
         <div class="row">
             <div class="col">
                 <h3>LEMBAR DISKUSI KELOMPOK</h3>
@@ -282,10 +366,32 @@
                     terkait pemasaran kewirausahaan kesejarahan!
                 </p>
                 <p><b>RINGKASAN DAN PETA KONSEP PEMASARAN KEWIRAUSAHAAN KESEJARAHAN </b></p>
-
-                <label for="" class="mt-4">Hasil analisa kelompok :
-                </label> <br> <textarea name="" id="" rows="5"></textarea>
-
+                <p>Anggota Kelompok</p>
+                @if($anggotaKelompok->isNotEmpty())
+                    <ol>
+                        @foreach ($anggotaKelompok as $anggota)
+                            <li><b>Nama:</b> {{ $anggota->nama_lengkap }}</li>
+                        @endforeach
+                    </ol>
+                @else
+                    <p>Tidak ada anggota kelompok ditemukan.</p>
+                @endif
+                <form action="{{ route('simpanAktivitas') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="kategori" value="aktivitas 3">
+                    <div class="row">
+                        <div class="col">
+                            <label for="analisaKelompok" class="mt-4">Hasil analisa kelompok :</label> <br>
+                            <textarea name="jawaban[analisaKelompok]" id="analisaKelompok"
+                                rows="5">{{ old('jawaban.analisaKelompok', $jawabanKelompok->where('kategori', 'aktivitas 3')->where('aspek', 'Hasil analisa kelompok')->first()->jawaban ?? '') }}</textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary">Kirim</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="row mt-4">
@@ -308,332 +414,367 @@
             </div>
         </div>
     </div>
+    <form action="{{route('simpanJawabanIndividuKewirausahaan')}}" method="POST">
+        @csrf
+        <div class="materi-c" id="lembar-proyek-individu">
+            <div class="row">
+                <div class="col">
+                    <h3>LEMBAR PROYEK INDIVIDU</h3>
+                    <p class="text-lg">AKTIVITAS 4</p>
+                    <p class="text-sm">4 JP x @ 50 menit = 200 menit </p>
 
-    <div class="materi-c" id="lembar-proyek-individu">
-
-
-
-        <div class="row">
-            <div class="col">
-                <h3>LEMBAR PROYEK INDIVIDU</h3>
-                <p class="text-lg">AKTIVITAS 4</p>
-                <p class="text-sm">4 JP x @ 50 menit = 200 menit </p>
-
-                <p class="mt-4"><b>MERANCANG PRODUK DAN JASA TERKAIT KEWIRAUSAHAAN KESEJARAHAN BERDASARKAN KONSEP
-                        KEWIRAUSAHAAN </b></p>
-                <p>Wirausahawan merupakan seorang individu yang memiliki semangat,
-                    kemampuan, dan pikiran untuk menaklukkan cara berpikir yang lambat dan
-                    malas. Seorang wirausahawan adalah seorang inovator yang memiliki naluri
-                    untuk melihat peluang yang ada. Seorang wirausahawan akan mencari
-                    kombinasi baru yang menggabungkan lima hal: barang dan jasa baru, teknik
-                    produksi baru, sumber bahan baku baru, pasar baru, dan organisasi industri
-                    baru. Sementara itu, orang-orang yang mampu melihat ke depan, berpikir
-                    rasional, dan menemukan solusi atas berbagai masalah akan menjadi seorang wirausahawan yang sukses
-                    (Ratumbusyang, 2017)
-                </p>
-                <p>Untuk menjadi wirausahawan yang sukses, mahasiswa harus mampu
-                    membuka peluang bisnis, tanggap terhadap orang lain dan menjalin hubungan
-                    antar wirausaha. Sebagai upaya menekan angka pengangguran, perlu
-                    diciptakan peluang-peluang usaha baru, salah satunya di bidang
-                    kewirausahaan kesejarahan.
-                </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="kotak bg-warning-subtle">
-                    Pada aktivitas ini, kalian membuat business plan produk dan jasa terkait
-                    kewirausahaan kesejarahan. Kalian diminta untuk bekerja sambil belajar secara
-                    individu untuk membuat business plan tersebut.
-                    Kalian bebas menyusun, merancang dan mengatur proyek yang kalian kerjakan.
+                    <p class="mt-4"><b>MERANCANG PRODUK DAN JASA TERKAIT KEWIRAUSAHAAN KESEJARAHAN BERDASARKAN KONSEP
+                            KEWIRAUSAHAAN </b></p>
+                    <p>Wirausahawan merupakan seorang individu yang memiliki semangat,
+                        kemampuan, dan pikiran untuk menaklukkan cara berpikir yang lambat dan
+                        malas. Seorang wirausahawan adalah seorang inovator yang memiliki naluri
+                        untuk melihat peluang yang ada. Seorang wirausahawan akan mencari
+                        kombinasi baru yang menggabungkan lima hal: barang dan jasa baru, teknik
+                        produksi baru, sumber bahan baku baru, pasar baru, dan organisasi industri
+                        baru. Sementara itu, orang-orang yang mampu melihat ke depan, berpikir
+                        rasional, dan menemukan solusi atas berbagai masalah akan menjadi seorang wirausahawan yang
+                        sukses
+                        (Ratumbusyang, 2017)
+                    </p>
+                    <p>Untuk menjadi wirausahawan yang sukses, mahasiswa harus mampu
+                        membuka peluang bisnis, tanggap terhadap orang lain dan menjalin hubungan
+                        antar wirausaha. Sebagai upaya menekan angka pengangguran, perlu
+                        diciptakan peluang-peluang usaha baru, salah satunya di bidang
+                        kewirausahaan kesejarahan.
+                    </p>
                 </div>
-                <p class="mt-4 text-center text-lg"><b>Hal yang akan kalian lakukan: </b></p>
-                <ol class="mt-3">
-                    <li>Pelajari buku ajar dengan seksama;</li>
-                    <li>Pada bagian penentuan proyek, kalian akan menentukan proyek yang sesuai dengan isi wacana;</li>
-                    <li>Pada bagian perancangan proyek, kalian menyusun Langkah-langkah untuk menyelesaikan proyek;</li>
-                    <li>Pada bagian penyusunan jadwal proyek, kalian harus Menyusun jadwal untuk memperkirakan awal
-                        pelaksanaan hingga selesai;</li>
-                    <li>Pada bagian penyelesaian proyek dan monitoring dosen, kalian mengisi form monitoring
-                        keterlaksanaan jadwal penyelesaian proyek yang sebelumnya telah disepakati;</li>
-                    <li>Pada bagian penyusunan dan presentasi proyek, kalian mempresentasikan proyek yang telah dibuat.
-                    </li>
-                    <li>Pada bagian evaluasi proses dan hasil proyek, kalian menjawab pertanyaan pada kolom yang telah
-                        disediakan mengenai proyek yang telah dikerjakan.</li>
-                </ol>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p class="text-lg">LENGKAPILAH KOLOM DI BAWAH INI!</p>
-                <p class="text-center"><b>Rancangan/Desain Proyek</b></p>
-                <p>Rancangan produk dan jasa yang dibuat harus berkaitan dengan kewirausahaan
-                    kesejarahan, boleh berupa produk, boleh berupa jasa, yang berpeluang dipasarkan di
-                    Kawasan sekitar wisata sejarah di daerah kalian.</p>
-                <label for="" class="mt-3">Produk/Jasa yang akan dirancang</label>
-                <textarea name="" id="" rows="5"></textarea>
-                <label for="" class="mt-3">Analisa produk/jasa yang digunakan:</label>
-                <textarea name="" id="" rows="5"></textarea>
-                <hr>
-                <p class="text-center"><b>Perencanaan Proyek</b></p>
-                <p>Tuliskan Langkah kerja untuk merancang proyek dan jasa, dimulai dari membuat
-                    business plan.
-                </p>
-                <label for="" class="mt-3">Langkah kerja:</label>
-                <textarea name="" id="" rows="5"></textarea>
+            <div class="row">
+                <div class="col">
+                    <div class="kotak bg-warning-subtle">
+                        Pada aktivitas ini, kalian membuat business plan produk dan jasa terkait
+                        kewirausahaan kesejarahan. Kalian diminta untuk bekerja sambil belajar secara
+                        individu untuk membuat business plan tersebut.
+                        Kalian bebas menyusun, merancang dan mengatur proyek yang kalian kerjakan.
+                    </div>
+                    <p class="mt-4 text-center text-lg"><b>Hal yang akan kalian lakukan: </b></p>
+                    <ol class="mt-3">
+                        <li>Pelajari buku ajar dengan seksama;</li>
+                        <li>Pada bagian penentuan proyek, kalian akan menentukan proyek yang sesuai dengan isi wacana;
+                        </li>
+                        <li>Pada bagian perancangan proyek, kalian menyusun Langkah-langkah untuk menyelesaikan proyek;
+                        </li>
+                        <li>Pada bagian penyusunan jadwal proyek, kalian harus Menyusun jadwal untuk memperkirakan awal
+                            pelaksanaan hingga selesai;</li>
+                        <li>Pada bagian penyelesaian proyek dan monitoring dosen, kalian mengisi form monitoring
+                            keterlaksanaan jadwal penyelesaian proyek yang sebelumnya telah disepakati;</li>
+                        <li>Pada bagian penyusunan dan presentasi proyek, kalian mempresentasikan proyek yang telah
+                            dibuat.
+                        </li>
+                        <li>Pada bagian evaluasi proses dan hasil proyek, kalian menjawab pertanyaan pada kolom yang
+                            telah
+                            disediakan mengenai proyek yang telah dikerjakan.</li>
+                    </ol>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p class="text-lg text-center mt-4"><b>Penyusunan Jadwal Pelaksanaan Proyek</b></p>
-                <p>Susunlah jadwal penyelesaian proyek tersebut. Setelah itu tunjukkan pada dosen kalian agar diberikan
-                    persetujuan pembuatan proyek tersebut. </p>
-                <p class="text-center"><i>=== Tabel Rincian Jadwal Kegiatan Proyek ===</i></p>
-                <table class="table table-bordered text-center">
-                    <thead>
-                        <tr>
-                            <td>No</td>
-                            <td>Rincian Kegiatan</td>
-                            <td>Keterangan</td>
-                            <td>Waktu Pelaksanaan</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="col">
+                    <p class="text-lg">LENGKAPILAH KOLOM DI BAWAH INI!</p>
+                    <p class="text-center"><b>Rancangan/Desain Proyek</b></p>
+                    <p>Rancangan produk dan jasa yang dibuat harus berkaitan dengan kewirausahaan
+                        kesejarahan, boleh berupa produk, boleh berupa jasa, yang berpeluang dipasarkan di
+                        Kawasan sekitar wisata sejarah di daerah kalian.</p>
+                    <!-- input individu 1 rancangan proyek -->
+                    <label for="produkJasa" class="mt-3">Produk/Jasa yang akan dirancang</label>
+                    <textarea name="produkJasa" id="produkJasa"
+                        rows="5">{{ old('produkJasa', $jawabanIndividu['produk atau jasa yang akan dirancang'] ?? '') }}</textarea>
+                    <label for="analisaProduk" class="mt-3">Analisa produk/jasa yang digunakan:</label>
+                    <textarea name="analisaProduk" id="analisaProduk"
+                        rows="5">{{ old('analisaProduk', $jawabanIndividu['Analisa produk atau jasa yang digunakan'] ?? '') }}</textarea>
+                    <hr>
+                    <p class="text-center"><b>Perencanaan Proyek</b></p>
+                    <p>Tuliskan Langkah kerja untuk merancang proyek dan jasa, dimulai dari membuat
+                        business plan.
+                    </p>
+                    <!-- input individu 2 rancangan proyek -->
+                    <label for="langkahKerja" class="mt-3">Langkah kerja:</label>
+                    <textarea name="langkahKerja" id="langkahKerja"
+                        rows="5">{{ old('langkahKerja', $jawabanIndividu['langkah kerja'] ?? '') }}</textarea>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p class="text-lg text-center mt-4"><b>Penyelesaian Proyek dan Monitoring</b></p>
-                <p>Setelah jadwal disusun dan disetujui, selanjutnya yaitu mengisi form monitoring proyek berikut.</p>
-                <p class="mt-3 text-center">
-                    <i>Daftar Checklist Monitoring Proyek</i>
-                <table class="table table-bordered">
-                    <thead class="text-center">
-                        <tr>
-                            <td rowspan="2">No</td>
-                            <td rowspan="2">Jenis Kegiatan</td>
-                            <td colspan="2">Keterangan</td>
-                        </tr>
-                        <tr>
-                            <td>Sudah</td>
-                            <td>Sudah</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td><b>Persiapan</b></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Masing-masing anggota kelompok mendapat tugas sesuai bagiannya</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Membuat rencana penyelesaian proyek</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Membuat jadwal penyelesaian proyek</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Menuliskan alat dan bahan yang digunakan</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Menuliskan cara kerja yang akan dilaksanakn</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td><b>Pelaksanaan</b></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Pembagian tugas secara merata kepada anggota kelompok</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Proyek terlaksana sesuai dengan rencana yang dibuat</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Proyek selesai sesuai jadwal yang telah dirancang</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td><b>Presentasi</b></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Peralatan presentasi</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Produk memiliki nilai jual atau manfaat</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                </p>
+            <div class="row">
+                <div class="col">
+                    <p class="text-lg text-center mt-4"><b>Penyusunan Jadwal Pelaksanaan Proyek</b></p>
+                    <p>Susunlah jadwal penyelesaian proyek tersebut. Setelah itu tunjukkan pada dosen kalian agar
+                        diberikan
+                        persetujuan pembuatan proyek tersebut. </p>
+                    <p class="text-center"><i>=== Tabel Rincian Jadwal Kegiatan Proyek ===</i></p>
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <td>No</td>
+                                <td>Rincian Kegiatan</td>
+                                <td>Keterangan</td>
+                                <td>Waktu Pelaksanaan</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p class="text-center text-lg mt-3">
-                    <b>Penyusunan dan Presentasi Proyek</b>
-                </p>
-                <p class="text-center">Sekarang tugas kalian adalah mempresentasikan proyek yang telah kalian buat</p>
+            <div class="row">
+                <div class="col">
+                    <p class="text-lg text-center mt-4"><b>Penyelesaian Proyek dan Monitoring</b></p>
+                    <p>Setelah jadwal disusun dan disetujui, selanjutnya yaitu mengisi form monitoring proyek berikut.
+                    </p>
+                    <p class="mt-3 text-center">
+                        <i>Daftar Checklist Monitoring Proyek</i>
+                    <table class="table table-bordered">
+                        <thead class="text-center">
+                            <tr>
+                                <td rowspan="2">No</td>
+                                <td rowspan="2">Jenis Kegiatan</td>
+                                <td colspan="2">Keterangan</td>
+                            </tr>
+                            <tr>
+                                <td>Sudah</td>
+                                <td>Sudah</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><b>Persiapan</b></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Masing-masing anggota kelompok mendapat tugas sesuai bagiannya</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Membuat rencana penyelesaian proyek</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Membuat jadwal penyelesaian proyek</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Menuliskan alat dan bahan yang digunakan</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Menuliskan cara kerja yang akan dilaksanakn</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><b>Pelaksanaan</b></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Pembagian tugas secara merata kepada anggota kelompok</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Proyek terlaksana sesuai dengan rencana yang dibuat</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Proyek selesai sesuai jadwal yang telah dirancang</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><b>Presentasi</b></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Peralatan presentasi</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Produk memiliki nilai jual atau manfaat</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="text-center text-lg mt-3">
+                        <b>Penyusunan dan Presentasi Proyek</b>
+                    </p>
+                    <p class="text-center">Sekarang tugas kalian adalah mempresentasikan proyek yang telah kalian buat
+                    </p>
 
-                <p class="text-center text-lg mt-3">
-                    <b>Evaluasi Proses dan Hasil Proyek</b>
-                </p>
+                    <p class="text-center text-lg mt-3">
+                        <b>Evaluasi Proses dan Hasil Proyek</b>
+                    </p>
+                    <!-- input individu 3 evaluasi -->
+                    <ol>
+                        <div class="row">
+                            <div class="col">
+                                <li class="mt-3"><label for="pendapatPengguna">Bagaimana pendapat kalian tentang hasil
+                                        proyek yang telah
+                                        kalian
+                                        buat</label> <br> <textarea name="pendapatPengguna" id="pendapatPengguna"
+                                        rows="5">{{ old('pendapatPengguna', $jawabanIndividu['pendapat tentang hasil proyek yang telah dibuat'] ?? '') }}</textarea>
+                                </li>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <li class="mt-3"><label for="perbaikanProyek">Apa yang bisa Anda lakukan agar proyek
+                                        Anda menjadi lebih
+                                        baik
+                                        atau
+                                        lebih sempurna</label> <br> <textarea name="perbaikanProyek"
+                                        id="perbaikanProyek"
+                                        rows="5">{{ old('perbaikanProyek', $jawabanIndividu['Hal yang bisa dilakukan agar proyek menjadi lebih baik atau lebih sempurna'] ?? '') }}</textarea>
+                                </li>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary">Simpan Jawaban</button>
+                            </div>
+                        </div>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="text-lg">
+                        <b>Belajar Karakter Berwirausaha</b>
+                    </p>
 
-                <ol>
-                    <li class="mt-3"><label for="">Bagaimana pendapat kalian tentang hasil proyek yang telah kalian
-                            buat</label> <br> <textarea name="" id="" rows="5"></textarea></li>
-                    <li class="mt-3"><label for="">Apa yang bisa Anda lakukan agar proyek Anda menjadi lebih baik atau
-                            lebih sempurna</label> <br> <textarea name="" id="" rows="5"></textarea></li>
-                </ol>
+                    <p><b>Persiapan</b></p>
+                    <ol>
+                        <li>Mahasiswa menentukan topik berwirausaha yang berkarakter dan
+                            dampak dari COVID 19 di berbagai sektor yang berhubungan dengan
+                            ekonomi.</li>
+                        <li>Mempersiapan tempat dan sound system oleh panitia.</li>
+                        <li>Mempersiapkan 2 narasumber tokoh wirausahawan lokal untuk
+                            berbagi mengenai Wirausaha Yang Bertanggung JawabPokok materi
+                            yang disampaikan adalah :
+                            <ol type="a">
+                                <li>Pengalaman mulai berwiraswasta.</li>
+                                <li>Alasan kenapa memilih bisnis tersebut.</li>
+                                <li>Bagaimana permasalahan dan peluang yang timbul dari bisnis
+                                    tersebut.</li>
+                                <li>Karakter Wirausahawan.</li>
+                                <li>Dampak COVID 19 terhadap perekonomian</li>
+                                <li>Motivasi peserta didik</li>
+                            </ol>
+                        </li>
+                    </ol>
+                    <p><b>Pelaksanaan</b></p>
+                    <ol>
+                        <li>Mahasiswa membuat dokumen jurnal belajar.</li>
+                        <li>Mahasiswa memfasilitasi sebagai Moderator dan Pewara Acara.</li>
+                        <li>Peserta didik mendengarkan dan secara aktif didorong untuk aktif
+                            menggali informasi dari narasumber.</li>
+                        <li>Peserta didik diberikan tugas dengan mencatat rangkuman informasi
+                            yang telah disampaikan narasumber selama acara berlangsung.</li>
+                        <li>Peserta didik diberikan tugas dengan mencatat rangkuman informasi
+                            yang telah disampaikan narasumber selama acara berlangsung.</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="text-lg"><b>Orasi "Jika Aku Menjadi?"</b></p>
+                    <p><b>Deskripsi</b></p>
+                    <p>Seorang wirausahawan harus memiliki karakter yang visioner. Dalam
+                        menumbuhkan karakter tersebut, peserta didik diberikan kesempatannya
+                        untuk menyusun visi dan misinya ketika berkeinginan menjadi seorang
+                        pengusaha. Dengan diberikan tenggat waktu, peserta didik dituntut untuk
+                        menuangkan visi dan misinya secara spontan sehingga diharapkan peserta
+                        didik berani mengutarakan visi dan misinya serta memahami salah satu
+                        karakter wirausahawan.
+                    </p>
+                    <p><b>Persiapan</b></p>
+                    <ol>
+                        <li>Peserta didik diminta mempersiapkan alat tulis dan secarik kertas.
+                        </li>
+                        <li>Mahasiswa mempersiapkan pertanyaan yang harus dijawab oleh rekan
+                            lainnya:
+                            <ol type="a">
+                                <li>Jika kamu memiliki modal dan menjadi seorang wirausahawan, kamu
+                                    ingin menjadi pengusaha apa?
+                                </li>
+                                <li>Kalau kamu sudah menentukan menjadi pengusaha apa, maka apa visi
+                                    dan misimu menjadi seorang pengusaha? </li>
+                            </ol>
+                        </li>
+
+                    </ol>
+                    <p><b>Pelaksanaan</b></p>
+                    <ol>
+                        <li>Peserta didik diberikan pertanyaan yang telah disiapkan.</li>
+                        <li>Peserta diminta menjawab pertanyaan tersebut di secarik kertas dengan
+                            tenggat waktu 15 menit.</li>
+                        <li>Meminta audien maju ke depan berorasi tentang visi dan misinya ketika
+                            menjadi wirausahawan.</li>
+                        <li>Memberikan refleksi singkat dan mengijikan teman-temannya untuk
+                            bertanya.</li>
+                        <li>Peserta didik diajak untuk meneriakkan “Aku ingin menjadi Pengusaha
+                            ............. Aku pasti sukses!” Secara bersamaan.</li>
+                    </ol>
+                    <p>Hasil karya dan Cara Berorasi di depan umum pada kegiatan ini bukan
+                        menjadi pokok pembelajaran, namun memperlihatkan kecepatan, dan
+                        kemandiriannya dalam menentukan visi dan misinya sendiri untuk menjadi
+                        seorang wirausahawan.</p>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <p class="text-lg">
-                    <b>Belajar Karakter Berwirausaha</b>
-                </p>
-
-                <p><b>Persiapan</b></p>
-                <ol>
-                    <li>Mahasiswa menentukan topik berwirausaha yang berkarakter dan
-                        dampak dari COVID 19 di berbagai sektor yang berhubungan dengan
-                        ekonomi.</li>
-                    <li>Mempersiapan tempat dan sound system oleh panitia.</li>
-                    <li>Mempersiapkan 2 narasumber tokoh wirausahawan lokal untuk
-                        berbagi mengenai Wirausaha Yang Bertanggung JawabPokok materi
-                        yang disampaikan adalah :
-                        <ol type="a">
-                            <li>Pengalaman mulai berwiraswasta.</li>
-                            <li>Alasan kenapa memilih bisnis tersebut.</li>
-                            <li>Bagaimana permasalahan dan peluang yang timbul dari bisnis
-                                tersebut.</li>
-                            <li>Karakter Wirausahawan.</li>
-                            <li>Dampak COVID 19 terhadap perekonomian</li>
-                            <li>Motivasi peserta didik</li>
-                        </ol>
-                    </li>
-                </ol>
-                <p><b>Pelaksanaan</b></p>
-                <ol>
-                    <li>Mahasiswa membuat dokumen jurnal belajar.</li>
-                    <li>Mahasiswa memfasilitasi sebagai Moderator dan Pewara Acara.</li>
-                    <li>Peserta didik mendengarkan dan secara aktif didorong untuk aktif
-                        menggali informasi dari narasumber.</li>
-                    <li>Peserta didik diberikan tugas dengan mencatat rangkuman informasi
-                        yang telah disampaikan narasumber selama acara berlangsung.</li>
-                    <li>Peserta didik diberikan tugas dengan mencatat rangkuman informasi
-                        yang telah disampaikan narasumber selama acara berlangsung.</li>
-                </ol>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p class="text-lg"><b>Orasi "Jika Aku Menjadi?"</b></p>
-                <p><b>Deskripsi</b></p>
-                <p>Seorang wirausahawan harus memiliki karakter yang visioner. Dalam
-                    menumbuhkan karakter tersebut, peserta didik diberikan kesempatannya
-                    untuk menyusun visi dan misinya ketika berkeinginan menjadi seorang
-                    pengusaha. Dengan diberikan tenggat waktu, peserta didik dituntut untuk
-                    menuangkan visi dan misinya secara spontan sehingga diharapkan peserta
-                    didik berani mengutarakan visi dan misinya serta memahami salah satu
-                    karakter wirausahawan.
-                </p>
-                <p><b>Persiapan</b></p>
-                <ol>
-                    <li>Peserta didik diminta mempersiapkan alat tulis dan secarik kertas.
-                    </li>
-                    <li>Mahasiswa mempersiapkan pertanyaan yang harus dijawab oleh rekan
-                        lainnya:
-                        <ol type="a">
-                            <li>Jika kamu memiliki modal dan menjadi seorang wirausahawan, kamu
-                                ingin menjadi pengusaha apa?
-                            </li>
-                            <li>Kalau kamu sudah menentukan menjadi pengusaha apa, maka apa visi
-                                dan misimu menjadi seorang pengusaha? </li>
-                        </ol>
-                    </li>
-
-                </ol>
-                <p><b>Pelaksanaan</b></p>
-                <ol>
-                    <li>Peserta didik diberikan pertanyaan yang telah disiapkan.</li>
-                    <li>Peserta diminta menjawab pertanyaan tersebut di secarik kertas dengan
-                        tenggat waktu 15 menit.</li>
-                    <li>Meminta audien maju ke depan berorasi tentang visi dan misinya ketika
-                        menjadi wirausahawan.</li>
-                    <li>Memberikan refleksi singkat dan mengijikan teman-temannya untuk
-                        bertanya.</li>
-                    <li>Peserta didik diajak untuk meneriakkan “Aku ingin menjadi Pengusaha
-                        ............. Aku pasti sukses!” Secara bersamaan.</li>
-                </ol>
-                <p>Hasil karya dan Cara Berorasi di depan umum pada kegiatan ini bukan
-                    menjadi pokok pembelajaran, namun memperlihatkan kecepatan, dan
-                    kemandiriannya dalam menentukan visi dan misinya sendiri untuk menjadi
-                    seorang wirausahawan.</p>
-            </div>
-        </div>
-    </div>
+    </form>
     <div class="materi-c" id="refleksi-1">
 
 
@@ -646,25 +787,54 @@
                     perasaan kalian ketika mengerjakan suplemen bahan materi ini! Bubuhkanlah tanda centang
                     (√) pada salah satu gambar yang dapat mewakili perasaan kalian setelah mempelajari materi
                     ini!</p>
-                <!-- emoticon -->
-                <div class="icon-radio">
-                    <label><input type="radio" name="icon" /> <i class="fa-solid fa-face-laugh-beam"></i></label>
-                    <label><input type="radio" name="icon" /> <i class="fa-solid fa-face-smile"></i></label>
-                    <label><input type="radio" name="icon" /> <i class="fa-solid fa-face-grin-beam-sweat"></i></label>
-                    <label><input type="radio" name="icon" /> <i class="fa-solid fa-face-sad-cry"></i></label>
-                    <label><input type="radio" name="icon" /> <i class="fa-solid fa-face-dizzy"></i></label>
-                </div>
-                <p><b>Jawablah pertanyaan berikut!</b></p>
-                <ol>
-                    <li class="mt-3"><label for="">Apa yang sudah kalian pelajari?</label> <br> <textarea name="" id=""
-                            rows="5"></textarea></li>
-                    <li class="mt-3"><label for="">Apa yang kalian kuasai dari materi ini?</label> <br> <textarea
-                            name="" id="" rows="5"></textarea></li>
-                    <li class="mt-3"><label for="">Bagian apa yang belum kalian kuasai?</label> <br> <textarea name=""
-                            id="" rows="5"></textarea></li>
-                    <li class="mt-3"><label for="">Apa upaya kalian untuk menguasai yang belum kalian kuasai?</label>
-                        <br> <textarea name="" id="" rows="5"></textarea></li>
-                </ol>
+                <form method="post" action="{{ route('simpanRefleksi') }}">
+                    @csrf
+                    <input type="hidden" name="kategori" value="refleksi kewirausahaan">
+
+                    <div class="icon-radio col mt-3">
+                        @foreach(['sangat puas', 'puas', 'biasa saja', 'kurang puas', 'sangat kurang puas'] as $value)
+                            <label>
+                                <input type="radio" name="respon" value="{{ $value }}" {{ old('respon', $jawabanRefleksi->get('refleksi kewirausahaan')->get('sudah dipelajari')->respon ?? '') == $value ? 'checked' : '' }} />
+                                <i
+                                    class="fa-solid fa-face-{{ $value == 'sangat puas' ? 'laugh-beam' : ($value == 'puas' ? 'smile' : ($value == 'biasa saja' ? 'grin-beam-sweat' : ($value == 'kurang puas' ? 'sad-cry' : 'dizzy'))) }}"></i>
+                            </label>
+                        @endforeach
+                    </div>
+
+                    <!-- Soal Refleksi -->
+                    <p><b>Jawablah pertanyaan berikut!</b></p>
+                    <div class="row mt-3">
+                        <ol>
+                            <li class="mt-3">
+                                <label for="sudah_dipelajari">Apa yang sudah kalian pelajari?</label> <br>
+                                <textarea name="sudah_dipelajari" id="sudah_dipelajari"
+                                    rows="5">{{ old('sudah_dipelajari', $jawabanRefleksi->get('refleksi kewirausahaan')->get('sudah dipelajari')->jawaban ?? '') }}</textarea>
+                            </li>
+                            <li class="mt-3">
+                                <label for="dikuasai">Apa yang kalian kuasai dari materi ini?</label> <br>
+                                <textarea name="dikuasai" id="dikuasai"
+                                    rows="5">{{ old('dikuasai', $jawabanRefleksi->get('refleksi kewirausahaan')->get('dikuasai')->jawaban ?? '') }}</textarea>
+                            </li>
+                            <li class="mt-3">
+                                <label for="belum_dikuasai">Bagian apa yang belum kalian kuasai?</label> <br>
+                                <textarea name="belum_dikuasai" id="belum_dikuasai"
+                                    rows="5">{{ old('belum_dikuasai', $jawabanRefleksi->get('refleksi kewirausahaan')->get('belum dikuasai')->jawaban ?? '') }}</textarea>
+                            </li>
+                            <li class="mt-3">
+                                <label for="upaya_menguasai">Apa upaya kalian untuk menguasai yang belum kalian
+                                    kuasai?</label>
+                                <br>
+                                <textarea name="upaya_menguasai" id="upaya_menguasai"
+                                    rows="5">{{ old('upaya_menguasai', $jawabanRefleksi->get('refleksi kewirausahaan')->get('upaya untuk menguasai')->jawaban ?? '') }}</textarea>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary">Simpan Jawaban</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="row mt-4">
@@ -695,10 +865,19 @@
                 Simulasikanlah dengan teman-teman di kelas kalian terlebih dahulu sebelum dipraktikkan ke
                 lingkup yang lebih luas. Tulislah saran dari teman-teman di kelas terkait Produk dan jasa
                 yang sudah kalian jual kepada mereka.</p>
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">Silahkan kumpulkan tugas anda!</label>
-                    <input class="form-control" type="file" id="formFile">
-                </div>
+            <div class="mb-3">
+                <!-- Form Upload Praktik Lapangan 1 -->
+                <form method="post" action="{{ route('uploadFile') }}" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="category" value="praktik lapangan 1">
+                    <div class="mb-3">
+                        <label for="formFile2" class="form-label">Silahkan kumpulkan tugas untuk Praktik Lapangan
+                            1!</label>
+                        <input class="form-control" type="file" id="formFile2" name="file">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Kirim</button>
+                </form>
+            </div>
         </div>
     </div>
     <div class="row materi-c" id="praktik-lapangan-2">
@@ -712,10 +891,16 @@
                 Tulislah produk dan yang berhasil kalian jual beserta jumlahnya.
             </p>
 
-            <div class="mb-3">
-                <label for="formFile" class="form-label">Silahkan kumpulkan tugas anda!</label>
-                <input class="form-control" type="file" id="formFile">
-            </div>
+            <form method="post" action="{{ route('uploadFile') }}" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="category" value="praktik lapangan 2">
+                <div class="mb-3">
+                    <label for="formFile2" class="form-label">Silahkan kumpulkan tugas untuk Praktik Lapangan
+                        2!</label>
+                    <input class="form-control" type="file" id="formFile2" name="file">
+                </div>
+                <button type="submit" class="btn btn-primary">Kirim</button>
+            </form>
 
             <p class="text-lg text-center"><b>Lampiran tabel jumlah produk dan jasa yang terjual</b></p>
             <table class="table table-bordered">
@@ -766,25 +951,54 @@
                 perasaan kalian ketika mengerjakan suplemen bahan materi ini! Bubuhkanlah tanda centang
                 (√) pada salah satu gambar yang dapat mewakili perasaan kalian setelah mempelajari materi
                 ini! </p>
-            <!-- emoticon -->
-            <div class="icon-radio">
-                <label><input type="radio" name="icon" /> <i class="fa-solid fa-face-laugh-beam"></i></label>
-                <label><input type="radio" name="icon" /> <i class="fa-solid fa-face-smile"></i></label>
-                <label><input type="radio" name="icon" /> <i class="fa-solid fa-face-grin-beam-sweat"></i></label>
-                <label><input type="radio" name="icon" /> <i class="fa-solid fa-face-sad-cry"></i></label>
-                <label><input type="radio" name="icon" /> <i class="fa-solid fa-face-dizzy"></i></label>
-            </div>
-            <p><b>Jawablah pertanyaan berikut!</b></p>
-            <ol>
-                <li class="mt-3"><label for="">Apa yang sudah kalian pelajari?</label> <br> <textarea name="" id=""
-                        rows="5"></textarea></li>
-                <li class="mt-3"><label for="">Apa yang kalian kuasai dari materi ini?</label> <br> <textarea name=""
-                        id="" rows="5"></textarea></li>
-                <li class="mt-3"><label for="">Bagian apa yang belum kalian kuasai?</label> <br> <textarea name="" id=""
-                        rows="5"></textarea></li>
-                <li class="mt-3"><label for="">Apa upaya kalian untuk menguasai yang belum kalian kuasai?</label> <br>
-                    <textarea name="" id="" rows="5"></textarea></li>
-            </ol>
+            <form method="post" action="{{ route('simpanRefleksi') }}">
+                @csrf
+                <input type="hidden" name="kategori" value="refleksi kepariwisataan">
+
+                <div class="icon-radio col mt-3">
+                    @foreach(['sangat puas', 'puas', 'biasa saja', 'kurang puas', 'sangat kurang puas'] as $value)
+                        <label>
+                            <input type="radio" name="respon" value="{{ $value }}" {{ old('respon', $jawabanRefleksi->get('refleksi kepariwisataan')->get('sudah dipelajari')->respon ?? '') == $value ? 'checked' : '' }} />
+                            <i
+                                class="fa-solid fa-face-{{ $value == 'sangat puas' ? 'laugh-beam' : ($value == 'puas' ? 'smile' : ($value == 'biasa saja' ? 'grin-beam-sweat' : ($value == 'kurang puas' ? 'sad-cry' : 'dizzy'))) }}"></i>
+                        </label>
+                    @endforeach
+                </div>
+
+                <!-- Soal Refleksi -->
+                <p><b>Jawablah pertanyaan berikut!</b></p>
+                <div class="row mt-3">
+                    <ol>
+                        <li class="mt-3">
+                            <label for="sudah_dipelajari">Apa yang sudah kalian pelajari?</label> <br>
+                            <textarea name="sudah_dipelajari" id="sudah_dipelajari"
+                                rows="5">{{ old('sudah_dipelajari', $jawabanRefleksi->get('refleksi kepariwisataan')->get('sudah dipelajari')->jawaban ?? '') }}</textarea>
+                        </li>
+                        <li class="mt-3">
+                            <label for="dikuasai">Apa yang kalian kuasai dari materi ini?</label> <br>
+                            <textarea name="dikuasai" id="dikuasai"
+                                rows="5">{{ old('dikuasai', $jawabanRefleksi->get('refleksi kepariwisataan')->get('dikuasai')->jawaban ?? '') }}</textarea>
+                        </li>
+                        <li class="mt-3">
+                            <label for="belum_dikuasai">Bagian apa yang belum kalian kuasai?</label> <br>
+                            <textarea name="belum_dikuasai" id="belum_dikuasai"
+                                rows="5">{{ old('belum_dikuasai', $jawabanRefleksi->get('refleksi kepariwisataan')->get('belum dikuasai')->jawaban ?? '') }}</textarea>
+                        </li>
+                        <li class="mt-3">
+                            <label for="upaya_menguasai">Apa upaya kalian untuk menguasai yang belum kalian
+                                kuasai?</label>
+                            <br>
+                            <textarea name="upaya_menguasai" id="upaya_menguasai"
+                                rows="5">{{ old('upaya_menguasai', $jawabanRefleksi->get('refleksi kepariwisataan')->get('upaya untuk menguasai')->jawaban ?? '') }}</textarea>
+                        </li>
+                    </ol>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Simpan Jawaban</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -799,8 +1013,8 @@
         console.log(materi_a.length)
 
         // Hide semua bab
-        function hide_semua_sub(){
-            for(let i=0;i<=8;i++){
+        function hide_semua_sub() {
+            for (let i = 0; i <= 8; i++) {
                 console.log(materi_a[i])
                 materi_a[i].style.display = 'none';
             }
@@ -813,15 +1027,15 @@
             materi_a[$no].style.display = 'block';
         }
         // show_sub($sub);
-        
+
         // Show Sub by Session
         const halaman_saat_ini = document.getElementById('halaman_saat_ini').innerHTML;
         console.log(halaman_saat_ini);
         document.getElementById(halaman_saat_ini).style.display = 'block'
 
         // Navigasi tombol
-        function nav_tombol(){
-            if($sub == 8){
+        function nav_tombol() {
+            if ($sub == 8) {
                 document.getElementById('next').disabled = true;
             } else if ($sub == 0) {
                 document.getElementById('prev').disabled = true;
@@ -835,7 +1049,7 @@
         // Status Bar
 
         const status_bar = document.getElementById('status_bar');
-        function update_status(){
+        function update_status() {
             let persen = $progress * 12.5;
             status_bar.style.width = `${persen}%`;
         }

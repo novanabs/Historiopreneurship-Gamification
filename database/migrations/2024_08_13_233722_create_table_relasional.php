@@ -15,22 +15,29 @@ return new class extends Migration
             $table->foreign('id_badge')->references('id')->on('badge');
             $table->foreign('email')->references('email')->on('users');
         });
+
         Schema::table('nilai', function (Blueprint $table) {
             $table->foreign('email')->references('email')->on('users');
             $table->foreign('id_soal')->references('id')->on('soals');
         });
+
         Schema::table('user_kelas', function (Blueprint $table) {
             $table->foreign('id_kelas')->references('id')->on('kelas');
             $table->foreign('email')->references('email')->on('users');
         });
+
         Schema::table('kecepatan_akses', function (Blueprint $table) {
             $table->foreign('email')->references('email')->on('users');
         });
+
         Schema::table('soal_dadakan', function (Blueprint $table) {
             $table->foreign('id_soal')->references('id')->on('soals');
         });
         Schema::table('kelas', function (Blueprint $table) {
             $table->foreign('created_by')->references('email')->on('users');
+        });
+        Schema::table('kelompok', function (Blueprint $table) {
+            $table->foreign('email')->references('email')->on('users');
         });
     }
 
@@ -39,6 +46,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-
     }
+    
 };

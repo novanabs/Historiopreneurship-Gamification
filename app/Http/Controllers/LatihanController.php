@@ -35,8 +35,6 @@ class LatihanController extends Controller
         return view('latihan.info');
     }
     public function dragndrop(){
-        
-        dd(Session::all());
         return view('latihan.dragndrop');
     }
 }

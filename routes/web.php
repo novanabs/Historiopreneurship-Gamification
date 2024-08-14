@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AnalisisIndividuController;
 use App\Http\Controllers\jawabanKelompokController;
+use App\Http\Controllers\RefleksiController;
 use App\Http\Controllers\RefleksiKesejarahanController;
+use App\Http\Controllers\uploadFileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\DosenController;
@@ -32,8 +34,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/B-Kesejarahan', [HalamanController::class, 'B'])->name('pages.B');
     Route::post('/B-Kesejarahan/kelompok', [jawabanKelompokController::class, 'simpanJawaban'])->name('simpanJawabanKelompok');
     Route::post('/B-Kesejarahan/individu', [AnalisisIndividuController::class, 'simpanJawabanIndividu'])->name('simpanAnalisisIndividu');  
-    Route::post('/B-Kesejarahan/refleksi', [RefleksiKesejarahanController::class, 'simpanRefleksi'])->name('simpanRefleksi');    
+    Route::post('/B-Kesejarahan/refleksi', [RefleksiController::class, 'simpanRefleksi'])->name('simpanRefleksi');  
+    Route::post('/B-Kesejarahan/uploadFile', [uploadFileController::class, 'uploadFile'])->name('uploadFile');      
     Route::get('/C-Kewirausahaan-dan-Kepariwisataan', [HalamanController::class, 'C'])->name('pages.C');
+    Route::post('/C-Kewirausahaan-dan-Kepariwisataan/aktivitaskelompok', [jawabanKelompokController::class, 'simpanAktivitas'])->name('simpanAktivitas');
+    Route::post('/C-Kewirausahaan-dan-Kepariwisataan/uploadFile', [uploadFileController::class, 'uploadFile'])->name('uploadFile');
+    Route::post('/C-Kewirausahaan-dan-Kepariwisataan/individu', [AnalisisIndividuController::class, 'simpanJawabanIndividuKewirausahaan'])->name('simpanJawabanIndividuKewirausahaan');  
+    Route::post('/C-Kewirausahaan-dan-Kepariwisataan/refleksi', [RefleksiController::class, 'simpanRefleksi'])->name('simpanRefleksi');  
     Route::get('/Daftar-Pustaka',[HalamanController::class, 'daftarPustaka'])->name('pages.dafus');
 });
 
@@ -56,10 +63,10 @@ Route::get('/jawaban/{id_kelompok}', [JawabanKelompokController::class, 'lihatJa
 Route::get('/dataKelas',[DosenController::class,'datakelas'])->name('dataKelas');
 Route::get('/dataLatihan',[DosenController::class,'dataLatihan'])->name('dataLatihan');
 Route::get('/dataMahasiswa',[DosenController::class,'dataMahasiswa'])->name('dataMahasiswa');
-<<<<<<< HEAD
+
 Route::post('/dataMahasiswa', [DosenController::class, 'saveGroup'])->name('dataMahasiswa.saveGroup');
 Route::get('/dataNilai',[DosenController::class,'dataNilai'])->name('dataNilai');
-=======
+
 Route::get('/dataNilai',[DosenController::class,'dataNilai'])->name('dataNilai');
 
 // Session Controller Untuk Sidebar agar tidak menutup

@@ -151,10 +151,11 @@
             <p><b>Destinasi Wisata Banjarmasin Favorit</b></p>
             <p><b>Air Terjun Haratai</b></p>
             <div class="text-center">
-                <img class="rounded" src="https://meratusgeopark.org/wp-content/uploads/2019/05/Air-Terjun-Haratai-6.jpg"
-                alt="Gambar Air Terjun Haratai" style="width : 500px;height :300px">
+                <img class="rounded"
+                    src="https://meratusgeopark.org/wp-content/uploads/2019/05/Air-Terjun-Haratai-6.jpg"
+                    alt="Gambar Air Terjun Haratai" style="width : 500px;height :300px">
             </div>
-            
+
             <p>
                 Keistimewaan Air Terjun Haratai terletak pada pemandangan alamnya yang
                 indah. Air Terjun Haratai seakan-akan diapit oleh tebing bebatuan dan pepohonan di
@@ -188,10 +189,11 @@
                 </b>
             </p>
             <div class="text-center">
-                <img class="rounded"  src="https://www.amazingborneo.id/wp-content/uploads/2019/12/Bamboo-Rafting-Balanting-Paring-Banjarmasin2.jpg"
-                alt="Gambar Bambu Rafting" style="width : 500px;height :300px">
+                <img class="rounded"
+                    src="https://www.amazingborneo.id/wp-content/uploads/2019/12/Bamboo-Rafting-Balanting-Paring-Banjarmasin2.jpg"
+                    alt="Gambar Bambu Rafting" style="width : 500px;height :300px">
             </div>
-            
+
             <p>Anda yang hobi menguji adrenalin akan mendapatkan sensasi mendebarkan
                 ketika berlibur ke tempat wisata di Banjarmasin seperti Bamboo Rafting. Tempat ini
                 digadang-gadang sebagai tempat rafting paling unik di Banjarmasin. Keunikan dari
@@ -209,10 +211,11 @@
                 </b>
             </p>
             <div class="text-center">
-                <img class="rounded" src="https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/11/2023/10/29/269929595_937342236887852_4647198914071301074_n-750673262.jpg"
-                alt="Gambar pasar terapung" style="width : 500px;height :300px">
+                <img class="rounded"
+                    src="https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/11/2023/10/29/269929595_937342236887852_4647198914071301074_n-750673262.jpg"
+                    alt="Gambar pasar terapung" style="width : 500px;height :300px">
             </div>
-            
+
             <p>Anda yang hobi pergi ke pasar akan menemukan konsep pasar tradisional yang
                 berbeda saat mengunjungi Pasar Terapung Banjarmasin. Pasar di sini bukan berdiri
                 di atas daratan tapi dibuka di perahu klotok tepat di atas Sungai Martapura.
@@ -224,10 +227,11 @@
             </p>
             <p><b>Pemandian Air Panas Tanuhi</b></p>
             <div class="text-center">
-                <img class="rounded" src="https://megapolis.id/wp-content/uploads/2024/02/20220213_185243_compress98.jpg"
-                alt="Gambar Pemandian Air Panas Tanuhi" style="width : 500px;height :300px">
+                <img class="rounded"
+                    src="https://megapolis.id/wp-content/uploads/2024/02/20220213_185243_compress98.jpg"
+                    alt="Gambar Pemandian Air Panas Tanuhi" style="width : 500px;height :300px">
             </div>
-            
+
             <p>
                 Mandi air panas di kolam terbuka bersama pengunjung lainnya merupakan
                 konsep utama Pemandian Air Panas Tanuhi. Tempat wisata ini setidaknya difasilitasi
@@ -247,10 +251,11 @@
                 </b>
             </p>
             <div class="text-center">
-                <img class="rounded" src="https://asset-2.tstatic.net/banjarmasinposttravel/foto/bank/images/taman-wisata-alam-pulau-bakut-di-kecamatan-anjir-muara.jpg"
-                alt="Gambar Taman WIsata Alam Pulau Bakut" style="width : 500px;height :300px">
+                <img class="rounded"
+                    src="https://asset-2.tstatic.net/banjarmasinposttravel/foto/bank/images/taman-wisata-alam-pulau-bakut-di-kecamatan-anjir-muara.jpg"
+                    alt="Gambar Taman WIsata Alam Pulau Bakut" style="width : 500px;height :300px">
             </div>
-            
+
             <p>
                 Manjakan mata Anda dengan melihat pemandangan asri di Taman Wisata
                 Alam Pulau Bakut. Hutan Mangrove di kawasan wisata ini sangat indah dan rindang
@@ -291,11 +296,13 @@
                     eksplorasi dalam pemetaan.</li>
                 <li>Mahasiswa mampu mengasesmen objek kesejarahan berdasarkan hasil identifikasi.
                 </li>
-                <li>Mahasiswa mampu mendesain potensi usaha berdasarkan hasil kelayakan objek (<i>object pattern and feasibility</i>).
+                <li>Mahasiswa mampu mendesain potensi usaha berdasarkan hasil kelayakan objek (<i>object pattern and
+                        feasibility</i>).
                 </li>
             </ol>
             <div class="kotak bg-warning-subtle">
-                Untuk dapat mecapai Kegiatan Pembelajaran 2, silahkan eksplorasi lebih lanjut terkait kesejarahan yang ada di Kalimantan Selatan. Dan kerjakan analisi yang ada pada halaman selanjutnya >>
+                Untuk dapat mecapai Kegiatan Pembelajaran 2, silahkan eksplorasi lebih lanjut terkait kesejarahan yang
+                ada di Kalimantan Selatan. Dan kerjakan analisi yang ada pada halaman selanjutnya >>
             </div>
         </div>
     </div>
@@ -304,16 +311,20 @@
             <h3>LEMBAR ANALISA KELOMPOK</h3>
             <p class="text-lg">AKTIVITAS EKSPLORASI MAHASISWA</p>
             <p>
-                Berdasarkan hasil identifikasi terkait objek kesejarahan yang ada di daerah kalian, petakanlah objek-objek kesejarahan tersebut.
+                Berdasarkan hasil identifikasi terkait objek kesejarahan yang ada di daerah kalian, petakanlah
+                objek-objek kesejarahan tersebut.
                 <br>Lakukanlah analisa secara berkelompok!
             </p>
-            <p class="kotak bg-warning-subtle"> 
+            <p class="kotak bg-warning-subtle">
                 Silahkan berselancar di dunia maya / lingkungan sekitar untuk melakuka analisis
             </p>
             <div class="text-center bordered mb-3">
-                <iframe width="900" height="507" src="https://www.youtube.com/embed/P4B-OnP8ISc?si=YBNeIwxF_qJmlo3E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="900" height="507" src="https://www.youtube.com/embed/P4B-OnP8ISc?si=YBNeIwxF_qJmlo3E"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
-            
+
             <p>Anggota Kelompok</p>
             @if($anggotaKelompok->isNotEmpty())
                 <ol>
@@ -456,6 +467,7 @@
                 <h3 class="text-center mt-4">LAMPIRAN <br> FORM SYARAT KELAYAKAN OBJEK KESEJARAHAB</h3>
                 <table class="table table-bordered  table-responsive-md">
                     <thead>
+
                         <tr>
                             <th rowspan="2">NO</th>
                             <th rowspan="2">ASPEK</th>
@@ -643,10 +655,17 @@
             <p>Berdasarkan hasil penilaian kelayakan objek sejarah yang dipilih dari setiap kelompok,
                 buatlah laporan kegiatan tersebut dengan memuat “object pattern and feasibility”,
                 selanjutnya diskusikan di kelas. </p>
-            <div class="mb-3">
-                <label for="formFile" class="form-label">Silahkan kumpulkan tugas anda!</label>
-                <input class="form-control" type="file" id="formFile">
-            </div>
+            <!-- Form Upload Kegiatan Pembelajaran 3 -->
+            <form method="post" action="{{ route('uploadFile') }}" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="category" value="kegiatan pembelajaran 3">
+                <div class="mb-3">
+                    <label for="formFile1" class="form-label">Silahkan kumpulkan tugas untuk Kegiatan Pembelajaran
+                        3!</label>
+                    <input class="form-control" type="file" id="formFile1" name="file">
+                </div>
+                <button type="submit" class="btn btn-primary">Kirim</button>
+            </form>
         </div>
     </div>
     <div class="row materi-b" id="refleksi">
@@ -660,23 +679,16 @@
                 ini! </p>
             <form method="post" action="{{ route('simpanRefleksi') }}">
                 @csrf
-                <!-- Respon Emoticon -->
+                <input type="hidden" name="kategori" value="refleksi kesejarahan">
+
                 <div class="icon-radio col mt-3">
-                    <label><input type="radio" name="respon" value="sangat puas" {{ old('respon', $jawabanRefleksi->first()->respon ?? '') == 'sangat puas' ? 'checked' : '' }} />
-                        <i class="fa-solid fa-face-laugh-beam"></i>
-                    </label>
-                    <label><input type="radio" name="respon" value="puas" {{ old('respon', $jawabanRefleksi->first()->respon ?? '') == 'puas' ? 'checked' : '' }} />
-                        <i class="fa-solid fa-face-smile"></i>
-                    </label>
-                    <label><input type="radio" name="respon" value="biasa saja" {{ old('respon', $jawabanRefleksi->first()->respon ?? '') == 'biasa saja' ? 'checked' : '' }} />
-                        <i class="fa-solid fa-face-grin-beam-sweat"></i>
-                    </label>
-                    <label><input type="radio" name="respon" value="kurang puas" {{ old('respon', $jawabanRefleksi->first()->respon ?? '') == 'kurang puas' ? 'checked' : '' }} />
-                        <i class="fa-solid fa-face-sad-cry"></i>
-                    </label>
-                    <label><input type="radio" name="respon" value="sangat kurang puas" {{ old('respon', $jawabanRefleksi->first()->respon ?? '') == 'sangat kurang puas' ? 'checked' : '' }} />
-                        <i class="fa-solid fa-face-dizzy"></i>
-                    </label>
+                    @foreach(['sangat puas', 'puas', 'biasa saja', 'kurang puas', 'sangat kurang puas'] as $value)
+                        <label>
+                            <input type="radio" name="respon" value="{{ $value }}" {{ old('respon', $jawabanRefleksi->get('refleksi kesejarahan')->get('sudah dipelajari')->respon ?? '') == $value ? 'checked' : '' }} />
+                            <i
+                                class="fa-solid fa-face-{{ $value == 'sangat puas' ? 'laugh-beam' : ($value == 'puas' ? 'smile' : ($value == 'biasa saja' ? 'grin-beam-sweat' : ($value == 'kurang puas' ? 'sad-cry' : 'dizzy'))) }}"></i>
+                        </label>
+                    @endforeach
                 </div>
 
                 <!-- Soal Refleksi -->
@@ -686,24 +698,24 @@
                         <li class="mt-3">
                             <label for="sudah_dipelajari">Apa yang sudah kalian pelajari?</label> <br>
                             <textarea name="sudah_dipelajari" id="sudah_dipelajari"
-                                rows="5">{{ old('sudah_dipelajari', $jawabanRefleksi['sudah dipelajari']->jawaban ?? '') }}</textarea>
+                                rows="5">{{ old('sudah_dipelajari', $jawabanRefleksi->get('refleksi kesejarahan')->get('sudah dipelajari')->jawaban ?? '') }}</textarea>
                         </li>
                         <li class="mt-3">
                             <label for="dikuasai">Apa yang kalian kuasai dari materi ini?</label> <br>
                             <textarea name="dikuasai" id="dikuasai"
-                                rows="5">{{ old('dikuasai', $jawabanRefleksi['dikuasai']->jawaban ?? '') }}</textarea>
+                                rows="5">{{ old('dikuasai', $jawabanRefleksi->get('refleksi kesejarahan')->get('dikuasai')->jawaban ?? '') }}</textarea>
                         </li>
                         <li class="mt-3">
                             <label for="belum_dikuasai">Bagian apa yang belum kalian kuasai?</label> <br>
                             <textarea name="belum_dikuasai" id="belum_dikuasai"
-                                rows="5">{{ old('belum_dikuasai', $jawabanRefleksi['belum dikuasai']->jawaban ?? '') }}</textarea>
+                                rows="5">{{ old('belum_dikuasai', $jawabanRefleksi->get('refleksi kesejarahan')->get('belum dikuasai')->jawaban ?? '') }}</textarea>
                         </li>
                         <li class="mt-3">
                             <label for="upaya_menguasai">Apa upaya kalian untuk menguasai yang belum kalian
                                 kuasai?</label>
                             <br>
                             <textarea name="upaya_menguasai" id="upaya_menguasai"
-                                rows="5">{{ old('upaya_menguasai', $jawabanRefleksi['upaya untuk menguasai']->jawaban ?? '') }}</textarea>
+                                rows="5">{{ old('upaya_menguasai', $jawabanRefleksi->get('refleksi kesejarahan')->get('upaya untuk menguasai')->jawaban ?? '') }}</textarea>
                         </li>
                     </ol>
                 </div>
