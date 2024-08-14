@@ -65,4 +65,3 @@ Route::get('/dataNilai',[DosenController::class,'dataNilai'])->name('dataNilai')
 // Session Controller Untuk Sidebar agar tidak menutup
 Route::post('/laman', [SessionController::class, 'laman'])->name('laman');
 Route::post('/lamanSub', [SessionController::class, 'lamanSub'])->name('lamanSub');
->>>>>>> 7185c9bc6952898c374e0cf46a5a15b5293e3a8a
