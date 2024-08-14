@@ -9,15 +9,18 @@ use Illuminate\Support\Facades\Session;
 class HalamanController extends Controller
 {
     function A () {
-        return view('pages.A');
+        $data['halaman_terbuka'] = 'A'; 
+        return view('pages.A', $data);
     }
 
     function B () {
-        return view('pages.B');
+        $data['halaman_terbuka'] = 'B';
+        return view('pages.B', $data);
     }
 
     function C () {
-        return view('pages.C');
+        $data['halaman_terbuka'] = 'C';
+        return view('pages.C', $data);
     }
 
     function daftarPustaka () {

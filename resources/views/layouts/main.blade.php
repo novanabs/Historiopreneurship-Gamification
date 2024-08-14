@@ -187,7 +187,7 @@
             @endcan
 
             <li class="nav-item">
-                <a class="nav-link {{ session('active_menu') == 'dashboard' ? 'active' : '' }} " href="{{ route('dashboard.index') }}" >
+                <a class="nav-link" href="{{ route('dashboard.index') }}" >
                     <i class="bi bi-speedometer"></i>
                    <p>Dashboard</p>
                 </a>
@@ -199,7 +199,7 @@
             
             
             {{-- A. INFORMASI UMUM --}}
-            <li class="nav-item {{ session('active_menu') == 'pages.A' ? 'menu-is-opening menu-open' : '' }}">
+            <li class="nav-item {{ isset($halaman_terbuka) && $halaman_terbuka == 'A' ? 'menu-is-opening menu-open' : '' }}">
                 <a href="{{ route('pages.A') }}" class="nav-link bab {{ session('active_menu') == 'pages.A' ? 'active' : '' }}" onclick="setSidebarStatus('CPL', 'pages.A')">
                     <i class="bi bi-info-circle"></i>
                     <p>Informasi Umum</p><i class="right bi bi-chevron-left"></i>
@@ -252,7 +252,7 @@
             </li>
 
             {{-- B.KESEJARAHAN --}}
-            <li class="nav-item  {{ session('active_menu') == 'pages.B' ? 'menu-is-opening menu-open' : '' }}">
+            <li class="nav-item  {{ isset($halaman_terbuka) && $halaman_terbuka == 'B' ? 'menu-is-opening menu-open' : '' }}">
               <a href="{{ route('pages.B') }}" class="nav-link bab {{ session('active_menu') == 'pages.B' ? 'active' : '' }}" onclick="setSidebarStatus('kegiatan-pembelajaran-1', 'pages.B')">
                 <i class="bi bi-1-square-fill"></i>
                 <p>Kesejarahan</p><i class="right bi bi-chevron-left"></i>
@@ -306,7 +306,7 @@
             </li>
 
             {{-- C. KWU & KEWIRAUSAHAAN --}}
-            <li class="nav-item  {{ session('active_menu') == 'pages.C' ? 'menu-is-opening menu-open' : '' }}">
+            <li class="nav-item  {{ isset($halaman_terbuka) && $halaman_terbuka == 'C' ? 'menu-is-opening menu-open' : '' }}">
               <a href="{{ route('pages.C') }}" class="nav-link bab {{ session('active_menu') == 'pages.C' ? 'active' : '' }}" onclick="setSidebarStatus('kewirausahaan-dan-kepariwisataan', 'pages.C')">
                 <i class="bi bi-2-square-fill"></i>
                 <p class="text-start">KWU & Kepariwisataan</p><i class="right bi bi-chevron-left"></i>
@@ -461,7 +461,7 @@
             console.log('Target', event.currentTarget);
             console.log('Tombol di tekan', event.currentTarget.name);
             hide_semua_sub();
-            // document.getElementById(event.currentTarget.name).style.display = 'block'
+            document.getElementById(event.currentTarget.name).style.display = 'block'
         }
         
 
@@ -469,7 +469,23 @@
             nav_link.addEventListener('click', cekking)
         })
 
-        // Membuat sidebar tetap tampil
+        // Untuk mengaktifkan dan nonaktifkan sub di sidebar
+        function active_sub(){
+            console.log('Ini dari main', materi_a[$sub].id);
+            // matikan_active();
+            nav_link.forEach(element => {
+                if(element.name == materi_a[$sub].id){
+                    console.log(element.name, materi_a[$sub].id);
+                    element.classList.add('active');
+                }else{
+                    element.classList.remove('active')
+                }
+            });
+            
+        }
+
+        active_sub()
+        
         
             
         
