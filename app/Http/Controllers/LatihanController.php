@@ -29,6 +29,9 @@ class LatihanController extends Controller
     }
     public function evaluasi(){
         $soal['soal'] = Soal::first();
+        $_SESSION['soal_sekarang'] = 0;
+        $_SESSION['jawaban'] = 0;
+        $_SESSION['nilai'] = 0;
         return view('latihan.evaluasi', $soal);
     }
     public function info(){

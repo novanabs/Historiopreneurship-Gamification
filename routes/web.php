@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/C-Kewirausahaan-dan-Kepariwisataan/uploadFile', [uploadFileController::class, 'uploadFile'])->name('uploadFile');
     Route::post('/C-Kewirausahaan-dan-Kepariwisataan/individu', [AnalisisIndividuController::class, 'simpanJawabanIndividuKewirausahaan'])->name('simpanJawabanIndividuKewirausahaan');  
     Route::post('/C-Kewirausahaan-dan-Kepariwisataan/refleksi', [RefleksiController::class, 'simpanRefleksi'])->name('simpanRefleksi');  
+    Route::get('/materi', [HalamanController::class, 'materi'])->name('pages.materi');
     Route::get('/Daftar-Pustaka',[HalamanController::class, 'daftarPustaka'])->name('pages.dafus');
 });
 

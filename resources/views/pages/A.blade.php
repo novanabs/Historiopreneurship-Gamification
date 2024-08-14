@@ -162,11 +162,7 @@
             <div class="col">
                 <h2>Kolaborasi dan Narasumber</h2>
                 <p class="text-justify">
-                    Apabila dosen dan mahasiswa mempunyai keterbatasan untuk
-memperoleh konten, dosen bisa mengundang narasumber ahli misalnya
-dari guru mata pelajaran produktif, praktisi di berbagai bidang, dan bisa
-menggunakan sarana sekitar sebagai sumber belajar primer maupun
-sekunder. 
+                    Apabila dosen dan mahasiswa mempunyai keterbatasan untuk memperoleh konten, dosen bisa mengundang narasumber ahli misalnya dari guru mata pelajaran produktif, praktisi di berbagai bidang, dan bisa menggunakan sarana sekitar sebagai sumber belajar primer maupun sekunder. 
                 </p>
             </div>
         </div>
@@ -240,7 +236,8 @@ sekunder.
             </div>
         </div>
     </div>
-    </div>
+</div>
+
     <script>
         // Mengambil semua class sub
         const materi_a = document.getElementsByClassName('materi-a');
@@ -312,8 +309,6 @@ sekunder.
             show_sub($sub);
             nav_tombol()
         }
-
-    //    
 
     </script>
 @endsection

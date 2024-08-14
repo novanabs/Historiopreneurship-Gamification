@@ -113,4 +113,8 @@ class HalamanController extends Controller
     {
         return view('pages.daftarPustaka');
     }
+
+    function materi () {
+        return view('pages.materi');
+    }
 }
