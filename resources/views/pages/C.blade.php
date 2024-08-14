@@ -12,8 +12,6 @@
 
 
 <div class="mt-3">
-
-
     <div class="row">
         <div class="col">
             <h2>C. Kewirausahaan dan Kepariwisataan </h2>

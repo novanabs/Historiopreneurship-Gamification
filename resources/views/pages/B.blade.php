@@ -707,7 +707,6 @@
 
 </div>
 
-
 <script>
     // Mengambil semua class sub
     const materi_a = document.getElementsByClassName('materi-b');

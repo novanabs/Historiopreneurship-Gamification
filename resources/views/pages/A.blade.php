@@ -314,12 +314,6 @@
             active_sub()
         }
 
-        
-
-        
-
-
-
     </script>
 @endsection
 

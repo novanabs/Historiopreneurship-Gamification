@@ -186,7 +186,7 @@
             </li>
             @endcan
 
-            <li class="nav-item">
+            <li class="nav-item m {{ isset($halaman_terbuka) && $halaman_terbuka == 'dashboard' ? 'menu-open' : '' }}">
                 <a class="nav-link" href="{{ route('dashboard.index') }}" >
                     <i class="bi bi-speedometer"></i>
                    <p>Dashboard</p>
@@ -208,44 +208,37 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                     <a href="{{ route('pages.A') }}#Halaman-CPL" class="nav-link sub {{ session('active_menu_sub') == 'CPL' ? 'active' : '' }}" name='CPL' onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>CPL</p>
+                        <p><i class="bi bi-dot"></i> CPL</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#Halaman-CPMK" class="nav-link sub {{ session('active_menu_sub') == 'CPMK' ? 'active' : '' }}" name="CPMK" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>CPMK</p>
+                    <a href="{{ route('pages.A') }}#Halaman-CPMK" class="nav-link sub disabled text-gray {{ session('active_menu_sub') == 'CPMK' ? 'active' : '' }}" name="CPMK" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> CPMK</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#Halaman-Peran-Dosen" class="nav-link sub {{ session('active_menu_sub') == 'peran-dosen' ? 'active' : '' }}" name="peran-dosen" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Peran Dosen</p>
+                    <a href="{{ route('pages.A') }}#Halaman-Peran-Dosen" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'peran-dosen' ? 'active' : '' }}" name="peran-dosen" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Peran Dosen</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#Halaman-Sarana-dan-Prasarana" class="nav-link sub {{ session('active_menu_sub') == 'sarana-dan-prasarana' ? 'active' : '' }}" name="sarana-dan-prasarana" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Sarana dan Prasana</p>
+                    <a href="{{ route('pages.A') }}#Halaman-Sarana-dan-Prasarana" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'sarana-dan-prasarana' ? 'active' : '' }}" name="sarana-dan-prasarana" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Sarana dan Prasana</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#Halaman-Kolaborasi-Narasumber" class="nav-link sub {{ session('active_menu_sub') == 'kolaborasi-narasumber' ? 'active' : '' }}" name="kolaborasi-narasumber" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Kolaborasi Narasumber</p>
+                    <a href="{{ route('pages.A') }}#Halaman-Kolaborasi-Narasumber" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'kolaborasi-narasumber' ? 'active' : '' }}" name="kolaborasi-narasumber" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Kolaborasi Narasumber</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#Halaman-Cara-Penggunaan" class="nav-link sub {{ session('active_menu_sub') == 'cara-penggunaan' ? 'active' : '' }}" name="cara-penggunaan" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Cara Penggunaan</p>
+                    <a href="{{ route('pages.A') }}#Halaman-Cara-Penggunaan" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'cara-penggunaan' ? 'active' : '' }}" name="cara-penggunaan" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Cara Penggunaan</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.A') }}#Halaman-Tahapan" class="nav-link sub {{ session('active_menu_sub') == 'tahapan' ? 'active' : '' }}" name="tahapan" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Tahapan</p>
+                    <a href="{{ route('pages.A') }}#Halaman-Tahapan" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'tahapan' ? 'active' : '' }}" name="tahapan" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Tahapan</p>
                     </a>
                 </li>
               </ul>
@@ -260,38 +253,32 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                     <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-1" class="nav-link sub {{ session('active_menu_sub') == 'kegiatan-pembelajaran-1' ? 'active' : '' }}" name="kegiatan-pembelajaran-1" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Kegiatan Pembelajaran 1</p>
+                        <p><i class="bi bi-dot"></i> Kegiatan Pembelajaran 1</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-2" class="nav-link sub {{ session('active_menu_sub') == 'kegiatan-pembelajaran-2' ? 'active' : '' }}" name="kegiatan-pembelajaran-2" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Kegiatan Pembelajaran 2</p>
+                    <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-2" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'kegiatan-pembelajaran-2' ? 'active' : '' }}" name="kegiatan-pembelajaran-2" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Kegiatan Pembelajaran 2</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#Halaman-Lembar-Analisa-Kelompok" class="nav-link sub {{ session('active_menu_sub') == 'lembar-analisa-kelompok' ? 'active' : '' }}" name="lembar-analisa-kelompok" onclick="setSidebarStatusSub(this)">
-                            <i class="bi bi-dot"></i>
-                            <p class="text-left">Analisis Kelompok</p>
+                    <a href="{{ route('pages.B') }}#Halaman-Lembar-Analisa-Kelompok" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'lembar-analisa-kelompok' ? 'active' : '' }}" name="lembar-analisa-kelompok" onclick="setSidebarStatusSub(this)">
+                            <p class="text-left"><i class="bi bi-lock"></i> Analisis Kelompok</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#Halaman-Lembar-Analisa-Individu" class="nav-link sub {{ session('active_menu_sub') == 'lembar-analisa-individu' ? 'active' : '' }}" name="lembar-analisa-individu" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Analisis Individu</p>
+                    <a href="{{ route('pages.B') }}#Halaman-Lembar-Analisa-Individu" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'lembar-analisa-individu' ? 'active' : '' }}" name="lembar-analisa-individu" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Analisis Individu</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-3" class="nav-link sub {{ session('active_menu_sub') == 'kegiatan-pembelajaran-3' ? 'active' : '' }}" name="kegiatan-pembelajaran-3" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Kegiatan Pembelajaran 3</p>
+                    <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-3" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'kegiatan-pembelajaran-3' ? 'active' : '' }}" name="kegiatan-pembelajaran-3" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Kegiatan Pembelajaran 3</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#Halaman-Refleksi" class="nav-link sub {{ session('active_menu_sub') == 'refleksi' ? 'active' : '' }}" name="refleksi" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Refleksi</p>
+                    <a href="{{ route('pages.B') }}#Halaman-Refleksi" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'refleksi' ? 'active' : '' }}" name="refleksi" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Refleksi</p>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -314,56 +301,47 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                     <a href="{{ route('pages.C') }}#Halaman-Kewirausahaan-dan-kepariwisataan" class="nav-link sub {{ session('active_menu_sub') == 'kewirausahaan-dan-kepariwisataan' ? 'active' : '' }}" name="kewirausahaan-dan-kepariwisataan" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>KWU & Kepariwisataan</p>
+                        <p><i class="bi bi-dot"></i> KWU & Kepariwisataan</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Halaman-Lembar-Analisa-Kelompok-1" class="nav-link sub {{ session('active_menu_sub') == 'lembar-analisa-kelompok-1' ? 'active' : '' }}" name="lembar-analisa-kelompok-1" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Analisa Kelompok 1</p>
+                    <a href="{{ route('pages.C') }}#Halaman-Lembar-Analisa-Kelompok-1" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'lembar-analisa-kelompok-1' ? 'active' : '' }}" name="lembar-analisa-kelompok-1" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Analisa Kelompok 1</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Lembar-Analisa-Kelompok-2" class="nav-link sub {{ session('active_menu_sub') == 'lembar-analisa-kelompok-2' ? 'active' : '' }}" name="lembar-analisa-kelompok-2" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Analisa Kelompok 2</p>
+                    <a href="{{ route('pages.C') }}#Lembar-Analisa-Kelompok-2" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'lembar-analisa-kelompok-2' ? 'active' : '' }}" name="lembar-analisa-kelompok-2" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Analisa Kelompok 2</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Lembar-Diskusi-Kelompok" class="nav-link sub {{ session('active_menu_sub') == 'lembar-diskusi-kelompok' ? 'active' : '' }}" name="lembar-diskusi-kelompok" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Diskusi Kelompok</p>
+                    <a href="{{ route('pages.C') }}#Lembar-Diskusi-Kelompok" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'lembar-diskusi-kelompok' ? 'active' : '' }}" name="lembar-diskusi-kelompok" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Diskusi Kelompok</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Lembar-Proyek-Individu" class="nav-link sub {{ session('active_menu_sub') == 'lembar-proyek-individu' ? 'active' : '' }}" name="lembar-proyek-individu" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Proyek Individu</p>
+                    <a href="{{ route('pages.C') }}#Lembar-Proyek-Individu" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'lembar-proyek-individu' ? 'active' : '' }}" name="lembar-proyek-individu" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Proyek Individu</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Refleksi-1" class="nav-link sub {{ session('active_menu_sub') == 'refleksi-1' ? 'active' : '' }}" name="refleksi-1" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Refleksi</p>
+                    <a href="{{ route('pages.C') }}#Refleksi-1" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'refleksi-1' ? 'active' : '' }}" name="refleksi-1" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Refleksi</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Refleksi-2" class="nav-link sub {{ session('active_menu_sub') == 'praktik-lapangan-1' ? 'active' : '' }}" name="praktik-lapangan-1" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Praktik Lapangan 1</p>
+                    <a href="{{ route('pages.C') }}#Refleksi-2" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'praktik-lapangan-1' ? 'active' : '' }}" name="praktik-lapangan-1" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Praktik Lapangan 1</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Praktik-Lapangan-2" class="nav-link sub {{ session('active_menu_sub') == 'praktik-lapangan-2' ? 'active' : '' }}" name="praktik-lapangan-2" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Praktik Lapangan 2</p>
+                    <a href="{{ route('pages.C') }}#Praktik-Lapangan-2" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'praktik-lapangan-2' ? 'active' : '' }}" name="praktik-lapangan-2" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Praktik Lapangan 2</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pages.C') }}#Refleksi-2" class="nav-link sub {{ session('active_menu_sub') == 'refleksi-2' ? 'active' : '' }}" name="refleksi-2" onclick="setSidebarStatusSub(this)">
-                        <i class="bi bi-dot"></i>
-                        <p>Refleksi</p>
+                    <a href="{{ route('pages.C') }}#Refleksi-2" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'refleksi-2' ? 'active' : '' }}" name="refleksi-2" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Refleksi</p>
                     </a>
                 </li>
                 
@@ -461,7 +439,7 @@
             console.log('Target', event.currentTarget);
             console.log('Tombol di tekan', event.currentTarget.name);
             hide_semua_sub();
-            document.getElementById(event.currentTarget.name).style.display = 'block'
+            document.getElementById(event.currentTarget.name).style.display = 'block';
         }
         
 
@@ -475,10 +453,17 @@
             // matikan_active();
             nav_link.forEach(element => {
                 if(element.name == materi_a[$sub].id){
-                    console.log(element.name, materi_a[$sub].id);
+                    // console.log(element.name, materi_a[$sub].id);
+                    console.log(element);
                     element.classList.add('active');
+                    element.classList.remove('disabled');
+                    element.classList.remove('text-gray');
+
+                    // Mengubah lock menjadi dot
+                    element.querySelector('i').classList.remove('bi-lock')
+                    element.querySelector('i').classList.add('bi-dot')
                 }else{
-                    element.classList.remove('active')
+                    element.classList.remove('active');
                 }
             });
             
