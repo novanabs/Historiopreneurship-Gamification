@@ -49,4 +49,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+        /**
+     * Get the kelompok that owns the user.
+     */
+    public function kelompok()
+    {
+        return $this->hasOne(Kelompok::class, 'email', 'email');
+    }
 }

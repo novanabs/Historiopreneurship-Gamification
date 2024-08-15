@@ -13,9 +13,8 @@ class Kelompok extends Model
     public $timestamps = false;
     protected $fillable = ['email', 'id_kelompok'];
 
-    // Relasi one-to-many dengan model User (mahasiswa)
     public function users()
     {
-        return $this->hasMany(Kelompok::class, 'id_kelompok', 'id_kelompok');
+        return $this->hasMany(User::class, 'email', 'email'); // Sesuaikan jika kolom yang digunakan berbeda
     }
 }

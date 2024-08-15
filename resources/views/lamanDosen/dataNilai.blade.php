@@ -39,56 +39,63 @@
                                 $no = 1;
                             @endphp
                             @foreach($Mahasiswas as $Mahasiswa)
-                                <tr>
-                                    <th scope="row">{{ $no }}</th>
-                                    <td>{{ $Mahasiswa->nama_lengkap }}</td>
-                                    <td>{{ $Mahasiswa->kelas }}</td>
-                                    <td>Perlu Dinilai</td>
-                                    <td>
-                                        <button type="button" class="btn btn-success">Selesai</button>
-                                    </td>
-                                </tr>
-                                @php
-                                    $no++;
-                                @endphp
+                                                        <tr>
+                                                            <th scope="row">{{ $no }}</th>
+                                                            <td>{{ $Mahasiswa->nama_lengkap }}</td>
+                                                            <td>{{ $Mahasiswa->kelas }}</td>
+                                                            <td>Perlu Dinilai</td>
+                                                            <td>
+                                                                <a href="{{ route('dataJawabanIndividu', ['email' => $Mahasiswa->email]) }}"
+                                                                    class="btn btn-success">Nilai</a>
+                                                            </td>
+                                                        </tr>
+                                                        @php
+                                                            $no++;
+                                                        @endphp
                             @endforeach
                         </tbody>
                     </table>
                 </div>
                 <!-- Tab Kelompok -->
                 <div class="tab-pane fade" id="kelompok" role="tabpanel" aria-labelledby="kelompok-tab">
-                    <table class="table text-center mt-3">
-                        <thead>
-                            <tr>
-                                <th scope="col">Kelompok</th>
-                                <th scope="col">Nama Siswa (Email)</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($Kelompoks->groupBy('id_kelompok') as $kelompokId => $kelompokGroup)
-                                @php
-                                    $rowspan = $kelompokGroup->count();
-                                @endphp
-                                @foreach ($kelompokGroup as $index => $kelompok)
-                                    <tr>
-                                        @if ($index === 0)
-                                            <!-- Menampilkan nomor kelompok hanya pada baris pertama anggota kelompok -->
-                                            <th scope="row" rowspan="{{ $rowspan }}">Kelompok {{ $kelompokId }}</th>
-                                            <td>{{$kelompok->email}}</td>
-                                            <td rowspan="{{ $rowspan }}">
-                                                <!-- Update tombol untuk mengarah ke halaman kedua berdasarkan id_kelompok -->
-                                                <a href="{{ route('dataJawabanKelompok', ['id_kelompok' => $kelompokId]) }}" class="btn btn-success">Nilai</a>
-                                            </td>
-                                        @else
-                                            <td>{{ $kelompok->email }}</td>
-                                        @endif
-                                    </tr>
-                                @endforeach
-                            @endforeach
-                        </tbody>
-                    </table>
+                    @if ($Kelompoks->isEmpty())
+                        <p>Tidak ada kelompok saat ini.</p>
+                    @else
+                                    <table class="table text-center mt-3 table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Kelompok</th>
+                                                <th scope="col">Nama Siswa (Email)</th>
+                                                <th scope="col">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($Kelompoks->groupBy('id_kelompok')->sortKeys() as $kelompokId => $kelompokGroup)
+                                                                    @php
+                                                                        $rowspan = $kelompokGroup->count();
+                                                                    @endphp
+                                                                    @foreach ($kelompokGroup as $index => $kelompok)
+                                                                        <tr>
+                                                                            @if ($index === 0)
+                                                                                <!-- Menampilkan nomor kelompok hanya pada baris pertama anggota kelompok -->
+                                                                                <th scope="row" rowspan="{{ $rowspan }}">Kelompok {{ $kelompokId }}</th>
+                                                                                <td>{{ $kelompok->email }}</td>
+                                                                                <td rowspan="{{ $rowspan }}">
+                                                                                    <!-- Update tombol untuk mengarah ke halaman kedua berdasarkan id_kelompok -->
+                                                                                    <a href="{{ route('dataJawabanKelompok', ['id_kelompok' => $kelompokId]) }}"
+                                                                                        class="btn btn-success">Nilai</a>
+                                                                                </td>
+                                                                            @else
+                                                                                <td>{{ $kelompok->email }}</td>
+                                                                            @endif
+                                                                        </tr>
+                                                                    @endforeach
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                    @endif
                 </div>
+
             </div>
         </div>
     </div>

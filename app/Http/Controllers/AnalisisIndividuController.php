@@ -9,6 +9,29 @@ use Illuminate\Support\Facades\Auth;
 
 class AnalisisIndividuController extends Controller
 {
+
+    public function tampilkanJawabanIndividu($email)
+    {
+        // Mengambil jawaban dari tabel analisis_individu_kesejarahan berdasarkan aspek yang disebutkan
+        $jawabanKesejarahanIndividu = AnalisisIndividuKesejarahan::where('created_by', $email)
+            ->whereIn('aspek', ['wisata', 'kesejarahan', 'urgensi objek kesejarahan', 'urgensi kesejarahan'])
+            ->get();
+    
+        // Mengambil jawaban dari tabel analisis_individu_kewirausahaan berdasarkan aspek yang disebutkan
+        $jawabanKewirausahaandanPariwisataIndividu = Analisis_individu_kewirausahaan::where('created_by', $email)
+            ->whereIn('aspek', [
+                'produk atau jasa yang akan dirancang',
+                'Analisa produk atau jasa yang digunakan',
+                'langkah kerja',
+                'pendapat tentang hasil proyek yang telah dibuat',
+                'Hal yang bisa dilakukan agar proyek menjadi lebih baik atau lebih sempurna'
+            ])
+            ->get();
+    
+        // Mengirim data ke tampilan
+        return view('latihan.jawabanIndividu', compact('jawabanKesejarahanIndividu', 'jawabanKewirausahaandanPariwisataIndividu'));
+    }
+    
     public function simpanJawabanIndividu(Request $request)
     {
         // Validasi input

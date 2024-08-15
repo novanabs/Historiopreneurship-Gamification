@@ -790,42 +790,40 @@
                 <form method="post" action="{{ route('simpanRefleksi') }}">
                     @csrf
                     <input type="hidden" name="kategori" value="refleksi kewirausahaan">
-
                     <div class="icon-radio col mt-3">
                         @foreach(['sangat puas', 'puas', 'biasa saja', 'kurang puas', 'sangat kurang puas'] as $value)
                             <label>
-                                <input type="radio" name="respon" value="{{ $value }}" {{ old('respon', $jawabanRefleksi->get('refleksi kewirausahaan')->get('sudah dipelajari')->respon ?? '') == $value ? 'checked' : '' }} />
+                                <input type="radio" name="respon" value="{{ $value }}" {{ old('respon', $jawabanRefleksi->get('refleksi kewirausahaan', collect())->get('sudah dipelajari')->respon ?? '') == $value ? 'checked' : '' }} />
                                 <i
                                     class="fa-solid fa-face-{{ $value == 'sangat puas' ? 'laugh-beam' : ($value == 'puas' ? 'smile' : ($value == 'biasa saja' ? 'grin-beam-sweat' : ($value == 'kurang puas' ? 'sad-cry' : 'dizzy'))) }}"></i>
                             </label>
                         @endforeach
                     </div>
 
-                    <!-- Soal Refleksi -->
                     <p><b>Jawablah pertanyaan berikut!</b></p>
                     <div class="row mt-3">
                         <ol>
                             <li class="mt-3">
                                 <label for="sudah_dipelajari">Apa yang sudah kalian pelajari?</label> <br>
                                 <textarea name="sudah_dipelajari" id="sudah_dipelajari"
-                                    rows="5">{{ old('sudah_dipelajari', $jawabanRefleksi->get('refleksi kewirausahaan')->get('sudah dipelajari')->jawaban ?? '') }}</textarea>
+                                    rows="5">{{ old('sudah_dipelajari', $jawabanRefleksi->get('refleksi kewirausahaan', collect())->get('sudah dipelajari')->jawaban ?? '') }}</textarea>
                             </li>
                             <li class="mt-3">
                                 <label for="dikuasai">Apa yang kalian kuasai dari materi ini?</label> <br>
                                 <textarea name="dikuasai" id="dikuasai"
-                                    rows="5">{{ old('dikuasai', $jawabanRefleksi->get('refleksi kewirausahaan')->get('dikuasai')->jawaban ?? '') }}</textarea>
+                                    rows="5">{{ old('dikuasai', $jawabanRefleksi->get('refleksi kewirausahaan', collect())->get('dikuasai')->jawaban ?? '') }}</textarea>
                             </li>
                             <li class="mt-3">
                                 <label for="belum_dikuasai">Bagian apa yang belum kalian kuasai?</label> <br>
                                 <textarea name="belum_dikuasai" id="belum_dikuasai"
-                                    rows="5">{{ old('belum_dikuasai', $jawabanRefleksi->get('refleksi kewirausahaan')->get('belum dikuasai')->jawaban ?? '') }}</textarea>
+                                    rows="5">{{ old('belum_dikuasai', $jawabanRefleksi->get('refleksi kewirausahaan', collect())->get('belum dikuasai')->jawaban ?? '') }}</textarea>
                             </li>
                             <li class="mt-3">
                                 <label for="upaya_menguasai">Apa upaya kalian untuk menguasai yang belum kalian
                                     kuasai?</label>
                                 <br>
                                 <textarea name="upaya_menguasai" id="upaya_menguasai"
-                                    rows="5">{{ old('upaya_menguasai', $jawabanRefleksi->get('refleksi kewirausahaan')->get('upaya untuk menguasai')->jawaban ?? '') }}</textarea>
+                                    rows="5">{{ old('upaya_menguasai', $jawabanRefleksi->get('refleksi kewirausahaan', collect())->get('upaya untuk menguasai')->jawaban ?? '') }}</textarea>
                             </li>
                         </ol>
                     </div>
@@ -954,42 +952,40 @@
             <form method="post" action="{{ route('simpanRefleksi') }}">
                 @csrf
                 <input type="hidden" name="kategori" value="refleksi kepariwisataan">
-
                 <div class="icon-radio col mt-3">
                     @foreach(['sangat puas', 'puas', 'biasa saja', 'kurang puas', 'sangat kurang puas'] as $value)
                         <label>
-                            <input type="radio" name="respon" value="{{ $value }}" {{ old('respon', $jawabanRefleksi->get('refleksi kepariwisataan')->get('sudah dipelajari')->respon ?? '') == $value ? 'checked' : '' }} />
+                            <input type="radio" name="respon" value="{{ $value }}" {{ old('respon', $jawabanRefleksi->get('refleksi kepariwisataan', collect())->get('sudah dipelajari')->respon ?? '') == $value ? 'checked' : '' }} />
                             <i
                                 class="fa-solid fa-face-{{ $value == 'sangat puas' ? 'laugh-beam' : ($value == 'puas' ? 'smile' : ($value == 'biasa saja' ? 'grin-beam-sweat' : ($value == 'kurang puas' ? 'sad-cry' : 'dizzy'))) }}"></i>
                         </label>
                     @endforeach
                 </div>
 
-                <!-- Soal Refleksi -->
                 <p><b>Jawablah pertanyaan berikut!</b></p>
                 <div class="row mt-3">
                     <ol>
                         <li class="mt-3">
                             <label for="sudah_dipelajari">Apa yang sudah kalian pelajari?</label> <br>
                             <textarea name="sudah_dipelajari" id="sudah_dipelajari"
-                                rows="5">{{ old('sudah_dipelajari', $jawabanRefleksi->get('refleksi kepariwisataan')->get('sudah dipelajari')->jawaban ?? '') }}</textarea>
+                                rows="5">{{ old('sudah_dipelajari', $jawabanRefleksi->get('refleksi kepariwisataan', collect())->get('sudah dipelajari')->jawaban ?? '') }}</textarea>
                         </li>
                         <li class="mt-3">
                             <label for="dikuasai">Apa yang kalian kuasai dari materi ini?</label> <br>
                             <textarea name="dikuasai" id="dikuasai"
-                                rows="5">{{ old('dikuasai', $jawabanRefleksi->get('refleksi kepariwisataan')->get('dikuasai')->jawaban ?? '') }}</textarea>
+                                rows="5">{{ old('dikuasai', $jawabanRefleksi->get('refleksi kepariwisataan', collect())->get('dikuasai')->jawaban ?? '') }}</textarea>
                         </li>
                         <li class="mt-3">
                             <label for="belum_dikuasai">Bagian apa yang belum kalian kuasai?</label> <br>
                             <textarea name="belum_dikuasai" id="belum_dikuasai"
-                                rows="5">{{ old('belum_dikuasai', $jawabanRefleksi->get('refleksi kepariwisataan')->get('belum dikuasai')->jawaban ?? '') }}</textarea>
+                                rows="5">{{ old('belum_dikuasai', $jawabanRefleksi->get('refleksi kepariwisataan', collect())->get('belum dikuasai')->jawaban ?? '') }}</textarea>
                         </li>
                         <li class="mt-3">
                             <label for="upaya_menguasai">Apa upaya kalian untuk menguasai yang belum kalian
                                 kuasai?</label>
                             <br>
                             <textarea name="upaya_menguasai" id="upaya_menguasai"
-                                rows="5">{{ old('upaya_menguasai', $jawabanRefleksi->get('refleksi kepariwisataan')->get('upaya untuk menguasai')->jawaban ?? '') }}</textarea>
+                                rows="5">{{ old('upaya_menguasai', $jawabanRefleksi->get('refleksi kepariwisataan', collect())->get('upaya untuk menguasai')->jawaban ?? '') }}</textarea>
                         </li>
                     </ol>
                 </div>
@@ -1003,80 +999,80 @@
     </div>
 </div>
 
-    <script>
-        // Mengambil semua class sub
-        const materi_a = document.getElementsByClassName('materi-c');
+<script>
+    // Mengambil semua class sub
+    const materi_a = document.getElementsByClassName('materi-c');
 
-        // Navigasi Soal
-        var $sub = 0;
-        var $progress = 0;
+    // Navigasi Soal
+    var $sub = 0;
+    var $progress = 0;
 
-        console.log(materi_a.length)
+    console.log(materi_a.length)
 
-        // Hide semua bab
-        function hide_semua_sub() {
-            for (let i = 0; i <= 8; i++) {
-                console.log(materi_a[i])
-                materi_a[i].style.display = 'none';
-            }
-            console.log($sub, $progress)
+    // Hide semua bab
+    function hide_semua_sub() {
+        for (let i = 0; i <= 8; i++) {
+            console.log(materi_a[i])
+            materi_a[i].style.display = 'none';
         }
+        console.log($sub, $progress)
+    }
+    hide_semua_sub();
+
+    // Menampilkan sub
+    function show_sub($no) {
+        materi_a[$no].style.display = 'block';
+    }
+    // show_sub($sub);
+
+    // Show Sub by Session
+    const halaman_saat_ini = document.getElementById('halaman_saat_ini').innerHTML;
+    console.log(halaman_saat_ini);
+    document.getElementById(halaman_saat_ini).style.display = 'block'
+
+    // Navigasi tombol
+    function nav_tombol() {
+        if ($sub == 8) {
+            document.getElementById('next').disabled = true;
+        } else if ($sub == 0) {
+            document.getElementById('prev').disabled = true;
+        } else {
+            document.getElementById('prev').disabled = false;
+            document.getElementById('next').disabled = false;
+        }
+    }
+    nav_tombol();
+
+    // Status Bar
+
+    const status_bar = document.getElementById('status_bar');
+    function update_status() {
+        let persen = $progress * 12.5;
+        status_bar.style.width = `${persen}%`;
+    }
+
+    // Testing
+    console.log(materi_a)
+
+    function next() {
+        console.log('Selanjutnya', $sub)
         hide_semua_sub();
-
-        // Menampilkan sub
-        function show_sub($no) {
-            materi_a[$no].style.display = 'block';
+        $sub++;
+        if ($sub > $progress) {
+            $progress++;
         }
-        // show_sub($sub);
+        show_sub($sub);
+        nav_tombol()
+        update_status()
+    }
 
-        // Show Sub by Session
-        const halaman_saat_ini = document.getElementById('halaman_saat_ini').innerHTML;
-        console.log(halaman_saat_ini);
-        document.getElementById(halaman_saat_ini).style.display = 'block'
+    function prev() {
+        console.log('Sebelumnya', $sub)
+        hide_semua_sub();
+        $sub--;
+        show_sub($sub);
+        nav_tombol()
+    }
 
-        // Navigasi tombol
-        function nav_tombol() {
-            if ($sub == 8) {
-                document.getElementById('next').disabled = true;
-            } else if ($sub == 0) {
-                document.getElementById('prev').disabled = true;
-            } else {
-                document.getElementById('prev').disabled = false;
-                document.getElementById('next').disabled = false;
-            }
-        }
-        nav_tombol();
-
-        // Status Bar
-
-        const status_bar = document.getElementById('status_bar');
-        function update_status() {
-            let persen = $progress * 12.5;
-            status_bar.style.width = `${persen}%`;
-        }
-
-        // Testing
-        console.log(materi_a)
-
-        function next() {
-            console.log('Selanjutnya', $sub)
-            hide_semua_sub();
-            $sub++;
-            if ($sub > $progress) {
-                $progress++;
-            }
-            show_sub($sub);
-            nav_tombol()
-            update_status()
-        }
-
-        function prev() {
-            console.log('Sebelumnya', $sub)
-            hide_semua_sub();
-            $sub--;
-            show_sub($sub);
-            nav_tombol()
-        }
-
-    </script>
-    @endsection
+</script>
+@endsection

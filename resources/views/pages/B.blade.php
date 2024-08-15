@@ -680,42 +680,40 @@
             <form method="post" action="{{ route('simpanRefleksi') }}">
                 @csrf
                 <input type="hidden" name="kategori" value="refleksi kesejarahan">
-
                 <div class="icon-radio col mt-3">
                     @foreach(['sangat puas', 'puas', 'biasa saja', 'kurang puas', 'sangat kurang puas'] as $value)
                         <label>
-                            <input type="radio" name="respon" value="{{ $value }}" {{ old('respon', $jawabanRefleksi->get('refleksi kesejarahan')->get('sudah dipelajari')->respon ?? '') == $value ? 'checked' : '' }} />
+                            <input type="radio" name="respon" value="{{ $value }}" {{ old('respon', $jawabanRefleksi->get('refleksi kesejarahan', collect())->get('sudah dipelajari')->respon ?? '') == $value ? 'checked' : '' }} />
                             <i
                                 class="fa-solid fa-face-{{ $value == 'sangat puas' ? 'laugh-beam' : ($value == 'puas' ? 'smile' : ($value == 'biasa saja' ? 'grin-beam-sweat' : ($value == 'kurang puas' ? 'sad-cry' : 'dizzy'))) }}"></i>
                         </label>
                     @endforeach
                 </div>
 
-                <!-- Soal Refleksi -->
                 <p><b>Jawablah pertanyaan berikut!</b></p>
                 <div class="row mt-3">
                     <ol>
                         <li class="mt-3">
                             <label for="sudah_dipelajari">Apa yang sudah kalian pelajari?</label> <br>
                             <textarea name="sudah_dipelajari" id="sudah_dipelajari"
-                                rows="5">{{ old('sudah_dipelajari', $jawabanRefleksi->get('refleksi kesejarahan')->get('sudah dipelajari')->jawaban ?? '') }}</textarea>
+                                rows="5">{{ old('sudah_dipelajari', $jawabanRefleksi->get('refleksi kesejarahan', collect())->get('sudah dipelajari')->jawaban ?? '') }}</textarea>
                         </li>
                         <li class="mt-3">
                             <label for="dikuasai">Apa yang kalian kuasai dari materi ini?</label> <br>
                             <textarea name="dikuasai" id="dikuasai"
-                                rows="5">{{ old('dikuasai', $jawabanRefleksi->get('refleksi kesejarahan')->get('dikuasai')->jawaban ?? '') }}</textarea>
+                                rows="5">{{ old('dikuasai', $jawabanRefleksi->get('refleksi kesejarahan', collect())->get('dikuasai')->jawaban ?? '') }}</textarea>
                         </li>
                         <li class="mt-3">
                             <label for="belum_dikuasai">Bagian apa yang belum kalian kuasai?</label> <br>
                             <textarea name="belum_dikuasai" id="belum_dikuasai"
-                                rows="5">{{ old('belum_dikuasai', $jawabanRefleksi->get('refleksi kesejarahan')->get('belum dikuasai')->jawaban ?? '') }}</textarea>
+                                rows="5">{{ old('belum_dikuasai', $jawabanRefleksi->get('refleksi kesejarahan', collect())->get('belum dikuasai')->jawaban ?? '') }}</textarea>
                         </li>
                         <li class="mt-3">
                             <label for="upaya_menguasai">Apa upaya kalian untuk menguasai yang belum kalian
                                 kuasai?</label>
                             <br>
                             <textarea name="upaya_menguasai" id="upaya_menguasai"
-                                rows="5">{{ old('upaya_menguasai', $jawabanRefleksi->get('refleksi kesejarahan')->get('upaya untuk menguasai')->jawaban ?? '') }}</textarea>
+                                rows="5">{{ old('upaya_menguasai', $jawabanRefleksi->get('refleksi kesejarahan', collect())->get('upaya untuk menguasai')->jawaban ?? '') }}</textarea>
                         </li>
                     </ol>
                 </div>
@@ -725,6 +723,7 @@
                     </div>
                 </div>
             </form>
+
         </div>
     </div>
 

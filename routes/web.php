@@ -58,17 +58,22 @@ Route::get('/kuis', [LatihanController::class, 'kuis'])->name('kuis');
 Route::get('/evaluasi', [LatihanController::class, 'evaluasi'])->name('evaluasi');
 Route::get('/info', [LatihanController::class, 'info'])->name('info');
 Route::get('/dragndrop', [LatihanController::class, 'dragndrop'])->name('dragndrop');
-Route::get('/jawaban/{id_kelompok}', [JawabanKelompokController::class, 'lihatJawaban'])->name('dataJawabanKelompok');
 
 // Controller Dosen
 Route::get('/dataKelas',[DosenController::class,'datakelas'])->name('dataKelas');
 Route::get('/dataLatihan',[DosenController::class,'dataLatihan'])->name('dataLatihan');
 Route::get('/dataMahasiswa',[DosenController::class,'dataMahasiswa'])->name('dataMahasiswa');
+Route::post('/dataMahasiswa/save', [DosenController::class, 'saveGroup'])->name('dataMahasiswa.saveGroup');
+Route::post('/dataMahasiswa/remove', [DosenController::class, 'removeFromGroup'])->name('dataMahasiswa.removeFromGroup');
+Route::post('/dataMahasiswa/autoAssignGroup', [DosenController::class, 'autoAssignGroup'])->name('dataMahasiswa.autoAssignGroup');
 
-Route::post('/dataMahasiswa', [DosenController::class, 'saveGroup'])->name('dataMahasiswa.saveGroup');
 Route::get('/dataNilai',[DosenController::class,'dataNilai'])->name('dataNilai');
+// data jawaban individu
+Route::get('/jawabanIndividu/{email}', [AnalisisIndividuController::class, 'tampilkanJawabanIndividu'])->name('dataJawabanIndividu');
 
-Route::get('/dataNilai',[DosenController::class,'dataNilai'])->name('dataNilai');
+// data jawaban kelompok
+Route::get('/jawabanKelompok/{id_kelompok}', [JawabanKelompokController::class, 'lihatJawaban'])->name('dataJawabanKelompok');
+
 
 // Session Controller Untuk Sidebar agar tidak menutup
 Route::post('/laman', [SessionController::class, 'laman'])->name('laman');
