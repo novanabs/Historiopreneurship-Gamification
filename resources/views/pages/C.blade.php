@@ -12,8 +12,6 @@
 
 
 <div class="mt-3">
-
-
     <div class="row">
         <div class="col">
             <h2>C. Kewirausahaan dan Kepariwisataan </h2>
@@ -1062,9 +1060,17 @@
             $progress++;
         }
         show_sub($sub);
+
         nav_tombol()
         update_status()
     }
+
+        
+        // Show Sub by Session
+        // const halaman_saat_ini = document.getElementById('halaman_saat_ini').innerHTML;
+        // console.log(halaman_saat_ini);
+        // document.getElementById(halaman_saat_ini).style.display = 'block'
+
 
     function prev() {
         console.log('Sebelumnya', $sub)
@@ -1074,5 +1080,42 @@
         nav_tombol()
     }
 
+
 </script>
 @endsection
+
+        // Status Bar
+
+        const status_bar = document.getElementById('status_bar');
+        function update_status(){
+            let persen = $progress * 12.5;
+            status_bar.style.width = `${persen}%`;
+        }
+
+        // Testing
+        console.log(materi_a)
+
+        function next() {
+            console.log('Selanjutnya', $sub)
+            hide_semua_sub();
+            $sub++;
+            if ($sub > $progress) {
+                $progress++;
+            }
+            show_sub($sub);
+            nav_tombol()
+            update_status()
+            active_sub()
+        }
+
+        function prev() {
+            console.log('Sebelumnya', $sub)
+            hide_semua_sub();
+            $sub--;
+            show_sub($sub);
+            nav_tombol()
+            active_sub()
+        }
+
+    </script>
+    @endsection

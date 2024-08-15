@@ -11,8 +11,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        Session::put('active_menu', 'dashboard');
-        return view('dashboard');
+        $data['halaman_terbuka'] = 'dashboard'; 
+        return view('dashboard', $data);
     }
 
     public function showUser()

@@ -8,7 +8,6 @@
     <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 0.001%"
         id="status_bar"></div>
 </div>
-<div id="halaman_saat_ini">{{ session('active_menu_sub') }}</div>
 
 
 <div class="mt-3">
@@ -729,7 +728,6 @@
 
 </div>
 
-
 <script>
     // Mengambil semua class sub
     const materi_a = document.getElementsByClassName('materi-b');
@@ -752,12 +750,12 @@
     function show_sub($no) {
         materi_a[$no].style.display = 'block';
     }
-    // show_sub($sub);
+    show_sub($sub);
 
     // Show Sub by Session
-    const halaman_saat_ini = document.getElementById('halaman_saat_ini').innerHTML;
-    console.log(halaman_saat_ini);
-    document.getElementById(halaman_saat_ini).style.display = 'block'
+    // const halaman_saat_ini = document.getElementById('halaman_saat_ini').innerHTML;
+    // console.log(halaman_saat_ini);
+    // document.getElementById(halaman_saat_ini).style.display = 'block'
 
     // Navigasi tombol
     function nav_tombol() {
@@ -793,6 +791,7 @@
         show_sub($sub);
         nav_tombol()
         update_status()
+        active_sub()
     }
 
     function prev() {
@@ -801,6 +800,7 @@
         $sub--;
         show_sub($sub);
         nav_tombol()
+        active_sub()
     }
 
 </script>
