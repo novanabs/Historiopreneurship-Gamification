@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnalisisIndividuController;
 use App\Http\Controllers\jawabanKelompokController;
+use App\Http\Controllers\nilaiController;
 use App\Http\Controllers\RefleksiController;
 use App\Http\Controllers\RefleksiKesejarahanController;
 use App\Http\Controllers\uploadFileController;
@@ -34,13 +35,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/B-Kesejarahan', [HalamanController::class, 'B'])->name('pages.B');
     Route::post('/B-Kesejarahan/kelompok', [jawabanKelompokController::class, 'simpanJawaban'])->name('simpanJawabanKelompok');
     Route::post('/B-Kesejarahan/individu', [AnalisisIndividuController::class, 'simpanJawabanIndividu'])->name('simpanAnalisisIndividu');  
-    Route::post('/B-Kesejarahan/refleksi', [RefleksiController::class, 'simpanRefleksi'])->name('simpanRefleksi');  
-    Route::post('/B-Kesejarahan/uploadFile', [uploadFileController::class, 'uploadFile'])->name('uploadFile');      
+    Route::post('/B-Kesejarahan/refleksi', [RefleksiController::class, 'simpanRefleksi'])->name('simpanRefleksiKesejarahan');  
+    Route::post('/B-Kesejarahan/uploadFile', [uploadFileController::class, 'uploadFile'])->name('uploadFileKesejarahan');      
     Route::get('/C-Kewirausahaan-dan-Kepariwisataan', [HalamanController::class, 'C'])->name('pages.C');
     Route::post('/C-Kewirausahaan-dan-Kepariwisataan/aktivitaskelompok', [jawabanKelompokController::class, 'simpanAktivitas'])->name('simpanAktivitas');
-    Route::post('/C-Kewirausahaan-dan-Kepariwisataan/uploadFile', [uploadFileController::class, 'uploadFile'])->name('uploadFile');
+    Route::post('/C-Kewirausahaan-dan-Kepariwisataan/uploadFile', [uploadFileController::class, 'uploadFile'])->name('uploadFileKewirausahaan');
     Route::post('/C-Kewirausahaan-dan-Kepariwisataan/individu', [AnalisisIndividuController::class, 'simpanJawabanIndividuKewirausahaan'])->name('simpanJawabanIndividuKewirausahaan');  
-    Route::post('/C-Kewirausahaan-dan-Kepariwisataan/refleksi', [RefleksiController::class, 'simpanRefleksi'])->name('simpanRefleksi');  
+    Route::post('/C-Kewirausahaan-dan-Kepariwisataan/refleksi', [RefleksiController::class, 'simpanRefleksi'])->name('simpanRefleksiKewirausahaan');  
     Route::get('/materi', [HalamanController::class, 'materi'])->name('pages.materi');
     Route::get('/Daftar-Pustaka',[HalamanController::class, 'daftarPustaka'])->name('pages.dafus');
 });
@@ -68,11 +69,12 @@ Route::post('/dataMahasiswa/remove', [DosenController::class, 'removeFromGroup']
 Route::post('/dataMahasiswa/autoAssignGroup', [DosenController::class, 'autoAssignGroup'])->name('dataMahasiswa.autoAssignGroup');
 
 Route::get('/dataNilai',[DosenController::class,'dataNilai'])->name('dataNilai');
+
 // data jawaban individu
 Route::get('/jawabanIndividu/{email}', [AnalisisIndividuController::class, 'tampilkanJawabanIndividu'])->name('dataJawabanIndividu');
 
 // data jawaban kelompok
-Route::get('/jawabanKelompok/{id_kelompok}', [JawabanKelompokController::class, 'lihatJawaban'])->name('dataJawabanKelompok');
+Route::get('/jawabanKelompok/{id_kelompok?}', [JawabanKelompokController::class, 'lihatJawaban'])->name('dataJawabanKelompok');
 
 
 // Session Controller Untuk Sidebar agar tidak menutup

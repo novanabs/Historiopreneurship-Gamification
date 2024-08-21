@@ -208,7 +208,7 @@
                 <p class="text-lg">AKTIVITAS 1</p>
                 <p class="text-sm">1 JP x @ 50 menit = 50 menit</p>
                 <p>Anggota Kelompok</p>
-                @if($anggotaKelompok->isNotEmpty())
+                @if($id_kelompok !== null && $anggotaKelompok->isNotEmpty())
                     <ol>
                         @foreach ($anggotaKelompok as $anggota)
                             <li><b>Nama:</b> {{ $anggota->nama_lengkap }}</li>
@@ -286,7 +286,7 @@
                 <p class="text-sm">1 JP x @ 50 menit = 50 menit</p>
                 <p class="mt-2 text-lg">LAKUKAN ANALISA TERHADAP PERMASALAHAN BERIKUT!</p>
                 <p>Anggota Kelompok</p>
-                @if($anggotaKelompok->isNotEmpty())
+                @if($id_kelompok !== null && $anggotaKelompok->isNotEmpty())
                     <ol>
                         @foreach ($anggotaKelompok as $anggota)
                             <li><b>Nama:</b> {{ $anggota->nama_lengkap }}</li>
@@ -365,7 +365,7 @@
                 </p>
                 <p><b>RINGKASAN DAN PETA KONSEP PEMASARAN KEWIRAUSAHAAN KESEJARAHAN </b></p>
                 <p>Anggota Kelompok</p>
-                @if($anggotaKelompok->isNotEmpty())
+                @if($id_kelompok !== null && $anggotaKelompok->isNotEmpty())
                     <ol>
                         @foreach ($anggotaKelompok as $anggota)
                             <li><b>Nama:</b> {{ $anggota->nama_lengkap }}</li>
@@ -785,7 +785,7 @@
                     perasaan kalian ketika mengerjakan suplemen bahan materi ini! Bubuhkanlah tanda centang
                     (√) pada salah satu gambar yang dapat mewakili perasaan kalian setelah mempelajari materi
                     ini!</p>
-                <form method="post" action="{{ route('simpanRefleksi') }}">
+                <form method="post" action="{{ route('simpanRefleksiKewirausahaan') }}">
                     @csrf
                     <input type="hidden" name="kategori" value="refleksi kewirausahaan">
                     <div class="icon-radio col mt-3">
@@ -863,7 +863,7 @@
                 yang sudah kalian jual kepada mereka.</p>
             <div class="mb-3">
                 <!-- Form Upload Praktik Lapangan 1 -->
-                <form method="post" action="{{ route('uploadFile') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('uploadFileKewirausahaan') }}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="category" value="praktik lapangan 1">
                     <div class="mb-3">
@@ -887,7 +887,7 @@
                 Tulislah produk dan yang berhasil kalian jual beserta jumlahnya.
             </p>
 
-            <form method="post" action="{{ route('uploadFile') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('uploadFileKewirausahaan') }}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="category" value="praktik lapangan 2">
                 <div class="mb-3">
@@ -947,7 +947,7 @@
                 perasaan kalian ketika mengerjakan suplemen bahan materi ini! Bubuhkanlah tanda centang
                 (√) pada salah satu gambar yang dapat mewakili perasaan kalian setelah mempelajari materi
                 ini! </p>
-            <form method="post" action="{{ route('simpanRefleksi') }}">
+            <form method="post" action="{{ route('simpanRefleksiKewirausahaan') }}">
                 @csrf
                 <input type="hidden" name="kategori" value="refleksi kepariwisataan">
                 <div class="icon-radio col mt-3">
@@ -1021,7 +1021,7 @@
     function show_sub($no) {
         materi_a[$no].style.display = 'block';
     }
-    // show_sub($sub);
+    show_sub($sub);
 
     // Show Sub by Session
     const halaman_saat_ini = document.getElementById('halaman_saat_ini').innerHTML;
@@ -1065,11 +1065,11 @@
         update_status()
     }
 
-        
-        // Show Sub by Session
-        // const halaman_saat_ini = document.getElementById('halaman_saat_ini').innerHTML;
-        // console.log(halaman_saat_ini);
-        // document.getElementById(halaman_saat_ini).style.display = 'block'
+
+    // Show Sub by Session
+    // const halaman_saat_ini = document.getElementById('halaman_saat_ini').innerHTML;
+    // console.log(halaman_saat_ini);
+    // document.getElementById(halaman_saat_ini).style.display = 'block'
 
 
     function prev() {
@@ -1083,39 +1083,3 @@
 
 </script>
 @endsection
-
-        // Status Bar
-
-        const status_bar = document.getElementById('status_bar');
-        function update_status(){
-            let persen = $progress * 12.5;
-            status_bar.style.width = `${persen}%`;
-        }
-
-        // Testing
-        console.log(materi_a)
-
-        function next() {
-            console.log('Selanjutnya', $sub)
-            hide_semua_sub();
-            $sub++;
-            if ($sub > $progress) {
-                $progress++;
-            }
-            show_sub($sub);
-            nav_tombol()
-            update_status()
-            active_sub()
-        }
-
-        function prev() {
-            console.log('Sebelumnya', $sub)
-            hide_semua_sub();
-            $sub--;
-            show_sub($sub);
-            nav_tombol()
-            active_sub()
-        }
-
-    </script>
-    @endsection

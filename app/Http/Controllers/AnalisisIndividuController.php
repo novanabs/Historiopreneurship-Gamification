@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Analisis_individu_kewirausahaan;
 use App\Models\AnalisisIndividuKesejarahan;
+use App\Models\uploadFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,7 @@ class AnalisisIndividuController extends Controller
         $jawabanKesejarahanIndividu = AnalisisIndividuKesejarahan::where('created_by', $email)
             ->whereIn('aspek', ['wisata', 'kesejarahan', 'urgensi objek kesejarahan', 'urgensi kesejarahan'])
             ->get();
-    
+
         // Mengambil jawaban dari tabel analisis_individu_kewirausahaan berdasarkan aspek yang disebutkan
         $jawabanKewirausahaandanPariwisataIndividu = Analisis_individu_kewirausahaan::where('created_by', $email)
             ->whereIn('aspek', [
@@ -27,11 +28,16 @@ class AnalisisIndividuController extends Controller
                 'Hal yang bisa dilakukan agar proyek menjadi lebih baik atau lebih sempurna'
             ])
             ->get();
-    
+
+        // Mengambil file yang di-upload oleh user berdasarkan email
+        $fileUploads = uploadFile::where('created_by', $email)
+            ->orderBy('kategori')
+            ->get();
+
         // Mengirim data ke tampilan
-        return view('latihan.jawabanIndividu', compact('jawabanKesejarahanIndividu', 'jawabanKewirausahaandanPariwisataIndividu'));
+        return view('latihan.jawabanIndividu', compact('email','jawabanKesejarahanIndividu', 'jawabanKewirausahaandanPariwisataIndividu', 'fileUploads'));
     }
-    
+
     public function simpanJawabanIndividu(Request $request)
     {
         // Validasi input
@@ -87,7 +93,7 @@ class AnalisisIndividuController extends Controller
             'langkahKerja' => 'required|string',
             'pendapatPengguna' => 'required|string',
             'perbaikanProyek' => 'required|string',
-            
+
         ]);
 
         // Dapatkan email user yang sedang login
@@ -98,8 +104,8 @@ class AnalisisIndividuController extends Controller
             'produk atau jasa yang akan dirancang' => $request->input('produkJasa'),
             'Analisa produk atau jasa yang digunakan' => $request->input('analisaProduk'),
             'langkah kerja' => $request->input('langkahKerja'),
-            'pendapat tentang hasil proyek yang telah dibuat'=> $request->input('pendapatPengguna'),
-            'Hal yang bisa dilakukan agar proyek menjadi lebih baik atau lebih sempurna'=> $request->input('perbaikanProyek'),
+            'pendapat tentang hasil proyek yang telah dibuat' => $request->input('pendapatPengguna'),
+            'Hal yang bisa dilakukan agar proyek menjadi lebih baik atau lebih sempurna' => $request->input('perbaikanProyek'),
         ];
 
         // Simpan atau perbarui jawaban untuk setiap aspek

@@ -17,4 +17,6 @@ class Kelompok extends Model
     {
         return $this->hasMany(User::class, 'email', 'email'); // Sesuaikan jika kolom yang digunakan berbeda
     }
+
+    
 }

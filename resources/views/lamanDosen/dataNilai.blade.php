@@ -58,9 +58,6 @@
                 </div>
                 <!-- Tab Kelompok -->
                 <div class="tab-pane fade" id="kelompok" role="tabpanel" aria-labelledby="kelompok-tab">
-                    @if ($Kelompoks->isEmpty())
-                        <p>Tidak ada kelompok saat ini.</p>
-                    @else
                                     <table class="table text-center mt-3 table-bordered">
                                         <thead>
                                             <tr>
@@ -70,7 +67,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($Kelompoks->groupBy('id_kelompok')->sortKeys() as $kelompokId => $kelompokGroup)
+                                            @foreach ($Kelompoks->whereNotNull('id_kelompok')->groupBy('id_kelompok')->sortKeys() as $kelompokId => $kelompokGroup)
                                                                     @php
                                                                         $rowspan = $kelompokGroup->count();
                                                                     @endphp
@@ -93,7 +90,6 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                    @endif
                 </div>
 
             </div>

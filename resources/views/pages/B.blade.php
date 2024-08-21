@@ -325,10 +325,10 @@
             </div>
 
             <p>Anggota Kelompok</p>
-            @if($anggotaKelompok->isNotEmpty())
+            @if($id_kelompok !== null && $anggotaKelompok->isNotEmpty())
                 <ol>
                     @foreach ($anggotaKelompok as $anggota)
-                        <li>Nama: {{ $anggota->nama_lengkap }}</li>
+                        <li><b>Nama:</b> {{ $anggota->nama_lengkap }}</li>
                     @endforeach
                 </ol>
             @else
@@ -655,7 +655,7 @@
                 buatlah laporan kegiatan tersebut dengan memuat “object pattern and feasibility”,
                 selanjutnya diskusikan di kelas. </p>
             <!-- Form Upload Kegiatan Pembelajaran 3 -->
-            <form method="post" action="{{ route('uploadFile') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('uploadFileKesejarahan') }}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="category" value="kegiatan pembelajaran 3">
                 <div class="mb-3">
@@ -676,7 +676,7 @@
                 perasaan kalian ketika mengerjakan suplemen bahan materi ini! Bubuhkanlah tanda centang
                 (√) pada salah satu gambar yang dapat mewakili perasaan kalian setelah mempelajari materi
                 ini! </p>
-            <form method="post" action="{{ route('simpanRefleksi') }}">
+            <form method="post" action="{{ route('simpanRefleksiKesejarahan') }}">
                 @csrf
                 <input type="hidden" name="kategori" value="refleksi kesejarahan">
                 <div class="icon-radio col mt-3">

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Nullable;
 
 return new class extends Migration
 {
@@ -12,14 +13,25 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('nilai', function (Blueprint $table) {
+            $table->id('id_tabel_nilai');
             $table->string('email')->index();
-            $table->unsignedBigInteger('id_soal')->index();
-            $table->id();
-            $table->json('data_jawaban_penilai');
-            $table->integer('nilai_akhir');
-            $table->integer('percobaan_ke');
-            $table->integer('lama_waktu_pengerjaan');
-            $table->date('waktu_selesai');
+            $table->unsignedBigInteger('id_soal')->index()->nullable();
+            $table->enum('aspek',
+            ['evaluasi',
+            'analisa_individu_kesejarahan',
+            'analisa_individu_kewirausahaan',
+            'analisa_kelompok_kesejarahan',
+            'analisa_kelompok_kewirausahaan_aktivitas1',
+            'analisa_kelompok_kewirausahaan_aktivitas2',
+            'analisa_kelompok_kewirausahaan_aktivitas3',
+            'upload_file_pembelajaran3',
+            'upload_file_aktivitas1',
+            'upload_file_aktivitas2']);
+            $table->string('data_jawaban_penilai')->nullable();
+            $table->integer('nilai_akhir')->nullable();
+            $table->integer('percobaan_ke')->nullable();
+            $table->integer('lama_waktu_pengerjaan')->nullable();
+            $table->date('waktu_selesai')->nullable();
         });
     }
 

@@ -53,7 +53,30 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card text-center">
+                                <h5 class="card-header">
+                                    Penilaian
+                                </h5>
+                                <div class="card-body">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-sm">
+                                    </div>
+                                    <label for="feedbackIndividu">Feedback</label><br>
+                                    <textarea name="feedbackIndividu" id="feedbackIndividu" rows="5"></textarea>
+                                    <a href="#" class="btn btn-primary">Kirim</a>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    Semangat dalam menilai !
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <!-- Tab Aktivitas 1 -->
                 <div class="tab-pane fade" id="aktivitas1" role="tabpanel" aria-labelledby="aktivitas1-tab">
                     <table class="table text-center table-bordered">
@@ -78,7 +101,30 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card text-center">
+                                <h5 class="card-header">
+                                    Penilaian
+                                </h5>
+                                <div class="card-body">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-sm">
+                                    </div>
+                                    <label for="feedbackIndividu">Feedback</label><br>
+                                    <textarea name="feedbackIndividu" id="feedbackIndividu" rows="5"></textarea>
+                                    <a href="#" class="btn btn-primary">Kirim</a>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    Semangat dalam menilai !
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <!-- Tab Aktivitas 2 -->
                 <div class="tab-pane fade" id="aktivitas2" role="tabpanel" aria-labelledby="aktivitas2-tab">
                     <table class="table text-center table-bordered">
@@ -103,7 +149,30 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card text-center">
+                                <h5 class="card-header">
+                                    Penilaian
+                                </h5>
+                                <div class="card-body">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-sm">
+                                    </div>
+                                    <label for="feedbackIndividu">Feedback</label><br>
+                                    <textarea name="feedbackIndividu" id="feedbackIndividu" rows="5"></textarea>
+                                    <a href="#" class="btn btn-primary">Kirim</a>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    Semangat dalam menilai !
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <!-- Tab Aktivitas 3 -->
                 <div class="tab-pane fade" id="aktivitas3" role="tabpanel" aria-labelledby="aktivitas3-tab">
                     <table class="table text-center table-bordered">
@@ -128,6 +197,28 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card text-center">
+                                <h5 class="card-header">
+                                    Penilaian
+                                </h5>
+                                <div class="card-body">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-sm">
+                                    </div>
+                                    <label for="feedbackIndividu">Feedback</label><br>
+                                    <textarea name="feedbackIndividu" id="feedbackIndividu" rows="5"></textarea>
+                                    <a href="#" class="btn btn-primary">Kirim</a>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    Semangat dalam menilai !
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
