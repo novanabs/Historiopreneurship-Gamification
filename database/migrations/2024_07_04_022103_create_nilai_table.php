@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->json('data_jawaban_penilai');
             $table->integer('nilai_akhir');
-            $table->integer('percobaan_ke');
-            $table->integer('lama_waktu_pengerjaan');
-            $table->date('waktu_selesai');
+            $table->integer('percobaan_ke')->nullable();
+            $table->integer('lama_waktu_pengerjaan')->nullable();
+            $table->date('waktu_selesai')->nullable();
         });
     }
 

@@ -752,13 +752,9 @@
     }
     show_sub($sub);
 
-    // Show Sub by Session
-    // const halaman_saat_ini = document.getElementById('halaman_saat_ini').innerHTML;
-    // console.log(halaman_saat_ini);
-    // document.getElementById(halaman_saat_ini).style.display = 'block'
-
     // Navigasi tombol
     function nav_tombol() {
+        
         if ($sub == 5) {
             document.getElementById('next').disabled = true;
         } else if ($sub == 0) {
@@ -791,7 +787,7 @@
         show_sub($sub);
         nav_tombol()
         update_status()
-        active_sub()
+        active_sub('nav')
     }
 
     function prev() {
@@ -800,7 +796,7 @@
         $sub--;
         show_sub($sub);
         nav_tombol()
-        active_sub()
+        active_sub('nav')
     }
 
 </script>

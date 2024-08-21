@@ -62,6 +62,15 @@
             color: #FFB200;
             /* Ubah ukuran icon sesuai kebutuhan */
         }
+
+    /* .img-background {
+            background-image: url("https://duniamasjid.islamic-center.or.id/wp-content/uploads/2014/05/masjid-sultan-suriansyah.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            filter: grayscale(1);
+        } */
+
     </style>
 
 </head>
@@ -386,7 +395,7 @@
         <!-- /.sidebar-menu -->
       </div>
     </aside>
-    <div class="content-wrapper" id="content-wrapper">
+    <div class="content-wrapper img-background" id="content-wrapper">
         <section class="container mt-3">
             <div class="row">
                 <div class="col text-center mt-5">
@@ -398,6 +407,7 @@
             </div>
         </section>
     </div>
+    <audio id="clickSound" src="{{ asset('sounds/click-sound.mp3') }}"></audio>
 
     </div>
 
@@ -442,7 +452,11 @@
         const nav_link = document.querySelectorAll('.nav-link.sub');
         console.log(nav_link)
 
+        // Suara pada saat klik
+        var click_sound = new Audio("{{ asset('sound/Click.mp3') }}")
+
         function cekking(event){
+            click_sound.play()
             console.log('Event', event);
             console.log('Target', event.currentTarget);
             console.log('Tombol di tekan', event.currentTarget.name);
@@ -456,7 +470,17 @@
         })
 
         // Untuk mengaktifkan dan nonaktifkan sub di sidebar
-        function active_sub(){
+        function active_sub(info){
+            if({{ isset($halaman_terbuka) }}){
+                console.log("Halaman Terbuka", {{ isset($halaman_terbuka) }})
+            }else{
+                click_sound.play()
+            }
+
+            if(info == 'nav'){
+                click_sound.play()
+            }
+            
             console.log('Ini dari main', materi_a[$sub].id);
             // matikan_active();
             nav_link.forEach(element => {
@@ -480,7 +504,7 @@
         active_sub()
         
         
-            
+        
         
 
     </script>

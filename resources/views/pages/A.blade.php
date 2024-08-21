@@ -2,14 +2,17 @@
 
 @section('container')
 
+
+
+{{-- Status Bar --}}
+<div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 0.001%" id="status_bar"></div>
+  </div>
+
 <div class="mt-3">
-    {{-- Status Bar --}}
-    {{-- <div id="halaman_saat_ini">{{ session('active_menu_sub') }}</div> --}}
     
 
-    <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 0.001%" id="status_bar"></div>
-      </div>
+    
     
     
         <div class="row mt-3" id="">
@@ -270,6 +273,7 @@
 
         // Navigasi tombol
         function nav_tombol(){
+            
             if($sub == 6){
                 document.getElementById('next').disabled = true;
             }else if($sub == 0){
@@ -302,7 +306,7 @@
             show_sub($sub);
             nav_tombol()
             update_status()
-            active_sub()
+            active_sub('nav')
         }
         
         function prev(){
@@ -311,7 +315,7 @@
             $sub--;
             show_sub($sub);
             nav_tombol()
-            active_sub()
+            active_sub('nav')
         }
 
     </script>
