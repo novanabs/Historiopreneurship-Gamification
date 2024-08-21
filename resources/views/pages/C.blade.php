@@ -4,14 +4,15 @@
 
 {{-- Status Bar --}}
 <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0"
-    aria-valuemax="100">
-    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 0.001%"
-        id="status_bar"></div>
+aria-valuemax="100">
+<div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 0.001%"
+    id="status_bar"></div>
+    
 </div>
-<div id="halaman_saat_ini">{{ session('active_menu_sub') }}</div>
 
 
 <div class="mt-3">
+    
     <div class="row">
         <div class="col">
             <h2>C. Kewirausahaan dan Kepariwisataan </h2>
@@ -1005,7 +1006,6 @@
     var $sub = 0;
     var $progress = 0;
 
-    console.log(materi_a.length)
 
     // Hide semua bab
     function hide_semua_sub() {
@@ -1028,6 +1028,7 @@
     console.log(halaman_saat_ini);
     document.getElementById(halaman_saat_ini).style.display = 'block'
 
+
     // Navigasi tombol
     function nav_tombol() {
         if ($sub == 8) {
@@ -1042,15 +1043,15 @@
     nav_tombol();
 
     // Status Bar
-
     const status_bar = document.getElementById('status_bar');
-    function update_status() {
-        let persen = $progress * 12.5;
-        status_bar.style.width = `${persen}%`;
-    }
+    console.log(status_bar);
+        function update_status(){
+            let persen = $progress * 16.66666667;
+            status_bar.style.width = `${persen}%`;
+        }
 
     // Testing
-    console.log(materi_a)
+    // console.log(materi_a)
 
     function next() {
         console.log('Selanjutnya', $sub)
@@ -1060,9 +1061,9 @@
             $progress++;
         }
         show_sub($sub);
-
-        nav_tombol()
-        update_status()
+        nav_tombol();
+        update_status();
+        active_sub('nav')
     }
 
 
@@ -1072,14 +1073,19 @@
     // document.getElementById(halaman_saat_ini).style.display = 'block'
 
 
+
     function prev() {
         console.log('Sebelumnya', $sub)
         hide_semua_sub();
         $sub--;
         show_sub($sub);
         nav_tombol()
+        active_sub('nav')
     }
 
 
 </script>
+
+
 @endsection
+
