@@ -80,3 +80,6 @@ Route::get('/jawabanKelompok/{id_kelompok?}', [JawabanKelompokController::class,
 // Session Controller Untuk Sidebar agar tidak menutup
 Route::post('/laman', [SessionController::class, 'laman'])->name('laman');
 Route::post('/lamanSub', [SessionController::class, 'lamanSub'])->name('lamanSub');
+
+// Progress akses Halaman
+
