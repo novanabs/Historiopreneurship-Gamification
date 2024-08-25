@@ -35,8 +35,10 @@
                     <div class="card-body">
                         <h5 class="card-title">Profil</h5>
                         <p class="card-text mt-5">Nama : {{ auth()->user()->nama_lengkap }}</p>
-                        <p class="card-text">Kelas : </p>
-                        <p class="card-text">Sekolah :</p>
+                        <p class="card-text">Kelas : {{ auth()->user()->kelas }}</p>
+                        <p class="card-text">No HP : {{ auth()->user()->no_hp }}</p>
+                        <p class="card-text">Email : {{ auth()->user()->email }}</p>
+                        <p class="card-text">Alamat : {{ auth()->user()->alamat }}</p>
                     </div>
                 </div>
             </div>
@@ -89,7 +91,6 @@
                 <div class="card p-4">
                     <div class="card-body">
                         <h5 class="card-title">Leaderboard</h5>
-                        <p class="card-text">Peringkat 5</p>
                         <p class="card-text">Top 10 Siswa:</p>
                         <table class="table table-bordered table-stripped">
                             <thead>
@@ -100,56 +101,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $n= 1;
+                                @endphp
+                                @foreach ($users as $user)
                                 <tr>
-                                    <th>1</th>
-                                    <td>Madhan</td>
-                                    <td>2134</td>
+                                    <th scope="row">{{ $n }}</th>
+                                    <td>{{ $user->nama_lengkap }}</td>
+                                    <td>{{ $user->poin }}</td>
                                 </tr>
-                                <tr>
-                                    <th>2</th>
-                                    <td>Salman</td>
-                                    <td>2130</td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>Husna</td>
-                                    <td>2122</td>
-                                </tr>
-                                <tr>
-                                    <th>4</th>
-                                    <td>Iif Alifah</td>
-                                    <td>2120</td>
-                                </tr>
-                                <tr>
-                                    <th>5</th>
-                                    <td>Rifqi</td>
-                                    <td>2103</td>
-                                </tr>
-                                <tr>
-                                    <th>6</th>
-                                    <td>Ari Yono</td>
-                                    <td>2078</td>
-                                </tr>
-                                <tr>
-                                    <th>7</th>
-                                    <td>Fadhil</td>
-                                    <td>2068</td>
-                                </tr>
-                                <tr>
-                                    <th>8</th>
-                                    <td>Fajar</td>
-                                    <td>2000</td>
-                                </tr>
-                                <tr>
-                                    <th>9</th>
-                                    <td>Saipul</td>
-                                    <td>1994</td>
-                                </tr>
-                                <tr>
-                                    <th>10</th>
-                                    <td>Fuad</td>
-                                    <td>1800</td>
-                                </tr>
+                                @php
+                                    $n++;
+                                @endphp
+                                @endforeach
                             </tbody>
 
                         </table>

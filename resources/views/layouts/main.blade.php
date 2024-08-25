@@ -407,7 +407,6 @@
             </div>
         </section>
     </div>
-    <audio id="clickSound" src="{{ asset('sounds/click-sound.mp3') }}"></audio>
 
     </div>
 
