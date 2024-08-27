@@ -57,6 +57,7 @@ Route::get('/latihan', [LatihanController::class, 'latihan'])->name('latihan');
 Route::put('/latihan', [LatihanController::class, 'latihan']);
 Route::get('/kuis', [LatihanController::class, 'kuis'])->name('kuis');
 Route::get('/evaluasi', [LatihanController::class, 'evaluasi'])->name('evaluasi');
+Route::post('/evaluasi',[NilaiController::class, 'simpanNilai'])->name('simpanNilai');
 Route::get('/info', [LatihanController::class, 'info'])->name('info');
 Route::get('/dragndrop', [LatihanController::class, 'dragndrop'])->name('dragndrop');
 
@@ -72,9 +73,12 @@ Route::get('/dataNilai',[DosenController::class,'dataNilai'])->name('dataNilai')
 
 // data jawaban individu
 Route::get('/jawabanIndividu/{email}', [AnalisisIndividuController::class, 'tampilkanJawabanIndividu'])->name('dataJawabanIndividu');
+// Route to handle the POST request for saving individual answers
+Route::post('/jawabanIndividu/{email}', [nilaiController::class, 'simpanNilaiIndividu'])->name('kirimJawabanIndividu');
 
 // data jawaban kelompok
 Route::get('/jawabanKelompok/{id_kelompok?}', [JawabanKelompokController::class, 'lihatJawaban'])->name('dataJawabanKelompok');
+Route::post('/jawabanKelompok/{id_kelompok}', [nilaiController::class, 'simpanNilaiKelompok'])->name('kirimJawabanKelompok');
 
 
 // Session Controller Untuk Sidebar agar tidak menutup

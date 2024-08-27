@@ -4,101 +4,104 @@
 
 <style>
     #particel-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* Agar tidak mengganggu interaksi UI */
-    overflow: hidden;
-}
-
-.particle {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 20px solid yellow; /* Warna bintang */
-    transform: rotate(35deg);
-    animation: fall linear forwards, rotate 3s linear infinite;
-}
-
-.particle::before,
-.particle::after {
-    content: '';
-    position: absolute;
-    top: -15px;
-    left: -10px;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 20px solid yellow;
-}
-
-.particle::before {
-    transform: rotate(-70deg);
-}
-
-.particle::after {
-    transform: rotate(70deg);
-}
-
-@keyframes fall {
-    to {
-        transform: translateY(100vh);
-        opacity: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        /* Agar tidak mengganggu interaksi UI */
+        overflow: hidden;
     }
-}
 
+    .particle {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 20px solid yellow;
+        /* Warna bintang */
+        transform: rotate(35deg);
+        animation: fall linear forwards, rotate 3s linear infinite;
+    }
+
+    .particle::before,
+    .particle::after {
+        content: '';
+        position: absolute;
+        top: -15px;
+        left: -10px;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 20px solid yellow;
+    }
+
+    .particle::before {
+        transform: rotate(-70deg);
+    }
+
+    .particle::after {
+        transform: rotate(70deg);
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(100vh);
+            opacity: 0;
+        }
+    }
 </style>
 
 
 <?php
-    
-    $_SESSION['data_soal'] = json_decode($soal->data_soal, true);
-    // dd($_SESSION['data_soal']);
 
-    $data_soal = $_SESSION['data_soal'];
-    $data_dari_json = json_encode($soal->data_soal);
-    $soal_sekarang = $_SESSION['soal_sekarang'];
-    $jawaban = $_SESSION['jawaban'];
-    $nilai = $_SESSION['nilai'];
+$_SESSION['data_soal'] = json_decode($soal->data_soal, true);
+// dd($_SESSION['data_soal']);
+
+$data_soal = $_SESSION['data_soal'];
+$data_dari_json = json_encode($soal->data_soal);
+$soal_sekarang = $_SESSION['soal_sekarang'];
+$jawaban = $_SESSION['jawaban'];
+$nilai = $_SESSION['nilai'];
+
+// Navigasi Soal
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // if(isset($_POST['jawaban'])){
+    //     $jawaban[$soal_sekarang] = $_POST['jawaban'];
+    // }
+
 
     // Navigasi Soal
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        // if(isset($_POST['jawaban'])){
-        //     $jawaban[$soal_sekarang] = $_POST['jawaban'];
-        // }
-        
-
-        // Navigasi Soal
-        if(isset($_POST['next'])){           
-             $soal_sekarang+=1;
-        } elseif(isset($_POST['prev'])) {
-            dd($_SERVER['REQUEST_METHOD']);
-             $soal_sekarang-=1;
-        } elseif(isset($_POST['submit'])){
-            dd();
-        }
-        
-        
+    if (isset($_POST['next'])) {
+        $soal_sekarang += 1;
+    } elseif (isset($_POST['prev'])) {
+        dd($_SERVER['REQUEST_METHOD']);
+        $soal_sekarang -= 1;
+    } elseif (isset($_POST['submit'])) {
+        dd();
     }
-    $soal = $data_soal[$soal_sekarang];   
+
+
+}
+$soal = $data_soal[$soal_sekarang];   
 ?>
 <p id="kumpulan-soal" hidden>{{$data_dari_json}}</p>
 
 <div class=" mb-3" id="halaman-latihan">
     <h1>Latihan</h1>
 
-    
+
     <div class="row">
-        
+
         <div class="col-8 p-2">
-            <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 0.001%" id="bar"></div>
-              </div>
+            <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25"
+                aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 0.001%"
+                    id="bar"></div>
+            </div>
             <div class="card shadow mt-2">
                 <div class="card-header">
                     <div class="row">
@@ -106,44 +109,51 @@
                             <b>Soal No. <span id="no-soal"></span></b>
                         </div>
                         <div class="col text-end">
-                            <b><i class="bi bi-clock text-end"></i> <span id="menit">30</span>:<span id="detik">00</span></b>
+                            <b><i class="bi bi-clock text-end"></i> <span id="menit">30</span>:<span
+                                    id="detik">00</span></b>
                         </div>
                     </div>
                 </div>
                 {{-- Menampilkan Soal --}}
-                
-                <div class="card-body"> 
+
+                <div class="card-body">
                     <div class="card p-4">
                         <p id="soal"></p>
-                    <ol class="mt-4" type="a">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="a">
-                            <label class="form-check-label" for="exampleRadios2" id="pilihan-1"></label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="b">
-                            <label class="form-check-label" for="exampleRadios3" id="pilihan-2"></label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="c">
-                            <label class="form-check-label" for="exampleRadios4" id="pilihan-3"></label>
-                          </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="d">
-                            <label class="form-check-label" for="exampleRadios5" id="pilihan-4"></label>
-                          </div>
-                    </ol>
+                        <ol class="mt-4" type="a">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                                    value="a">
+                                <label class="form-check-label" for="exampleRadios2" id="pilihan-1"></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3"
+                                    value="b">
+                                <label class="form-check-label" for="exampleRadios3" id="pilihan-2"></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4"
+                                    value="c">
+                                <label class="form-check-label" for="exampleRadios4" id="pilihan-3"></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5"
+                                    value="d">
+                                <label class="form-check-label" for="exampleRadios5" id="pilihan-4"></label>
+                            </div>
+                        </ol>
                     </div>
                 </div>
-               
+
             </div>
             <div class="row">
                 {{-- Navigasi Next dan Prev --}}
                 <div class="col-6">
-                    <input class="btn btn-primary mt-6" type="submit" name="prev" value="Sebelumnya" id="prev" onclick="prev()">
+                    <input class="btn btn-primary mt-6" type="submit" name="prev" value="Sebelumnya" id="prev"
+                        onclick="prev()">
                 </div>
                 <div class="col-6 text-end">
-                    <input class="btn btn-primary mt-6" type="submit" name="next" value="Selanjutnya" id="next" onclick="next()">
+                    <input class="btn btn-primary mt-6" type="submit" name="next" value="Selanjutnya" id="next"
+                        onclick="next()">
                 </div>
             </div>
         </div>
@@ -171,32 +181,34 @@
             <div class="card shadow">
                 <div class="row">
                     <div class="col text-center">
-                        <button class="btn btn-success m-2"  data-bs-toggle="modal" data-bs-target="#exampleModal">Selesai</button>
+                        <button class="btn btn-success m-2" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">Selesai</button>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
 
     <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Selesai</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Selesai</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Apakah anda yakin?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        onclick="selesai()">Selesai</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          Apakah anda yakin?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-          <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" onclick="selesai()">Selesai</button>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
 <div id="particle-container">
     <div class="mt-3" id="hasil" style="display: none">
@@ -211,17 +223,17 @@
                         <p class="text-center"><b>Salah : </b><span id="salah"></span></p>
                         <p class="text-center"><b>Skor : </b><span id="skor"></span></p>
                         <a href="{{route('info')}}"><button class="btn btn-primary">Kembali</button></a>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>
 
 
-  
+
 
 {{-- Script Interaktiftas soal --}}
 
@@ -236,38 +248,38 @@
     const detik = document.getElementById('detik');
 
     function startCountdown(duration) {
-    let timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = Math.floor(timer / 60);
-        seconds = timer % 60;
+        let timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = Math.floor(timer / 60);
+            seconds = timer % 60;
 
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
 
-        menit.innerHTML = minutes;
-        detik.innerHTML = seconds;
+            menit.innerHTML = minutes;
+            detik.innerHTML = seconds;
 
-        // console.log(timer)
-        // console.log(duration)
+            // console.log(timer)
+            // console.log(duration)
 
-        if (--timer < 0) {
-            timer = duration;
-            alert("Waktu habis!"); // Menampilkan pesan pop-up
-            window.location.href = "info"; // Ganti dengan URL halaman tujuan
-        }
-    }, 1000);
-}
+            if (--timer < 0) {
+                timer = duration;
+                alert("Waktu habis!"); // Menampilkan pesan pop-up
+                window.location.href = "info"; // Ganti dengan URL halaman tujuan
+            }
+        }, 1000);
+    }
 
-window.onload = function () {
-    const thirtyMinutes = 60 * 30;
-    startCountdown(thirtyMinutes);
-};
+    window.onload = function () {
+        const thirtyMinutes = 60 * 30;
+        startCountdown(thirtyMinutes);
+    };
 
     // Mengambil kumpulan soal
     //console.log($soal);
     const $soal_soal = document.getElementById('kumpulan-soal');
     // console.log('Hello World');
-    
+
     // Mengubah data JSON dari HTML ke JSON Javascript, perlu dua kali parse
     const $data_soal = JSON.parse(JSON.parse($soal_soal.innerHTML));
 
@@ -284,7 +296,7 @@ window.onload = function () {
     var $soal_sekarang = 0;
 
     // Menghapus semua soal dan jawaban
-    function hapus_soal(){
+    function hapus_soal() {
         $soal.innerHTML = ''
         $pilihan_1.innerHTML = ''
         $pilihan_2.innerHTML = ''
@@ -294,21 +306,21 @@ window.onload = function () {
 
     // Menampikan nomor soal
     const no_soal = document.getElementById('no-soal');
-    function nomor_soal($no){
+    function nomor_soal($no) {
         no_soal.innerHTML = $no;
     }
-    nomor_soal($soal_sekarang+1);
+    nomor_soal($soal_sekarang + 1);
 
     // Uncheck
     const $pilgan = document.getElementsByClassName('form-check-input');
     // console.log($pilgan);
-    function uncheck(){
-        for(let pilihan = 0; pilihan < $pilgan.length; pilihan++){
+    function uncheck() {
+        for (let pilihan = 0; pilihan < $pilgan.length; pilihan++) {
             $pilgan[pilihan].checked = false;
         }
     }
-    
-    function isi_soal($nomor){
+
+    function isi_soal($nomor) {
         $soal.innerHTML = $data_soal[$nomor]['pertanyaan']
         $pilihan_1.innerHTML = $data_soal[$nomor]['pilihan'][0]['teks']
         $pilihan_2.innerHTML = $data_soal[$nomor]['pilihan'][1]['teks']
@@ -325,16 +337,16 @@ window.onload = function () {
 
     isi_soal($soal_sekarang)
 
-     // Matikan Tombol
-     function nav_tombol(){
+    // Matikan Tombol
+    function nav_tombol() {
         // console.log($soal_sekarang)
-        if($soal_sekarang == 4 ){
+        if ($soal_sekarang == 4) {
             document.getElementById('next').disabled = true;
             document.getElementById('prev').disabled = false;
-        }else if($soal_sekarang == 0){
+        } else if ($soal_sekarang == 0) {
             document.getElementById('prev').disabled = true;
             document.getElementById('next').disabled = false;
-        }else{
+        } else {
             document.getElementById('prev').disabled = false;
             document.getElementById('next').disabled = false;
         }
@@ -342,89 +354,89 @@ window.onload = function () {
 
     nav_tombol()
 
-    
 
-    
+
+
     // Navigasi
-    function next(){
+    function next() {
         console.log('Next')
         $soal_sekarang++;
         jawaban_check()
         hapus_soal()
         isi_soal($soal_sekarang)
         nav_tombol()
-        nomor_soal($soal_sekarang+1);
-        
-        
+        nomor_soal($soal_sekarang + 1);
+
+
     }
-    function prev(){
+    function prev() {
         console.log('Prev')
-        
+
         $soal_sekarang--;
         jawaban_check();
         hapus_soal()
         isi_soal($soal_sekarang)
         nav_tombol()
-        nomor_soal($soal_sekarang+1);
+        nomor_soal($soal_sekarang + 1);
     }
 
 
     // Bank Soal
     var terjawab = 0;
     const kunci_jawaban = ['a', 'b', 'b', 'd', 'a'];
-    let jawaban_mhs = {0:null,1:null,2:null,3:null,4:null};
-    function simpan_jawaban(){
-        if(jawaban_mhs[$soal_sekarang] == null){
-            terjawab+=1;
+    let jawaban_mhs = { 0: null, 1: null, 2: null, 3: null, 4: null };
+    function simpan_jawaban() {
+        if (jawaban_mhs[$soal_sekarang] == null) {
+            terjawab += 1;
             progressBar()
         }
-        for(let k = 0; k < 4; k++){
-            if($pilgan[k].checked){
+        for (let k = 0; k < 4; k++) {
+            if ($pilgan[k].checked) {
                 jawaban_mhs[$soal_sekarang] = $pilgan[k].value
             }
         }
         console.log(jawaban_mhs);
         list_soal[$soal_sekarang].style.background = 'green'
         list_soal[$soal_sekarang].style.color = 'white'
-        
+
     }
 
 
     // Cek soal yang telah terjawab
-    function jawaban_check(){
-        console.log('Soal Sekarang => ',$soal_sekarang)
-        if(jawaban_mhs[$soal_sekarang] == null){
+    function jawaban_check() {
+        console.log('Soal Sekarang => ', $soal_sekarang)
+        if (jawaban_mhs[$soal_sekarang] == null) {
             console.log('Soal ini belum dijawab')
             uncheck()
-        }else{
+        } else {
             uncheck()
-            for(let pil = 0; pil < 4; pil++){ // Masuk ke pilgan
-                    if($pilgan[pil].value == jawaban_mhs[$soal_sekarang]){
-                        $pilgan[pil].checked = true;
-                    }
+            for (let pil = 0; pil < 4; pil++) { // Masuk ke pilgan
+                if ($pilgan[pil].value == jawaban_mhs[$soal_sekarang]) {
+                    $pilgan[pil].checked = true;
                 }
             }
         }
-    
-        
-        
+    }
 
-        // Check OnClick, langsung simpan jawaban
-        const radio = document.querySelectorAll('input[name="exampleRadios"]');
 
-        radio.forEach(radio => {
-            radio.addEventListener('click', simpan_jawaban)
-        })
 
-        // Navigasi daftar soal
-    function go_list(event){
+
+    // Check OnClick, langsung simpan jawaban
+    const radio = document.querySelectorAll('input[name="exampleRadios"]');
+
+    radio.forEach(radio => {
+        radio.addEventListener('click', simpan_jawaban)
+    })
+
+    // Navigasi daftar soal
+    function go_list(event) {
         console.log('Ditekan')
         console.log(event.currentTarget.innerHTML)
         $soal_sekarang = event.currentTarget.innerHTML - 1
         hapus_soal()
         isi_soal($soal_sekarang)
         nav_tombol()
-        nomor_soal($soal_sekarang+1);
+        nomor_soal($soal_sekarang + 1);
         jawaban_check()
     }
     const list_soal = document.querySelectorAll('.list_soal');
@@ -436,13 +448,13 @@ window.onload = function () {
     // ProgressBar
     let bar = document.getElementById('bar')
     console.log(bar)
-    function progressBar(){
+    function progressBar() {
         console.log(terjawab)
         let persen = terjawab * 20;
         bar.style.width = `${persen}%`;
         console.log(bar)
     }
-    
+
     // Selesai
     const lamanLatihan = document.getElementById('halaman-latihan');
     const hasil = document.getElementById('hasil');
@@ -451,13 +463,14 @@ window.onload = function () {
     const jawaban_salah = document.getElementById('salah');
     let benar = 0;
     let salah = 0;
-    function periksaJawaban(){
-        for(let m = 0; m < 5;m++){
+
+    function periksaJawaban() {
+        for (let m = 0; m < 5; m++) {
             console.log(kunci_jawaban[m], jawaban_mhs[m])
-            if(kunci_jawaban[m] == jawaban_mhs[m]){
-                benar+=1
-            }else{
-                salah+=1
+            if (kunci_jawaban[m] == jawaban_mhs[m]) {
+                benar += 1
+            } else {
+                salah += 1
             }
         }
         show_skor.innerHTML = benar * 20;
@@ -468,7 +481,7 @@ window.onload = function () {
     // Sound selesai mengerjakan soal
     const victory = new Audio("{{asset('sound/victory.mp3')}}")
 
-    function selesai(){
+    function selesai() {
         triggerParticles();
         victory.play();
         periksaJawaban()
@@ -476,31 +489,59 @@ window.onload = function () {
         console.log(lamanLatihan)
         lamanLatihan.innerHTML = ''
         hasil.style.display = 'block';
+        const nilaiAkhir = periksaJawaban(); // Ambil nilai akhir dari fungsi periksaJawaban
+
+        // Data yang akan dikirim ke server
+        const dataToSend = {
+            email: email, // Menggunakan email user yang dideklarasikan
+            aspek: 'evaluasi', // Nilai tetap 'evaluasi'
+            nilai_akhir: nilaiAkhir, // Nilai akhir yang diambil dari periksaJawaban
+            _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content') // CSRF token
+        };
+
+        // Mengirim data ke server dengan AJAX
+        // fetch('/evaluasi', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(dataToSend)
+        // })
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         console.log('Data berhasil disimpan:', data);
+        //         lamanLatihan.innerHTML = '';
+        //         hasil.style.display = 'block';
+        //     })
+        //     .catch((error) => {
+        //         console.error('Terjadi kesalahan:', error);
+        //     });
+
     }
 
     // Partikel
     function createParticle() {
-    const particle = document.createElement('div');
-    particle.classList.add('particle');
-    
-    // Set posisi awal partikel secara acak di atas layar
-    particle.style.left = Math.random() * 100 + 'vw';
-    particle.style.top = -10 + 'px'; // Mulai sedikit di luar layar bagian atas
-    
-    // Set ukuran dan kecepatan jatuh secara acak
-    const size = Math.random() * 20 + 5; // Ukuran antara 5px dan 25px
-    particle.style.width = size + 'px';
-    particle.style.height = size + 'px';
-    
-    const duration = Math.random() * 2 + 3; // Durasi animasi antara 3s dan 5s
-    particle.style.animationDuration = duration + 's';
-    
-    document.getElementById('particle-container').appendChild(particle);
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
 
-    // Hapus partikel setelah animasi selesai
-    setTimeout(() => {
-        particle.remove();
-    }, duration * 1000);
+        // Set posisi awal partikel secara acak di atas layar
+        particle.style.left = Math.random() * 100 + 'vw';
+        particle.style.top = -10 + 'px'; // Mulai sedikit di luar layar bagian atas
+
+        // Set ukuran dan kecepatan jatuh secara acak
+        const size = Math.random() * 20 + 5; // Ukuran antara 5px dan 25px
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+
+        const duration = Math.random() * 2 + 3; // Durasi animasi antara 3s dan 5s
+        particle.style.animationDuration = duration + 's';
+
+        document.getElementById('particle-container').appendChild(particle);
+
+        // Hapus partikel setelah animasi selesai
+        setTimeout(() => {
+            particle.remove();
+        }, duration * 1000);
     }
 
     function triggerParticles() {
@@ -510,12 +551,12 @@ window.onload = function () {
     }
 
     // Panggil fungsi ini setelah pengguna menyelesaikan kuis
-    
 
 
 
 
-    
+
+
 
 </script>
 

@@ -122,7 +122,7 @@
                                 </tr>
                                 <tr>
                                     <th>5</th>
-                                    <td>Rifqi</td>
+                                    <td>Siswa</td>
                                     <td>2103</td>
                                 </tr>
                                 <tr>

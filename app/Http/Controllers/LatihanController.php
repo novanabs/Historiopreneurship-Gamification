@@ -32,8 +32,10 @@ class LatihanController extends Controller
         $_SESSION['soal_sekarang'] = 0;
         $_SESSION['jawaban'] = 0;
         $_SESSION['nilai'] = 0;
+        
         return view('latihan.evaluasi', $soal);
     }
+    
     public function info(){
         return view('latihan.info');
     }

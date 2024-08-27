@@ -50,8 +50,9 @@
                                 Penilaian
                             </h5>
                             <div class="card-body">
-                                <form action="" method="POST">
+                                <form action="{{ route('kirimJawabanIndividu', ['email' => $email]) }}" method="POST">
                                     @csrf
+                                    <input type="hidden" name="aspek" value="analisa_individu_kesejarahan">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
                                         <input type="text" class="form-control" name="nilai_akhir"
@@ -61,7 +62,6 @@
                                     <textarea name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
                                     <button type="submit" class="btn btn-primary">Kirim</button>
                                 </form>
-
                             </div>
                             <div class="card-footer text-muted">
                                 Semangat dalam menilai !
@@ -103,14 +103,18 @@
                                 Penilaian
                             </h5>
                             <div class="card-body">
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
-                                    <input type="text" class="form-control" aria-label="Sizing example input"
-                                        aria-describedby="inputGroup-sizing-sm">
-                                </div>
-                                <label for="feedbackIndividu">Feedback</label><br>
-                                <textarea name="feedbackIndividu" id="feedbackIndividu" rows="5"></textarea>
-                                <a href="#" class="btn btn-primary">Kirim</a>
+                                <form action="{{ route('kirimJawabanIndividu', ['email' => $email]) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="aspek" value="analisa_individu_kewirausahaan">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
+                                        <input type="text" class="form-control" name="nilai_akhir"
+                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                    </div>
+                                    <label for="feedbackIndividu">Feedback</label><br>
+                                    <textarea name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
+                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                </form>
                             </div>
                             <div class="card-footer text-muted">
                                 Semangat dalam menilai !
@@ -176,23 +180,65 @@
                     </tbody>
                 </table>
                 <div class="row">
-                    <div class="col">
+                    <!-- Form untuk Kategori: Kegiatan Pembelajaran 3 -->
+                    <div class="col-12 mb-4">
                         <div class="card text-center">
-                            <h5 class="card-header">
-                                Penilaian
-                            </h5>
+                            <h5 class="card-header">Penilaian Kegiatan Pembelajaran 3</h5>
                             <div class="card-body">
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
-                                    <input type="text" class="form-control" aria-label="Sizing example input"
-                                        aria-describedby="inputGroup-sizing-sm">
-                                </div>
-                                <label for="feedbackIndividu">Feedback</label><br>
-                                <textarea name="feedbackIndividu" id="feedbackIndividu" rows="5"></textarea>
-                                <a href="#" class="btn btn-primary">Kirim</a>
+                                <form action="{{ route('kirimJawabanIndividu', ['email' => $email]) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="aspek" value="upload_file_pembelajaran3">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
+                                        <input type="text" class="form-control" name="nilai_akhir"
+                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                    </div>
+                                    <label for="feedbackIndividu">Feedback</label><br>
+                                    <textarea name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
+                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                </form>
                             </div>
-                            <div class="card-footer text-muted">
-                                Semangat dalam menilai !
+                        </div>
+                    </div>
+
+                    <!-- Form untuk Kategori: Praktik Lapangan 1 -->
+                    <div class="col-12 mb-4">
+                        <div class="card text-center">
+                            <h5 class="card-header">Penilaian Praktik Lapangan 1</h5>
+                            <div class="card-body">
+                                <form action="{{ route('kirimJawabanIndividu', ['email' => $email]) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="aspek" value="upload_file_aktivitas1">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
+                                        <input type="text" class="form-control" name="nilai_akhir"
+                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                    </div>
+                                    <label for="feedbackIndividu">Feedback</label><br>
+                                    <textarea name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
+                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form untuk Kategori: Praktik Lapangan 2 -->
+                    <div class="col-12 mb-4">
+                        <div class="card text-center">
+                            <h5 class="card-header">Penilaian Praktik Lapangan 2</h5>
+                            <div class="card-body">
+                                <form action="{{ route('kirimJawabanIndividu', ['email' => $email]) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="aspek" value="upload_file_aktivitas2">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
+                                        <input type="text" class="form-control" name="nilai_akhir"
+                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                    </div>
+                                    <label for="feedbackIndividu">Feedback</label><br>
+                                    <textarea name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
+                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                </form>
                             </div>
                         </div>
                     </div>

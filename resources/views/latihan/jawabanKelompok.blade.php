@@ -60,14 +60,24 @@
                                     Penilaian
                                 </h5>
                                 <div class="card-body">
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
-                                        <input type="text" class="form-control" aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <label for="feedbackIndividu">Feedback</label><br>
-                                    <textarea name="feedbackIndividu" id="feedbackIndividu" rows="5"></textarea>
-                                    <a href="#" class="btn btn-primary">Kirim</a>
+                                    <form action="{{ route('kirimJawabanKelompok', ['id_kelompok' => $id_kelompok]) }}"
+                                        method="POST">
+                                        @csrf
+                                        <input type="hidden" name="aspek" value="analisa_kelompok_kesejarahan">
+
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
+                                            <input type="text" class="form-control" name="nilai_akhir"
+                                                aria-label="Sizing example input"
+                                                aria-describedby="inputGroup-sizing-sm" required>
+                                        </div>
+
+                                        <label for="feedbackKelompok">Feedback untuk Kelompok</label><br>
+                                        <textarea name="data_jawaban_penilai" id="feedbackKelompok" rows="5"
+                                            class="form-control"></textarea>
+
+                                        <button type="submit" class="btn btn-primary mt-3">Kirim</button>
+                                    </form>
                                 </div>
                                 <div class="card-footer text-muted">
                                     Semangat dalam menilai !
@@ -108,14 +118,25 @@
                                     Penilaian
                                 </h5>
                                 <div class="card-body">
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
-                                        <input type="text" class="form-control" aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <label for="feedbackIndividu">Feedback</label><br>
-                                    <textarea name="feedbackIndividu" id="feedbackIndividu" rows="5"></textarea>
-                                    <a href="#" class="btn btn-primary">Kirim</a>
+                                    <form action="{{ route('kirimJawabanKelompok', ['id_kelompok' => $id_kelompok]) }}"
+                                        method="POST">
+                                        @csrf
+                                        <input type="hidden" name="aspek"
+                                            value="analisa_kelompok_kewirausahaan_aktivitas1">
+
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
+                                            <input type="text" class="form-control" name="nilai_akhir"
+                                                aria-label="Sizing example input"
+                                                aria-describedby="inputGroup-sizing-sm" required>
+                                        </div>
+
+                                        <label for="feedbackKelompok">Feedback untuk Kelompok</label><br>
+                                        <textarea name="data_jawaban_penilai" id="feedbackKelompok" rows="5"
+                                            class="form-control"></textarea>
+
+                                        <button type="submit" class="btn btn-primary mt-3">Kirim</button>
+                                    </form>
                                 </div>
                                 <div class="card-footer text-muted">
                                     Semangat dalam menilai !
@@ -156,14 +177,25 @@
                                     Penilaian
                                 </h5>
                                 <div class="card-body">
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
-                                        <input type="text" class="form-control" aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <label for="feedbackIndividu">Feedback</label><br>
-                                    <textarea name="feedbackIndividu" id="feedbackIndividu" rows="5"></textarea>
-                                    <a href="#" class="btn btn-primary">Kirim</a>
+                                <form action="{{ route('kirimJawabanKelompok', ['id_kelompok' => $id_kelompok]) }}"
+                                        method="POST">
+                                        @csrf
+                                        <input type="hidden" name="aspek"
+                                            value="analisa_kelompok_kewirausahaan_aktivitas2">
+
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
+                                            <input type="text" class="form-control" name="nilai_akhir"
+                                                aria-label="Sizing example input"
+                                                aria-describedby="inputGroup-sizing-sm" required>
+                                        </div>
+
+                                        <label for="feedbackKelompok">Feedback untuk Kelompok</label><br>
+                                        <textarea name="data_jawaban_penilai" id="feedbackKelompok" rows="5"
+                                            class="form-control"></textarea>
+
+                                        <button type="submit" class="btn btn-primary mt-3">Kirim</button>
+                                    </form>
                                 </div>
                                 <div class="card-footer text-muted">
                                     Semangat dalam menilai !
@@ -204,14 +236,25 @@
                                     Penilaian
                                 </h5>
                                 <div class="card-body">
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
-                                        <input type="text" class="form-control" aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <label for="feedbackIndividu">Feedback</label><br>
-                                    <textarea name="feedbackIndividu" id="feedbackIndividu" rows="5"></textarea>
-                                    <a href="#" class="btn btn-primary">Kirim</a>
+                                <form action="{{ route('kirimJawabanKelompok', ['id_kelompok' => $id_kelompok]) }}"
+                                        method="POST">
+                                        @csrf
+                                        <input type="hidden" name="aspek"
+                                            value="analisa_kelompok_kewirausahaan_aktivitas3">
+
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
+                                            <input type="text" class="form-control" name="nilai_akhir"
+                                                aria-label="Sizing example input"
+                                                aria-describedby="inputGroup-sizing-sm" required>
+                                        </div>
+
+                                        <label for="feedbackKelompok">Feedback untuk Kelompok</label><br>
+                                        <textarea name="data_jawaban_penilai" id="feedbackKelompok" rows="5"
+                                            class="form-control"></textarea>
+
+                                        <button type="submit" class="btn btn-primary mt-3">Kirim</button>
+                                    </form>
                                 </div>
                                 <div class="card-footer text-muted">
                                     Semangat dalam menilai !

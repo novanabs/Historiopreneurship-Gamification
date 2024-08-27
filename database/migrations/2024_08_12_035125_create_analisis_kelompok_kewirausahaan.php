@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('id_kelompok');
             $table->enum('kategori', ['aktivitas 1', 'aktivitas 2', 'aktivitas 3']);
             $table->enum('aspek', ['Pengalaman yang didapat','kelebihan e-commerce','kekurangan e-commerce','Jenis-jenis teknologi','Pengaruh Teknologi','Kelebihan dan Kekurangan penggunaan teknologi','kondisi proses sebelum dan sesudah','Hasil analisa kelompok']);
-            $table->text('jawaban');
+            $table->text('jawaban')->nullable();
             $table->date('created_at');
             $table->string('created_by'); // nama pengguna yang membuat
         });
