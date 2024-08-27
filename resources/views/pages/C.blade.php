@@ -12,7 +12,6 @@ aria-valuemax="100">
 
 
 <div class="mt-3">
-    
     <div class="row">
         <div class="col">
             <h2>C. Kewirausahaan dan Kepariwisataan </h2>
@@ -1023,10 +1022,6 @@ aria-valuemax="100">
     }
     show_sub($sub);
 
-    // Show Sub by Session
-    const halaman_saat_ini = document.getElementById('halaman_saat_ini').innerHTML;
-    console.log(halaman_saat_ini);
-    document.getElementById(halaman_saat_ini).style.display = 'block'
 
 
     // Navigasi tombol
@@ -1044,11 +1039,10 @@ aria-valuemax="100">
 
     // Status Bar
     const status_bar = document.getElementById('status_bar');
-    console.log(status_bar);
-        function update_status(){
-            let persen = $progress * 16.66666667;
-            status_bar.style.width = `${persen}%`;
-        }
+    function update_status(){
+        let persen = $progress * 16.66666667;
+        status_bar.style.width = `${persen}%`;
+    }
 
     // Testing
     // console.log(materi_a)

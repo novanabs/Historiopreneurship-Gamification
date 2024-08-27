@@ -84,3 +84,6 @@ Route::post('/jawabanKelompok/{id_kelompok}', [nilaiController::class, 'simpanNi
 // Session Controller Untuk Sidebar agar tidak menutup
 Route::post('/laman', [SessionController::class, 'laman'])->name('laman');
 Route::post('/lamanSub', [SessionController::class, 'lamanSub'])->name('lamanSub');
+
+// Progress akses Halaman
+

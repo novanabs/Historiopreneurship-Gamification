@@ -11,7 +11,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $data['halaman_terbuka'] = 'dashboard'; 
+        $data['halaman_terbuka'] = 'dashboard';
+        $data['users'] = User::where('peran', 'siswa')->whereNotNull('poin')->orderBy('poin', 'desc')->get();
         return view('dashboard', $data);
     }
 

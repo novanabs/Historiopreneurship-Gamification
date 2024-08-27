@@ -12,11 +12,6 @@ class LoginController extends Controller
 {
     public function show()
     {
-        Session::put('sidebar', [
-            'A' => 'false',
-            'B' => 'false',
-            'C' => 'false'
-        ]);
         return view('login');
     }
 
