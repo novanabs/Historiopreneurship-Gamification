@@ -242,6 +242,12 @@
     </div>
 </div>
 
+{{-- 32 itu diganti dengan nomor halaman --}}
+<form id="updateHalaman" action="{{url('updateAksesHalaman/32')}}" method="GET" hidden>
+    @csrf
+    <input type="hidden" name="user_id" value="{{ $user }}">
+</form>
+
     <script>
         // Mengambil semua class sub
         const materi_a = document.getElementsByClassName('materi-a');
@@ -295,6 +301,7 @@
 
         // Testing
         // console.log(materi_a)
+        let updateHalaman = document.getElementById('updateHalaman');
         
         function next(){
             console.log('Selanjutnya',$sub)
@@ -307,6 +314,7 @@
             nav_tombol()
             update_status()
             active_sub('nav')
+            updateHalaman.submit()
         }
         
         function prev(){

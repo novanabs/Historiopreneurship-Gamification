@@ -15,6 +15,7 @@ use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UpdateAksesHalamanController;
 
 // Register
 Route::get('/register', [RegisterController::class, 'show'])->name('register.show');
@@ -87,3 +88,4 @@ Route::post('/lamanSub', [SessionController::class, 'lamanSub'])->name('lamanSub
 
 // Progress akses Halaman
 
+Route::get('/updateAksesHalaman/{id}', [UpdateAksesHalamanController::class, 'updateA'])->name('updateAksesHalaman');
