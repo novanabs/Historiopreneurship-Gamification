@@ -1040,7 +1040,7 @@ aria-valuemax="100">
     // Status Bar
     const status_bar = document.getElementById('status_bar');
     function update_status(){
-        let persen = $progress * 16.66666667;
+        let persen = $progress * 12.5;
         status_bar.style.width = `${persen}%`;
     }
 

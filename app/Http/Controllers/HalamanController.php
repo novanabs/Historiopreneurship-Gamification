@@ -21,6 +21,7 @@ class HalamanController extends Controller
 {
     function A () {
         $data['halaman_terbuka'] = 'A'; 
+        $data['user'] = 'UDIN'; 
         return view('pages.A', $data);
     }
 
