@@ -71,26 +71,20 @@ class nilaiController extends Controller
 
     public function simpanNilai(Request $request)
     {
-        // Validasi data yang masuk
-        $validatedData = $request->validate([
+        // Validate the incoming request
+        $request->validate([
             'email' => 'required|email',
-            'aspek' => 'required|string',
-            'nilai_akhir' => 'required|numeric',
+            'nilai_akhir' => 'required|integer',
         ]);
 
-        // Simpan data ke dalam tabel 'nilai'
+        // Save the data to the database
         Nilai::create([
-            'email' => $validatedData['email'],
-            'id_soal' => null, // Atur jika diperlukan
-            'aspek' => $validatedData['aspek'],
-            'data_jawaban_penilai' => null, // Atur jika diperlukan
-            'nilai_akhir' => $validatedData['nilai_akhir'],
-            'percobaan_ke' => null, // Atur jika diperlukan
-            'lama_waktu_pengerjaan' => null, // Atur jika diperlukan
-            'waktu_selesai' => now(), // Set waktu selesai
+            'email' => $request->email,
+            'nilai_akhir' => $request->nilai_akhir,
+            'waktu_selesai' => now()
         ]);
 
-        // Mengirimkan respon ke client
-        return response()->json(['message' => 'Data berhasil disimpan']);
+        // Return a JSON response
+        return response()->json(['message' => 'Nilai berhasil disimpan'], 200);
     }
 }

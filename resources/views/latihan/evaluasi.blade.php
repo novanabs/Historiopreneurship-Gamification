@@ -465,59 +465,57 @@ $soal = $data_soal[$soal_sekarang];
     let salah = 0;
 
     function periksaJawaban() {
-        for (let m = 0; m < 5; m++) {
-            console.log(kunci_jawaban[m], jawaban_mhs[m])
-            if (kunci_jawaban[m] == jawaban_mhs[m]) {
-                benar += 1
-            } else {
-                salah += 1
-            }
+    let benar = 0;
+    let salah = 0;
+    for (let m = 0; m < 5; m++) {
+        console.log(kunci_jawaban[m], jawaban_mhs[m]);
+        if (kunci_jawaban[m] == jawaban_mhs[m]) {
+            benar += 1;
+        } else {
+            salah += 1;
         }
-        show_skor.innerHTML = benar * 20;
-        jawaban_benar.innerHTML = benar;
-        jawaban_salah.innerHTML = salah;
     }
+    show_skor.innerHTML = benar * 20;
+    jawaban_benar.innerHTML = benar;
+    jawaban_salah.innerHTML = salah;
+
+    return benar * 20; // Return the score as nilai_akhir
+}
 
     // Sound selesai mengerjakan soal
     const victory = new Audio("{{asset('sound/victory.mp3')}}")
 
     function selesai() {
-        triggerParticles();
-        victory.play();
-        periksaJawaban()
-        console.log('Sudah selesai')
-        console.log(lamanLatihan)
-        lamanLatihan.innerHTML = ''
-        hasil.style.display = 'block';
-        const nilaiAkhir = periksaJawaban(); // Ambil nilai akhir dari fungsi periksaJawaban
+    triggerParticles();
+    victory.play();
+    const nilaiAkhir = periksaJawaban(); // Ambil nilai akhir dari fungsi periksaJawaban
+    console.log('Sudah selesai');
+    console.log(lamanLatihan);
+    lamanLatihan.innerHTML = '';
+    hasil.style.display = 'block';
+    const email = '{{ auth()->user()->email }}'; // Assuming you have the user's email available
 
-        // Data yang akan dikirim ke server
-        const dataToSend = {
-            email: email, // Menggunakan email user yang dideklarasikan
-            aspek: 'evaluasi', // Nilai tetap 'evaluasi'
-            nilai_akhir: nilaiAkhir, // Nilai akhir yang diambil dari periksaJawaban
-            _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content') // CSRF token
-        };
-
-        // Mengirim data ke server dengan AJAX
-        // fetch('/evaluasi', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(dataToSend)
-        // })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         console.log('Data berhasil disimpan:', data);
-        //         lamanLatihan.innerHTML = '';
-        //         hasil.style.display = 'block';
-        //     })
-        //     .catch((error) => {
-        //         console.error('Terjadi kesalahan:', error);
-        //     });
-
-    }
+    // AJAX request to save nilaiAkhir and email to the database
+    fetch('/evaluasi', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({
+            email: email,
+            nilai_akhir: nilaiAkhir
+        })
+    }).then(response => {
+        if (response.ok) {
+            console.log('Nilai berhasil disimpan');
+        } else {
+            console.error('Gagal menyimpan nilai');
+        }
+    }).catch(error => {
+        console.error('Terjadi kesalahan:', error);
+    });
+}
 
     // Partikel
     function createParticle() {
