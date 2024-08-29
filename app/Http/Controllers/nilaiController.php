@@ -68,7 +68,6 @@ class nilaiController extends Controller
         return redirect()->route('dataJawabanKelompok', ['id_kelompok' => $id_kelompok])->with('success', 'Nilai dan feedback berhasil disimpan untuk seluruh anggota kelompok.');
     }
 
-
     public function simpanNilai(Request $request)
     {
         // Validate the incoming request
@@ -76,15 +75,22 @@ class nilaiController extends Controller
             'email' => 'required|email',
             'nilai_akhir' => 'required|integer',
         ]);
-
-        // Save the data to the database
+    
+        // Determine the motivational message based on the score
+        $message = $request->nilai_akhir > 60 
+            ? 'Semangat dan tingkatkan lagi belajarnya!' 
+            : 'Jangan patah semangat, terus tingkatkan belajar lagi!';
+    
+        // Save the data to the database, including the motivational message
         Nilai::create([
             'email' => $request->email,
             'nilai_akhir' => $request->nilai_akhir,
-            'waktu_selesai' => now()
+            'data_jawaban_penilai' => $message,
+            'waktu_selesai' => now(),
         ]);
-
+    
         // Return a JSON response
         return response()->json(['message' => 'Nilai berhasil disimpan'], 200);
     }
+    
 }
