@@ -7,6 +7,7 @@ use App\Models\AnalisisIndividuKesejarahan;
 use App\Models\AnalisisKelompokKesejarahan;
 use App\Models\AnalisisKelompokKewirausahaan;
 use App\Models\Kelompok;
+use App\Models\Nilai;
 use App\Models\Refleksi;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -120,5 +121,15 @@ class HalamanController extends Controller
     function materi()
     {
         return view('pages.materi');
+    }
+
+    function review()
+    {
+        $email = Auth::user()->email;
+        $dataNilai = Nilai::where('email', $email)->get(['aspek', 'data_jawaban_penilai', 'nilai_akhir']);
+    
+        $hasData = $dataNilai->isNotEmpty();
+    
+        return view('pages.reviewGuru', compact('dataNilai', 'hasData'));
     }
 }

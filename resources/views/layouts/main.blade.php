@@ -115,6 +115,14 @@
                                             </button>
                                         </form>
                                     </li>
+                                    <li>
+                                        <form action="{{route('pages.reviewGuru')}}" method="get">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">
+                                                <i class="bi bi-box-arrow-right"></i> review jawaban
+                                            </button>
+                                        </form>
+                                    </li>
                                 </ul>
                             </li>
                         @endauth
