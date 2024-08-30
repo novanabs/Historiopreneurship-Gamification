@@ -7,26 +7,37 @@ use Illuminate\Http\Request;
 
 class UpdateAksesHalamanController extends Controller
 {
-    function updateA (Request $request, $id){
-        dd($request);
+    function update (Request $request){
+
+        // Kode untuk update halaman
+        $user = $request->user_id;
+        $halaman = $request->halaman;
+        $progress = $request->progress;
+
+        AksesHalaman::updateOrCreate(
+            [
+                'email' => $user,
+            ]
+            );
+
+        $progressSaatIni = AksesHalaman::where('email', $user)
+                                        ->where($halaman, '<=', $progress)->exists();
+
+        // dd($progressSaatIni, $progress, isset($progressSaatIni));
+        if($progressSaatIni || isset($progressSaatIni)){
+            $aksesHalaman = AksesHalaman::where('email', $user)
+                                     ->firstOrFail();
+            $aksesHalaman->$halaman = $progress;
+            $aksesHalaman->save();
+        }
+
         
 
-        // Cari item berdasarkan ID
-        $halaman = AksesHalaman::find($id);
 
-        // Cek apakah item ditemukan
-        if ($halaman) {
-            // Tambah nilai count
-            $halaman->count += 1;
 
-            // Simpan perubahan ke database
-            $halaman->save();
+        
 
-            // Redirect atau return response
-            return redirect()->back()->with('success', 'Count berhasil ditambah');
-        } else {
-            // Jika item tidak ditemukan, beri respon error
-            return redirect()->back()->with('error', 'Item tidak ditemukan');
-        }
+        return redirect()->back()->with('progress', $progress);
     }
+
 }

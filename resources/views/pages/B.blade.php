@@ -11,6 +11,7 @@
 
 
 <div class="mt-3">
+    <h1 id="progress_halaman" hidden>{{session('progress') ?? 0}}</h1>
     <div class="row">
         <div class="col">
             <h2>B. Kesejarahan</h2>
@@ -728,13 +729,21 @@
 
 </div>
 
+{{-- Mengirim progress ke dalam database --}}
+<form id="updateHalaman" action="{{url('updateAksesHalaman')}}" method="GET" hidden>
+    @csrf
+    <input type="hidden" name="user_id" value="{{ $user }}">
+    <input type="hidden" name="halaman" value="materi_b">
+    <input type="hidden" name="progress" id="halaman">
+</form>
+
 <script>
     // Mengambil semua class sub
     const materi_a = document.getElementsByClassName('materi-b');
 
     // Navigasi Soal
-    var $sub = 0;
-    var $progress = 0;
+    var $sub = document.getElementById('progress_halaman').innerHTML;
+    var $progress = document.getElementById('progress_halaman').innerHTML;
 
     // Hide semua bab
     function hide_semua_sub() {
@@ -773,9 +782,11 @@
         let persen = $progress * 20;
         status_bar.style.width = `${persen}%`;
     }
+    update_status();
 
     // Testing
-    console.log(materi_a)
+    // console.log(materi_a)
+    let progressHalaman = document.getElementById('halaman');
 
     function next() {
         console.log('Selanjutnya', $sub)
@@ -783,11 +794,14 @@
         $sub++;
         if ($sub > $progress) {
             $progress++;
+            progressHalaman.value = $progress;
+            updateHalaman.submit()
+            
         }
         show_sub($sub);
         nav_tombol()
-        update_status()
         active_sub('nav')
+        
     }
 
     function prev() {
@@ -798,6 +812,21 @@
         nav_tombol()
         active_sub('nav')
     }
+
+    // Mempertahankan sidebar tetap aktif
+    let $side_B = document.querySelectorAll('#side_B li')
+    console.log("INI BAGIAN SIDE B", $side_B)
+
+    for(let i=0; i<=$progress;i++){
+            console.log('BY SESSION',$side_B[i]);
+            $side_B[i].querySelector('a').classList.add('active');
+            $side_B[i].querySelector('a').classList.remove('disabled');
+            $side_B[i].querySelector('a').classList.remove('text-gray');
+
+            // Mengubah lock menjadi dot
+            $side_B[i].querySelector('i').classList.remove('bi-lock')
+            $side_B[i].querySelector('i').classList.add('bi-dot')
+        }
 
 </script>
 @endsection

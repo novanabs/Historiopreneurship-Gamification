@@ -3,7 +3,8 @@
 
 @section('container')
 
-    
+{{-- @dd($materi_a, $materi_b, $materi_c) --}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,55 +107,6 @@
                                 @endphp
                                 @foreach ($users as $user)
                                 <tr>
-
-                                    <th>1</th>
-                                    <td>Madhan</td>
-                                    <td>2134</td>
-                                </tr>
-                                <tr>
-                                    <th>2</th>
-                                    <td>Salman</td>
-                                    <td>2130</td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>Husna</td>
-                                    <td>2122</td>
-                                </tr>
-                                <tr>
-                                    <th>4</th>
-                                    <td>Iif Alifah</td>
-                                    <td>2120</td>
-                                </tr>
-                                <tr>
-                                    <th>5</th>
-                                    <td>Siswa</td>
-                                    <td>2103</td>
-                                </tr>
-                                <tr>
-                                    <th>6</th>
-                                    <td>Ari Yono</td>
-                                    <td>2078</td>
-                                </tr>
-                                <tr>
-                                    <th>7</th>
-                                    <td>Fadhil</td>
-                                    <td>2068</td>
-                                </tr>
-                                <tr>
-                                    <th>8</th>
-                                    <td>Fajar</td>
-                                    <td>2000</td>
-                                </tr>
-                                <tr>
-                                    <th>9</th>
-                                    <td>Saipul</td>
-                                    <td>1994</td>
-                                </tr>
-                                <tr>
-                                    <th>10</th>
-                                    <td>Fuad</td>
-                                    <td>1800</td>
                                     <th scope="row">{{ $n }}</th>
                                     <td>{{ $user->nama_lengkap }}</td>
                                     <td>{{ $user->poin }}</td>

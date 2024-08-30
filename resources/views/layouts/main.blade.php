@@ -231,7 +231,7 @@
                     <p>Informasi Umum</p><i class="right bi bi-chevron-left"></i>
                   </a>
               
-              <ul class="nav nav-treeview">
+              <ul class="nav nav-treeview" id="side_A">
                 <li class="nav-item">
                     <a href="{{ route('pages.A') }}#Halaman-CPL" class="nav-link sub {{ session('active_menu_sub') == 'CPL' ? 'active' : '' }}" name='CPL' onclick="setSidebarStatusSub(this)">
                         <p><i class="bi bi-dot"></i> CPL</p>
@@ -276,7 +276,7 @@
                 <i class="bi bi-1-square-fill"></i>
                 <p>Kesejarahan</p><i class="right bi bi-chevron-left"></i>
               </a>
-              <ul class="nav nav-treeview">
+              <ul class="nav nav-treeview" id="side_B">
                 <li class="nav-item">
                     <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-1" class="nav-link sub {{ session('active_menu_sub') == 'kegiatan-pembelajaran-1' ? 'active' : '' }}" name="kegiatan-pembelajaran-1" onclick="setSidebarStatusSub(this)">
                         <p><i class="bi bi-dot"></i> Kegiatan Pembelajaran 1</p>
@@ -308,8 +308,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('dragndrop') }}" class="nav-link">
-                        <i class="bi bi-dot"></i>
+                    <a href="{{ route('dragndrop') }}" class="nav-link  sub  disabled text-gray ">
+                        <i class="bi bi-lock"></i>
                         <p>
                           Latihan
                         </p>
@@ -324,7 +324,7 @@
                 <i class="bi bi-2-square-fill"></i>
                 <p class="text-start">KWU & Kepariwisataan</p><i class="right bi bi-chevron-left"></i>
               </a>
-              <ul class="nav nav-treeview">
+              <ul class="nav nav-treeview" id="side_C">
                 <li class="nav-item">
                     <a href="{{ route('pages.C') }}#Halaman-Kewirausahaan-dan-kepariwisataan" class="nav-link sub {{ session('active_menu_sub') == 'kewirausahaan-dan-kepariwisataan' ? 'active' : '' }}" name="kewirausahaan-dan-kepariwisataan" onclick="setSidebarStatusSub(this)">
                         <p><i class="bi bi-dot"></i> KWU & Kepariwisataan</p>
@@ -370,7 +370,14 @@
                         <p><i class="bi bi-lock"></i> Refleksi</p>
                     </a>
                 </li>
-                
+                <li class="nav-item">
+                    <a href="{{ route('latihan2') }}" class="nav-link  sub  disabled text-gray ">
+                        <i class="bi bi-lock"></i>
+                        <p>
+                          Latihan (!)
+                        </p>
+                      </a> 
+                </li>
               </ul>
             </li>
             <li class="nav-item">

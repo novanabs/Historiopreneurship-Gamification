@@ -62,6 +62,7 @@ Route::get('/evaluasi', [LatihanController::class, 'evaluasi'])->name('evaluasi'
 Route::post('/evaluasi',[NilaiController::class, 'simpanNilai'])->name('simpanNilai');
 Route::get('/info', [LatihanController::class, 'info'])->name('info');
 Route::get('/dragndrop', [LatihanController::class, 'dragndrop'])->name('dragndrop');
+Route::get('/latihan2', [LatihanController::class, 'latihan2'])->name('latihan2');
 
 // Controller Dosen
 Route::get('/dataKelas',[DosenController::class,'datakelas'])->name('dataKelas');
@@ -89,4 +90,4 @@ Route::post('/lamanSub', [SessionController::class, 'lamanSub'])->name('lamanSub
 
 // Progress akses Halaman
 
-Route::get('/updateAksesHalaman/{id}', [UpdateAksesHalamanController::class, 'updateA'])->name('updateAksesHalaman');
+Route::get('/updateAksesHalaman', [UpdateAksesHalamanController::class, 'update'])->name('updateAksesHalaman');

@@ -10,10 +10,8 @@
   </div>
 
 <div class="mt-3">
-    
+    <h1 id="progress_halaman" hidden>{{session('progress') ?? 0}}</h1>
 
-    
-    
     
         <div class="row mt-3" id="">
             <div class="col">
@@ -242,10 +240,11 @@
     </div>
 </div>
 
-{{-- 32 itu diganti dengan nomor halaman --}}
-<form id="updateHalaman" action="{{url('updateAksesHalaman/32')}}" method="GET" hidden>
+<form id="updateHalaman" action="{{url('updateAksesHalaman')}}" method="GET" hidden>
     @csrf
     <input type="hidden" name="user_id" value="{{ $user }}">
+    <input type="hidden" name="halaman" value="materi_a">
+    <input type="hidden" name="progress" id="halaman">
 </form>
 
     <script>
@@ -253,8 +252,8 @@
         const materi_a = document.getElementsByClassName('materi-a');
 
         // Navigasi Soal
-        var $sub = 0;
-        var $progress = 0;
+        var $sub = document.getElementById('progress_halaman').innerHTML;
+        var $progress = document.getElementById('progress_halaman').innerHTML;
 
         // Hide semua bab
         function hide_semua_sub(){
@@ -298,10 +297,12 @@
             let persen = $progress * 16.66666667;
             status_bar.style.width = `${persen}%`;
         }
+        update_status();
 
         // Testing
         // console.log(materi_a)
         let updateHalaman = document.getElementById('updateHalaman');
+        let progressHalaman = document.getElementById('halaman');
         
         function next(){
             console.log('Selanjutnya',$sub)
@@ -309,12 +310,13 @@
             $sub++;
             if($sub > $progress){
                 $progress++; 
+                progressHalaman.value = $progress;
+                updateHalaman.submit()
             }      
             show_sub($sub);
             nav_tombol()
-            update_status()
+            update_status();
             active_sub('nav')
-            updateHalaman.submit()
         }
         
         function prev(){
@@ -325,7 +327,39 @@
             nav_tombol()
             active_sub('nav')
         }
+    
+        // Mempertahankan sidebar tetap aktif
+        let $side_A = document.querySelectorAll('#side_A li')
+        console.log("INI BAGIAN SIDE A", $side_A, {{session('progress') ?? 0}})
+
+        for(let i=0; i<=$progress;i++){
+            console.log('BY SESSION',$side_A[i]);
+            $side_A[i].querySelector('a').classList.add('active');
+            $side_A[i].querySelector('a').classList.remove('disabled');
+            $side_A[i].querySelector('a').classList.remove('text-gray');
+
+            // Mengubah lock menjadi dot
+            $side_A[i].querySelector('i').classList.remove('bi-lock')
+            $side_A[i].querySelector('i').classList.add('bi-dot')
+        }
+
+        // nav_link.forEach(element => {
+        //         if(element.name == materi_a[$sub].id){
+        //             // console.log(element.name, materi_a[$sub].id);
+        //             console.log(element);
+        //             element.classList.add('active');
+        //             element.classList.remove('disabled');
+        //             element.classList.remove('text-gray');
+
+        //             // Mengubah lock menjadi dot
+        //             element.querySelector('i').classList.remove('bi-lock')
+        //             element.querySelector('i').classList.add('bi-dot')
+        //         }else{
+        //             element.classList.remove('active');
+        //         }
+        //     });
+
+
 
     </script>
 @endsection
-
