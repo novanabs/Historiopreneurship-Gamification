@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreign('email')->references('email')->on('users');
             $table->string('email')->index();
-            $table->string('materi_a');
-            $table->string('materi_b');
-            $table->string('materi_c');
+            $table->string('materi_a')->nullable();
+            $table->string('materi_b')->nullable();
+            $table->string('materi_c')->nullable();
             $table->timestamps();
         });
     }

@@ -22,12 +22,14 @@ class HalamanController extends Controller
 {
     function A () {
         $data['halaman_terbuka'] = 'A'; 
-        $data['user'] = 'UDIN'; 
+        $data['user'] = Auth::user()->email;
+        $data['progress'] = 0;
         return view('pages.A', $data);
     }
 
     function B () {
         $data['halaman_terbuka'] = 'B';
+        $data['user'] = Auth::user()->email;
         $userEmail = Auth::user()->email;
     
         $jawabanIndividu = AnalisisIndividuKesejarahan::where('created_by', $userEmail)
@@ -68,6 +70,7 @@ class HalamanController extends Controller
 
     function C () {
         $data['halaman_terbuka'] = 'C';
+        $data['user'] = Auth::user()->email;
          // Dapatkan email pengguna yang sedang login
          $userEmail = Auth::user()->email;
 

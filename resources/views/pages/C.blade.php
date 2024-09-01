@@ -12,6 +12,7 @@ aria-valuemax="100">
 
 
 <div class="mt-3">
+    <h1 id="progress_halaman" hidden>{{session('progress') ?? 0}}</h1>
     <div class="row">
         <div class="col">
             <h2>C. Kewirausahaan dan Kepariwisataan </h2>
@@ -997,13 +998,21 @@ aria-valuemax="100">
     </div>
 </div>
 
+{{-- Mengirim progress ke dalam database --}}
+<form id="updateHalaman" action="{{url('updateAksesHalaman')}}" method="GET" hidden>
+    @csrf
+    <input type="hidden" name="user_id" value="{{ $user }}">
+    <input type="hidden" name="halaman" value="materi_c">
+    <input type="hidden" name="progress" id="halaman">
+</form>
+
 <script>
     // Mengambil semua class sub
     const materi_a = document.getElementsByClassName('materi-c');
 
     // Navigasi Soal
-    var $sub = 0;
-    var $progress = 0;
+    var $sub = document.getElementById('progress_halaman').innerHTML;
+    var $progress = document.getElementById('progress_halaman').innerHTML;
 
 
     // Hide semua bab
@@ -1043,9 +1052,11 @@ aria-valuemax="100">
         let persen = $progress * 12.5;
         status_bar.style.width = `${persen}%`;
     }
+    update_status();
 
     // Testing
     // console.log(materi_a)
+    let progressHalaman = document.getElementById('halaman');
 
     function next() {
         console.log('Selanjutnya', $sub)
@@ -1053,10 +1064,12 @@ aria-valuemax="100">
         $sub++;
         if ($sub > $progress) {
             $progress++;
+            progressHalaman.value = $progress;
+            updateHalaman.submit();
+            
         }
         show_sub($sub);
         nav_tombol();
-        update_status();
         active_sub('nav')
     }
 
@@ -1076,6 +1089,21 @@ aria-valuemax="100">
         nav_tombol()
         active_sub('nav')
     }
+
+    // Mempertahankan sidebar tetap aktif
+    let $side_C = document.querySelectorAll('#side_C li')
+    console.log("INI BAGIAN SIDE C", $side_C)
+
+    for(let i=0; i<=$progress;i++){
+            console.log('BY SESSION',$side_C[i]);
+            $side_C[i].querySelector('a').classList.add('active');
+            $side_C[i].querySelector('a').classList.remove('disabled');
+            $side_C[i].querySelector('a').classList.remove('text-gray');
+
+            // Mengubah lock menjadi dot
+            $side_C[i].querySelector('i').classList.remove('bi-lock')
+            $side_C[i].querySelector('i').classList.add('bi-dot')
+        }
 
 
 </script>

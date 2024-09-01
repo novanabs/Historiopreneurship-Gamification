@@ -42,4 +42,7 @@ class LatihanController extends Controller
     public function dragndrop(){
         return view('latihan.dragndrop');
     }
+    public function latihan2(){
+        return view('latihan.latihan2');
+    }
 }
