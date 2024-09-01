@@ -47,11 +47,12 @@
                 <div class="card p-4">
                     <div class="card-body">
                         <h5 class="card-title">Badge</h5>
-                        <p class="card-text">Perolehan Badge (3/3)</p>
+                        <p class="card-text">Perolehan Badge (0/4)</p>
                         <ul class="list-inline">
-                            <li class="list-inline-item"><img src="{{ asset('img/aktif.png') }}" alt="aktif" width="100px"></li>
-                            <li class="list-inline-item"><img src="{{ asset('img/rajin.png') }}" alt="rajin" width="100px"></li>
-                            <li class="list-inline-item"><img src="{{ asset('img/cepat.png') }}" alt="cepat" width="100px"></li>
+                            <li class="list-inline-item"><img src="{{ asset('img/high_rank.png') }}" alt="aktif" width="100px"></li>
+                            <li class="list-inline-item"><img src="{{ asset('img/master.png') }}" alt="rajin" width="100px"></li>
+                            <li class="list-inline-item"><img src="{{ asset('img/pembelajar_cepat.png') }}" alt="cepat" width="100px"></li>
+                            <li class="list-inline-item"><img src="{{ asset('img/penguasa_materi.png') }}" alt="cepat" width="100px"></li>
                         </ul>
                     </div>
                 </div>
