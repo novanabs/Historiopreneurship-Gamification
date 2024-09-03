@@ -65,22 +65,22 @@
                         <p class="card-text display-5">{{ auth()->user()->poin }}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Progress</h5>
+                        <h5 class="card-title">Progress</h5> 
                         <br><br>
 
                         <h6 class="text-start">Informasi Umum</h6>
                         <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated text-dark" style="width:100%" id="status_bar"></div>
+                            <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated text-dark" style="width:{{$materi_a * 16.6666667}}%" id="status_bar"></div>
                         </div> 
 
                         <h6 class="text-start mt-3">1. Kesejarahan</h6>
                         <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                           <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" style="width:57%" id="status_bar"></div>
+                           <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" style="width:{{$materi_b * 20}}%" id="status_bar"></div>
                         </div> 
 
                         <h6 class="text-start mt-3">2. KWU & Kepariwisataan</h6>
                         <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" style="width:23%" id="status_bar"></div>
+                            <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" style="width:{{$materi_c * 12.5}}%" id="status_bar"></div>
                         </div> 
 
                         

@@ -96,7 +96,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    Selamat datang, {{ auth()->user()->nama_lengkap }}
+                                    Selamat datang, {{ auth()->user()->nama_lengkap }} {{session('materi_a')}}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                     <li>
@@ -308,7 +308,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('dragndrop') }}" class="nav-link  sub  disabled text-gray ">
+                    <a href="{{ route('dragndrop') }}" class="nav-link  sub  text-gray ">
                         <i class="bi bi-lock"></i>
                         <p>
                           Latihan
@@ -371,7 +371,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('latihan2') }}" class="nav-link  sub  disabled text-gray ">
+                    <a href="{{ route('latihan2') }}" class="nav-link  sub text-gray ">
                         <i class="bi bi-lock"></i>
                         <p>
                           Latihan (!)
@@ -496,7 +496,6 @@
                 click_sound.play()
             }
             
-            console.log('Ini dari main', materi_a[$sub].id);
             // matikan_active();
             nav_link.forEach(element => {
                 if(element.name == materi_a[$sub].id){
@@ -518,7 +517,54 @@
 
         active_sub()
         
-        
+        // Mempertahankan progress halaman
+        // Index dimulai dari 0
+
+        let $progress_a = {{session('materi_a') ?? 0}}
+        let $progress_b = {{session('materi_b') ?? 0}}
+        let $progress_c = {{session('materi_c') ?? 0}}
+
+        function buka_sub($side, $bab){
+            console.log('MAU BUKA SUB YAAA', $side)
+            if($bab == "A"){
+                for(let i=0; i<=$progress_a;i++){
+                    console.log($progress_a)
+                    $side[i].querySelector('a').classList.remove('disabled');
+                    $side[i].querySelector('a').classList.remove('text-gray');
+
+                    // Mengubah lock menjadi dot
+                    $side[i].querySelector('i').classList.remove('bi-lock')
+                    $side[i].querySelector('i').classList.add('bi-dot')
+                }
+            }else if($bab == "B"){
+                for(let i=0; i<=$progress_b;i++){
+                    console.log($progress_b)
+                    $side[i].querySelector('a').classList.remove('disabled');
+                    $side[i].querySelector('a').classList.remove('text-gray');
+
+                    // Mengubah lock menjadi dot
+                    $side[i].querySelector('i').classList.remove('bi-lock')
+                    $side[i].querySelector('i').classList.add('bi-dot')
+                }
+            }else if($bab == "C"){
+                for(let i=0; i<=$progress_c;i++){
+                    console.log($progress_c)
+                    $side[i].querySelector('a').classList.remove('disabled');
+                    $side[i].querySelector('a').classList.remove('text-gray');
+
+                    // Mengubah lock menjadi dot
+                    $side[i].querySelector('i').classList.remove('bi-lock')
+                    $side[i].querySelector('i').classList.add('bi-dot')
+                }
+            }
+        }
+
+        let $side_A = document.querySelectorAll('#side_A li')
+        let $side_B = document.querySelectorAll('#side_B li')
+        let $side_C = document.querySelectorAll('#side_C li')
+        buka_sub($side_A, 'A')
+        buka_sub($side_B, 'B')
+        buka_sub($side_C, 'C')
         
         
 
