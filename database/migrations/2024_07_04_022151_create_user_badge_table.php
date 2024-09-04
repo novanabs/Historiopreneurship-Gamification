@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('email')->index();
             $table->unsignedBigInteger('id_badge');
             $table->index('id_badge');
+            $table->string('status');
         });
     }
 

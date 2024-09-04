@@ -6,6 +6,7 @@ use App\Http\Controllers\nilaiController;
 use App\Http\Controllers\RefleksiController;
 use App\Http\Controllers\RefleksiKesejarahanController;
 use App\Http\Controllers\uploadFileController;
+use App\Http\Controllers\userBadgeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\DosenController;
@@ -28,28 +29,32 @@ Route::post('/login', [LoginController::class, 'auth'])->name('login.auth');
 // Middleware auth
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
+    // Route untuk menampilkan dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
-    Route::get('/data-pengguna',[DashboardController::class,'showUser'])->name('dashboard.showUser') ->middleware('admin');
-    
+    // Route untuk klaim Master Badge
+    Route::post('/klaim-master-badge', [UserBadgeController::class, 'awardMasterBadge'])->name('awardMasterBadge');
+    Route::post('/klaim-penguasa-materi-badge', [UserBadgeController::class, 'awardPenguasaMateriBadge'])->name('awardPenguasaMateriBadge');
+    Route::get('/data-pengguna', [DashboardController::class, 'showUser'])->name('dashboard.showUser')->middleware('admin');
+
     // Pemindahan halaman
     Route::get('/A-Informasi-Umum', [HalamanController::class, 'A'])->name('pages.A');
     Route::get('/B-Kesejarahan', [HalamanController::class, 'B'])->name('pages.B');
     Route::post('/B-Kesejarahan/kelompok', [jawabanKelompokController::class, 'simpanJawaban'])->name('simpanJawabanKelompok');
-    Route::post('/B-Kesejarahan/individu', [AnalisisIndividuController::class, 'simpanJawabanIndividu'])->name('simpanAnalisisIndividu');  
-    Route::post('/B-Kesejarahan/refleksi', [RefleksiController::class, 'simpanRefleksi'])->name('simpanRefleksiKesejarahan');  
-    Route::post('/B-Kesejarahan/uploadFile', [uploadFileController::class, 'uploadFile'])->name('uploadFileKesejarahan');      
+    Route::post('/B-Kesejarahan/individu', [AnalisisIndividuController::class, 'simpanJawabanIndividu'])->name('simpanAnalisisIndividu');
+    Route::post('/B-Kesejarahan/refleksi', [RefleksiController::class, 'simpanRefleksi'])->name('simpanRefleksiKesejarahan');
+    Route::post('/B-Kesejarahan/uploadFile', [uploadFileController::class, 'uploadFile'])->name('uploadFileKesejarahan');
     Route::get('/C-Kewirausahaan-dan-Kepariwisataan', [HalamanController::class, 'C'])->name('pages.C');
     Route::post('/C-Kewirausahaan-dan-Kepariwisataan/aktivitaskelompok', [jawabanKelompokController::class, 'simpanAktivitas'])->name('simpanAktivitas');
     Route::post('/C-Kewirausahaan-dan-Kepariwisataan/uploadFile', [uploadFileController::class, 'uploadFile'])->name('uploadFileKewirausahaan');
-    Route::post('/C-Kewirausahaan-dan-Kepariwisataan/individu', [AnalisisIndividuController::class, 'simpanJawabanIndividuKewirausahaan'])->name('simpanJawabanIndividuKewirausahaan');  
-    Route::post('/C-Kewirausahaan-dan-Kepariwisataan/refleksi', [RefleksiController::class, 'simpanRefleksi'])->name('simpanRefleksiKewirausahaan');  
+    Route::post('/C-Kewirausahaan-dan-Kepariwisataan/individu', [AnalisisIndividuController::class, 'simpanJawabanIndividuKewirausahaan'])->name('simpanJawabanIndividuKewirausahaan');
+    Route::post('/C-Kewirausahaan-dan-Kepariwisataan/refleksi', [RefleksiController::class, 'simpanRefleksi'])->name('simpanRefleksiKewirausahaan');
     Route::get('/materi', [HalamanController::class, 'materi'])->name('pages.materi');
-    Route::get('/Daftar-Pustaka',[HalamanController::class, 'daftarPustaka'])->name('pages.dafus');
-    Route::get('/reviewGuru',[HalamanController::class, 'review'])->name('pages.reviewGuru');
+    Route::get('/Daftar-Pustaka', [HalamanController::class, 'daftarPustaka'])->name('pages.dafus');
+    Route::get('/reviewGuru', [HalamanController::class, 'review'])->name('pages.reviewGuru');
 });
 
 // Middleware admin
-Route::group(['middleware' => ['admin']], function(){
+Route::group(['middleware' => ['admin']], function () {
     Route::get('/data-pengguna', [DashboardController::class, 'showUser'])->name('dashboard.showUser');
 
 });
@@ -59,20 +64,20 @@ Route::get('/latihan', [LatihanController::class, 'latihan'])->name('latihan');
 Route::put('/latihan', [LatihanController::class, 'latihan']);
 Route::get('/kuis', [LatihanController::class, 'kuis'])->name('kuis');
 Route::get('/evaluasi', [LatihanController::class, 'evaluasi'])->name('evaluasi');
-Route::post('/evaluasi',[NilaiController::class, 'simpanNilai'])->name('simpanNilai');
+Route::post('/evaluasi', [NilaiController::class, 'simpanNilai'])->name('simpanNilai');
 Route::get('/info', [LatihanController::class, 'info'])->name('info');
 Route::get('/dragndrop', [LatihanController::class, 'dragndrop'])->name('dragndrop');
 Route::get('/latihan2', [LatihanController::class, 'latihan2'])->name('latihan2');
 
 // Controller Dosen
-Route::get('/dataKelas',[DosenController::class,'datakelas'])->name('dataKelas');
-Route::get('/dataLatihan',[DosenController::class,'dataLatihan'])->name('dataLatihan');
-Route::get('/dataMahasiswa',[DosenController::class,'dataMahasiswa'])->name('dataMahasiswa');
+Route::get('/dataKelas', [DosenController::class, 'datakelas'])->name('dataKelas');
+Route::get('/dataLatihan', [DosenController::class, 'dataLatihan'])->name('dataLatihan');
+Route::get('/dataMahasiswa', [DosenController::class, 'dataMahasiswa'])->name('dataMahasiswa');
 Route::post('/dataMahasiswa/save', [DosenController::class, 'saveGroup'])->name('dataMahasiswa.saveGroup');
 Route::post('/dataMahasiswa/remove', [DosenController::class, 'removeFromGroup'])->name('dataMahasiswa.removeFromGroup');
 Route::post('/dataMahasiswa/autoAssignGroup', [DosenController::class, 'autoAssignGroup'])->name('dataMahasiswa.autoAssignGroup');
 
-Route::get('/dataNilai',[DosenController::class,'dataNilai'])->name('dataNilai');
+Route::get('/dataNilai', [DosenController::class, 'dataNilai'])->name('dataNilai');
 
 // data jawaban individu
 Route::get('/jawabanIndividu/{email}', [AnalisisIndividuController::class, 'tampilkanJawabanIndividu'])->name('dataJawabanIndividu');

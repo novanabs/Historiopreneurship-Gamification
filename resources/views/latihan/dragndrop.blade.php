@@ -181,7 +181,7 @@
 <body>
     <div class="container">
         <h1 class="title">Manakah 5 objek wisata yang ada di Kalimantan Selatan?</h1>
-        <div class ="panduan">
+        <div class="panduan">
             <h4>Panduan Pengerjaan</h4>
             <ol>
                 <li>Pilih Gambar yang menurut Anda Benar</li>
@@ -326,8 +326,10 @@
         });
 
         function checkResults() {
-            showModal(`Skor Anda: ${correctAnswers} dari 5`);
+            const score = correctAnswers * 20;
+            showModal(`Skor Anda: ${score} dari 100`);
         }
+
 
         function resetGame() {
             resetModal.style.display = "block";
@@ -359,7 +361,7 @@
             resetModal.style.display = "none";
         }
 
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
