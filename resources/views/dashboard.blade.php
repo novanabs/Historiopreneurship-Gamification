@@ -66,6 +66,82 @@
                                 <p class="text-center">Belum ada badge yang diklaim.</p>
                             </div>
                         @endif
+
+            <!-- Badge -->
+            <div class="col-md-6 mb-4">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Badge</h5>
+                        <p class="card-text">Perolehan Badge (3/3)</p>
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><img src="{{ asset('img/aktif.png') }}" alt="aktif" width="100px"></li>
+                            <li class="list-inline-item"><img src="{{ asset('img/rajin.png') }}" alt="rajin" width="100px"></li>
+                            <li class="list-inline-item"><img src="{{ asset('img/cepat.png') }}" alt="cepat" width="100px"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Poin -->
+            <div class="col-md-6 mb-4">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Poin</h5>
+                        <p class="card-text display-5">{{ auth()->user()->poin }}</p>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Progress</h5> 
+                        <br><br>
+
+                        <h6 class="text-start">Informasi Umum</h6>
+                        <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated text-dark" style="width:{{$materi_a * 16.6666667}}%" id="status_bar"></div>
+                        </div> 
+
+                        <h6 class="text-start mt-3">1. Kesejarahan</h6>
+                        <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                           <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" style="width:{{$materi_b * 20}}%" id="status_bar"></div>
+                        </div> 
+
+                        <h6 class="text-start mt-3">2. KWU & Kepariwisataan</h6>
+                        <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" style="width:{{$materi_c * 12.5}}%" id="status_bar"></div>
+                        </div> 
+
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- Leaderboard -->
+            <div class="col-md-6 mb-4">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Leaderboard</h5>
+                        <p class="card-text">Top 10 Siswa:</p>
+                        <table class="table table-bordered table-stripped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Poin</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $n= 1;
+                                @endphp
+                                @foreach ($users as $user)
+                                <tr>
+                                    <th scope="row">{{ $n }}</th>
+                                    <td>{{ $user->nama_lengkap }}</td>
+                                    <td>{{ $user->poin }}</td>
+                                </tr>
+                                @php
+                                    $n++;
+                                @endphp
+                                @endforeach
+                            </tbody>
+
+                        </table>
                     </div>
                     <!-- Button to open the modal -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#badgeModal">

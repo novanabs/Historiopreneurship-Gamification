@@ -251,7 +251,11 @@
         </div>
     </div>
 
+    <div class="materi-a"></div>
+
     <script>
+        const $sub = 0;
+        const materi_a = document.getElementsByClassName('materi-a');
         const jawabanElements = document.querySelectorAll('.jawaban');
         const kotakJawaban = document.getElementById('kotakJawaban');
         const soalContainer = document.querySelector('.soal');

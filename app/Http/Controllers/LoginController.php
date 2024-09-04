@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AksesHalaman;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -22,11 +23,25 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
+        
+
         // dd($credentials);
 
 
         if (Auth::attempt($credentials, $request->checkRemember)) {
             $request->session()->regenerate();
+
+            // Menyimpan progress ke dalam Session
+            $materi_a = AksesHalaman::where('email', auth()->user()->email)->value('materi_a');
+            $materi_b = AksesHalaman::where('email', auth()->user()->email)->value('materi_b');
+            $materi_c = AksesHalaman::where('email', auth()->user()->email)->value('materi_c');
+
+            // dd($materi_a, $materi_b, $materi_c);
+
+            Session::put('materi_a', $materi_a);
+            Session::put('materi_b', $materi_b);
+            Session::put('materi_c', $materi_c);
+
             // dd($credentials);
             return redirect()->intended('/');
         }

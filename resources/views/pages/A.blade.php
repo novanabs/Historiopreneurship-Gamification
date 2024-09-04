@@ -240,6 +240,53 @@
     </div>
 </div>
 
+{{-- Pop up --}}
+<style>
+    .popup {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;}
+
+    .popup-content {
+    position: relative;
+    margin: 15% auto;
+    padding: 20px;
+    width: 300px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#pointsDisplay {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+</style>
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="closeBtn">&times;</span>
+        <h3>Selamat anda mendapatkan poin</h3>
+        <p id="pointsDisplay" class="text-center">0</p>
+    </div>
+</div>
+<script>
+    
+</script>
+
 <form id="updateHalaman" action="{{url('updateAksesHalaman')}}" method="GET" hidden>
     @csrf
     <input type="hidden" name="user_id" value="{{ $user }}">
@@ -248,6 +295,31 @@
 </form>
 
     <script>
+    // Sistem poin
+    var popup = document.getElementById("popup");
+    var closeBtn = document.getElementsByClassName("closeBtn")[0];
+    var pointsDisplay = document.getElementById("pointsDisplay");
+
+    // Misalkan poin yang ingin ditampilkan adalah 150
+    var points = 175;
+
+    function openPopupBtnS(){
+        pointsDisplay.textContent = points;
+        popup.style.display = "block";
+    }
+
+
+    closeBtn.addEventListener("click", function () {
+        popup.style.display = "none";
+    });
+
+    // Menutup popup jika pengguna mengklik di luar konten popup
+    window.addEventListener("click", function (event) {
+        if (event.target == popup) {
+            popup.style.display = "none";
+        }
+    });
+
         // Mengambil semua class sub
         const materi_a = document.getElementsByClassName('materi-a');
 
@@ -303,6 +375,11 @@
         // console.log(materi_a)
         let updateHalaman = document.getElementById('updateHalaman');
         let progressHalaman = document.getElementById('halaman');
+
+        if($sub == 6){
+            openPopupBtnS();
+                
+            }
         
         function next(){
             console.log('Selanjutnya',$sub)
@@ -313,6 +390,8 @@
                 progressHalaman.value = $progress;
                 updateHalaman.submit()
             }      
+            
+            
             show_sub($sub);
             nav_tombol()
             update_status();
@@ -329,19 +408,21 @@
         }
     
         // Mempertahankan sidebar tetap aktif
-        let $side_A = document.querySelectorAll('#side_A li')
-        console.log("INI BAGIAN SIDE A", $side_A, {{session('progress') ?? 0}})
+        let $sides_A = document.querySelectorAll('#side_A li')
+        console.log("INI BAGIAN SIDE A", $sides_A, {{session('progress') ?? 0}})
 
         for(let i=0; i<=$progress;i++){
-            console.log('BY SESSION',$side_A[i]);
-            $side_A[i].querySelector('a').classList.add('active');
-            $side_A[i].querySelector('a').classList.remove('disabled');
-            $side_A[i].querySelector('a').classList.remove('text-gray');
+            console.log('BY SESSION',$sides_A[i]);
+            $sides_A[i].querySelector('a').classList.add('active');
+            $sides_A[i].querySelector('a').classList.remove('disabled');
+            $sides_A[i].querySelector('a').classList.remove('text-gray');
 
             // Mengubah lock menjadi dot
-            $side_A[i].querySelector('i').classList.remove('bi-lock')
-            $side_A[i].querySelector('i').classList.add('bi-dot')
+            $sides_A[i].querySelector('i').classList.remove('bi-lock')
+            $sides_A[i].querySelector('i').classList.add('bi-dot')
         }
+
+
 
         // nav_link.forEach(element => {
         //         if(element.name == materi_a[$sub].id){

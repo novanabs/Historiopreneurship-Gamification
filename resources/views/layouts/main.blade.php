@@ -108,21 +108,22 @@
                                         </form>
                                     </li>
                                     <li>
-                                        <form action="{{route('login.logout')}}" method="get">
+                                        <form action="{{route('pages.reviewGuru')}}" method="get">
                                             @csrf
                                             <button type="submit" class="dropdown-item">
-                                                <i class="bi bi-box-arrow-right"></i> Logout
+                                                <i class="bi bi-journal-check"></i> Review jawaban
                                             </button>
                                         </form>
                                     </li>
                                     <li>
-                                        <form action="{{route('pages.reviewGuru')}}" method="get">
+                                        <form action="{{route('login.logout')}}" method="get">
                                             @csrf
                                             <button type="submit" class="dropdown-item">
-                                                <i class="bi bi-box-arrow-right"></i> review jawaban
+                                                <i class="bi bi-box-arrow-right"></i> Log Out
                                             </button>
                                         </form>
                                     </li>
+                                    
                                 </ul>
                             </li>
                         @endauth
@@ -147,31 +148,32 @@
             <li class="nav-header">MENU</li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('dataKelas') }}">
-                    <i class="bi bi-speedometer"></i>
+                    <i class="bi bi-list-task"></i>
                    <p>Data Kelas</p>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('dataMahasiswa') }}">
-                    <i class="bi bi-speedometer"></i>
+                    <i class="bi bi-people-fill"></i>
                    <p>Data Mahasiswa</p>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('dataNilai') }}">
-                    <i class="bi bi-speedometer"></i>
+                    <i class="bi bi-list-ol"></i>
                    <p>Data Nilai</p>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('dataLatihan') }}">
-                    <i class="bi bi-speedometer"></i>
+                    <i class="bi bi-journal-text"></i>
                    <p>Data Latihan</p>
                 </a>
             </li>
                 
             @endif
-            @can('admin')
+
+            @if (auth()->user()->peran == 'guru')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('evaluasi') }}">
                     <i class="bi bi-speedometer"></i>
@@ -212,12 +214,15 @@
             </li>
             @endcan
 
+
+            @if (auth()->user()->peran == 'siswa')
             <li class="nav-item m {{ isset($halaman_terbuka) && $halaman_terbuka == 'dashboard' ? 'menu-open' : '' }}">
                 <a class="nav-link" href="{{ route('dashboard.index') }}" >
                     <i class="bi bi-speedometer"></i>
                    <p>Dashboard</p>
                 </a>
             </li>
+            @endif
 
 
             <li class="nav-header">MATERI</li>
@@ -308,10 +313,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('dragndrop') }}" class="nav-link  sub  disabled text-gray ">
+                    <a href="{{ route('dragndrop') }}" class="nav-link disabled sub text-gray ">
                         <i class="bi bi-lock"></i>
                         <p>
-                          Latihan
+                          Latihan DND
                         </p>
                       </a> 
                 </li>
@@ -371,10 +376,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('latihan2') }}" class="nav-link  sub  disabled text-gray ">
+                    <a href="{{ route('latihan2') }}" class="nav-link sub disabled text-gray ">
                         <i class="bi bi-lock"></i>
                         <p>
-                          Latihan (!)
+                          Latihan TTS
                         </p>
                       </a> 
                 </li>
@@ -496,11 +501,10 @@
                 click_sound.play()
             }
             
-            console.log('Ini dari main', materi_a[$sub].id);
             // matikan_active();
             nav_link.forEach(element => {
                 if(element.name == materi_a[$sub].id){
-                    // console.log(element.name, materi_a[$sub].id);
+                    console.log(element.name, materi_a[$sub].id);
                     console.log(element);
                     element.classList.add('active');
                     element.classList.remove('disabled');
@@ -518,7 +522,54 @@
 
         active_sub()
         
-        
+        // Mempertahankan progress halaman
+        // Index dimulai dari 0
+
+        let $progress_a = {{session('materi_a') ?? 0}}
+        let $progress_b = {{session('materi_b') ?? 0}}
+        let $progress_c = {{session('materi_c') ?? 0}}
+
+        function buka_sub($side, $bab){
+            console.log('MAU BUKA SUB YAAA', $side)
+            if($bab == "A"){
+                for(let i=0; i<=$progress_a;i++){
+                    console.log($progress_a)
+                    $side[i].querySelector('a').classList.remove('disabled');
+                    $side[i].querySelector('a').classList.remove('text-gray');
+
+                    // Mengubah lock menjadi dot
+                    $side[i].querySelector('i').classList.remove('bi-lock')
+                    $side[i].querySelector('i').classList.add('bi-dot')
+                }
+            }else if($bab == "B"){
+                for(let i=0; i<=$progress_b;i++){
+                    console.log($progress_b)
+                    $side[i].querySelector('a').classList.remove('disabled');
+                    $side[i].querySelector('a').classList.remove('text-gray');
+
+                    // Mengubah lock menjadi dot
+                    $side[i].querySelector('i').classList.remove('bi-lock')
+                    $side[i].querySelector('i').classList.add('bi-dot')
+                }
+            }else if($bab == "C"){
+                for(let i=0; i<=$progress_c;i++){
+                    console.log($progress_c)
+                    $side[i].querySelector('a').classList.remove('disabled');
+                    $side[i].querySelector('a').classList.remove('text-gray');
+
+                    // Mengubah lock menjadi dot
+                    $side[i].querySelector('i').classList.remove('bi-lock')
+                    $side[i].querySelector('i').classList.add('bi-dot')
+                }
+            }
+        }
+
+        let $side_A = document.querySelectorAll('#side_A li')
+        let $side_B = document.querySelectorAll('#side_B li')
+        let $side_C = document.querySelectorAll('#side_C li')
+        buka_sub($side_A, 'A')
+        buka_sub($side_B, 'B')
+        buka_sub($side_C, 'C')
         
         
 
