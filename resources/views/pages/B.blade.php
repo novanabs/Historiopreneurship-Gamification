@@ -11,7 +11,7 @@
 
 
 <div class="mt-3">
-    <h1 id="progress_halaman" hidden>{{session('progress') ?? 0}}</h1>
+    <h1 id="progress_halaman">{{session('progress') ?? 0}}</h1>
     <div class="row">
         <div class="col">
             <h2>B. Kesejarahan</h2>
@@ -785,8 +785,8 @@
 </form>
 
 <script>
-        // Sistem poin
-        var popup = document.getElementById("popup");
+    // Sistem poin
+    var popup = document.getElementById("popup");
     var closeBtn = document.getElementsByClassName("closeBtn")[0];
     var pointsDisplay = document.getElementById("pointsDisplay");
 
@@ -817,6 +817,21 @@
     var $sub = document.getElementById('progress_halaman').innerHTML;
     var $progress = document.getElementById('progress_halaman').innerHTML;
 
+    // Navigasi tombol
+    function nav_tombol() {
+        
+        if ($sub == 6) {
+            // document.getElementById('next').disabled = true;
+            location.href = '{{ route('dragndrop') }}';
+        } else if ($sub == 0) {
+            document.getElementById('prev').disabled = true;
+        } else {
+            document.getElementById('prev').disabled = false;
+            document.getElementById('next').disabled = false;
+        }
+    }
+    nav_tombol();
+
     // Hide semua bab
     function hide_semua_sub() {
         for (let i = 0; i <= 5; i++) {
@@ -833,19 +848,7 @@
     }
     show_sub($sub);
 
-    // Navigasi tombol
-    function nav_tombol() {
-        
-        if ($sub == 5) {
-            document.getElementById('next').disabled = true;
-        } else if ($sub == 0) {
-            document.getElementById('prev').disabled = true;
-        } else {
-            document.getElementById('prev').disabled = false;
-            document.getElementById('next').disabled = false;
-        }
-    }
-    nav_tombol();
+    
 
     // Status Bar
 

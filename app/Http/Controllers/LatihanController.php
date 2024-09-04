@@ -40,9 +40,11 @@ class LatihanController extends Controller
         return view('latihan.info');
     }
     public function dragndrop(){
-        return view('latihan.dragndrop');
+        $data['halaman_terbuka'] = 'drag n drop'; 
+        return view('latihan.dragndrop', $data);
     }
     public function latihan2(){
-        return view('latihan.latihan2');
+        $data['halaman_terbuka'] = 'latihan2'; 
+        return view('latihan.latihan2', $data);
     }
 }

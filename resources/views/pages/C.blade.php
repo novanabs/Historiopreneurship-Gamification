@@ -1086,6 +1086,19 @@ aria-valuemax="100">
     var $sub = document.getElementById('progress_halaman').innerHTML;
     var $progress = document.getElementById('progress_halaman').innerHTML;
 
+    // Navigasi tombol
+    function nav_tombol() {
+        if ($sub == 9) {
+            location.href = '{{ route('latihan2') }}';
+        } else if ($sub == 0) {
+            document.getElementById('prev').disabled = true;
+        } else {
+            document.getElementById('prev').disabled = false;
+            document.getElementById('next').disabled = false;
+        }
+    }
+    nav_tombol();
+
 
     // Hide semua bab
     function hide_semua_sub() {
@@ -1105,18 +1118,7 @@ aria-valuemax="100">
 
 
 
-    // Navigasi tombol
-    function nav_tombol() {
-        if ($sub == 8) {
-            document.getElementById('next').disabled = true;
-        } else if ($sub == 0) {
-            document.getElementById('prev').disabled = true;
-        } else {
-            document.getElementById('prev').disabled = false;
-            document.getElementById('next').disabled = false;
-        }
-    }
-    nav_tombol();
+    
 
     // Status Bar
     const status_bar = document.getElementById('status_bar');
