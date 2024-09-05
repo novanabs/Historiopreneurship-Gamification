@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
     // Route untuk klaim Master Badge
     Route::post('/klaim-master-badge', [UserBadgeController::class, 'awardMasterBadge'])->name('awardMasterBadge');
     Route::post('/klaim-penguasa-materi-badge', [UserBadgeController::class, 'awardPenguasaMateriBadge'])->name('awardPenguasaMateriBadge');
+    Route::post('/klaim-high-rank-badge', [UserBadgeController::class, 'awardHighRankBadge'])->name('awardHighRankBadge');
     Route::get('/data-pengguna', [DashboardController::class, 'showUser'])->name('dashboard.showUser')->middleware('admin');
 
     // Pemindahan halaman
