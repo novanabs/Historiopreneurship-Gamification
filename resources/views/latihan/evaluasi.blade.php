@@ -140,6 +140,11 @@ $soal = $data_soal[$soal_sekarang];
                                     value="d">
                                 <label class="form-check-label" for="exampleRadios5" id="pilihan-4"></label>
                             </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios6"
+                                    value="e">
+                                <label class="form-check-label" for="exampleRadios6" id="pilihan-5"></label>
+                            </div>
                         </ol>
                     </div>
                 </div>
@@ -165,11 +170,39 @@ $soal = $data_soal[$soal_sekarang];
                 <div class="card-header">
                     <table class="table table-sm">
                         <tr class="text-center">
-                            <td class="soal btn list_soal" style="background: whitesmoke" name='1'>1</td>
-                            <td class="soal btn list_soal" style="background: whitesmoke">2</td>
-                            <td class="soal btn list_soal" style="background: whitesmoke">3</td>
-                            <td class="soal btn list_soal" style="background: whitesmoke">4</td>
-                            <td class="soal btn list_soal" style="background: whitesmoke">5</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">1</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">2</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">3</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">4</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">5</td>
+                        </tr>
+                        <tr class="text-center">
+                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">6</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">7</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">8</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">9</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">10</td>
+                        </tr>
+                        <tr class="text-center">
+                            <td class="soal btn list_soal" style="background: whitesmoke">11</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">12</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">13</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">14</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">15</td>
+                        </tr>
+                        <tr class="text-center">
+                            <td class="soal btn list_soal" style="background: whitesmoke">16</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">17</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">18</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">19</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">20</td>
+                        </tr>
+                        <tr class="text-center">
+                            <td class="soal btn list_soal" style="background: whitesmoke">21</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">22</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">23</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">24</td>
+                            <td class="soal btn list_soal" style="background: whitesmoke">25</td>
                         </tr>
                     </table>
                 </div>
@@ -282,6 +315,7 @@ $soal = $data_soal[$soal_sekarang];
 
     // Mengubah data JSON dari HTML ke JSON Javascript, perlu dua kali parse
     const $data_soal = JSON.parse(JSON.parse($soal_soal.innerHTML));
+    console.log('Ini panjang $data_soal',$data_soal.length);
 
     // Cek isi data Soal di Console Log
     // console.log($data_soal)
@@ -293,6 +327,7 @@ $soal = $data_soal[$soal_sekarang];
     const $pilihan_2 = document.getElementById('pilihan-2');
     const $pilihan_3 = document.getElementById('pilihan-3');
     const $pilihan_4 = document.getElementById('pilihan-4');
+    const $pilihan_5 = document.getElementById('pilihan-5');
     var $soal_sekarang = 0;
 
     // Menghapus semua soal dan jawaban
@@ -321,11 +356,15 @@ $soal = $data_soal[$soal_sekarang];
     }
 
     function isi_soal($nomor) {
+        // for(let i = 0; i < 26; i++){
+        //     console.log($data_soal[i])
+        // }
         $soal.innerHTML = $data_soal[$nomor]['pertanyaan']
         $pilihan_1.innerHTML = $data_soal[$nomor]['pilihan'][0]['teks']
         $pilihan_2.innerHTML = $data_soal[$nomor]['pilihan'][1]['teks']
         $pilihan_3.innerHTML = $data_soal[$nomor]['pilihan'][2]['teks']
         $pilihan_4.innerHTML = $data_soal[$nomor]['pilihan'][3]['teks']
+        $pilihan_5.innerHTML = $data_soal[$nomor]['pilihan'][4]['teks']
     }
 
     // Update list soal
@@ -340,7 +379,7 @@ $soal = $data_soal[$soal_sekarang];
     // Matikan Tombol
     function nav_tombol() {
         // console.log($soal_sekarang)
-        if ($soal_sekarang == 4) {
+        if ($soal_sekarang == 24) {
             document.getElementById('next').disabled = true;
             document.getElementById('prev').disabled = false;
         } else if ($soal_sekarang == 0) {
@@ -383,14 +422,39 @@ $soal = $data_soal[$soal_sekarang];
 
     // Bank Soal
     var terjawab = 0;
-    const kunci_jawaban = ['a', 'b', 'b', 'd', 'a'];
-    let jawaban_mhs = { 0: null, 1: null, 2: null, 3: null, 4: null };
+    const kunci_jawaban = [];
+    // Mengambil kunci jawaban dari dalam data
+    let abjad;
+    for(let d = 0; d < 25; d++){
+        console.log($data_soal[d])
+        for(let e = 0; e < 5; e++){
+            console.log($data_soal[d]['pilihan'][e])
+            if($data_soal[d]['pilihan'][e]['benar_salah'] == true){
+                if($data_soal[d]['pilihan'][e]['id'] == 1){
+                    $abjad = 'a'
+                }else if($data_soal[d]['pilihan'][e]['id'] == 2){
+                    $abjad = 'b'
+                }else if($data_soal[d]['pilihan'][e]['id'] == 3){
+                    $abjad = 'c'
+                }else if($data_soal[d]['pilihan'][e]['id'] == 4){
+                    $abjad = 'd'
+                }else if($data_soal[d]['pilihan'][e]['id'] == 5){
+                    $abjad = 'e'
+                }
+                kunci_jawaban[d] = $abjad;
+            }
+        }
+    }
+    console.log(kunci_jawaban)
+
+
+    let jawaban_mhs = {};
     function simpan_jawaban() {
         if (jawaban_mhs[$soal_sekarang] == null) {
             terjawab += 1;
             progressBar()
         }
-        for (let k = 0; k < 4; k++) {
+        for (let k = 0; k < 5; k++) {
             if ($pilgan[k].checked) {
                 jawaban_mhs[$soal_sekarang] = $pilgan[k].value
             }
@@ -450,7 +514,7 @@ $soal = $data_soal[$soal_sekarang];
     console.log(bar)
     function progressBar() {
         console.log(terjawab)
-        let persen = terjawab * 20;
+        let persen = terjawab * 4;
         bar.style.width = `${persen}%`;
         console.log(bar)
     }
@@ -467,7 +531,7 @@ $soal = $data_soal[$soal_sekarang];
     function periksaJawaban() {
     let benar = 0;
     let salah = 0;
-    for (let m = 0; m < 5; m++) {
+    for (let m = 0; m < 25; m++) {
         console.log(kunci_jawaban[m], jawaban_mhs[m]);
         if (kunci_jawaban[m] == jawaban_mhs[m]) {
             benar += 1;
@@ -475,11 +539,11 @@ $soal = $data_soal[$soal_sekarang];
             salah += 1;
         }
     }
-    show_skor.innerHTML = benar * 20;
+    show_skor.innerHTML = benar * 4;
     jawaban_benar.innerHTML = benar;
     jawaban_salah.innerHTML = salah;
 
-    return benar * 20; // Return the score as nilai_akhir
+    return benar * 4; // Return the score as nilai_akhir
 }
 
     // Sound selesai mengerjakan soal

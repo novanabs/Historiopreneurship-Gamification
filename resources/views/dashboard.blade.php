@@ -207,13 +207,34 @@
                             @endforeach
                         </tbody>
 
-                    </table>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
 </body>
 
 </html>
+
+
+        <div class="materi-a"></div>
+
+        <script>
+            const $sub = 0;
+            const materi_a = document.getElementsByClassName('materi-a');
+        </script> --}}
+
+</body>
+
+<div class="materi-a" id="0"></div>
+    
+    <script>
+        const materi_a = document.getElementsByClassName('materi-a');
+        $sub = 0;
+    </script>
+</html>
+
+
 
 @endsection

@@ -99,14 +99,14 @@
                                     Selamat datang, {{ auth()->user()->nama_lengkap }}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                    <li>
+                                    {{-- <li>
                                         <form action="" method="get">
                                             @csrf
                                             <button type="submit" class="dropdown-item">
                                                 <i class="bi bi-person-circle"></i> Profil
                                             </button>
                                         </form>
-                                    </li>
+                                    </li> --}}
                                     <li>
                                         <form action="{{route('pages.reviewGuru')}}" method="get">
                                             @csrf

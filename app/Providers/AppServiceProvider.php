@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,5 +25,6 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('admin', function(User $user){
             return $user->peran == 'admin';
         });
+        Schema::defaultStringLength(191);
     }
 }

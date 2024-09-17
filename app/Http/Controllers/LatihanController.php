@@ -29,6 +29,7 @@ class LatihanController extends Controller
     }
     public function evaluasi(){
         $soal['soal'] = Soal::first();
+        $soal['halaman_terbuka'] = 0;
         $_SESSION['soal_sekarang'] = 0;
         $_SESSION['jawaban'] = 0;
         $_SESSION['nilai'] = 0;
@@ -37,7 +38,8 @@ class LatihanController extends Controller
     }
     
     public function info(){
-        return view('latihan.info');
+        $soal['halaman_terbuka'] = 0;
+        return view('latihan.info', $soal);
     }
     public function dragndrop(){
         $data['halaman_terbuka'] = 'drag n drop'; 
