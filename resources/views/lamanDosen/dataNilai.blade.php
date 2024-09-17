@@ -56,40 +56,47 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- Tab Kelompok -->
                 <div class="tab-pane fade" id="kelompok" role="tabpanel" aria-labelledby="kelompok-tab">
-                                    <table class="table text-center mt-3 table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Kelompok</th>
-                                                <th scope="col">Nama Siswa (Email)</th>
-                                                <th scope="col">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($Kelompoks->whereNotNull('id_kelompok')->groupBy('id_kelompok')->sortKeys() as $kelompokId => $kelompokGroup)
-                                                                    @php
-                                                                        $rowspan = $kelompokGroup->count();
-                                                                    @endphp
-                                                                    @foreach ($kelompokGroup as $index => $kelompok)
-                                                                        <tr>
-                                                                            @if ($index === 0)
-                                                                                <!-- Menampilkan nomor kelompok hanya pada baris pertama anggota kelompok -->
-                                                                                <th scope="row" rowspan="{{ $rowspan }}">Kelompok {{ $kelompokId }}</th>
-                                                                                <td>{{ $kelompok->email }}</td>
-                                                                                <td rowspan="{{ $rowspan }}">
-                                                                                    <!-- Update tombol untuk mengarah ke halaman kedua berdasarkan id_kelompok -->
-                                                                                    <a href="{{ route('dataJawabanKelompok', ['id_kelompok' => $kelompokId]) }}"
-                                                                                        class="btn btn-success">Nilai</a>
-                                                                                </td>
-                                                                            @else
-                                                                                <td>{{ $kelompok->email }}</td>
-                                                                            @endif
-                                                                        </tr>
-                                                                    @endforeach
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                    <!-- Tab Kelompok -->
+                    @php
+                        $kelompokData = $Kelompoks->whereNotNull('id_kelompok')->groupBy('id_kelompok')->sortKeys();
+                    @endphp
+                    @if($kelompokData->isEmpty())
+                        <p>tidak ada kelompok yang mengumpulkan tugas</p>
+                    @else
+                    <table class="table text-center mt-3 table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Kelompok</th>
+                                <th scope="col">Nama Siswa (Email)</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($kelompokData as $kelompokId => $kelompokGroup)
+                                                        @php
+                                                            $rowspan = $kelompokGroup->count();
+                                                        @endphp
+                                                        @foreach ($kelompokGroup as $index => $kelompok)
+                                                            <tr>
+                                                                @if ($index === 0)
+                                                                    <!-- Menampilkan nomor kelompok hanya pada baris pertama anggota kelompok -->
+                                                                    <th scope="row" rowspan="{{ $rowspan }}">Kelompok {{ $kelompokId }}</th>
+                                                                    <td>{{ $kelompok->email }}</td>
+                                                                    <td rowspan="{{ $rowspan }}">
+                                                                        <!-- Update tombol untuk mengarah ke halaman kedua berdasarkan id_kelompok -->
+                                                                        <a href="{{ route('dataJawabanKelompok', ['id_kelompok' => $kelompokId]) }}"
+                                                                            class="btn btn-success">Nilai</a>
+                                                                    </td>
+                                                                @else
+                                                                    <td>{{ $kelompok->email }}</td>
+                                                                @endif
+                                                            </tr>
+                                                        @endforeach
+                            @endforeach
+                        </tbody>
+                    </table>
+                    @endif
                 </div>
 
             </div>

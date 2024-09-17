@@ -32,7 +32,7 @@
 
 <body>
     
-
+    @if (auth()->user()->peran == 'siswa')
     <div class="row text-center">
         <!-- Profil -->
         <div class="col-md-6 mb-4">
@@ -176,7 +176,7 @@
                 </div>
             </div>
         </div>
-
+        @endif
         <!-- Leaderboard -->
         <div class="col-md-6 mb-4">
             <div class="card p-4">

@@ -11,7 +11,7 @@
 
 
 <div class="mt-3">
-    <h1 id="progress_halaman">{{session('progress') ?? 0}}</h1>
+    <h1 id="progress_halaman" hidden>{{session('progress') ?? 0}}</h1>
     <div class="row">
         <div class="col">
             <h2>B. Kesejarahan</h2>

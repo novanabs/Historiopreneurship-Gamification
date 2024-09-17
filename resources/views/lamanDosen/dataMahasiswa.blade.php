@@ -24,7 +24,11 @@
                         data-bs-target="#aturKelompok" type="button" role="tab" aria-controls="aturKelompok"
                         aria-selected="true">Atur Kelompok</button>
                 </li>
-                @for ($i = 1; $i <= 4; $i++)
+                @php
+                    // Mencari id_kelompok maksimal dari data yang ada
+                    $maxKelompokId = $Kelompoks->max('id_kelompok');
+                @endphp
+                @for ($i = 1; $i <= $maxKelompokId; $i++)
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="kelompok{{ $i }}-tab" data-bs-toggle="tab"
                             data-bs-target="#kelompok{{ $i }}" type="button" role="tab" aria-controls="kelompok{{ $i }}"
@@ -105,28 +109,27 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- Tabs for Kelompok 1 - 4 -->
-                @for ($i = 1; $i <= 4; $i++)
+
+                @for ($i = 1; $i <= $maxKelompokId; $i++)
+                                @php
+                                    // Temukan semua pengguna dalam kelompok saat ini
+                                    $kelompokUsers = $Kelompoks->where('id_kelompok', $i)->flatMap(function ($kelompok) {
+                                        return $kelompok->users;
+                                    });
+                                @endphp
                                 <div class="tab-pane fade" id="kelompok{{ $i }}" role="tabpanel" aria-labelledby="kelompok{{ $i }}-tab">
                                     <h4>Kelompok {{ $i }}</h4>
-                                    <table class="table text-center mt-3">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Nama Mahasiswa</th>
-                                                <th scope="col">Kelas</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @php
-                                                // Temukan semua pengguna dalam kelompok saat ini
-                                                $kelompokUsers = $Kelompoks->where('id_kelompok', $i)->flatMap(function ($kelompok) {
-                                                    return $kelompok->users;
-                                                });
-                                            @endphp
-
-                                            @if ($kelompokUsers->isNotEmpty())
+                                    @if ($kelompokUsers->isNotEmpty())
+                                        <table class="table text-center mt-3">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Nama Mahasiswa</th>
+                                                    <th scope="col">Kelas</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
                                                 @foreach ($kelompokUsers as $Mahasiswa)
                                                     <tr>
                                                         <td>{{ $Mahasiswa->nama_lengkap }}</td>
@@ -140,8 +143,8 @@
                                                                     Ubah Kelompok
                                                                 </button>
                                                                 <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                                    @for ($j = 1; $j <= 4; $j++)
-                                                                        @if ($j != $i) <!-- Avoid assigning the student to the current group -->
+                                                                    @for ($j = 1; $j <= $maxKelompokId; $j++)
+                                                                        @if ($j != $i) <!-- Hindari menugaskan ke kelompok saat ini -->
                                                                             <li>
                                                                                 <form action="{{ route('dataMahasiswa.saveGroup') }}" method="POST"
                                                                                     style="display: inline;">
@@ -169,45 +172,43 @@
                                                         </td>
                                                     </tr>
                                                 @endforeach
-                                            @else
-                                                <tr>
-                                                    <td colspan="4">Tidak ada mahasiswa di kelompok ini</td>
-                                                </tr>
-                                            @endif
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    @else
+                                        <p>Tidak ada mahasiswa di kelompok ini.</p>
+                                    @endif
                                 </div>
                 @endfor
+
             </div>
         </div>
     </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-<script src="//cdn.datatables.net/2.1.2/js/dataTables.min.js"></script>
-<script>
-    $(document).ready(function () {
-        // Inisialisasi DataTable dengan penomoran otomatis pada kolom pertama
-        var table = $('#tabelMahasiswa').DataTable({
-            "columnDefs": [
-                { "searchable": false, "orderable": false, "targets": 0 } // Kolom 0 adalah kolom "Nomor"
-            ],
-            "order": [[1, 'asc']], // Mengurutkan berdasarkan kolom "Nama Mahasiswa"
-            "drawCallback": function (settings) {
-                var api = this.api();
-                // Mulai penomoran dari 1 untuk setiap draw
-                api.column(0, { order: 'applied', search: 'applied' }).nodes().each(function (cell, i) {
-                    cell.innerHTML = i + 1;
-                });
-            }
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="//cdn.datatables.net/2.1.2/js/dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Inisialisasi DataTable dengan penomoran otomatis pada kolom pertama
+            var table = $('#tabelMahasiswa').DataTable({
+                "columnDefs": [
+                    { "searchable": false, "orderable": false, "targets": 0 } // Kolom 0 adalah kolom "Nomor"
+                ],
+                "order": [[1, 'asc']], // Mengurutkan berdasarkan kolom "Nama Mahasiswa"
+                "drawCallback": function (settings) {
+                    var api = this.api();
+                    // Mulai penomoran dari 1 untuk setiap draw
+                    api.column(0, { order: 'applied', search: 'applied' }).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                }
+            });
+
+            // Event listener untuk dropdown filter kelas
+            $('#filterKelas').on('change', function () {
+                var selectedValue = $(this).val();
+                table.column(2).search(selectedValue).draw(); // Kolom ketiga (index 2) adalah kolom "Kelas"
+            });
         });
+    </script>
 
-        // Event listener untuk dropdown filter kelas
-        $('#filterKelas').on('change', function () {
-            var selectedValue = $(this).val();
-            table.column(2).search(selectedValue).draw(); // Kolom ketiga (index 2) adalah kolom "Kelas"
-        });
-    });
-</script>
-
-@endsection
+    @endsection

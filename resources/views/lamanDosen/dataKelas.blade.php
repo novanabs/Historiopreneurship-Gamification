@@ -8,7 +8,7 @@
         <div class="col">
             <h2>Data Kelas</h2>
             <p>Menampilkan data kelas A1 dan A2, jumlah orang, nilai rata-rata, jumlah laki-laki perempuan</p>
-            <table class="table text-center ">
+            <table class="table text-center " id="tablekelas">
                 <thead>
                     <tr>
                         <th scope="col">Nomor</th>
@@ -41,5 +41,11 @@
         </div>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script src="//cdn.datatables.net/2.1.2/js/dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tablekelas').DataTable();
+    });
+</script>
 @endsection
