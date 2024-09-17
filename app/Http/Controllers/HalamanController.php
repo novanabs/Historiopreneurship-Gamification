@@ -118,7 +118,8 @@ class HalamanController extends Controller
 
     function daftarPustaka()
     {
-        return view('pages.daftarPustaka');
+        $data['halaman_terbuka'] = 0;
+        return view('pages.daftarPustaka', $data);
     }
 
     function materi()

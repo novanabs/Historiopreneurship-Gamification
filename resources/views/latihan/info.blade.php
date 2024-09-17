@@ -20,7 +20,13 @@
             </div>
         </div>
     </div>
+
+    <div class="materi-a" id="0"></div>
     
+    <script>
+        const materi_a = document.getElementsByClassName('materi-a');
+        $sub = 0;
+    </script>
 </div>
 
 @endsection
