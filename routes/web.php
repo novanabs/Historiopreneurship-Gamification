@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnalisisIndividuController;
+use App\Http\Controllers\dataExportController;
 use App\Http\Controllers\jawabanKelompokController;
 use App\Http\Controllers\nilaiController;
 use App\Http\Controllers\RefleksiController;
@@ -100,3 +101,6 @@ Route::post('/lamanSub', [SessionController::class, 'lamanSub'])->name('lamanSub
 // Progress akses Halaman
 
 Route::get('/updateAksesHalaman', [UpdateAksesHalamanController::class, 'update'])->name('updateAksesHalaman');
+
+// Export Data
+Route::get('/export-evaluasi', [dataExportController::class, 'exportEvaluasi'])->name('export.evaluasi');

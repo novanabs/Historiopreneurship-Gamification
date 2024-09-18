@@ -34,7 +34,7 @@
 
                 </tbody>
             </table>
-            <button type="button" class="btn btn-primary">Export</button>
+            <a href="{{ route('export.evaluasi') }}" class="btn btn-primary">Export</a>
         </div>
     </div>
 </div>
