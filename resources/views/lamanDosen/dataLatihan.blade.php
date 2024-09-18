@@ -5,48 +5,33 @@
 <div class="mt-3">
     <div class="row mt-3">
         <div class="col">
-            <h2>Data Latihan</h2>
-            <p>Menampilkan data hasil latihan, dosen dapat melakukan export dan menggunakan data table</p>
-            <table class="table text-center" id="dataLatihanTable">
+            <h2>Data Evaluasi</h2>
+            <p>Menampilkan data hasil Evaluasi, dosen dapat melakukan export dan menggunakan data table</p>
+            <table class="table text-center" id="dataEvaluasiTable">
                 <thead>
                     <tr>
                         <th scope="col">Nomor</th>
                         <th scope="col">Kelas</th>
                         <th scope="col">Nama</th>
-                        <th scope="col">Nilai Latihan</th>
+                        <th scope="col">Nilai Evaluasi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>A1</td>
-                        <td>Hendri</td>
-                        <td>80</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>A2</td>
-                        <td>Arifin</td>
-                        <td>85</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>A1</td>
-                        <td>Azimi</td>
-                        <td>90</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>A2</td>
-                        <td>Irfan</td>
-                        <td>80</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>A1</td>
-                        <td>Dayat</td>
-                        <td>70</td>
-                    </tr>
+                    @php
+                        $no = 1;
+                    @endphp
+                    @foreach($mahasiswa as $data)
+                                        <tr>
+                                            <th scope="row">{{ $no }}</th>
+                                            <td>{{ $data->nama_lengkap }}</td>
+                                            <td>{{ $data->kelas }}</td>
+                                            <td>{{ $data->nilai_akhir }}</td>
+                                        </tr>
+                                        @php
+                                            $no++;
+                                        @endphp
+                    @endforeach
+
                 </tbody>
             </table>
             <button type="button" class="btn btn-primary">Export</button>
@@ -54,10 +39,10 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-<script src ="//cdn.datatables.net/2.1.2/js/dataTables.min.js"></script>
+<script src="//cdn.datatables.net/2.1.2/js/dataTables.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#dataLatihanTable').DataTable();
+    $(document).ready(function () {
+        $('#dataEvaluasiTable').DataTable();
     });
 </script>
 @endsection

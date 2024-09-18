@@ -2,58 +2,6 @@
 
 @section('container')
 
-<style>
-    #particel-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        /* Agar tidak mengganggu interaksi UI */
-        overflow: hidden;
-    }
-
-    .particle {
-        position: absolute;
-        width: 0;
-        height: 0;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 20px solid yellow;
-        /* Warna bintang */
-        transform: rotate(35deg);
-        animation: fall linear forwards, rotate 3s linear infinite;
-    }
-
-    .particle::before,
-    .particle::after {
-        content: '';
-        position: absolute;
-        top: -15px;
-        left: -10px;
-        width: 0;
-        height: 0;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 20px solid yellow;
-    }
-
-    .particle::before {
-        transform: rotate(-70deg);
-    }
-
-    .particle::after {
-        transform: rotate(70deg);
-    }
-
-    @keyframes fall {
-        to {
-            transform: translateY(100vh);
-            opacity: 0;
-        }
-    }
-</style>
 
 
 <?php
@@ -88,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 $soal = $data_soal[$soal_sekarang];   
 ?>
+
 <p id="kumpulan-soal" hidden>{{$data_dari_json}}</p>
 
 <div class=" mb-3" id="halaman-latihan">
@@ -170,17 +119,26 @@ $soal = $data_soal[$soal_sekarang];
                 <div class="card-header">
                     <table class="table table-sm">
                         <tr class="text-center">
-                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">1</td>
-                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">2</td>
-                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">3</td>
-                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">4</td>
-                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">5</td>
+                            <td class="soal btn list_soal"
+                                style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">1</td>
+                            <td class="soal btn list_soal"
+                                style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">2</td>
+                            <td class="soal btn list_soal"
+                                style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">3</td>
+                            <td class="soal btn list_soal"
+                                style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">4</td>
+                            <td class="soal btn list_soal"
+                                style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">5</td>
                         </tr>
                         <tr class="text-center">
-                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">6</td>
-                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">7</td>
-                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">8</td>
-                            <td class="soal btn list_soal" style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">9</td>
+                            <td class="soal btn list_soal"
+                                style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">6</td>
+                            <td class="soal btn list_soal"
+                                style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">7</td>
+                            <td class="soal btn list_soal"
+                                style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">8</td>
+                            <td class="soal btn list_soal"
+                                style="background: whitesmoke; padding-left: 9px; padding-right: 9px;">9</td>
                             <td class="soal btn list_soal" style="background: whitesmoke">10</td>
                         </tr>
                         <tr class="text-center">
@@ -231,39 +189,29 @@ $soal = $data_soal[$soal_sekarang];
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Selesai</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    Apakah anda yakin?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                        onclick="selesai()">Selesai</button>
-                </div>
+                <form id="selesaiForm" action="{{ route('simpanNilai') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="email" value="{{ auth()->user()->email }}">
+                    <input type="hidden" name="nilai_akhir" id="nilaiAkhirInput">
+                    <input type="hidden" name="benar" id="benarInput" value="">
+                    <input type="hidden" name="salah" id="salahInput" value="">
+                    <input type="hidden" name="lama_waktu_pengerjaan" id="lamaWaktuPengerjaanInput">
+
+                    <div class="modal-body">
+                        Apakah Anda yakin?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" onclick="selesai()">Selesai</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
-<div id="particle-container">
-    <div class="mt-3" id="hasil" style="display: none">
-        <div class="row">
-            <div class="col text-center">
-                <div class="card">
-                    <div class="card-header">
-                        HASIL
-                    </div>
-                    <div class="card-body">
-                        <p class="text-center"><b>Benar : </b><span id="benar"></span></p>
-                        <p class="text-center"><b>Salah : </b><span id="salah"></span></p>
-                        <p class="text-center"><b>Skor : </b><span id="skor"></span></p>
-                        <a href="{{route('info')}}"><button class="btn btn-primary">Kembali</button></a>
 
-                    </div>
-                </div>
-            </div>
-        </div>
 
-    </div>
 </div>
+
 
 
 
@@ -280,9 +228,13 @@ $soal = $data_soal[$soal_sekarang];
     const menit = document.getElementById('menit');
     const detik = document.getElementById('detik');
 
+    let startTime, endTime;
+
     function startCountdown(duration) {
         let timer = duration, minutes, seconds;
-        setInterval(function () {
+        startTime = new Date(); // Menyimpan waktu mulai
+
+        countdownInterval = setInterval(function () {
             minutes = Math.floor(timer / 60);
             seconds = timer % 60;
 
@@ -292,15 +244,29 @@ $soal = $data_soal[$soal_sekarang];
             menit.innerHTML = minutes;
             detik.innerHTML = seconds;
 
-            // console.log(timer)
-            // console.log(duration)
-
             if (--timer < 0) {
                 timer = duration;
-                alert("Waktu habis!"); // Menampilkan pesan pop-up
-                window.location.href = "info"; // Ganti dengan URL halaman tujuan
+                alert("Waktu habis!");
+                window.location.href = "info";
             }
         }, 1000);
+    }
+
+    function stopCountdown() {
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
+            countdownInterval = null; // Reset interval ID
+
+            endTime = new Date(); // Menyimpan waktu selesai
+            const elapsedTime = Math.floor((endTime - startTime) / 1000); // Hitung waktu dalam detik
+
+            // Cetak waktu terakhir di console
+            const minutes = Math.floor(elapsedTime / 60);
+            const seconds = elapsedTime % 60;
+            console.log(`Waktu terakhir: ${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`);
+
+            return elapsedTime;
+        }
     }
 
     window.onload = function () {
@@ -315,7 +281,7 @@ $soal = $data_soal[$soal_sekarang];
 
     // Mengubah data JSON dari HTML ke JSON Javascript, perlu dua kali parse
     const $data_soal = JSON.parse(JSON.parse($soal_soal.innerHTML));
-    console.log('Ini panjang $data_soal',$data_soal.length);
+    console.log('Ini panjang $data_soal', $data_soal.length);
 
     // Cek isi data Soal di Console Log
     // console.log($data_soal)
@@ -425,20 +391,20 @@ $soal = $data_soal[$soal_sekarang];
     const kunci_jawaban = [];
     // Mengambil kunci jawaban dari dalam data
     let abjad;
-    for(let d = 0; d < 25; d++){
+    for (let d = 0; d < 25; d++) {
         console.log($data_soal[d])
-        for(let e = 0; e < 5; e++){
+        for (let e = 0; e < 5; e++) {
             console.log($data_soal[d]['pilihan'][e])
-            if($data_soal[d]['pilihan'][e]['benar_salah'] == true){
-                if($data_soal[d]['pilihan'][e]['id'] == 1){
+            if ($data_soal[d]['pilihan'][e]['benar_salah'] == true) {
+                if ($data_soal[d]['pilihan'][e]['id'] == 1) {
                     $abjad = 'a'
-                }else if($data_soal[d]['pilihan'][e]['id'] == 2){
+                } else if ($data_soal[d]['pilihan'][e]['id'] == 2) {
                     $abjad = 'b'
-                }else if($data_soal[d]['pilihan'][e]['id'] == 3){
+                } else if ($data_soal[d]['pilihan'][e]['id'] == 3) {
                     $abjad = 'c'
-                }else if($data_soal[d]['pilihan'][e]['id'] == 4){
+                } else if ($data_soal[d]['pilihan'][e]['id'] == 4) {
                     $abjad = 'd'
-                }else if($data_soal[d]['pilihan'][e]['id'] == 5){
+                } else if ($data_soal[d]['pilihan'][e]['id'] == 5) {
                     $abjad = 'e'
                 }
                 kunci_jawaban[d] = $abjad;
@@ -529,90 +495,61 @@ $soal = $data_soal[$soal_sekarang];
     let salah = 0;
 
     function periksaJawaban() {
-    let benar = 0;
-    let salah = 0;
-    for (let m = 0; m < 25; m++) {
-        console.log(kunci_jawaban[m], jawaban_mhs[m]);
-        if (kunci_jawaban[m] == jawaban_mhs[m]) {
-            benar += 1;
-        } else {
-            salah += 1;
+        let benar = 0;
+        let salah = 0;
+        for (let m = 0; m < 25; m++) {
+            console.log(kunci_jawaban[m], jawaban_mhs[m]);
+            if (kunci_jawaban[m] == jawaban_mhs[m]) {
+                benar += 1;
+            } else {
+                salah += 1;
+            }
         }
+
+        return {
+            benar: benar,
+            salah: salah,
+            nilai_akhir: benar * 4 // Contoh: Skor dihitung dari jumlah benar
+        };
+
     }
-    show_skor.innerHTML = benar * 4;
-    jawaban_benar.innerHTML = benar;
-    jawaban_salah.innerHTML = salah;
 
-    return benar * 4; // Return the score as nilai_akhir
-}
+    document.addEventListener('DOMContentLoaded', function () {
+        function selesai() {
+            const waktu = stopCountdown();
+            const hasil = periksaJawaban(); 
+            console.log('Sudah selesai');
+            console.log(lamanLatihan);
 
-    // Sound selesai mengerjakan soal
-    const victory = new Audio("{{asset('sound/victory.mp3')}}")
+            // Dapatkan elemen form dan input
+            const form = document.getElementById('selesaiForm');
+            const benarInput = document.getElementById('benarInput');
+            const salahInput = document.getElementById('salahInput');
+            const nilaiAkhirInput = document.getElementById('nilaiAkhirInput');
+            const waktuInput = document.getElementById('lamaWaktuPengerjaanInput');
 
-    function selesai() {
-    triggerParticles();
-    victory.play();
-    const nilaiAkhir = periksaJawaban(); // Ambil nilai akhir dari fungsi periksaJawaban
-    console.log('Sudah selesai');
-    console.log(lamanLatihan);
-    lamanLatihan.innerHTML = '';
-    hasil.style.display = 'block';
-    const email = '{{ auth()->user()->email }}'; // Assuming you have the user's email available
+            if (form && nilaiAkhirInput) {
+                // Set nilai ke input hidden
+                benarInput.value = hasil.benar;
+                salahInput.value = hasil.salah;
+                nilaiAkhirInput.value = hasil.nilai_akhir;
+                waktuInput.value = waktu;
 
-    // AJAX request to save nilaiAkhir and email to the database
-    fetch('/evaluasi', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        },
-        body: JSON.stringify({
-            email: email,
-            nilai_akhir: nilaiAkhir
-        })
-    }).then(response => {
-        if (response.ok) {
-            console.log('Nilai berhasil disimpan');
-        } else {
-            console.error('Gagal menyimpan nilai');
+                // Submit form secara otomatis setelah nilai diatur
+                console.log('Form ditemukan, melakukan submit');
+                form.submit();
+            } else {
+                console.error('Form atau input tidak ditemukan');
+            }
+
+            lamanLatihan.innerHTML = '';
+            hasil.style.display = 'block';
         }
-    }).catch(error => {
-        console.error('Terjadi kesalahan:', error);
+
+        // Menyediakan fungsi global untuk bisa dipanggil dari onclick
+        window.selesai = selesai;
     });
-}
 
-    // Partikel
-    function createParticle() {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-
-        // Set posisi awal partikel secara acak di atas layar
-        particle.style.left = Math.random() * 100 + 'vw';
-        particle.style.top = -10 + 'px'; // Mulai sedikit di luar layar bagian atas
-
-        // Set ukuran dan kecepatan jatuh secara acak
-        const size = Math.random() * 20 + 5; // Ukuran antara 5px dan 25px
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-
-        const duration = Math.random() * 2 + 3; // Durasi animasi antara 3s dan 5s
-        particle.style.animationDuration = duration + 's';
-
-        document.getElementById('particle-container').appendChild(particle);
-
-        // Hapus partikel setelah animasi selesai
-        setTimeout(() => {
-            particle.remove();
-        }, duration * 1000);
-    }
-
-    function triggerParticles() {
-        for (let i = 0; i < 100; i++) { // Jumlah partikel yang dihasilkan
-            setTimeout(createParticle, i * 100); // Mengatur jeda antar partikel
-        }
-    }
-
-    // Panggil fungsi ini setelah pengguna menyelesaikan kuis
 
 
 

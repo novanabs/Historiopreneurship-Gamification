@@ -157,4 +157,41 @@ class userBadgeController extends Controller
         // Jika tidak memenuhi syarat, beri tahu pengguna
         return redirect()->route('dashboard.index')->with('error', 'You do not meet the criteria for the High Rank Badge.');
     }
+
+    public function awardSiCepatBadge(Request $request)
+    {
+        $email = Auth::user()->email;
+    
+        // Ambil data lama_waktu_pengerjaan berdasarkan email dari tabel nilai
+        $lamaWaktuPengerjaan = Nilai::where('email', $email)->value('lama_waktu_pengerjaan');
+    
+        if ($lamaWaktuPengerjaan === null) {
+            return redirect()->route('dashboard.index')->with('error', 'Lama waktu pengerjaan tidak ditemukan.');
+        }
+    
+        // Cek apakah lama_waktu_pengerjaan memenuhi syarat
+        if ($lamaWaktuPengerjaan > 600) {
+            return redirect()->route('dashboard.index')->with('error', 'You do not meet the criteria for the siCepat Badge.');
+        }
+    
+        // Tentukan ID badge untuk siCepat
+        $badgeId = 3; // ID untuk badge "siCepat"
+    
+        // Cek apakah badge tersedia
+        $badge = Badge::find($badgeId);
+    
+        if (!$badge) {
+            return redirect()->route('dashboard.index')->with('error', 'Badge siCepat not found.');
+        }
+    
+        // Perbarui atau buat entri di tabel user_badge
+        userBadge::updateOrCreate(
+            ['email' => $email, 'id_badge' => $badge->id],
+            ['status' => 'claimed']
+        );
+    
+        return redirect()->route('dashboard.index')->with('success', 'Badge siCepat successfully claimed!');
+    }
+    
+
 }

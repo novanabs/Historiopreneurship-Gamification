@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/klaim-master-badge', [UserBadgeController::class, 'awardMasterBadge'])->name('awardMasterBadge');
     Route::post('/klaim-penguasa-materi-badge', [UserBadgeController::class, 'awardPenguasaMateriBadge'])->name('awardPenguasaMateriBadge');
     Route::post('/klaim-high-rank-badge', [UserBadgeController::class, 'awardHighRankBadge'])->name('awardHighRankBadge');
+    Route::post('/klaim-siCepat-badge', [UserBadgeController::class, 'awardSiCepatBadge'])->name('awardSiCepatBadge');
     Route::get('/data-pengguna', [DashboardController::class, 'showUser'])->name('dashboard.showUser')->middleware('admin');
 
     // Pemindahan halaman
@@ -66,6 +67,8 @@ Route::put('/latihan', [LatihanController::class, 'latihan']);
 Route::get('/kuis', [LatihanController::class, 'kuis'])->name('kuis');
 Route::get('/evaluasi', [LatihanController::class, 'evaluasi'])->name('evaluasi');
 Route::post('/evaluasi', [NilaiController::class, 'simpanNilai'])->name('simpanNilai');
+Route::get('/selesai-evaluasi', function () {return view('latihan.selesaiEvaluasi');})->name('selesaiEvaluasi');
+
 Route::get('/info', [LatihanController::class, 'info'])->name('info');
 Route::get('/dragndrop', [LatihanController::class, 'dragndrop'])->name('dragndrop');
 Route::get('/latihan2', [LatihanController::class, 'latihan2'])->name('latihan2');

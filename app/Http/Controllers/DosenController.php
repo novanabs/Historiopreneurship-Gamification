@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelompok;
+use App\Models\Nilai;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DosenController extends Controller
 {
@@ -68,8 +70,18 @@ class DosenController extends Controller
 
     public function dataLatihan()
     {
-        return view('lamanDosen.dataLatihan');
+        // Mengambil data mahasiswa dari tabel users yang memiliki peran 'mahasiswa'
+        $mahasiswa = DB::table('users')
+            ->join('nilai', 'users.email', '=', 'nilai.email')
+            ->where('users.peran', 'siswa')
+            ->where('nilai.aspek', 'evaluasi')
+            ->select('users.nama_lengkap', 'users.kelas', 'nilai.nilai_akhir') // Sesuaikan dengan kolom yang ada
+            ->get();
+    
+        // Mengirim data ke tampilan
+        return view('lamanDosen.dataLatihan', compact('mahasiswa'));
     }
+    
 
     public function dataNilai()
     {
