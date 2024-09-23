@@ -2,6 +2,8 @@
 
 @section('container')
 
+{{-- @dd($materi_b) --}}
+
 {{-- Status Bar --}}
 <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0"
     aria-valuemax="100">
@@ -11,7 +13,7 @@
 
 
 <div class="mt-3">
-    <h1 id="progress_halaman" hidden>{{session('progress') ?? 0}}</h1>
+    <h1 id="progress_halaman" hidden>{{$materi_b ?? 0}}</h1>
     <div class="row">
         <div class="col">
             <h2>B. Kesejarahan</h2>
@@ -148,139 +150,6 @@
                 kesejahteraan kota dan masyarakat.
 
             </p>
-            <p><b>Destinasi Wisata Banjarmasin Favorit</b></p>
-            <p><b>Air Terjun Haratai</b></p>
-            <div class="text-center">
-                <img class="rounded"
-                    src="https://meratusgeopark.org/wp-content/uploads/2019/05/Air-Terjun-Haratai-6.jpg"
-                    alt="Gambar Air Terjun Haratai" style="width : 500px;height :300px">
-            </div>
-
-            <p>
-                Keistimewaan Air Terjun Haratai terletak pada pemandangan alamnya yang
-                indah. Air Terjun Haratai seakan-akan diapit oleh tebing bebatuan dan pepohonan di
-                kanan kiri. Meskipun memiliki debit air yang deras, Anda masih bisa masuk ke perairan
-                untuk menikmati sensasi menyegarkan airnya. Di bagian pinggir air terjun, airnya tidak
-                begitu dalam masih bisa dinikmati dengan baik meski suhunya dingin menusuk.
-
-            </p>
-            <p>
-                Selain menikmati pemandangan dan kesegaran air terjun. Anda bisa
-                melakukan terapi psikologis di tempat ini. Suara air terjunnya sangat menenangkan.
-                Puas mendengarkan suara air, carilah tempat yang bagus untuk mengambil foto air
-                terjun atau foto selfie dengan background air terjun.
-
-            </p>
-            <p>
-                Ada sebuah nilai luhur yang membuat saya kagum, bahwa kelestarian alam
-                lebih berharga dari harta ataupun materi lainnya. Sehingga keberadaan air terjun
-                menjadi sangat dissakralkan bagi Suku Dayak Meratus.
-
-            </p>
-            <p>
-                Air Terjun Haratai, sebuah air terjun yang sangat elok di tengah alam yang
-                masih asri. Air Terjun Haratai adalah air terjun yang berada di deretan pegunungan
-                Meratus, serta berada di kawasan wisata Loksado.
-
-            </p>
-            <p>
-                <b>
-                    Bamboo Rafting
-                </b>
-            </p>
-            <div class="text-center">
-                <img class="rounded"
-                    src="https://www.amazingborneo.id/wp-content/uploads/2019/12/Bamboo-Rafting-Balanting-Paring-Banjarmasin2.jpg"
-                    alt="Gambar Bambu Rafting" style="width : 500px;height :300px">
-            </div>
-
-            <p>Anda yang hobi menguji adrenalin akan mendapatkan sensasi mendebarkan
-                ketika berlibur ke tempat wisata di Banjarmasin seperti Bamboo Rafting. Tempat ini
-                digadang-gadang sebagai tempat rafting paling unik di Banjarmasin. Keunikan dari
-                Bamboo Rafting adalah media arung jeramnya yang menggunakan bambu atau rakit
-                bukan perahu karet.
-            </p>
-            <p>Selain menikmati sensasi mendebarkan mengelilingi sungai, Anda juga akan
-                dimanjakan dengan pemandangan kiri kanan yang asri dan indah. Tempat wisata ini
-                masih sangat asri dan menyejukkan dengan pepohonan rindang. Meski dilakukan di
-                siang hari, Anda masih bisa merasakan hawa sejuknya. </p>
-
-            <p>
-                <b>
-                    Pasar Terapung
-                </b>
-            </p>
-            <div class="text-center">
-                <img class="rounded"
-                    src="https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/11/2023/10/29/269929595_937342236887852_4647198914071301074_n-750673262.jpg"
-                    alt="Gambar pasar terapung" style="width : 500px;height :300px">
-            </div>
-
-            <p>Anda yang hobi pergi ke pasar akan menemukan konsep pasar tradisional yang
-                berbeda saat mengunjungi Pasar Terapung Banjarmasin. Pasar di sini bukan berdiri
-                di atas daratan tapi dibuka di perahu klotok tepat di atas Sungai Martapura.
-            </p>
-            <p>
-                Selain mengagumi keunikan para pedagang pasar terapung, Anda juga bisa
-                menikmati penjelajahan Sungai Martapura dengan menyewa perahu. Coba
-                bayangkan, sensasi menyenangkan kuliner di atas perahu sambil melintasi sungai?
-            </p>
-            <p><b>Pemandian Air Panas Tanuhi</b></p>
-            <div class="text-center">
-                <img class="rounded"
-                    src="https://megapolis.id/wp-content/uploads/2024/02/20220213_185243_compress98.jpg"
-                    alt="Gambar Pemandian Air Panas Tanuhi" style="width : 500px;height :300px">
-            </div>
-
-            <p>
-                Mandi air panas di kolam terbuka bersama pengunjung lainnya merupakan
-                konsep utama Pemandian Air Panas Tanuhi. Tempat wisata ini setidaknya difasilitasi
-                dengan empat kolam renang, lapangan tenis, restoran, penginapan dan fasilitas
-                lainnya.
-            </p>
-            <p>
-                Selain menawarkan kolam mandi air panas, tempat wisata alam Banjarmasin
-                ini juga menyuguhkan view pegunungan yang sangat indah. Karena kolam terbuka,
-                otomatis Anda bisa melihat pemandangan yang tersaji dengan lebih mudah. Jika
-                sudah merasa haus atau lelah, ada restoran dan cottage yang siap melayani.
-
-            </p>
-            <p>
-                <b>
-                    Taman Wisata Alam Pulau Bakut
-                </b>
-            </p>
-            <div class="text-center">
-                <img class="rounded"
-                    src="https://asset-2.tstatic.net/banjarmasinposttravel/foto/bank/images/taman-wisata-alam-pulau-bakut-di-kecamatan-anjir-muara.jpg"
-                    alt="Gambar Taman WIsata Alam Pulau Bakut" style="width : 500px;height :300px">
-            </div>
-
-            <p>
-                Manjakan mata Anda dengan melihat pemandangan asri di Taman Wisata
-                Alam Pulau Bakut. Hutan Mangrove di kawasan wisata ini sangat indah dan rindang
-                membuat udara di sekitarnya selalu sejuk. Anda yang suka dengan pemandangan
-                hutan dan pepohonan akan merasa terpikat dengan penataan ruangnya.
-
-            </p>
-            <p>
-                Salah satu keistimewaan di Taman Wisata Alam Pulau Bakut adalah jembatan
-                panjangnya. Anda bisa mengambil foto selfie dengan latar belakang pepohonan di
-                sekelilingnya. Atau mengambil foto jarak jauh dengan background jembatan. Intinya,
-                Anda jangan lupa bawa kamera ketika berencana datang ke sini.
-
-            </p>
-            <p>
-                Dari kelima tempat wisata di atas, mana yang ingin Anda kunjungi? Semua
-                tempat wisata Banjarmasin memiliki potensi pariwisata. Selain banyak daya tariknya,
-                masing-masing tempat wisata juga sudah dilengkapi dengan beragam fasilitas.
-                Fasilitas tersebut membantu para pengunjung untuk menikmati lokasi wisata lebih
-                lama.
-            </p>
-            <p>PERTANYAAN PEMANTIK</p>
-            <p><b>"Siapakah di antara kalian yang hobi wisata atau jalan-jalan?" </b></p>
-            <p>Dalam melakukan pembelajaran ini, ditayangkan sebuah video tentang wisata yang ada di
-                Kalimantan Selatan.</p>
         </div>
     </div>
     <div class="row materi-b" id="kegiatan-pembelajaran-2">
@@ -820,10 +689,7 @@
     // Navigasi tombol
     function nav_tombol() {
         
-        if ($sub == 6) {
-            // document.getElementById('next').disabled = true;
-            location.href = '{{ route('dragndrop') }}';
-        } else if ($sub == 0) {
+        if ($sub == 0) {
             document.getElementById('prev').disabled = true;
         } else {
             document.getElementById('prev').disabled = false;

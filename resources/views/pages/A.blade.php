@@ -3,14 +3,13 @@
 @section('container')
 
 
-
 {{-- Status Bar --}}
 <div class="progress rounded" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
     <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 0.001%" id="status_bar"></div>
   </div>
 
 <div class="mt-3">
-    <h1 id="progress_halaman" hidden>{{session('progress') ?? 0}}</h1>
+    <h1 id="progress_halaman" hidden>{{$materi_a ?? 0}}</h1>
 
     
         <div class="row mt-3" id="">

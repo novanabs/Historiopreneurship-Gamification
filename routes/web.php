@@ -1,22 +1,23 @@
 <?php
 
-use App\Http\Controllers\AnalisisIndividuController;
-use App\Http\Controllers\jawabanKelompokController;
-use App\Http\Controllers\nilaiController;
-use App\Http\Controllers\RefleksiController;
-use App\Http\Controllers\RefleksiKesejarahanController;
-use App\Http\Controllers\uploadFileController;
-use App\Http\Controllers\userBadgeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\PoinController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\nilaiController;
 use App\Http\Controllers\HalamanController;
 use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\RefleksiController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\userBadgeController;
+use App\Http\Controllers\uploadFileController;
+use App\Http\Controllers\jawabanKelompokController;
+use App\Http\Controllers\AnalisisIndividuController;
 use App\Http\Controllers\UpdateAksesHalamanController;
+use App\Http\Controllers\RefleksiKesejarahanController;
 
 // Register
 Route::get('/register', [RegisterController::class, 'show'])->name('register.show');
@@ -97,3 +98,6 @@ Route::post('/lamanSub', [SessionController::class, 'lamanSub'])->name('lamanSub
 // Progress akses Halaman
 
 Route::get('/updateAksesHalaman', [UpdateAksesHalamanController::class, 'update'])->name('updateAksesHalaman');
+
+// Poin DND dan TTS
+Route::post('/DND', [PoinController::class, 'DND'])->name('DND');

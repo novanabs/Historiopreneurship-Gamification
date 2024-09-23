@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Analisis_individu_kewirausahaan;
+use App\Models\User;
+use App\Models\Nilai;
+use App\Models\Kelompok;
+use App\Models\Refleksi;
+use App\Models\AksesHalaman;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\Session;
 use App\Models\AnalisisIndividuKesejarahan;
 use App\Models\AnalisisKelompokKesejarahan;
 use App\Models\AnalisisKelompokKewirausahaan;
-use App\Models\Kelompok;
-use App\Models\Nilai;
-use App\Models\Refleksi;
-use App\Models\User;
-use Illuminate\Http\Request;
-
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Session;
+use App\Models\Analisis_individu_kewirausahaan;
 
 
 class HalamanController extends Controller
@@ -24,12 +25,14 @@ class HalamanController extends Controller
         $data['halaman_terbuka'] = 'A'; 
         $data['user'] = Auth::user()->email;
         $data['progress'] = 0;
+        $data['materi_a'] = AksesHalaman::where('email', Auth::user()->email)->value('materi_a');
         return view('pages.A', $data);
     }
 
     function B () {
         $data['halaman_terbuka'] = 'B';
         $data['user'] = Auth::user()->email;
+        $data['materi_b'] = AksesHalaman::where('email', Auth::user()->email)->value('materi_b');
         $userEmail = Auth::user()->email;
     
         $jawabanIndividu = AnalisisIndividuKesejarahan::where('created_by', $userEmail)
@@ -71,6 +74,7 @@ class HalamanController extends Controller
     function C () {
         $data['halaman_terbuka'] = 'C';
         $data['user'] = Auth::user()->email;
+        $data['materi_c'] = AksesHalaman::where('email', Auth::user()->email)->value('materi_c');
          // Dapatkan email pengguna yang sedang login
          $userEmail = Auth::user()->email;
 

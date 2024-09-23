@@ -253,6 +253,13 @@
 
     <div class="materi-a"></div>
 
+    {{-- Hidden Form untuk memasukkan poin ke dalam tabel --}}
+    <form id="hiddenForm" action="{{ route('DND') }}" method="POST">
+        @csrf
+        <input type="hidden" name="poin" value="" id="poin_saya"> <!-- Nilai tersembunyi yang akan dikirim -->
+        <button type="submit">Submit</button>
+    </form>
+
     <script>
         const $sub = 0;
         const materi_a = document.getElementsByClassName('materi-a');
@@ -331,6 +338,8 @@
 
         function checkResults() {
             const score = correctAnswers * 20;
+            document.getElementById('poin_saya').value = score;
+            document.getElementById('hiddenForm').submit();
             showModal(`Skor Anda: ${score} dari 100`);
         }
 

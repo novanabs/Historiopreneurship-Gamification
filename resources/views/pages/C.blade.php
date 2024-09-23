@@ -12,7 +12,7 @@ aria-valuemax="100">
 
 
 <div class="mt-3">
-    <h1 id="progress_halaman" hidden>{{session('progress') ?? 0}}</h1>
+    <h1 id="progress_halaman" hidden>{{$materi_c ?? 0}}</h1>
     <div class="row">
         <div class="col">
             <h2>C. Kewirausahaan dan Kepariwisataan </h2>
@@ -1088,9 +1088,7 @@ aria-valuemax="100">
 
     // Navigasi tombol
     function nav_tombol() {
-        if ($sub == 9) {
-            location.href = '{{ route('latihan2') }}';
-        } else if ($sub == 0) {
+        if ($sub == 0) {
             document.getElementById('prev').disabled = true;
         } else {
             document.getElementById('prev').disabled = false;
