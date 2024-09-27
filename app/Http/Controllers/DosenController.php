@@ -65,10 +65,32 @@ class DosenController extends Controller
 
     public function dataKelas()
     {
-        return view('lamanDosen.dataKelas');
+        // Mengambil data dari tabel users dan mengelompokkan berdasarkan kelas
+        $kelasA1 = \DB::table('users')
+            ->where('kelas', 'a1')
+            ->get();
+        
+        $kelasA2 = \DB::table('users')
+            ->where('kelas', 'a2')
+            ->get();
+        
+        // Menghitung jumlah laki-laki dan perempuan pada kelas a1
+        $jumlahLakiA1 = $kelasA1->where('jenis_kelamin', 'L')->count();
+        $jumlahPerempuanA1 = $kelasA1->where('jenis_kelamin', 'P')->count();
+        
+        // Menghitung jumlah laki-laki dan perempuan pada kelas a2
+        $jumlahLakiA2 = $kelasA2->where('jenis_kelamin', 'L')->count();
+        $jumlahPerempuanA2 = $kelasA2->where('jenis_kelamin', 'P')->count();
+    
+        // Menghitung total siswa di kelas a1 dan a2
+        $totalKelasA1 = $kelasA1->count();
+        $totalKelasA2 = $kelasA2->count();
+    
+        // Mengirimkan data ke view
+        return view('lamanDosen.dataKelas', compact('jumlahLakiA1', 'jumlahPerempuanA1', 'jumlahLakiA2', 'jumlahPerempuanA2', 'totalKelasA1', 'totalKelasA2'));
     }
-
-    public function dataLatihan()
+    
+    public function dataEvaluasi()
     {
         // Mengambil data mahasiswa dari tabel users yang memiliki peran 'mahasiswa'
         $mahasiswa = DB::table('users')
@@ -79,7 +101,7 @@ class DosenController extends Controller
             ->get();
     
         // Mengirim data ke tampilan
-        return view('lamanDosen.dataLatihan', compact('mahasiswa'));
+        return view('lamanDosen.dataEvaluasi', compact('mahasiswa'));
     }
     
 

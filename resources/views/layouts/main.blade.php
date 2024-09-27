@@ -165,9 +165,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('dataLatihan') }}">
+                <a class="nav-link" href="{{ route('dataEvaluasi') }}">
                     <i class="bi bi-journal-text"></i>
-                   <p>Data Latihan</p>
+                   <p>Data Evaluasi</p>
                 </a>
             </li>
                 

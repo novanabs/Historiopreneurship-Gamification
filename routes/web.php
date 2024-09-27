@@ -76,7 +76,7 @@ Route::get('/latihan2', [LatihanController::class, 'latihan2'])->name('latihan2'
 
 // Controller Dosen
 Route::get('/dataKelas', [DosenController::class, 'datakelas'])->name('dataKelas');
-Route::get('/dataLatihan', [DosenController::class, 'dataLatihan'])->name('dataLatihan');
+Route::get('/dataEvaluasi', [DosenController::class, 'dataEvaluasi'])->name('dataEvaluasi');
 Route::get('/dataMahasiswa', [DosenController::class, 'dataMahasiswa'])->name('dataMahasiswa');
 Route::post('/dataMahasiswa/save', [DosenController::class, 'saveGroup'])->name('dataMahasiswa.saveGroup');
 Route::post('/dataMahasiswa/remove', [DosenController::class, 'removeFromGroup'])->name('dataMahasiswa.removeFromGroup');
@@ -104,3 +104,4 @@ Route::get('/updateAksesHalaman', [UpdateAksesHalamanController::class, 'update'
 
 // Export Data
 Route::get('/export-evaluasi', [dataExportController::class, 'exportEvaluasi'])->name('export.evaluasi');
+Route::get('/export-kelas', [dataExportController::class, 'exportKelas'])->name('export.kelas');

@@ -39,6 +39,7 @@ class UserRealSeeder extends Seeder
             'email' => 'madhan@gmail.com',
             'password' => Hash::make('12345678'),
             'alamat' => 'Jalan',
+            'jenis_kelamin' => 'L',
             'poin' => 2134,
         ]);
         User::create([
@@ -49,6 +50,7 @@ class UserRealSeeder extends Seeder
             'email' => 'salman@gmail.com',
             'password' => Hash::make('12345678'),
             'alamat' => 'Jalan',
+            'jenis_kelamin' => 'L',
             'poin' => 2130,
         ]);
         User::create([
@@ -59,6 +61,7 @@ class UserRealSeeder extends Seeder
             'email' => 'husna@gmail.com',
             'password' => Hash::make('12345678'),
             'alamat' => 'Jalan',
+            'jenis_kelamin' => 'P',
             'poin' => 2122,
         ]);
         User::create([
@@ -69,6 +72,7 @@ class UserRealSeeder extends Seeder
             'email' => 'iif@gmail.com',
             'password' => Hash::make('12345678'),
             'alamat' => 'Jalan',
+            'jenis_kelamin' => 'P',
             'poin' => 2120,
         ]);
         User::create([
@@ -79,6 +83,7 @@ class UserRealSeeder extends Seeder
             'email' => 'rifqi@gmail.com',
             'password' => Hash::make('12345678'),
             'alamat' => 'Jalan',
+            'jenis_kelamin' => 'L',
             'poin' => 2103,
         ]);
         User::create([
@@ -89,6 +94,7 @@ class UserRealSeeder extends Seeder
             'email' => 'ari@gmail.com',
             'password' => Hash::make('12345678'),
             'alamat' => 'Jalan',
+            'jenis_kelamin' => 'L',
             'poin' => 2078,
         ]);
         User::create([
@@ -99,6 +105,7 @@ class UserRealSeeder extends Seeder
             'email' => 'fadhil@gmail.com',
             'password' => Hash::make('12345678'),
             'alamat' => 'Jalan',
+            'jenis_kelamin' => 'L',
             'poin' => 2068,
         ]);
         User::create([
@@ -109,6 +116,7 @@ class UserRealSeeder extends Seeder
             'email' => 'fajar@gmail.com',
             'password' => Hash::make('12345678'),
             'alamat' => 'Jalan',
+            'jenis_kelamin' => 'L',
             'poin' => 2000,
         ]);
         User::create([
@@ -119,6 +127,7 @@ class UserRealSeeder extends Seeder
             'email' => 'saipul@gmail.com',
             'password' => Hash::make('12345678'),
             'alamat' => 'Jalan',
+            'jenis_kelamin' => 'L',
             'poin' => 1994,
         ]);
         User::create([
@@ -129,6 +138,7 @@ class UserRealSeeder extends Seeder
             'email' => 'fuad@gmail.com',
             'password' => Hash::make('12345678'),
             'alamat' => 'Jalan',
+            'jenis_kelamin' => 'L',
             'poin' => 1800,
         ]);
     }

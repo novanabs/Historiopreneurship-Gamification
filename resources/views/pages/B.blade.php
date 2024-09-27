@@ -336,7 +336,7 @@
                 <p>Tidak ada anggota kelompok ditemukan.</p>
             @endif
         </div>
-        <form method="post" action="{{route('simpanJawabanKelompok')}}">
+        <form method="post" id="formKelompok" action="{{route('simpanJawabanKelompok')}}">
             @csrf
             @if($id_kelompok)
                 <input type="hidden" name="id_kelompok" value="{{ $id_kelompok }}">
@@ -354,7 +354,7 @@
 
             <div class="row mt-3">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary">Simpan Jawaban</button>
+                    <button type="submit" class="btn btn-primary" data-form="formKelompok">Simpan Jawaban</button>
                 </div>
             </div>
         </form>
@@ -909,4 +909,53 @@
         }
 
 </script>
+<!-- SweatAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.getElementById('submitBtn').addEventListener('click', function (e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: "Pastikan semua jawaban sudah benar sebelum disimpan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, simpan!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.querySelector('form').submit();
+            }
+        });
+    });
+</script>
+<script>
+    document.querySelectorAll('.submitBtn').forEach(function (button) {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const formId = this.getAttribute('data-form');
+            const form = document.getElementById(formId);
+
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Pastikan semua jawaban sudah benar sebelum disimpan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, simpan!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+</script>
+
+
 @endsection
