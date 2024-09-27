@@ -8,36 +8,35 @@
         <div class="col">
             <h2>Data Kelas</h2>
             <p>Menampilkan data kelas A1 dan A2, jumlah orang, nilai rata-rata, jumlah laki-laki perempuan</p>
-            <table class="table text-center " id="tablekelas">
+            <table class="table text-center" id="tablekelas">
                 <thead>
                     <tr>
                         <th scope="col">Nomor</th>
-                        <th scope="col" >Kelas</th>
+                        <th scope="col">Kelas</th>
                         <th scope="col">Jumlah Mahasiswa</th>
                         <th scope="col">Jumlah Laki-Laki</th>
                         <th scope="col">Jumlah Perempuan</th>
-                        <th scope="col">Nilai Rata Rata</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
                         <td>A1</td>
-                        <td>20</td>
-                        <td>10</td>
-                        <td>10</td>
-                        <td>85.7</td>
+                        <td>{{ $totalKelasA1 }}</td>
+                        <td>{{ $jumlahLakiA1 }}</td>
+                        <td>{{ $jumlahPerempuanA1 }}</td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
                         <td>A2</td>
-                        <td>20</td>
-                        <td>12</td>
-                        <td>8</td>
-                        <td>89.7</td>
+                        <td>{{ $totalKelasA2 }}</td>
+                        <td>{{ $jumlahLakiA2 }}</td>
+                        <td>{{ $jumlahPerempuanA2 }}</td>
                     </tr>
                 </tbody>
             </table>
+            <a href="{{ route('export.kelas') }}" class="btn btn-primary">Export</a>
+
         </div>
     </div>
 </div>

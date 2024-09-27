@@ -1,23 +1,30 @@
 <?php
 
+
+use App\Http\Controllers\AnalisisIndividuController;
+use App\Http\Controllers\dataExportController;
+use App\Http\Controllers\jawabanKelompokController;
+use App\Http\Controllers\nilaiController;
+use App\Http\Controllers\RefleksiController;
+use App\Http\Controllers\RefleksiKesejarahanController;
+use App\Http\Controllers\uploadFileController;
+use App\Http\Controllers\userBadgeController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\PoinController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\nilaiController;
+
 use App\Http\Controllers\HalamanController;
 use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\SessionController;
-use App\Http\Controllers\RefleksiController;
+
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\userBadgeController;
-use App\Http\Controllers\uploadFileController;
-use App\Http\Controllers\jawabanKelompokController;
-use App\Http\Controllers\AnalisisIndividuController;
+
 use App\Http\Controllers\UpdateAksesHalamanController;
-use App\Http\Controllers\RefleksiKesejarahanController;
+
 
 // Register
 Route::get('/register', [RegisterController::class, 'show'])->name('register.show');
@@ -36,6 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/klaim-master-badge', [UserBadgeController::class, 'awardMasterBadge'])->name('awardMasterBadge');
     Route::post('/klaim-penguasa-materi-badge', [UserBadgeController::class, 'awardPenguasaMateriBadge'])->name('awardPenguasaMateriBadge');
     Route::post('/klaim-high-rank-badge', [UserBadgeController::class, 'awardHighRankBadge'])->name('awardHighRankBadge');
+    Route::post('/klaim-siCepat-badge', [UserBadgeController::class, 'awardSiCepatBadge'])->name('awardSiCepatBadge');
     Route::get('/data-pengguna', [DashboardController::class, 'showUser'])->name('dashboard.showUser')->middleware('admin');
 
     // Pemindahan halaman
@@ -67,13 +75,15 @@ Route::put('/latihan', [LatihanController::class, 'latihan']);
 Route::get('/kuis', [LatihanController::class, 'kuis'])->name('kuis');
 Route::get('/evaluasi', [LatihanController::class, 'evaluasi'])->name('evaluasi');
 Route::post('/evaluasi', [NilaiController::class, 'simpanNilai'])->name('simpanNilai');
+Route::get('/selesai-evaluasi', function () {return view('latihan.selesaiEvaluasi');})->name('selesaiEvaluasi');
+
 Route::get('/info', [LatihanController::class, 'info'])->name('info');
 Route::get('/dragndrop', [LatihanController::class, 'dragndrop'])->name('dragndrop');
 Route::get('/latihan2', [LatihanController::class, 'latihan2'])->name('latihan2');
 
 // Controller Dosen
 Route::get('/dataKelas', [DosenController::class, 'datakelas'])->name('dataKelas');
-Route::get('/dataLatihan', [DosenController::class, 'dataLatihan'])->name('dataLatihan');
+Route::get('/dataEvaluasi', [DosenController::class, 'dataEvaluasi'])->name('dataEvaluasi');
 Route::get('/dataMahasiswa', [DosenController::class, 'dataMahasiswa'])->name('dataMahasiswa');
 Route::post('/dataMahasiswa/save', [DosenController::class, 'saveGroup'])->name('dataMahasiswa.saveGroup');
 Route::post('/dataMahasiswa/remove', [DosenController::class, 'removeFromGroup'])->name('dataMahasiswa.removeFromGroup');
@@ -99,5 +109,11 @@ Route::post('/lamanSub', [SessionController::class, 'lamanSub'])->name('lamanSub
 
 Route::get('/updateAksesHalaman', [UpdateAksesHalamanController::class, 'update'])->name('updateAksesHalaman');
 
+
 // Poin DND dan TTS
 Route::post('/DND', [PoinController::class, 'DND'])->name('DND');
+
+// Export Data
+Route::get('/export-evaluasi', [dataExportController::class, 'exportEvaluasi'])->name('export.evaluasi');
+Route::get('/export-kelas', [dataExportController::class, 'exportKelas'])->name('export.kelas');
+

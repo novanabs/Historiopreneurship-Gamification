@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Nilai;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class nilaiController extends Controller
 {
@@ -70,27 +71,47 @@ class nilaiController extends Controller
 
     public function simpanNilai(Request $request)
     {
-        // Validate the incoming request
+        // Validasi data yang masuk
         $request->validate([
             'email' => 'required|email',
             'nilai_akhir' => 'required|integer',
+            'benar' => 'required|integer',
+            'salah' => 'required|integer',
+            'lama_waktu_pengerjaan' => 'required|integer'
         ]);
-    
-        // Determine the motivational message based on the score
-        $message = $request->nilai_akhir > 60 
-            ? 'Semangat dan tingkatkan lagi belajarnya!' 
+
+        // Menentukan pesan motivasi berdasarkan nilai
+        $message = $request->nilai_akhir > 60
+            ? 'Semangat dan tingkatkan lagi belajarnya!'
             : 'Jangan patah semangat, terus tingkatkan belajar lagi!';
-    
-        // Save the data to the database, including the motivational message
-        Nilai::create([
-            'email' => $request->email,
-            'nilai_akhir' => $request->nilai_akhir,
-            'data_jawaban_penilai' => $message,
-            'waktu_selesai' => now(),
+
+        // Cek apakah data dengan email yang diberikan sudah ada
+        $existingRecord = DB::table('nilai')->where('email', $request->email)->first();
+
+        if ($existingRecord) {
+            // Jika data ada, lakukan update
+            DB::table('nilai')->where('email', $request->email)->update([
+                'nilai_akhir' => $request->nilai_akhir,
+                'data_jawaban_penilai' => $message,
+                'lama_waktu_pengerjaan' => $request->lama_waktu_pengerjaan,
+                'waktu_selesai' => now(),
+            ]);
+        } else {
+            // Jika data tidak ada, lakukan create
+            DB::table('nilai')->insert([
+                'email' => $request->email,
+                'nilai_akhir' => $request->nilai_akhir,
+                'data_jawaban_penilai' => $message,
+                'lama_waktu_pengerjaan' => $request->lama_waktu_pengerjaan,
+                'waktu_selesai' => now(),
+            ]);
+        }
+
+        // Mengarahkan ke halaman hasil evaluasi dengan parameter
+        return view('latihan.selesaiEvaluasi', [
+            'benar' => $request->benar,  // Ganti dengan nilai yang sebenarnya
+            'salah' => $request->salah,   // Ganti dengan nilai yang sebenarnya
+            'skor' => $request->nilai_akhir
         ]);
-    
-        // Return a JSON response
-        return response()->json(['message' => 'Nilai berhasil disimpan'], 200);
     }
-    
 }

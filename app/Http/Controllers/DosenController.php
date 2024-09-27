@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelompok;
+use App\Models\Nilai;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DosenController extends Controller
 {
@@ -63,13 +65,45 @@ class DosenController extends Controller
 
     public function dataKelas()
     {
-        return view('lamanDosen.dataKelas');
+        // Mengambil data dari tabel users dan mengelompokkan berdasarkan kelas
+        $kelasA1 = \DB::table('users')
+            ->where('kelas', 'a1')
+            ->get();
+        
+        $kelasA2 = \DB::table('users')
+            ->where('kelas', 'a2')
+            ->get();
+        
+        // Menghitung jumlah laki-laki dan perempuan pada kelas a1
+        $jumlahLakiA1 = $kelasA1->where('jenis_kelamin', 'L')->count();
+        $jumlahPerempuanA1 = $kelasA1->where('jenis_kelamin', 'P')->count();
+        
+        // Menghitung jumlah laki-laki dan perempuan pada kelas a2
+        $jumlahLakiA2 = $kelasA2->where('jenis_kelamin', 'L')->count();
+        $jumlahPerempuanA2 = $kelasA2->where('jenis_kelamin', 'P')->count();
+    
+        // Menghitung total siswa di kelas a1 dan a2
+        $totalKelasA1 = $kelasA1->count();
+        $totalKelasA2 = $kelasA2->count();
+    
+        // Mengirimkan data ke view
+        return view('lamanDosen.dataKelas', compact('jumlahLakiA1', 'jumlahPerempuanA1', 'jumlahLakiA2', 'jumlahPerempuanA2', 'totalKelasA1', 'totalKelasA2'));
     }
-
-    public function dataLatihan()
+    
+    public function dataEvaluasi()
     {
-        return view('lamanDosen.dataLatihan');
+        // Mengambil data mahasiswa dari tabel users yang memiliki peran 'mahasiswa'
+        $mahasiswa = DB::table('users')
+            ->join('nilai', 'users.email', '=', 'nilai.email')
+            ->where('users.peran', 'siswa')
+            ->where('nilai.aspek', 'evaluasi')
+            ->select('users.nama_lengkap', 'users.kelas', 'nilai.nilai_akhir') // Sesuaikan dengan kolom yang ada
+            ->get();
+    
+        // Mengirim data ke tampilan
+        return view('lamanDosen.dataEvaluasi', compact('mahasiswa'));
     }
+    
 
     public function dataNilai()
     {
