@@ -28,6 +28,10 @@
             <button class="btn btn-primary" onclick="next()" id="next">Selanjutnya</button>
         </div>
     </div>
+    <div class="row materi-b" id="pre-test-1">
+        <h1>Pre Test</h1>
+        
+    </div>
     <div class="row materi-b" id="kegiatan-pembelajaran-1">
         <div class="col">
             <h3>Kegiatan Pembelajaran 1</h3>
@@ -691,7 +695,13 @@
         
         if ($sub == 0) {
             document.getElementById('prev').disabled = true;
+        }else if ($sub == 6){
+            document.getElementById('next').innerHTML = "Latihan";
+            document.getElementById('next').addEventListener('click', function(){
+                window.location.href = "dragndrop"
+            })
         } else {
+            document.getElementById('next').innerHTML = "Selanjutnya";
             document.getElementById('prev').disabled = false;
             document.getElementById('next').disabled = false;
         }
@@ -700,7 +710,7 @@
 
     // Hide semua bab
     function hide_semua_sub() {
-        for (let i = 0; i <= 5; i++) {
+        for (let i = 0; i <= 6; i++) {
             console.log(materi_a[i])
             materi_a[i].style.display = 'none';
         }

@@ -383,6 +383,12 @@
 
     <div class="materi-a"></div>
 
+    {{-- Hidden Form untuk memasukkan poin ke dalam tabel --}}
+    <form id="hiddenForm" action="{{ route('DND') }}" method="POST">
+        @csrf
+        <input type="hidden" name="poin" value="" id="poin_saya"> <!-- Nilai tersembunyi yang akan dikirim -->
+        <button type="submit">Submit</button>
+    </form>
 
     <script>
         const $sub = 0;

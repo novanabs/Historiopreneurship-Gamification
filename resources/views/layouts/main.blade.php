@@ -283,7 +283,12 @@
               </a>
               <ul class="nav nav-treeview" id="side_B">
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-1" class="nav-link sub {{ session('active_menu_sub') == 'kegiatan-pembelajaran-1' ? 'active' : '' }}" name="kegiatan-pembelajaran-1" onclick="setSidebarStatusSub(this)">
+                    <a href="{{ route('pages.B') }}#Pre-Test-1" class="nav-link sub {{ session('active_menu_sub') == 'kegiatan-pembelajaran-1' ? 'active' : '' }}" name="pre-test-1" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-dot"></i> Pre-Test</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-1" class="nav-link sub  disabled text-gray  {{ session('active_menu_sub') == 'kegiatan-pembelajaran-1' ? 'active' : '' }}" name="kegiatan-pembelajaran-1" onclick="setSidebarStatusSub(this)">
                         <p><i class="bi bi-dot"></i> Kegiatan Pembelajaran 1</p>
                     </a>
                 </li>
