@@ -117,7 +117,6 @@
             color: white;
         }
 
-        /* Modal styles */
         .modal {
             display: none;
             position: fixed;
@@ -127,23 +126,21 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0, 0, 0);
             background-color: rgba(0, 0, 0, 0.4);
-            padding-top: 60px;
         }
 
         .modal-content {
             background-color: #fefefe;
-            margin: 5% auto;
+            margin: 15% auto;
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
             max-width: 500px;
-            border-radius: 10px;
             text-align: center;
         }
 
-        .close {
+        .close,
+        .closeReset {
             color: #aaa;
             float: right;
             font-size: 28px;
@@ -151,29 +148,98 @@
         }
 
         .close:hover,
-        .close:focus {
+        .close:focus,
+        .closeReset:hover,
+        .closeReset:focus {
             color: black;
             text-decoration: none;
             cursor: pointer;
         }
 
-        .modal button {
+        .jawaban-container {
+            display: flex;
+            /* Use flexbox for horizontal layout */
+            justify-content: space-between;
+            /* Space items evenly */
+            gap: 20px;
+            /* Add space between items */
             margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
+            /* Add top margin if needed */
+        }
+
+        .jawaban-item {
+            flex: 1;
+            /* Make each item flexible */
+            text-align: center;
+            /* Center the headings */
+        }
+
+        .judul-historio,
+        .judul-non-historio {
+            font-size: 20px;
+            /* Increase font size */
+            font-weight: bold;
+            /* Make text bold */
+            color: #333;
+            /* Darker color for better contrast */
+            margin: 0 0 10px 0;
+            /* Remove top margin and add space below */
+        }
+
+        .kotakJawaban2 {
+            border: 2px dashed #aaa;
+            padding: 20px;
+            margin: 20px 0;
+            min-height: 200px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            position: relative;
+            transition: background-color 0.3s;
+        }
+
+        .historio {
+            background-color: #cceeff;
+            /* Light blue */
+        }
+
+        .non-historio {
+            background-color: #ffe6e6;
+            /* Light pink */
+        }
+
+        .jawaban2 {
+            width: 200px;
+            height: 150px;
             cursor: pointer;
-            border: none;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .jawaban2:hover {
+            border-color: #007BFF;
+        }
+
+        .jawaban2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             border-radius: 5px;
         }
 
-        .modal .ok-button {
-            background-color: #28A745;
-            color: white;
-        }
-
-        .modal .cancel-button {
-            background-color: #DC3545;
-            color: white;
+        .soal2 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            background-color: #fff;
+            justify-content: center;
         }
     </style>
 </head>
@@ -226,39 +292,97 @@
 
         <div class="kotakJawaban" id="kotakJawaban"></div>
 
-        <div class="button-container">
-            <button class="submit-button" onclick="checkResults()">Submit</button>
-            <button class="reset-button" onclick="resetGame()">Reset</button>
+    </div>
+
+    <!-- Historio dan non Historio -->
+
+    <div class="container">
+        <h1 class="title">Kelompokkan gambar berikut menjadi 2 bagian yaitu historio dan non historio!</h1>
+        <div class="panduan">
+            <h4>Panduan Pengerjaan</h4>
+            <ol>
+                <li>Pilih Gambar yang menurut Anda Benar</li>
+                <li>Seret Gambar ke kotak Jawaban</li>
+                <li>Letakkan gambar historio disebelah kanan dan non historio disebelah kiri</li>
+                <li>Untuk Mengganti Jawaban seret kembali gambar ke atas kotak soal</li>
+                <li>Tekan Submit ketika jawaban sudah dirasa benar</li>
+                <li>Tekan Reset ketika Anda ingin mengulang </li>
+            </ol>
+        </div>
+        <div class="soal2">
+            <div class="jawaban2" draggable="true" id="jawaban11" data-category="historio">
+                <img src="img/MasjidSultanSuriansyah.jpg" alt="Masjid Sultan Suriansyah">
+            </div>
+            <div class="jawaban2" draggable="true" id="jawaban12" data-category="non-historio">
+                <img src="img/bajuin.jpg" alt="Air Terjun Bajuin">
+            </div>
+            <div class="jawaban2" draggable="true" id="jawaban13" data-category="historio">
+                <img src="img/wasaka.jpg" alt="Museum Wasaka">
+            </div>
+            <div class="jawaban2" draggable="true" id="jawaban14" data-category="non-historio">
+                <img src="img/danauSeran.jpeg" alt="Danau Seran">
+            </div>
+            <div class="jawaban2" draggable="true" id="jawaban15" data-category="historio">
+                <img src="img/CandiAgung.jpg" alt="Candi Agung">
+            </div>
+            <div class="jawaban2" draggable="true" id="jawaban16" data-category="historio">
+                <img src="img/pulauKembang.jpg" alt="Pulau Kembang">
+            </div>
+            <div class="jawaban2" draggable="true" id="jawaban17" data-category="non-historio">
+                <img src="img/bukitBirah.jpg" alt="Bukit Birah">
+            </div>
+            <div class="jawaban2" draggable="true" id="jawaban18" data-category="historio">
+                <img src="img/makamPangeranAntasari.jpg" alt="Makam Pangeran Antasari">
+            </div>
+            <div class="jawaban2" draggable="true" id="jawaban19" data-category="non-historio">
+                <img src="img/loksado.jpg" alt="Loksado">
+            </div>
+            <div class="jawaban2" draggable="true" id="jawaban20" data-category="non-historio">
+                <img src="img/pantaiAngsana.jpg" alt="Pantai Angsana">
+            </div>
+        </div>
+
+        <div class="jawaban-container">
+            <!-- Kotak Historio -->
+            <div class="jawaban-item">
+                <h3 class="judul-historio">Historio</h3>
+                <div class="kotakJawaban2 historio" id="kotakHistorio"></div>
+            </div>
+
+            <!-- Kotak Non-Historio -->
+            <div class="jawaban-item">
+                <h3 class="judul-non-historio">Non-Historio</h3>
+                <div class="kotakJawaban2 non-historio" id="kotakNonHistorio"></div>
+            </div>
         </div>
     </div>
 
-    <!-- The Modal -->
+    <div class="text-center">
+        <button id="submitBtn" class="btn btn-primary">Submit</button>
+        <button id="resetBtn" class="btn btn-warning">Reset</button>
+    </div>
+
+    <!-- Modal untuk menampilkan nilai -->
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <p id="modal-text"></p>
-            <button class="ok-button" onclick="closeModal()">OK</button>
+            <h2>Hasil</h2>
+            <p id="nilaiTotal" class="nilai-text">Total Nilai: 0</p>
+            <button id="closeModalBtn" class="btn btn-primary">Tutup</button>
         </div>
     </div>
 
-    <!-- Reset Modal -->
+
+    <!-- Modal untuk konfirmasi reset -->
     <div id="resetModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeResetModal()">&times;</span>
-            <p>Apakah Anda yakin ingin mereset permainan?</p>
-            <button class="ok-button" onclick="confirmReset()">Ya</button>
-            <button class="cancel-button" onclick="closeResetModal()">Tidak</button>
+            <h2>Konfirmasi Reset</h2>
+            <button id="confirmResetBtn" class="btn btn-danger">Ya, Reset</button><br>
+            <button id="cancelResetBtn" class="btn btn-secondary">Batal</button>
         </div>
     </div>
 
     <div class="materi-a"></div>
 
-    {{-- Hidden Form untuk memasukkan poin ke dalam tabel --}}
-    <form id="hiddenForm" action="{{ route('DND') }}" method="POST">
-        @csrf
-        <input type="hidden" name="poin" value="" id="poin_saya"> <!-- Nilai tersembunyi yang akan dikirim -->
-        <button type="submit">Submit</button>
-    </form>
 
     <script>
         const $sub = 0;
@@ -266,9 +390,6 @@
         const jawabanElements = document.querySelectorAll('.jawaban');
         const kotakJawaban = document.getElementById('kotakJawaban');
         const soalContainer = document.querySelector('.soal');
-        const modal = document.getElementById('myModal');
-        const modalText = document.getElementById('modal-text');
-        const resetModal = document.getElementById('resetModal');
         let correctAnswers = 0;
 
         jawabanElements.forEach(jawaban => {
@@ -297,8 +418,11 @@
             const jawabanId = e.dataTransfer.getData('text/plain');
             const jawabanElement = document.getElementById(jawabanId);
 
+            if (!jawabanElement.classList.contains('jawaban')) {
+                return;
+            }
+
             if (kotakJawaban.childElementCount >= 5) {
-                showModal('Anda hanya bisa menaruh 5 jawaban.');
                 return;
             }
 
@@ -306,7 +430,6 @@
             jawabanElement.draggable = false;
             jawabanElement.classList.add('dragged');
 
-            // Check if it's a correct answer
             if (jawabanElement.dataset.correct === 'true') {
                 correctAnswers++;
             }
@@ -322,66 +445,211 @@
             const jawabanId = e.dataTransfer.getData('text/plain');
             const jawabanElement = document.getElementById(jawabanId);
 
-            // Only allow dropping items that were previously in kotakJawaban
             if (jawabanElement.parentNode === kotakJawaban) {
                 kotakJawaban.removeChild(jawabanElement);
                 soalContainer.appendChild(jawabanElement);
                 jawabanElement.draggable = true;
                 jawabanElement.classList.remove('dragged');
 
-                // Update correctAnswers
                 if (jawabanElement.dataset.correct === 'true') {
                     correctAnswers--;
                 }
             }
         });
 
-        function checkResults() {
-            const score = correctAnswers * 20;
-            document.getElementById('poin_saya').value = score;
-            document.getElementById('hiddenForm').submit();
-            showModal(`Skor Anda: ${score} dari 100`);
-        }
+        // DND bagian 2
+        const kotakHistorio = document.getElementById('kotakHistorio');
+        const kotakNonHistorio = document.getElementById('kotakNonHistorio');
+        const jawaban2Elements = document.querySelectorAll('.jawaban2');
+        const soalContainer2 = document.querySelector('.soal2');
+
+        jawaban2Elements.forEach(jawaban2 => {
+            jawaban2.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', jawaban2.id);
+            });
+
+            jawaban2.addEventListener('dragend', () => {
+                jawaban2.classList.remove('dragged');
+            });
+        });
+
+        kotakHistorio.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            kotakHistorio.classList.add('dragover');
+        });
+
+        kotakHistorio.addEventListener('dragleave', () => {
+            kotakHistorio.classList.remove('dragover');
+        });
+
+        kotakHistorio.addEventListener('drop', (e) => {
+            e.preventDefault();
+            kotakHistorio.classList.remove('dragover');
+
+            const jawabanId = e.dataTransfer.getData('text/plain');
+            const jawabanElement = document.getElementById(jawabanId);
+
+            if (!jawabanElement.classList.contains('jawaban2')) {
+                return;
+            }
+
+            kotakHistorio.appendChild(jawabanElement);
+            jawabanElement.draggable = false;
+            jawabanElement.classList.add('dragged');
+        });
+
+        kotakNonHistorio.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            kotakNonHistorio.classList.add('dragover');
+        });
+
+        kotakNonHistorio.addEventListener('dragleave', () => {
+            kotakNonHistorio.classList.remove('dragover');
+        });
+
+        kotakNonHistorio.addEventListener('drop', (e) => {
+            e.preventDefault();
+            kotakNonHistorio.classList.remove('dragover');
+
+            const jawabanId = e.dataTransfer.getData('text/plain');
+            const jawabanElement = document.getElementById(jawabanId);
+
+            if (!jawabanElement.classList.contains('jawaban2')) {
+                return;
+            }
+
+            kotakNonHistorio.appendChild(jawabanElement);
+            jawabanElement.draggable = false;
+            jawabanElement.classList.add('dragged');
+        });
+
+        soalContainer2.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            soalContainer2.classList.add('dragover');
+        });
+
+        soalContainer2.addEventListener('dragleave', () => {
+            soalContainer2.classList.remove('dragover');
+        });
+
+        soalContainer2.addEventListener('drop', (e) => {
+            e.preventDefault();
+            soalContainer2.classList.remove('dragover');
+
+            const jawabanId = e.dataTransfer.getData('text/plain');
+            const jawabanElement = document.getElementById(jawabanId);
+
+            if (jawabanElement.classList.contains('jawaban2')) {
+                soalContainer2.appendChild(jawabanElement);
+                jawabanElement.draggable = true;
+                jawabanElement.classList.remove('dragged');
+            }
+        });
+
+        const submitBtn = document.getElementById('submitBtn');
+        const modal = document.getElementById('myModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const nilaiTotalElement = document.getElementById('nilaiTotal');
+
+        submitBtn.addEventListener('click', () => {
+            // Hitung nilai untuk bagian pertama
+            let bagianPertamaNilai = correctAnswers * 10; // Setiap jawaban benar bernilai 10
+
+            // Hitung nilai untuk bagian historio dan non-historio
+            let historioNilai = 0;
+            let nonHistorioNilai = 0;
+
+            const historioJawaban = document.querySelectorAll('#kotakHistorio .jawaban2[data-category="historio"]');
+            historioNilai = historioJawaban.length * 5; // Setiap jawaban benar bernilai 5
+
+            const nonHistorioJawaban = document.querySelectorAll('#kotakNonHistorio .jawaban2[data-category="non-historio"]');
+            nonHistorioNilai = nonHistorioJawaban.length * 5; // Setiap jawaban benar bernilai 5
+
+            const totalNilai = bagianPertamaNilai + historioNilai + nonHistorioNilai;
+
+            // Tampilkan nilai di modal
+            nilaiTotalElement.textContent = `Total Nilai: ${totalNilai}`;
+
+            // Tampilkan modal
+            modal.style.display = 'block';
+        });
+
+        // Tutup modal saat pengguna klik tombol "Tutup"
+        closeModalBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Tutup modal saat pengguna klik di luar modal
+        window.addEventListener('click', (event) => {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
 
 
-        function resetGame() {
-            resetModal.style.display = "block";
-        }
+        // Variabel untuk modal reset
+        const resetBtn = document.getElementById('resetBtn');
+        const resetModal = document.getElementById('resetModal');
+        const confirmResetBtn = document.getElementById('confirmResetBtn');
+        const cancelResetBtn = document.getElementById('cancelResetBtn');
 
-        function confirmReset() {
-            resetModal.style.display = "none";
+        // Fungsi untuk menampilkan modal reset
+        resetBtn.addEventListener('click', () => {
+            resetModal.style.display = 'block';
+        });
+
+        // Fungsi konfirmasi reset (ketika tombol "Ya, Reset" ditekan)
+        confirmResetBtn.addEventListener('click', () => {
+            // Reset jawaban dari bagian pertama
+            const jawabanElements = document.querySelectorAll('.jawaban');
+            jawabanElements.forEach(jawaban => {
+                if (jawaban.parentNode !== soalContainer) {
+                    jawaban.parentNode.removeChild(jawaban);
+                    soalContainer.appendChild(jawaban);
+                    jawaban.draggable = true;
+                    jawaban.classList.remove('dragged');
+                }
+            });
+
+            // Reset counter correctAnswers
             correctAnswers = 0;
 
-            kotakJawaban.innerHTML = '';
-            kotakJawaban.style.backgroundColor = '#f0f0f0';
-
-            jawabanElements.forEach(jawaban => {
-                jawaban.draggable = true;
-                soalContainer.appendChild(jawaban);
+            // Reset jawaban dari bagian historio dan non-historio
+            const jawaban2Elements = document.querySelectorAll('.jawaban2');
+            jawaban2Elements.forEach(jawaban2 => {
+                if (jawaban2.parentNode === kotakHistorio || jawaban2.parentNode === kotakNonHistorio) {
+                    if (jawaban2.parentNode === kotakHistorio) {
+                        kotakHistorio.removeChild(jawaban2);
+                    } else {
+                        kotakNonHistorio.removeChild(jawaban2);
+                    }
+                    soalContainer2.appendChild(jawaban2);
+                    jawaban2.draggable = true;
+                    jawaban2.classList.remove('dragged');
+                }
             });
-        }
 
-        function showModal(message) {
-            modalText.innerText = message;
-            modal.style.display = "block";
-        }
+            // Reset nilai yang ditampilkan
+            nilaiTotalElement.textContent = '';
 
-        function closeModal() {
-            modal.style.display = "none";
-        }
+            // Tutup modal reset
+            resetModal.style.display = 'none';
+        });
 
-        function closeResetModal() {
-            resetModal.style.display = "none";
-        }
+        // Fungsi untuk menutup modal reset jika tombol "Batal" ditekan
+        cancelResetBtn.addEventListener('click', () => {
+            resetModal.style.display = 'none'; // Hanya menutup modal tanpa reset
+        });
 
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
+        // Tutup modal reset jika pengguna mengklik di luar modal
+        window.addEventListener('click', (event) => {
             if (event.target == resetModal) {
-                resetModal.style.display = "none";
+                resetModal.style.display = 'none';
             }
-        }
+        });
+
+
+
     </script>
 </body>
 
