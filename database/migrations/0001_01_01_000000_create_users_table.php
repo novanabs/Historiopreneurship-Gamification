@@ -23,6 +23,7 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('poin')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

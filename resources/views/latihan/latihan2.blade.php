@@ -113,10 +113,12 @@ input[type="text"]:focus {
             // Menurun
             { id: 1, direction: 'down', startX: 8, startY: 0, answer: 'ULIN', clue: 'Kayu khas Kalimantan', no: 1 },
             { id: 2, direction: 'down', startX: 2, startY: 0, answer: 'PANGERAN', clue: 'Gelar kebangsawanan kerajaan Banjar', no: 2 },
+            { id: 3, direction: 'down', startX: 5, startY: 2, answer: 'SURIANSYAH', clue: 'Nama Raja pertama Kesultanan Banjar', no: 3 },
             { id: 4, direction: 'down', startX: 0, startY: 2, answer: 'BANJARMASIN', clue: 'Letak makam Pangeran Antasari', no: 4 },
             { id: 5, direction: 'down', startX: 14, startY: 1, answer: 'SASIRANGAN', clue: 'Kain khas Kalimantan Selatan', no: 5 },
             { id: 6, direction: 'down', startX: 3, startY: 8, answer: 'KUIN', clue: 'Tempat bersejarah, dikenal sebagai asal mula Kesultanan Banjar', no: 6 },
             { id: 7, direction: 'down', startX: 11, startY: 5, answer: 'HARATAI', clue: 'Air terjun ...', no: 7 },
+            { id: 8, direction: 'down', startX: 12, startY: 0, answer: 'NYIRU', clue: 'Alat tradisional Banjar untuk menampi beras', no: 8 },
 
             // Mendatar
             { id: 11, direction: 'across', startX: 0, startY: 10, answer: 'SABILALMUHTADIN', clue: 'Nama mesjid Raya di Banjarmasin', no: 1 },
@@ -125,8 +127,6 @@ input[type="text"]:focus {
             { id: 14, direction: 'across', startX: 0, startY: 2, answer: 'BUNGAS', clue: 'Bahasa banjar cantik', no: 4 },
             { id: 15, direction: 'across', startX: 7, startY: 0, answer: 'SULTAN', clue: 'Gelar pemimpin kesultanan', no: 5 },
             { id: 16, direction: 'across', startX: 8, startY: 8, answer: 'RAJA', clue: 'Gelar pemimpin kerajaan', no: 6 },
-            { id: 3, direction: 'down', startX: 5, startY: 2, answer: 'SURIANSYAH', clue: 'Nama Raja pertama Kesultanan Banjar', no: 3 },
-            { id: 8, direction: 'down', startX: 12, startY: 0, answer: 'NYIRU', clue: 'Alat tradisional Banjar untuk menampi beras', no: 8 },
         ]
     };
 

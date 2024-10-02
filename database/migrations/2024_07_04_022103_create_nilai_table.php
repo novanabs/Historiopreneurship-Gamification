@@ -26,7 +26,9 @@ return new class extends Migration
             'analisa_kelompok_kewirausahaan_aktivitas3',
             'upload_file_pembelajaran3',
             'upload_file_aktivitas1',
-            'upload_file_aktivitas2']);
+            'upload_file_aktivitas2',
+            'poin_DND',
+            'point_TTS']);
             $table->string('data_jawaban_penilai')->nullable();
             $table->integer('nilai_akhir')->nullable();
             $table->integer('percobaan_ke')->nullable();

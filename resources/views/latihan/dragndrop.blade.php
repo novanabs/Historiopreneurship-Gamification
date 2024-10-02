@@ -367,7 +367,12 @@
         <div class="modal-content">
             <h2>Hasil</h2>
             <p id="nilaiTotal" class="nilai-text">Total Nilai: 0</p>
-            <button id="closeModalBtn" class="btn btn-primary">Tutup</button>
+            <form id="tutupForm" action="{{ route('DND') }}" method="POST">
+                @csrf
+                <input type="hidden" id="nilaiAkhirInput" name="nilai_akhir">
+                <input type="hidden" name="aspek" value="poin_DND">
+                <button type="submit" id="closeModalBtn" class="btn btn-primary">Tutup</button>
+            </form>
         </div>
     </div>
 
@@ -566,6 +571,9 @@
             nonHistorioNilai = nonHistorioJawaban.length * 5; // Setiap jawaban benar bernilai 5
 
             const totalNilai = bagianPertamaNilai + historioNilai + nonHistorioNilai;
+
+            // Masukkan total nilai ke dalam input hidden
+            document.getElementById('nilaiAkhirInput').value = totalNilai;
 
             // Tampilkan nilai di modal
             nilaiTotalElement.textContent = `Total Nilai: ${totalNilai}`;
