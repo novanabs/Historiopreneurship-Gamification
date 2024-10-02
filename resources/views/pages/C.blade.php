@@ -12,7 +12,7 @@ aria-valuemax="100">
 
 
 <div class="mt-3">
-    <h1 id="progress_halaman" hidden>{{$materi_c ?? 0}}</h1>
+    <h1 id="progress_halaman">{{$materi_c ?? 0}}</h1>
     <div class="row">
         <div class="col">
             <h2>C. Kewirausahaan dan Kepariwisataan </h2>
@@ -1090,7 +1090,13 @@ aria-valuemax="100">
     function nav_tombol() {
         if ($sub == 0) {
             document.getElementById('prev').disabled = true;
+        } else if ($sub == 8){
+            document.getElementById('next').innerHTML = "Latihan";
+            document.getElementById('next').addEventListener('click', function(){
+                window.location.href = "latihan2"
+            })
         } else {
+            document.getElementById('next').innerHTML = "Selanjutnya";
             document.getElementById('prev').disabled = false;
             document.getElementById('next').disabled = false;
         }
