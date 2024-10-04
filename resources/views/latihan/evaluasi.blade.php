@@ -193,6 +193,7 @@ $soal = $data_soal[$soal_sekarang];
                     @csrf
                     <input type="hidden" name="email" value="{{ auth()->user()->email }}">
                     <input type="hidden" name="nilai_akhir" id="nilaiAkhirInput">
+                    <input type="hidden" name="aspek" value="evaluasi">
                     <input type="hidden" name="benar" id="benarInput" value="">
                     <input type="hidden" name="salah" id="salahInput" value="">
                     <input type="hidden" name="lama_waktu_pengerjaan" id="lamaWaktuPengerjaanInput">
@@ -549,12 +550,6 @@ $soal = $data_soal[$soal_sekarang];
         // Menyediakan fungsi global untuk bisa dipanggil dari onclick
         window.selesai = selesai;
     });
-
-
-
-
-
-
 
 
 </script>

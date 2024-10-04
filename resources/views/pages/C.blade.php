@@ -12,7 +12,7 @@ aria-valuemax="100">
 
 
 <div class="mt-3">
-    <h1 id="progress_halaman">{{$materi_c ?? 0}}</h1>
+    <h1 id="progress_halaman" hidden>{{$materi_c ?? 0}}</h1>
     <div class="row">
         <div class="col">
             <h2>C. Kewirausahaan dan Kepariwisataan </h2>

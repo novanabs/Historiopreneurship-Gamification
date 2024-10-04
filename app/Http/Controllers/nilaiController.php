@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PoinUpdated;
 use App\Models\Nilai;
 use App\Models\User;
+use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 
 class nilaiController extends Controller
 {
@@ -75,6 +78,7 @@ class nilaiController extends Controller
         $request->validate([
             'email' => 'required|email',
             'nilai_akhir' => 'required|integer',
+            'aspek' => 'required|string',
             'benar' => 'required|integer',
             'salah' => 'required|integer',
             'lama_waktu_pengerjaan' => 'required|integer'
@@ -86,7 +90,7 @@ class nilaiController extends Controller
             : 'Jangan patah semangat, terus tingkatkan belajar lagi!';
 
         // Cek apakah data dengan email yang diberikan sudah ada
-        $existingRecord = DB::table('nilai')->where('email', $request->email)->first();
+        $existingRecord = DB::table('nilai')->where('email', $request->email)->where('aspek', $request->aspek)->first();
 
         if ($existingRecord) {
             // Jika data ada, lakukan update
@@ -101,17 +105,22 @@ class nilaiController extends Controller
             DB::table('nilai')->insert([
                 'email' => $request->email,
                 'nilai_akhir' => $request->nilai_akhir,
+                'aspek' => $request->aspek,
                 'data_jawaban_penilai' => $message,
                 'lama_waktu_pengerjaan' => $request->lama_waktu_pengerjaan,
                 'waktu_selesai' => now(),
             ]);
         }
-
+        event(new PoinUpdated($request->email));
         // Mengarahkan ke halaman hasil evaluasi dengan parameter
         return view('latihan.selesaiEvaluasi', [
             'benar' => $request->benar,  // Ganti dengan nilai yang sebenarnya
             'salah' => $request->salah,   // Ganti dengan nilai yang sebenarnya
             'skor' => $request->nilai_akhir
         ]);
+        
+    
+        
+        
     }
 }

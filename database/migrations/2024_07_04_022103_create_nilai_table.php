@@ -28,7 +28,7 @@ return new class extends Migration
             'upload_file_aktivitas1',
             'upload_file_aktivitas2',
             'poin_DND',
-            'point_TTS']);
+            'poin_TTS']);
             $table->string('data_jawaban_penilai')->nullable();
             $table->integer('nilai_akhir')->nullable();
             $table->integer('percobaan_ke')->nullable();
