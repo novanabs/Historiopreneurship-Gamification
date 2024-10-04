@@ -11,6 +11,49 @@
         id="status_bar"></div>
 </div>
 
+<style>
+    /* Untuk bagian Pre Test */
+    
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .feedback.wrong {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .options input {
+            margin: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:disabled {
+            background-color: grey;
+        }
+</style>
 
 <div class="mt-3">
     <h1 id="progress_halaman" hidden>{{$materi_b ?? 0}}</h1>
@@ -29,8 +72,13 @@
         </div>
     </div>
     <div class="row materi-b" id="pre-test-1">
-        <h1>Pre Test</h1>
-        
+        <h1>Pre Test Kesejarahan</h1>
+        <div class="container">
+            <div class="question" id="questionText"></div>
+            <div class="options" id="optionsContainer"></div>
+            <button id="checkBtn" onclick="checkAnswer()">Periksa</button>
+            <div class="feedback" id="feedbackContainer"></div>
+        </div>
     </div>
     <div class="row materi-b" id="kegiatan-pembelajaran-1">
         <div class="col">
@@ -541,6 +589,16 @@
             </form>
         </div>
     </div>
+
+    <div class="row materi-b" id="post-test-1">
+        <h1>Post Test Kesejarahan</h1>
+        <div class="container">
+            <div class="question" id="PostquestionText"></div>
+            <div class="options" id="PostoptionsContainer"></div>
+            <button id="PostcheckBtn" onclick="PostcheckAnswer()">Periksa</button>
+            <div class="feedback" id="PostfeedbackContainer"></div>
+        </div>
+    </div>
     <div class="row materi-b" id="refleksi">
         <div class="col">
             <h2>REFLEKSI</h2>
@@ -710,7 +768,7 @@
 
     // Hide semua bab
     function hide_semua_sub() {
-        for (let i = 0; i <= 6; i++) {
+        for (let i = 0; i <= 7; i++) {
             console.log(materi_a[i])
             materi_a[i].style.display = 'none';
         }
@@ -730,7 +788,7 @@
 
     const status_bar = document.getElementById('status_bar');
     function update_status() {
-        let persen = $progress * 20;
+        let persen = $progress * 14.28;
         status_bar.style.width = `${persen}%`;
     }
     update_status();
@@ -831,6 +889,214 @@
             });
         });
     });
+
+    // Script Pre Test
+    const questions = [
+        {
+            question: "Siapakah pendiri Kesultanan Banjar?",
+            options: ["Sultan Adam", "Sultan Suriansyah", "Pangeran Antasari", "Pangeran Hidayatullah"],
+            correct: 1,
+            explanation: "Sultan Suriansyah adalah pendiri Kesultanan Banjar dan raja pertama yang memeluk Islam."
+        },
+        {
+            question: "Perang Banjar terjadi pada tahun?",
+            options: ["1860-1865", "1859-1905", "1845-1862", "1870-1885"],
+            correct: 1,
+            explanation: "Perang Banjar dimulai pada tahun 1859 dan berlangsung hingga 1905 melawan kolonial Belanda."
+        },
+        {
+            question: "Pahlawan nasional dari Kalimantan Selatan adalah?",
+            options: ["Pangeran Diponegoro", "Cut Nyak Dien", "Pangeran Antasari", "Sultan Hasanuddin"],
+            correct: 2,
+            explanation: "Pangeran Antasari adalah pahlawan nasional dari Kalimantan Selatan yang memimpin Perang Banjar."
+        },
+        {
+            question: "Apa nama kerajaan sebelum menjadi Kesultanan Banjar?",
+            options: ["Kerajaan Tanjungpura", "Kerajaan Daha", "Kerajaan Kutai", "Kerajaan Martapura"],
+            correct: 1,
+            explanation: "Kerajaan Daha adalah kerajaan Hindu yang kemudian menjadi Kesultanan Banjar setelah Sultan Suriansyah memeluk Islam."
+        },
+        {
+            question: "Siapa tokoh yang memimpin Perang Banjar setelah Pangeran Antasari?",
+            options: ["Sultan Adam", "Pangeran Hidayatullah", "Pangeran Diponegoro", "Sultan Suriansyah"],
+            correct: 1,
+            explanation: "Pangeran Hidayatullah melanjutkan kepemimpinan Perang Banjar setelah Pangeran Antasari wafat."
+        }
+    ];
+
+    let currentQuestion = 0;
+
+    function loadQuestion() {
+        console.log("Load Question")
+        const questionText = document.getElementById("questionText");
+        const optionsContainer = document.getElementById("optionsContainer");
+        const feedbackContainer = document.getElementById("feedbackContainer");
+        const checkBtn = document.getElementById("checkBtn");
+
+        // Reset question and feedback
+        questionText.innerText = questions[currentQuestion].question;
+        optionsContainer.innerHTML = '';
+        feedbackContainer.style.display = 'none'; // Hides feedback when loading a new question
+        feedbackContainer.innerHTML = ''; // Clears previous feedback content
+        checkBtn.innerText = 'Periksa';
+        checkBtn.disabled = false;
+
+        questions[currentQuestion].options.forEach((option, index) => {
+            const optionLabel = document.createElement("label");
+            const optionRadio = document.createElement("input");
+            optionRadio.type = "radio";
+            optionRadio.name = "option";
+            optionRadio.value = index;
+            optionLabel.appendChild(optionRadio);
+            optionLabel.appendChild(document.createTextNode(option));
+            optionsContainer.appendChild(optionLabel);
+            optionsContainer.appendChild(document.createElement("br"));
+        });
+    }
+
+    function checkAnswer() {
+        console.log('Cek Jawaban')
+
+        const selectedOption = document.querySelector('input[name="option"]:checked');
+        if (!selectedOption) return;
+
+        const feedbackContainer = document.getElementById("feedbackContainer");
+        const checkBtn = document.getElementById("checkBtn");
+
+        const selectedValue = parseInt(selectedOption.value);
+        const correctValue = questions[currentQuestion].correct;
+
+        feedbackContainer.style.display = 'block'; // Shows feedback after checking
+
+        if (selectedValue === correctValue) {
+            feedbackContainer.className = 'feedback correct';
+            feedbackContainer.innerHTML = "✅ Jawaban benar! " + questions[currentQuestion].explanation;
+        } else {
+            feedbackContainer.className = 'feedback wrong';
+            feedbackContainer.innerHTML = "❌ Jawaban salah! " + questions[currentQuestion].explanation;
+        }
+
+        checkBtn.innerText = "Selanjutnya";
+        checkBtn.onclick = nextQuestion;
+    }
+
+    function nextQuestion() {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            loadQuestion();
+            checkBtn.onclick = checkAnswer;
+            // checkAnswer();
+        } else {
+            alert("Pre-test selesai!");
+            const container = document.querySelector(".container");
+        }
+    }
+
+    loadQuestion();
+
+    // Post Test
+    const postTestQuestions = [
+    {
+        question: "Siapakah pendiri Kesultanan Banjar?",
+        options: ["Sultan Adam", "Sultan Suriansyah", "Pangeran Antasari", "Pangeran Hidayatullah"],
+        correct: 1,
+        explanation: "Sultan Suriansyah adalah pendiri Kesultanan Banjar dan raja pertama yang memeluk Islam."
+    },
+    {
+        question: "Perang Banjar terjadi pada tahun?",
+        options: ["1860-1865", "1859-1905", "1845-1862", "1870-1885"],
+        correct: 1,
+        explanation: "Perang Banjar dimulai pada tahun 1859 dan berlangsung hingga 1905 melawan kolonial Belanda."
+    },
+    {
+        question: "Siapa yang memimpin Perang Banjar setelah Pangeran Antasari?",
+        options: ["Sultan Adam", "Pangeran Hidayatullah", "Pangeran Diponegoro", "Sultan Suriansyah"],
+        correct: 1,
+        explanation: "Pangeran Hidayatullah melanjutkan kepemimpinan Perang Banjar setelah Pangeran Antasari wafat."
+    },
+    {
+        question: "Apa nama kerajaan sebelum menjadi Kesultanan Banjar?",
+        options: ["Kerajaan Tanjungpura", "Kerajaan Daha", "Kerajaan Kutai", "Kerajaan Martapura"],
+        correct: 1,
+        explanation: "Kerajaan Daha adalah kerajaan Hindu yang kemudian menjadi Kesultanan Banjar setelah Sultan Suriansyah memeluk Islam."
+    },
+    {
+        question: "Pahlawan nasional dari Kalimantan Selatan adalah?",
+        options: ["Pangeran Diponegoro", "Cut Nyak Dien", "Pangeran Antasari", "Sultan Hasanuddin"],
+        correct: 2,
+        explanation: "Pangeran Antasari adalah pahlawan nasional dari Kalimantan Selatan yang memimpin Perang Banjar."
+    }
+];
+
+    let no_soal = 0;
+
+    function PostloadQuestion() {
+        console.log("Load Question")
+        const PostquestionText = document.getElementById("PostquestionText");
+        const PostoptionsContainer = document.getElementById("PostoptionsContainer");
+        const PostfeedbackContainer = document.getElementById("PostfeedbackContainer");
+        const PostcheckBtn = document.getElementById("PostcheckBtn");
+
+        // Reset question and feedback
+        PostquestionText.innerText = postTestQuestions[no_soal].question;
+        PostoptionsContainer.innerHTML = '';
+        PostfeedbackContainer.style.display = 'none'; // Hides feedback when loading a new question
+        PostfeedbackContainer.innerHTML = ''; // Clears previous feedback content
+        PostcheckBtn.innerText = 'Periksa';
+        PostcheckBtn.disabled = false;
+
+        postTestQuestions[no_soal].options.forEach((option, index) => {
+            const optionLabel = document.createElement("label");
+            const optionRadio = document.createElement("input");
+            optionRadio.type = "radio";
+            optionRadio.name = "option";
+            optionRadio.value = index;
+            optionLabel.appendChild(optionRadio);
+            optionLabel.appendChild(document.createTextNode(option));
+            PostoptionsContainer.appendChild(optionLabel);
+            PostoptionsContainer.appendChild(document.createElement("br"));
+        });
+    }
+
+    function PostcheckAnswer() {
+        console.log('Cek Jawaban')
+
+        const selectedOption = document.querySelector('input[name="option"]:checked');
+        if (!selectedOption) return;
+
+        const feedbackContainer = document.getElementById("feedbackContainer");
+        const checkBtn = document.getElementById("checkBtn");
+
+        const selectedValue = parseInt(selectedOption.value);
+        const correctValue = postTestQuestions[no_soal].correct;
+
+        PostfeedbackContainer.style.display = 'block'; // Shows feedback after checking
+
+        if (selectedValue === correctValue) {
+            PostfeedbackContainer.className = 'feedback correct';
+            PostfeedbackContainer.innerHTML = "✅ Jawaban benar! " + postTestQuestions[no_soal].explanation;
+        } else {
+            PostfeedbackContainer.className = 'feedback wrong';
+            PostfeedbackContainer.innerHTML = "❌ Jawaban salah! " + postTestQuestions[no_soal].explanation;
+        }
+
+        PostcheckBtn.innerText = "Selanjutnya";
+        PostcheckBtn.onclick = PostnextQuestion;
+    }
+
+    function PostnextQuestion() {
+        no_soal++;
+        if (no_soal < postTestQuestions.length) {
+            PostloadQuestion();
+            PostcheckBtn.onclick = PostcheckAnswer;
+            // checkAnswer();
+        } else {
+            alert("Post-test selesai!");
+            const container = document.querySelector(".container");
+        }
+    }
+
+    PostloadQuestion();
 </script>
 
 

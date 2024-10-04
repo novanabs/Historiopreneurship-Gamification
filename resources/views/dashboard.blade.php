@@ -228,7 +228,7 @@
 <script>
     const $sub = 0;
     const materi_a = document.getElementsByClassName('materi-a');
-</script> --}}
+</script>
 
 </body>
 
