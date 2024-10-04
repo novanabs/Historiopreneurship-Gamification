@@ -17,6 +17,14 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <script src="https://kit.fontawesome.com/c263d98dea.js" crossorigin="anonymous"></script>
     <style>
+        .container {
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
         body {
             overflow: hidden;
             overflow-y: scroll;
@@ -283,7 +291,7 @@
               </a>
               <ul class="nav nav-treeview" id="side_B">
                 <li class="nav-item">
-                    <a href="{{ route('pages.B') }}#Pre-Test-1" class="nav-link sub {{ session('active_menu_sub') == 'kegiatan-pembelajaran-1' ? 'active' : '' }}" name="pre-test-1" onclick="setSidebarStatusSub(this)">
+                    <a href="{{ route('pages.B') }}#Pre-Test-1" class="nav-link sub {{ session('active_menu_sub') == 'pre-test-1' ? 'active' : '' }}" name="pre-test-1" onclick="setSidebarStatusSub(this)">
                         <p><i class="bi bi-dot"></i> Pre-Test</p>
                     </a>
                 </li>
@@ -313,6 +321,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('pages.B') }}#Post-Test-1" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'post-test-1' ? 'active' : '' }}" name="post-test-1" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Pos-Test</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('pages.B') }}#Halaman-Refleksi" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'refleksi' ? 'active' : '' }}" name="refleksi" onclick="setSidebarStatusSub(this)">
                         <p><i class="bi bi-lock"></i> Refleksi</p>
                     </a>
@@ -335,6 +348,11 @@
                 <p class="text-start">KWU & Kepariwisataan</p><i class="right bi bi-chevron-left"></i>
               </a>
               <ul class="nav nav-treeview" id="side_C">
+                <li class="nav-item">
+                    <a href="{{ route('pages.C') }}#Pre-Test-2" class="nav-link sub {{ session('active_menu_sub') == 'pre-test-2' ? 'active' : '' }}" name="pre-test-2" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-dot"></i> Pre-Test</p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="{{ route('pages.C') }}#Halaman-Kewirausahaan-dan-kepariwisataan" class="nav-link sub {{ session('active_menu_sub') == 'kewirausahaan-dan-kepariwisataan' ? 'active' : '' }}" name="kewirausahaan-dan-kepariwisataan" onclick="setSidebarStatusSub(this)">
                         <p><i class="bi bi-dot"></i> KWU & Kepariwisataan</p>
@@ -373,6 +391,11 @@
                 <li class="nav-item">
                     <a href="{{ route('pages.C') }}#Praktik-Lapangan-2" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'praktik-lapangan-2' ? 'active' : '' }}" name="praktik-lapangan-2" onclick="setSidebarStatusSub(this)">
                         <p><i class="bi bi-lock"></i> Praktik Lapangan 2</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('pages.C') }}#Post-Test-2" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'post-test-2' ? 'active' : '' }}" name="post-test-2" onclick="setSidebarStatusSub(this)">
+                        <p><i class="bi bi-lock"></i> Pos-Test</p>
                     </a>
                 </li>
                 <li class="nav-item">
