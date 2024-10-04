@@ -14,27 +14,34 @@ class HitungPoinListener
         $email = $event->email;
 
         // Ambil data nilai berdasarkan email dari tabel 'nilai'
-        $nilai = DB::table('nilai')->where('email', $email)->first();
+
+        $nilai_dnd = DB::table('nilai')->where('email', $email)->where('aspek', 'poin_DND')->first();
+        $nilai_tts = DB::table('nilai')->where('email', $email)->where('aspek', 'poin_TTS')->first();
+        $nilai_evaluasi = DB::table('nilai')->where('email', $email)->where('aspek', 'evaluasi')->first();
 
         // Jika data tidak ada, set nilai default 0
-        $poin_dnd = $nilai->poin_DND ?? 0;
-        $poin_tts = $nilai->poin_TTS ?? 0;
-        $evaluasi = $nilai->evaluasi ?? 0;
+        $poin_dnd = $nilai_dnd->nilai_akhir ?? 0; // Ganti 'nilai_akhir' sesuai dengan nama kolom yang tepat
+        $poin_tts = $nilai_tts->nilai_akhir ?? 0; // Ganti 'nilai_akhir' sesuai dengan nama kolom yang tepat
+        $evaluasi = $nilai_evaluasi->nilai_akhir ?? 0; // Ganti 'nilai_akhir' sesuai dengan nama kolom yang tepat
 
         // Hitung aspek yang tersedia
         $aspek_tersedia = 0;
-        if ($poin_dnd > 0) $aspek_tersedia++;
-        if ($poin_tts > 0) $aspek_tersedia++;
-        if ($evaluasi > 0) $aspek_tersedia++;
+        if ($poin_dnd > 0)
+            $aspek_tersedia++;
+        if ($poin_tts > 0)
+            $aspek_tersedia++;
+        if ($evaluasi > 0)
+            $aspek_tersedia++;
 
         // Jika ada aspek yang tersedia, hitung rata-rata poin
-        $total_poin = $aspek_tersedia > 0 
-            ? ($poin_dnd + $poin_tts + $evaluasi) / $aspek_tersedia 
+        $total_poin = $aspek_tersedia > 0
+            ? ($poin_dnd + $poin_tts + $evaluasi) / $aspek_tersedia
             : 0;
 
+        
         // Update nilai poin di tabel 'users' hanya jika peran adalah 'siswa'
         $user = DB::table('users')->where('email', $email)->first();
-        if ($user && $user->role === 'siswa') {
+        if ($user && $user->peran === 'siswa') {
             DB::table('users')->where('email', $email)->update(['poin' => $total_poin]);
         }
     }

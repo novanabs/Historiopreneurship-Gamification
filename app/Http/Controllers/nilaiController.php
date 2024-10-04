@@ -119,8 +119,5 @@ class nilaiController extends Controller
             'skor' => $request->nilai_akhir
         ]);
         
-    
-        
-        
     }
 }

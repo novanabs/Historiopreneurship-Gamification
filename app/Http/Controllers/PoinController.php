@@ -42,7 +42,7 @@ class PoinController extends Controller
                 'waktu_selesai' => now(),
             ]);
         }
-        event(new PoinUpdated($request->email));
+        event(new PoinUpdated($user_email));
         // Redirect atau respons setelah menyimpan
         return redirect()->back()->with('success', 'Nilai berhasil disimpan');
     }
@@ -79,7 +79,7 @@ class PoinController extends Controller
                 'waktu_selesai' => now(),
             ]);
         }
-        event(new PoinUpdated($request->email));
+        event(new PoinUpdated($user_email));
         // Redirect atau respons setelah menyimpan
         return redirect()->back()->with('success', 'Nilai berhasil disimpan');
     }
