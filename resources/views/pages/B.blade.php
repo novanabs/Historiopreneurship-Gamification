@@ -753,7 +753,7 @@
         
         if ($sub == 0) {
             document.getElementById('prev').disabled = true;
-        }else if ($sub == 6){
+        }else if ($sub == 7){
             document.getElementById('next').innerHTML = "Latihan";
             document.getElementById('next').addEventListener('click', function(){
                 window.location.href = "dragndrop"
