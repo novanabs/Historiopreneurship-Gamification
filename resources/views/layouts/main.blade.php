@@ -115,7 +115,8 @@
                                             </button>
                                         </form>
                                     </li> --}}
-                                    <li>
+                                    @if (auth()->user()->peran == 'siswa')
+                                    <li>                                        
                                         <form action="{{route('pages.reviewGuru')}}" method="get">
                                             @csrf
                                             <button type="submit" class="dropdown-item">
@@ -123,6 +124,7 @@
                                             </button>
                                         </form>
                                     </li>
+                                    @endif
                                     <li>
                                         <form action="{{route('login.logout')}}" method="get">
                                             @csrf
@@ -181,7 +183,7 @@
                 
             @endif
 
-            @if (auth()->user()->peran == 'guru')
+            @if (auth()->user()->peran == 'siswa')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('evaluasi') }}">
                     <i class="bi bi-speedometer"></i>
@@ -232,11 +234,8 @@
             </li>
             @endif
 
-
+            @if (auth()->user()->peran == 'siswa')
             <li class="nav-header">MATERI</li>
-
-            
-            
             {{-- A. INFORMASI UMUM --}}
             <li class="nav-item {{ isset($halaman_terbuka) && $halaman_terbuka == 'A' ? 'menu-is-opening menu-open' : '' }}">
                 <a href="{{ route('pages.A') }}" class="nav-link bab {{ session('active_menu') == 'pages.A' ? 'active' : '' }}" onclick="setSidebarStatus('CPL', 'pages.A')">
@@ -413,9 +412,10 @@
                 </li>
               </ul>
             </li>
+            @endif
             <li class="nav-item">
                 {{-- Admin tidak melihat ini --}}
-                @if (auth()->user()->peran != 'admin')
+                @if (auth()->user()->peran != 'admin' and auth()->user()->peran != 'guru')
                    <a href="{{ route('info') }}" class="nav-link">
                 <i class="bi bi-layout-text-window-reverse"></i>
                 <p>
