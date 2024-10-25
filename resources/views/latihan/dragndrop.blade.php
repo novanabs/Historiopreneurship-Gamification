@@ -356,6 +356,7 @@
             </div>
         </div>
     </div>
+    {{-- END --}}
 
     <div class="text-center">
         <button id="submitBtn" class="btn btn-primary">Submit</button>
@@ -374,7 +375,8 @@
                 <button type="submit" id="closeModalBtn" class="btn btn-primary">Tutup</button>
             </form>
         </div>
-    </div>
+    </div> 
+    {{-- End --}}
 
 
     <!-- Modal untuk konfirmasi reset -->
