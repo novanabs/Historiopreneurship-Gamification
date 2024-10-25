@@ -25,7 +25,8 @@ class RegisterController extends Controller
             'alamatInput' => 'required',
             'peranInput' => 'required',
             'passwordInput' => 'required|min:4|confirmed',
-            'kelasInput'=>'required'
+            'kelasInput'=>'required',
+            'jenisKelamin' => 'required|in:L,P'
         ]);
         // dd($validator);
         $query = User::create([
@@ -35,7 +36,8 @@ class RegisterController extends Controller
             'alamat' => $request->alamatInput,
             'peran' => $request->peranInput,
             'password' => Hash::make($request->passwordInput),
-            'kelas'=>$request->kelasInput
+            'kelas'=>$request->kelasInput,
+            'jenis_kelamin' => $request->jenisKelamin
         ]);
         return redirect()->route('login');
 

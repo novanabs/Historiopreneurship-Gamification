@@ -152,38 +152,7 @@
           <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
             
 
-            {{-- Halaman Guru --}}
-            
-            @if (auth()->user()->peran == 'guru')
-            <li class="nav-header">MENU</li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('dataKelas') }}">
-                    <i class="bi bi-list-task"></i>
-                   <p>Data Kelas</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('dataMahasiswa') }}">
-                    <i class="bi bi-people-fill"></i>
-                   <p>Data Mahasiswa</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('dataNilai') }}">
-                    <i class="bi bi-list-ol"></i>
-                   <p>Data Nilai</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('dataEvaluasi') }}">
-                    <i class="bi bi-journal-text"></i>
-                   <p>Data Evaluasi</p>
-                </a>
-            </li>
-                
-            @endif
-
-            @if (auth()->user()->peran == 'siswa')
+            <!-- @if (auth()->user()->peran == 'siswa')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('evaluasi') }}">
                     <i class="bi bi-speedometer"></i>
@@ -222,18 +191,47 @@
                    <p>Materi</p>
                 </a>
             </li>
-            @endcan
+            @endcan -->
 
 
-            @if (auth()->user()->peran == 'siswa')
+        
             <li class="nav-item m {{ isset($halaman_terbuka) && $halaman_terbuka == 'dashboard' ? 'menu-open' : '' }}">
                 <a class="nav-link" href="{{ route('dashboard.index') }}" >
                     <i class="bi bi-speedometer"></i>
                    <p>Dashboard</p>
                 </a>
             </li>
+                        {{-- Halaman Guru --}}
+            
+                        @if (auth()->user()->peran == 'guru')
+            <li class="nav-header">MENU</li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dataKelas') }}">
+                    <i class="bi bi-list-task"></i>
+                   <p>Data Kelas</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dataMahasiswa') }}">
+                    <i class="bi bi-people-fill"></i>
+                   <p>Data Mahasiswa</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dataNilai') }}">
+                    <i class="bi bi-list-ol"></i>
+                   <p>Data Nilai</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dataEvaluasi') }}">
+                    <i class="bi bi-journal-text"></i>
+                   <p>Data Evaluasi</p>
+                </a>
+            </li>
+                
             @endif
-
+   
             @if (auth()->user()->peran == 'siswa')
             <li class="nav-header">MATERI</li>
             {{-- A. INFORMASI UMUM --}}

@@ -113,18 +113,6 @@ class DashboardController extends Controller
             ->get();
         
         $data['claimedBadges'] = $claimedBadges;
-        
-        // Debugging output
-        // dd([ 
-        //     'allAspectsFulfilled' => $data['allAspectsFulfilled'],
-        //     'badgeMasterClaimed' => $data['badgeMasterClaimed'],
-        //     'badgePenguasaMateriClaimed' => $data['badgePenguasaMateriClaimed'],
-        //     'highRankBadgeClaimed' => $data['highRankBadgeClaimed'],
-        //     'eligibleForHighRankBadge' => $data['eligibleForHighRankBadge'],
-        //     'siCepatBadgeClaimed' => $data['siCepatBadgeClaimed'],
-        //     'claimedBadges' => $data['claimedBadges']
-        // ]);
-    
         return view('dashboard', $data);
     }
     

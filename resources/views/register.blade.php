@@ -98,6 +98,28 @@
                             @enderror
                         </div>
 
+                        <div class="mb-3">
+                            <label for="jenisKelamin" class="form-label">Jenis Kelamin</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="jenisKelamin" id="lakiLaki"
+                                    value="L">
+                                <label class="form-check-label" for="lakiLaki">
+                                    Laki-laki
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="jenisKelamin" id="perempuan"
+                                    value="P">
+                                <label class="form-check-label" for="perempuan">
+                                    Perempuan
+                                </label>
+                            </div>
+                            @error('jenisKelamin')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
 
                         <div class="mb-3">
                             <label for="passwordInput" class="form-label">Password</label>

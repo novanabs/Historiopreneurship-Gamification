@@ -72,7 +72,7 @@ aria-valuemax="100">
         </div>
     </div>
     <div class="row materi-c" id="pre-test-2">
-        <h1>Pre Test Kesejarahan</h1>
+        <h1>Pre Test Kewirausahaan dan Kepariwisataan</h1>
         <div class="container">
             <div class="question" id="questionText"></div>
             <div class="options" id="optionsContainer"></div>
@@ -331,8 +331,6 @@ aria-valuemax="100">
         </div>
     </div>
     <div class="materi-c" id="lembar-analisa-kelompok-2">
-
-
         <div class="row">
             <div class="col">
                 <h3>LEMBAR ANALISA KELOMPOK</h3>
@@ -993,7 +991,7 @@ aria-valuemax="100">
     </div>
 
     <div class="row materi-c" id="post-test-2">
-        <h1>Post Test Kesejarahan</h1>
+        <h1>Post Test Kewirausahaan dan Kepariwisataan</h1>
         <div class="container">
             <div class="question" id="PostquestionText"></div>
             <div class="options" id="PostoptionsContainer"></div>
