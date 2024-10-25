@@ -13,46 +13,46 @@
 
 <style>
     /* Untuk bagian Pre Test */
-    
 
-        .feedback {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            display: none;
-        }
 
-        .feedback.correct {
-            background-color: #d4edda;
-            color: #155724;
-        }
+    .feedback {
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        display: none;
+    }
 
-        .feedback.wrong {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
+    .feedback.correct {
+        background-color: #d4edda;
+        color: #155724;
+    }
 
-        .question {
-            margin-bottom: 20px;
-        }
+    .feedback.wrong {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
 
-        .options input {
-            margin: 5px;
-        }
+    .question {
+        margin-bottom: 20px;
+    }
 
-        button {
-            margin-top: 10px;
-            padding: 10px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-        }
+    .options input {
+        margin: 5px;
+    }
 
-        button:disabled {
-            background-color: grey;
-        }
+    button {
+        margin-top: 10px;
+        padding: 10px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    button:disabled {
+        background-color: grey;
+    }
 </style>
 
 <div class="mt-3">
@@ -246,40 +246,27 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
-
-            <p>Anggota Kelompok</p>
-            @if($id_kelompok !== null && $anggotaKelompok->isNotEmpty())
-                <ol>
-                    @foreach ($anggotaKelompok as $anggota)
-                        <li><b>Nama:</b> {{ $anggota->nama_lengkap }}</li>
-                    @endforeach
-                </ol>
-            @else
-                <p>Tidak ada anggota kelompok ditemukan.</p>
-            @endif
         </div>
-        <form method="post" id="formKelompok" action="{{route('simpanJawabanKelompok')}}">
+        <form method="post" id="formIndividu" action="{{ route('simpanJawabanIndividu2') }}">
             @csrf
-            @if($id_kelompok)
-                <input type="hidden" name="id_kelompok" value="{{ $id_kelompok }}">
-            @endif
-
             @foreach (range(1, 10) as $i)
                 <div class="row mt-3">
                     <div class="col">
                         <label for="objek{{ $i }}" data-value="{{ $i }}">Objek {{ $i }}</label><br>
                         <textarea name="objek{{ $i }}" id="objek{{ $i }}"
-                            rows="5">{{ old('objek' . $i, $jawabanKelompok->where('no_objek', $i)->first()->jawaban ?? '') }}</textarea>
+                            rows="5">{{ old('objek' . $i, $jawabanIndividuII->where('no_objek', $i)->first()->jawaban ?? '') }}</textarea>
                     </div>
                 </div>
             @endforeach
 
             <div class="row mt-3">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary" data-form="formKelompok">Simpan Jawaban</button>
+                    <button type="submit" class="btn btn-primary" data-form="formIndividu">Simpan Jawaban</button>
                 </div>
             </div>
         </form>
+
+
     </div>
     <div class="row materi-b" id="lembar-analisa-individu">
         <div class="col">
@@ -664,38 +651,38 @@
 {{-- Pop up --}}
 <style>
     .popup {
-    display: none;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;}
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
 
     .popup-content {
-    position: relative;
-    margin: 15% auto;
-    padding: 20px;
-    width: 300px;
-    background-color: white;
-    border-radius: 10px;
-    text-align: center;
-}
+        position: relative;
+        margin: 15% auto;
+        padding: 20px;
+        width: 300px;
+        background-color: white;
+        border-radius: 10px;
+        text-align: center;
+    }
 
-.closeBtn {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 20px;
-    cursor: pointer;
-}
+    .closeBtn {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 20px;
+        cursor: pointer;
+    }
 
-#pointsDisplay {
-    font-size: 30px;
-    font-weight: bold;
-}
-
+    #pointsDisplay {
+        font-size: 30px;
+        font-weight: bold;
+    }
 </style>
 <div id="popup" class="popup">
     <div class="popup-content">
@@ -705,7 +692,7 @@
     </div>
 </div>
 <script>
-    
+
 </script>
 
 {{-- Mengirim progress ke dalam database --}}
@@ -725,7 +712,7 @@
     // Misalkan poin yang ingin ditampilkan adalah 150
     var points = 175;
 
-    function openPopupBtnS(){
+    function openPopupBtnS() {
         pointsDisplay.textContent = points;
         popup.style.display = "block";
     }
@@ -751,13 +738,13 @@
 
     // Navigasi tombol
     function nav_tombol() {
-        
+
         if ($sub == 0) {
             document.getElementById('prev').disabled = true;
-        }else if ($sub == 7){
+        } else if ($sub == 7) {
             document.getElementById('next').disabled = true;
             document.getElementById('latihan').style.display = "";
-            document.getElementById('latihan').addEventListener('click', function(){
+            document.getElementById('latihan').addEventListener('click', function () {
                 window.location.href = "dragndrop"
             })
         } else {
@@ -784,7 +771,7 @@
     }
     show_sub($sub);
 
-    
+
 
     // Status Bar
 
@@ -799,10 +786,10 @@
     // console.log(materi_a)
     let progressHalaman = document.getElementById('halaman');
 
-    if($sub == 5){
-            openPopupBtnS();
-                
-            }
+    if ($sub == 5) {
+        openPopupBtnS();
+
+    }
 
     function next() {
         console.log('Selanjutnya', $sub)
@@ -812,12 +799,12 @@
             $progress++;
             progressHalaman.value = $progress;
             updateHalaman.submit()
-            
+
         }
         show_sub($sub);
         nav_tombol()
         active_sub('nav')
-        
+
     }
 
     function prev() {
@@ -833,16 +820,16 @@
     let $sides_B = document.querySelectorAll('#side_B li')
     console.log("INI BAGIAN SIDE B", $sides_B)
 
-    for(let i=0; i<=$progress;i++){
-            console.log('BY SESSION',$sides_B[i]);
-            $sides_B[i].querySelector('a').classList.add('active');
-            $sides_B[i].querySelector('a').classList.remove('disabled');
-            $sides_B[i].querySelector('a').classList.remove('text-gray');
+    for (let i = 0; i <= $progress; i++) {
+        console.log('BY SESSION', $sides_B[i]);
+        $sides_B[i].querySelector('a').classList.add('active');
+        $sides_B[i].querySelector('a').classList.remove('disabled');
+        $sides_B[i].querySelector('a').classList.remove('text-gray');
 
-            // Mengubah lock menjadi dot
-            $sides_B[i].querySelector('i').classList.remove('bi-lock')
-            $sides_B[i].querySelector('i').classList.add('bi-dot')
-        }
+        // Mengubah lock menjadi dot
+        $sides_B[i].querySelector('i').classList.remove('bi-lock')
+        $sides_B[i].querySelector('i').classList.add('bi-dot')
+    }
 
 </script>
 <!-- SweatAlert -->
@@ -998,37 +985,37 @@
 
     // Post Test
     const postTestQuestions = [
-    {
-        question: "Siapakah pendiri Kesultanan Banjar?",
-        options: ["Sultan Adam", "Sultan Suriansyah", "Pangeran Antasari", "Pangeran Hidayatullah"],
-        correct: 1,
-        explanation: "Sultan Suriansyah adalah pendiri Kesultanan Banjar dan raja pertama yang memeluk Islam."
-    },
-    {
-        question: "Perang Banjar terjadi pada tahun?",
-        options: ["1860-1865", "1859-1905", "1845-1862", "1870-1885"],
-        correct: 1,
-        explanation: "Perang Banjar dimulai pada tahun 1859 dan berlangsung hingga 1905 melawan kolonial Belanda."
-    },
-    {
-        question: "Siapa yang memimpin Perang Banjar setelah Pangeran Antasari?",
-        options: ["Sultan Adam", "Pangeran Hidayatullah", "Pangeran Diponegoro", "Sultan Suriansyah"],
-        correct: 1,
-        explanation: "Pangeran Hidayatullah melanjutkan kepemimpinan Perang Banjar setelah Pangeran Antasari wafat."
-    },
-    {
-        question: "Apa nama kerajaan sebelum menjadi Kesultanan Banjar?",
-        options: ["Kerajaan Tanjungpura", "Kerajaan Daha", "Kerajaan Kutai", "Kerajaan Martapura"],
-        correct: 1,
-        explanation: "Kerajaan Daha adalah kerajaan Hindu yang kemudian menjadi Kesultanan Banjar setelah Sultan Suriansyah memeluk Islam."
-    },
-    {
-        question: "Pahlawan nasional dari Kalimantan Selatan adalah?",
-        options: ["Pangeran Diponegoro", "Cut Nyak Dien", "Pangeran Antasari", "Sultan Hasanuddin"],
-        correct: 2,
-        explanation: "Pangeran Antasari adalah pahlawan nasional dari Kalimantan Selatan yang memimpin Perang Banjar."
-    }
-];
+        {
+            question: "Siapakah pendiri Kesultanan Banjar?",
+            options: ["Sultan Adam", "Sultan Suriansyah", "Pangeran Antasari", "Pangeran Hidayatullah"],
+            correct: 1,
+            explanation: "Sultan Suriansyah adalah pendiri Kesultanan Banjar dan raja pertama yang memeluk Islam."
+        },
+        {
+            question: "Perang Banjar terjadi pada tahun?",
+            options: ["1860-1865", "1859-1905", "1845-1862", "1870-1885"],
+            correct: 1,
+            explanation: "Perang Banjar dimulai pada tahun 1859 dan berlangsung hingga 1905 melawan kolonial Belanda."
+        },
+        {
+            question: "Siapa yang memimpin Perang Banjar setelah Pangeran Antasari?",
+            options: ["Sultan Adam", "Pangeran Hidayatullah", "Pangeran Diponegoro", "Sultan Suriansyah"],
+            correct: 1,
+            explanation: "Pangeran Hidayatullah melanjutkan kepemimpinan Perang Banjar setelah Pangeran Antasari wafat."
+        },
+        {
+            question: "Apa nama kerajaan sebelum menjadi Kesultanan Banjar?",
+            options: ["Kerajaan Tanjungpura", "Kerajaan Daha", "Kerajaan Kutai", "Kerajaan Martapura"],
+            correct: 1,
+            explanation: "Kerajaan Daha adalah kerajaan Hindu yang kemudian menjadi Kesultanan Banjar setelah Sultan Suriansyah memeluk Islam."
+        },
+        {
+            question: "Pahlawan nasional dari Kalimantan Selatan adalah?",
+            options: ["Pangeran Diponegoro", "Cut Nyak Dien", "Pangeran Antasari", "Sultan Hasanuddin"],
+            correct: 2,
+            explanation: "Pangeran Antasari adalah pahlawan nasional dari Kalimantan Selatan yang memimpin Perang Banjar."
+        }
+    ];
 
     let no_soal = 0;
 

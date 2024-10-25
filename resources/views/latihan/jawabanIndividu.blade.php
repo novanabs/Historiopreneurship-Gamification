@@ -8,6 +8,12 @@
             <button class="nav-link active" id="kesejarahan-tab" data-bs-toggle="tab" data-bs-target="#kesejarahan"
                 type="button" role="tab" aria-controls="kesejarahan" aria-selected="true">Kesejarahan</button>
         </li>
+        <!-- Add a new tab for Analisis Kesejarahan II -->
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="kesejarahan-ii-tab" data-bs-toggle="tab" data-bs-target="#kesejarahan-ii"
+                type="button" role="tab" aria-controls="kesejarahan-ii" aria-selected="false">Kesejarahan II</button>
+        </li>
+
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="kewirausahaan-tab" data-bs-toggle="tab" data-bs-target="#kewirausahaan"
                 type="button" role="tab" aria-controls="kewirausahaan" aria-selected="false">Kewirausahaan</button>
@@ -19,6 +25,58 @@
     </ul>
 
     <div class="tab-content" id="myTabContent">
+
+        <!-- Tab Kesejarahan II -->
+        <div class="tab-pane fade" id="kesejarahan-ii" role="tabpanel" aria-labelledby="kesejarahan-ii-tab">
+            <h3 class="mt-3">Jawaban Kesejarahan II</h3>
+            @if($jawabanIndividuII->isEmpty())
+                <p>Tidak ada jawaban yang ditemukan untuk Kesejarahan II.</p>
+            @else
+                <table class="table text-center table-bordered">
+                    <thead>
+                        <tr>
+                            <th>No Objek</th>
+                            <th>Jawaban</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($jawabanIndividuII as $index => $jawaban)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $jawaban->jawaban }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col">
+                        <div class="card text-center">
+                            <h5 class="card-header">
+                                Penilaian
+                            </h5>
+                            <div class="card-body">
+                                <form action="{{ route('kirimJawabanIndividu', ['email' => $email]) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="aspek" value="analisa_individu_kesejarahan_II">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
+                                        <input type="text" class="form-control" name="nilai_akhir"
+                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                    </div>
+                                    <label for="feedbackIndividu">Feedback</label><br>
+                                    <textarea name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
+                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                </form>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Semangat dalam menilai!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        </div>
+
         <!-- Tab Kesejarahan -->
         <div class="tab-pane fade show active" id="kesejarahan" role="tabpanel" aria-labelledby="kesejarahan-tab">
             <h3 class="mt-3">Jawaban Kesejarahan</h3>
@@ -72,10 +130,12 @@
             @endif
         </div>
 
+
+
         <!-- Tab Kewirausahaan -->
         <div class="tab-pane fade" id="kewirausahaan" role="tabpanel" aria-labelledby="kewirausahaan-tab">
             <h3 class="mt-3">Jawaban Kewirausahaan</h3>
-            @if($jawabanKewirausahaandanPariwisataIndividu->isEmpty())
+            @if($jawabanKewirausahaanPariwisataIndividu->isEmpty())
                 <p>Tidak ada jawaban yang ditemukan untuk Kewirausahaan.</p>
             @else
                 <table class="table text-center table-bordered">
@@ -87,7 +147,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($jawabanKewirausahaandanPariwisataIndividu as $index => $jawaban)
+                        @foreach($jawabanKewirausahaanPariwisataIndividu as $index => $jawaban)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $jawaban->aspek }}</td>

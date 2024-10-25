@@ -27,10 +27,10 @@
                 </li>
             </ul>
 
-            <!-- Tab Content -->
+            Tab Content
             <div class="tab-content mt-3" id="myTabContent">
                 <!-- Tab Kesejarahan -->
-                <div class="tab-pane fade show active" id="sejarahan" role="tabpanel" aria-labelledby="sejarahan-tab">
+                <!-- <div class="tab-pane fade show active" id="sejarahan" role="tabpanel" aria-labelledby="sejarahan-tab">
                     <table class="table text-center table-bordered">
                         <thead>
                             <tr>
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Tab Aktivitas 1 -->
                 <div class="tab-pane fade" id="aktivitas1" role="tabpanel" aria-labelledby="aktivitas1-tab">

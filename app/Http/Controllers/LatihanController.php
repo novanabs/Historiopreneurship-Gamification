@@ -41,10 +41,10 @@ class LatihanController extends Controller
         $soal['halaman_terbuka'] = 0;
         return view('latihan.info', $soal);
     }
-    public function dragndrop(){
-        $data['halaman_terbuka'] = 'drag n drop'; 
-        return view('latihan.dragndrop', $data);
-    }
+    // public function dragndrop(){
+    //     $data['halaman_terbuka'] = 'drag n drop'; 
+    //     return view('latihan.dragndrop', $data);
+    // }
     public function latihan2(){
         $data['halaman_terbuka'] = 'latihan2'; 
         return view('latihan.latihan2', $data);

@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
     // Pemindahan halaman
     Route::get('/A-Informasi-Umum', [HalamanController::class, 'A'])->name('pages.A');
     Route::get('/B-Kesejarahan', [HalamanController::class, 'B'])->name('pages.B');
-    Route::post('/B-Kesejarahan/kelompok', [jawabanKelompokController::class, 'simpanJawaban'])->name('simpanJawabanKelompok');
+    Route::post('/B-Kesejarahan/individu2', [AnalisisIndividuController::class, 'simpanJawaban'])->name('simpanJawabanIndividu2');
     Route::post('/B-Kesejarahan/individu', [AnalisisIndividuController::class, 'simpanJawabanIndividu'])->name('simpanAnalisisIndividu');
     Route::post('/B-Kesejarahan/refleksi', [RefleksiController::class, 'simpanRefleksi'])->name('simpanRefleksiKesejarahan');
     Route::post('/B-Kesejarahan/uploadFile', [uploadFileController::class, 'uploadFile'])->name('uploadFileKesejarahan');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AnalisisIndividuKesejeranhanII;
 use App\Models\User;
 use App\Models\Nilai;
 use App\Models\Kelompok;
@@ -29,17 +30,21 @@ class HalamanController extends Controller
         return view('pages.A', $data);
     }
 
-    function B () {
-        $data['halaman_terbuka'] = 'B';
-        $data['user'] = Auth::user()->email;
-        $data['materi_b'] = AksesHalaman::where('email', Auth::user()->email)->value('materi_b');
+    public function B() 
+    {
         $userEmail = Auth::user()->email;
     
+        // Prepare data for view
+        $data['halaman_terbuka'] = 'B';
+        $data['user'] = $userEmail;
+        $data['materi_b'] = AksesHalaman::where('email', $userEmail)->value('materi_b');
+    
+        // Retrieve individual answers from AnalisisIndividuKesejarahan
         $jawabanIndividu = AnalisisIndividuKesejarahan::where('created_by', $userEmail)
             ->pluck('jawaban', 'aspek')
             ->toArray();
     
-        // Ambil jawaban refleksi dan pastikan jika tidak ada data, tetap hasilkan collection
+        // Retrieve reflection answers and group them by category
         $jawabanRefleksi = Refleksi::where('created_by', $userEmail)
             ->get()
             ->groupBy('kategori')
@@ -47,29 +52,22 @@ class HalamanController extends Controller
                 return $items->keyBy('aspek');
             });
     
-        // Pastikan jawabanRefleksi bukan null dan set sebagai collection jika kosong
-        if (!$jawabanRefleksi || $jawabanRefleksi->isEmpty()) {
+        // Ensure jawabanRefleksi is a collection, even if empty
+        if ($jawabanRefleksi->isEmpty()) {
             $jawabanRefleksi = collect();
         }
     
-        $kelompok = Kelompok::where('email', $userEmail)->first();
+        // Retrieve individual answers from AnalisisIndividuKesejarahanII
+        $jawabanIndividuII = AnalisisIndividuKesejeranhanII::where('created_by', $userEmail)->get();
     
-        if ($kelompok) {
-            $id_kelompok = $kelompok->id_kelompok;
-            $anggotaKelompok = Kelompok::where('id_kelompok', $id_kelompok)
-                ->join('users', 'kelompok.email', '=', 'users.email')
-                ->select('kelompok.*', 'users.nama_lengkap')
-                ->get();
-    
-            $jawabanKelompok = AnalisisKelompokKesejarahan::where('id_kelompok', $id_kelompok)->get();
-        } else {
-            $id_kelompok = null;
-            $anggotaKelompok = collect();
-            $jawabanKelompok = collect();
-        }
-    
-        return view('pages.B', compact('jawabanKelompok', 'id_kelompok', 'anggotaKelompok', 'jawabanIndividu', 'jawabanRefleksi'), $data);
+        // Return the view with the necessary data
+        return view('pages.B', array_merge($data, [
+            'jawabanIndividu' => $jawabanIndividu,
+            'jawabanRefleksi' => $jawabanRefleksi,
+            'jawabanIndividuII' => $jawabanIndividuII,
+        ]));
     }
+    
 
     function C () {
         $data['halaman_terbuka'] = 'C';
