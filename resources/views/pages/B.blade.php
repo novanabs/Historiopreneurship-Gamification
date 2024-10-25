@@ -897,9 +897,9 @@
             </p>
             
             <div class="text-center bordered mb-3">
-                <video width="900" height="507" controls>
+                {{-- <video width="900" height="507" controls>
                     <source src="img/video_historiopreneurship.mp4" type="video/mp4">
-                    </video>
+                    </video> --}}
                     <iframe width="900" height="507" src="https://www.youtube.com/embed/P4B-OnP8ISc?si=YBNeIwxF_qJmlo3E"
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
