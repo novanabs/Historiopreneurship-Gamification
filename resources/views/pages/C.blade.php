@@ -68,6 +68,7 @@ aria-valuemax="100">
             </div>
             <div class="col-6 text-end">
                 <button class="btn btn-primary" onclick="next()" id="next">Selanjutnya</button>
+                <button class="btn btn-primary" id="latihan" style="display: none">Latihan</button>
             </div>
         </div>
     </div>
@@ -1152,8 +1153,9 @@ aria-valuemax="100">
         if ($sub == 0) {
             document.getElementById('prev').disabled = true;
         } else if ($sub == 10){
-            document.getElementById('next').innerHTML = "Latihan";
-            document.getElementById('next').addEventListener('click', function(){
+            document.getElementById('next').disabled = true;
+            document.getElementById('latihan').style.display = "";
+            document.getElementById('latihan').addEventListener('click', function(){
                 window.location.href = "latihan2"
             })
         } else {

@@ -56,7 +56,7 @@
 </style>
 
 <div class="mt-3">
-    <h1 id="progress_halaman" hidden>{{$materi_b ?? 0}}</h1>
+    <h1 id="progress_halaman">{{$materi_b ?? 0}}</h1>
     <div class="row">
         <div class="col">
             <h2>B. Kesejarahan</h2>
@@ -69,6 +69,7 @@
         </div>
         <div class="col-6 text-end">
             <button class="btn btn-primary" onclick="next()" id="next">Selanjutnya</button>
+            <button class="btn btn-primary" id="latihan" style="display: none">Latihan</button>
         </div>
     </div>
     <div class="row materi-b" id="pre-test-1">
@@ -754,8 +755,9 @@
         if ($sub == 0) {
             document.getElementById('prev').disabled = true;
         }else if ($sub == 7){
-            document.getElementById('next').innerHTML = "Latihan";
-            document.getElementById('next').addEventListener('click', function(){
+            document.getElementById('next').disabled = true;
+            document.getElementById('latihan').style.display = "";
+            document.getElementById('latihan').addEventListener('click', function(){
                 window.location.href = "dragndrop"
             })
         } else {
