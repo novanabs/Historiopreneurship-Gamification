@@ -152,7 +152,38 @@
           <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false">
             
 
-            <!-- @if (auth()->user()->peran == 'siswa')
+            {{-- Halaman Guru --}}
+            
+            @if (auth()->user()->peran == 'guru')
+            <li class="nav-header">MENU</li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dataKelas') }}">
+                    <i class="bi bi-list-task"></i>
+                   <p>Data Kelas</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dataMahasiswa') }}">
+                    <i class="bi bi-people-fill"></i>
+                   <p>Data Mahasiswa</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dataNilai') }}">
+                    <i class="bi bi-list-ol"></i>
+                   <p>Data Nilai</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dataEvaluasi') }}">
+                    <i class="bi bi-journal-text"></i>
+                   <p>Data Evaluasi</p>
+                </a>
+            </li>
+                
+            @endif
+
+            @if (auth()->user()->peran == 'siswa')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('evaluasi') }}">
                     <i class="bi bi-speedometer"></i>
@@ -184,6 +215,7 @@
                    <p>Dashboard Admin</p>
                 </a>
             </li>
+
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('pages.materi') }}" >
@@ -298,6 +330,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('pages.B') }}#kuis-kesejarahan" class="nav-link disabled sub text-gray {{ session('active_menu_sub') == 'kegiatan-pembelajaran-1' ? 'active' : '' }}" name="kuis-kesejarahan" onclick="setSidebarStatusSub(this)">
+                        <i class="bi bi-lock"></i>
+                        <p>
+                          Kuis Kesejarahan
+                        </p>
+                      </a> 
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('pages.B') }}#Halaman-Kegiatan-Pembelajaran-2" class="nav-link sub  disabled text-gray {{ session('active_menu_sub') == 'kegiatan-pembelajaran-2' ? 'active' : '' }}" name="kegiatan-pembelajaran-2" onclick="setSidebarStatusSub(this)">
                         <p><i class="bi bi-lock"></i> Kegiatan Pembelajaran 2</p>
                     </a>
@@ -327,21 +367,15 @@
                         <p><i class="bi bi-lock"></i> Refleksi</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('dragndrop') }}" class="nav-link disabled sub text-gray ">
-                        <i class="bi bi-lock"></i>
-                        <p>
-                          Latihan DND
-                        </p>
-                      </a> 
-                </li>
+                
               </ul>
             </li>
 
             {{-- C. KWU & KEWIRAUSAHAAN --}}
             <li class="nav-item  {{ isset($halaman_terbuka) && $halaman_terbuka == 'C' ? 'menu-is-opening menu-open' : '' }}">
-              <a href="{{ route('pages.C') }}" class="nav-link bab {{ session('active_menu') == 'pages.C' ? 'active' : '' }}" onclick="setSidebarStatus('kewirausahaan-dan-kepariwisataan', 'pages.C')">
-                <i class="bi bi-2-square-fill"></i>
+              <a href="{{ route('pages.C') }}" class="nav-link bab disabled text-gray {{ session('active_menu') == 'pages.C' ? 'active' : '' }}" onclick="setSidebarStatus('kewirausahaan-dan-kepariwisataan', 'pages.C')">
+                {{-- <i class="bi bi-2-square-fill"></i> --}}
+                <i class="bi bi-lock"></i>
                 <p class="text-start">KWU & Kepariwisataan</p><i class="right bi bi-chevron-left"></i>
               </a>
               <ul class="nav nav-treeview" id="side_C">
@@ -414,8 +448,9 @@
             <li class="nav-item">
                 {{-- Admin tidak melihat ini --}}
                 @if (auth()->user()->peran != 'admin' and auth()->user()->peran != 'guru')
-                   <a href="{{ route('info') }}" class="nav-link">
-                <i class="bi bi-layout-text-window-reverse"></i>
+                   <a href="{{ route('info') }}" class="nav-link disabled text-gray">
+                {{-- <i class="bi bi-layout-text-window-reverse"></i> --}}
+                <i class="bi bi-lock"></i>
                 <p>
                   Evaluasi
                 </p>
