@@ -120,4 +120,44 @@ class nilaiController extends Controller
         ]);
         
     }
+    public function simpanNilaiPretest(Request $request) {
+        $affected = DB::table('nilai')
+            ->where('email', $request->email)
+            ->where('aspek', 'pre_test_kesejarahan')
+            ->update(['nilai_akhir' => $request->nilai_akhir]);
+    
+        if ($affected === 0) {
+            DB::table('nilai')->insert([
+                'email' => $request->email,
+                'nilai_akhir' => $request->nilai_akhir,
+                'aspek' => 'pre_test_kesejarahan'
+            ]);
+        }
+    
+        return redirect()->back()->with('success', 'Nilai pre-test berhasil disimpan atau diperbarui');
+    }
+    
+
+    public function simpanNilaiPosttest(Request $request) {
+        $affected = DB::table('nilai')
+            ->where('email', $request->email)
+            ->where('aspek', 'post_test_kesejarahan')
+            ->update(['nilai_akhir' => $request->nilai_akhir]);
+    
+        // Jika tidak ada baris yang terpengaruh, buat record baru
+        if ($affected === 0) {
+            DB::table('nilai')->insert([
+                'email' => $request->email,
+                'nilai_akhir' => $request->nilai_akhir,
+                'aspek' => 'post_test_kesejarahan'
+            ]);
+        }
+    
+        return redirect()->back()->with('success', 'Nilai post-test berhasil disimpan atau diperbarui');
+    }
+    
+    
+    
+    
+    
 }

@@ -49,6 +49,10 @@ Route::group(['middleware' => ['auth']], function () {
     // Pemindahan halaman
     Route::get('/A-Informasi-Umum', [HalamanController::class, 'A'])->name('pages.A');
     Route::get('/B-Kesejarahan', [HalamanController::class, 'B'])->name('pages.B');
+    //pretest kesejarahan
+    Route::post('/B-Kesejarahan/simpan-nilai-pretest', [NilaiController::class, 'simpanNilaiPretest'])->name('simpanNilaiPretest');
+    //posttest kesejarahan
+    Route::post('/B-Kesejarahan/simpan-nilai-posttest', [NilaiController::class, 'simpanNilaiPosttest'])->name('simpanNilaiPosttest');
     Route::post('/B-Kesejarahan/individu2', [AnalisisIndividuController::class, 'simpanJawaban'])->name('simpanJawabanIndividu2');
     Route::post('/B-Kesejarahan/individu', [AnalisisIndividuController::class, 'simpanJawabanIndividu'])->name('simpanAnalisisIndividu');
     Route::post('/B-Kesejarahan/refleksi', [RefleksiController::class, 'simpanRefleksi'])->name('simpanRefleksiKesejarahan');
@@ -75,7 +79,8 @@ Route::put('/latihan', [LatihanController::class, 'latihan']);
 Route::get('/kuis', [LatihanController::class, 'kuis'])->name('kuis');
 Route::get('/evaluasi', [LatihanController::class, 'evaluasi'])->name('evaluasi');
 Route::post('/evaluasi', [NilaiController::class, 'simpanNilai'])->name('simpanNilai');
-Route::get('/selesai-evaluasi', function () {return view('latihan.selesaiEvaluasi');})->name('selesaiEvaluasi');
+Route::get('/selesai-evaluasi', function () {
+    return view('latihan.selesaiEvaluasi'); })->name('selesaiEvaluasi');
 
 Route::get('/info', [LatihanController::class, 'info'])->name('info');
 Route::get('/dragndrop', [LatihanController::class, 'dragndrop'])->name('dragndrop');
@@ -117,4 +122,7 @@ Route::post('/TTS', [PoinController::class, 'TTS'])->name('TTS');
 // Export Data
 Route::get('/export-evaluasi', [dataExportController::class, 'exportEvaluasi'])->name('export.evaluasi');
 Route::get('/export-kelas', [dataExportController::class, 'exportKelas'])->name('export.kelas');
+
+
+
 

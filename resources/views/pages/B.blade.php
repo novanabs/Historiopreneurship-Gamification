@@ -292,7 +292,7 @@
 </style>
 
 <div class="mt-3">
-    <h1 id="progress_halaman">{{$materi_b ?? 0}}</h1>
+    <h1 id="progress_halaman" hidden>{{$materi_b ?? 0}}</h1>
     <div class="row">
         <div class="col">
             <h2>B. Kesejarahan</h2>
@@ -316,6 +316,13 @@
             <button id="checkBtn" onclick="checkAnswer()">Periksa</button>
             <div class="feedback" id="feedbackContainer"></div>
         </div>
+        <form id="preTestForm" action="{{ route('simpanNilaiPretest') }}" method="POST" style="display: none;">
+            @csrf
+            <input type="hidden" name="email" id="email" value="{{ Auth::user()->email }}">
+            <!-- Ganti dengan email pengguna -->
+            <input type="hidden" name="nilai_akhir" id="nilaiAkhir">
+            <input type="hidden" name="aspek" value="pre_test_kesejarahan">
+        </form>
     </div>
     <div class="row materi-b" id="kegiatan-pembelajaran-1">
         <div class="col">
@@ -487,13 +494,13 @@
                         <img src="img/10.jpg" alt="Gambar 10">
                     </div>
                 </div>
-        
+
                 <div class="kotakJawaban" id="kotakJawaban"></div>
-        
+
             </div>
-        
+
             <!-- Historio dan non Historio -->
-        
+
             <div class="container">
                 <h1 class="title">Kelompokkan gambar berikut menjadi 2 bagian yaitu historio dan non historio!</h1>
                 <div class="panduan">
@@ -539,14 +546,14 @@
                         <img src="img/pantaiAngsana.jpg" alt="Pantai Angsana">
                     </div>
                 </div>
-        
+
                 <div class="jawaban-container">
                     <!-- Kotak Historio -->
                     <div class="jawaban-item">
                         <h3 class="judul-historio">Historio</h3>
                         <div class="kotakJawaban2 historio" id="kotakHistorio"></div>
                     </div>
-        
+
                     <!-- Kotak Non-Historio -->
                     <div class="jawaban-item">
                         <h3 class="judul-non-historio">Non-Historio</h3>
@@ -555,12 +562,12 @@
                 </div>
             </div>
             {{-- END --}}
-        
+
             <div class="text-center">
                 <button id="submitBtn" class="btn btn-primary">Submit</button>
                 <button id="resetBtn" class="btn btn-warning">Reset</button>
             </div>
-        
+
             <!-- Modal untuk menampilkan nilai -->
             <div id="myModal" class="modal">
                 <div class="modal-content">
@@ -573,10 +580,9 @@
                         <button type="submit" id="closeModalBtn" class="btn btn-primary">Tutup</button>
                     </form>
                 </div>
-            </div> 
+            </div>
             {{-- End --}}
-        
-        
+
             <!-- Modal untuk konfirmasi reset -->
             <div id="resetModal" class="modal">
                 <div class="modal-content">
@@ -585,227 +591,224 @@
                     <button id="cancelResetBtn" class="btn btn-secondary">Batal</button>
                 </div>
             </div>
-        
-            <div class="materi-a"></div>
-        
-         
-        
+
+
             <script>
-                
+
                 const jawabanElements = document.querySelectorAll('.jawaban');
                 const kotakJawaban = document.getElementById('kotakJawaban');
                 const soalContainer = document.querySelector('.soal');
                 let correctAnswers = 0;
-        
+
                 jawabanElements.forEach(jawaban => {
                     jawaban.addEventListener('dragstart', (e) => {
                         e.dataTransfer.setData('text/plain', jawaban.id);
                     });
-        
+
                     jawaban.addEventListener('dragend', () => {
                         jawaban.classList.remove('dragged');
                     });
                 });
-        
+
                 kotakJawaban.addEventListener('dragover', (e) => {
                     e.preventDefault();
                     kotakJawaban.classList.add('dragover');
                 });
-        
+
                 kotakJawaban.addEventListener('dragleave', () => {
                     kotakJawaban.classList.remove('dragover');
                 });
-        
+
                 kotakJawaban.addEventListener('drop', (e) => {
                     e.preventDefault();
                     kotakJawaban.classList.remove('dragover');
-        
+
                     const jawabanId = e.dataTransfer.getData('text/plain');
                     const jawabanElement = document.getElementById(jawabanId);
-        
+
                     if (!jawabanElement.classList.contains('jawaban')) {
                         return;
                     }
-        
+
                     if (kotakJawaban.childElementCount >= 5) {
                         return;
                     }
-        
+
                     kotakJawaban.appendChild(jawabanElement);
                     jawabanElement.draggable = false;
                     jawabanElement.classList.add('dragged');
-        
+
                     if (jawabanElement.dataset.correct === 'true') {
                         correctAnswers++;
                     }
                 });
-        
+
                 soalContainer.addEventListener('dragover', (e) => {
                     e.preventDefault();
                 });
-        
+
                 soalContainer.addEventListener('drop', (e) => {
                     e.preventDefault();
-        
+
                     const jawabanId = e.dataTransfer.getData('text/plain');
                     const jawabanElement = document.getElementById(jawabanId);
-        
+
                     if (jawabanElement.parentNode === kotakJawaban) {
                         kotakJawaban.removeChild(jawabanElement);
                         soalContainer.appendChild(jawabanElement);
                         jawabanElement.draggable = true;
                         jawabanElement.classList.remove('dragged');
-        
+
                         if (jawabanElement.dataset.correct === 'true') {
                             correctAnswers--;
                         }
                     }
                 });
-        
+
                 // DND bagian 2
                 const kotakHistorio = document.getElementById('kotakHistorio');
                 const kotakNonHistorio = document.getElementById('kotakNonHistorio');
                 const jawaban2Elements = document.querySelectorAll('.jawaban2');
                 const soalContainer2 = document.querySelector('.soal2');
-        
+
                 jawaban2Elements.forEach(jawaban2 => {
                     jawaban2.addEventListener('dragstart', (e) => {
                         e.dataTransfer.setData('text/plain', jawaban2.id);
                     });
-        
+
                     jawaban2.addEventListener('dragend', () => {
                         jawaban2.classList.remove('dragged');
                     });
                 });
-        
+
                 kotakHistorio.addEventListener('dragover', (e) => {
                     e.preventDefault();
                     kotakHistorio.classList.add('dragover');
                 });
-        
+
                 kotakHistorio.addEventListener('dragleave', () => {
                     kotakHistorio.classList.remove('dragover');
                 });
-        
+
                 kotakHistorio.addEventListener('drop', (e) => {
                     e.preventDefault();
                     kotakHistorio.classList.remove('dragover');
-        
+
                     const jawabanId = e.dataTransfer.getData('text/plain');
                     const jawabanElement = document.getElementById(jawabanId);
-        
+
                     if (!jawabanElement.classList.contains('jawaban2')) {
                         return;
                     }
-        
+
                     kotakHistorio.appendChild(jawabanElement);
                     jawabanElement.draggable = false;
                     jawabanElement.classList.add('dragged');
                 });
-        
+
                 kotakNonHistorio.addEventListener('dragover', (e) => {
                     e.preventDefault();
                     kotakNonHistorio.classList.add('dragover');
                 });
-        
+
                 kotakNonHistorio.addEventListener('dragleave', () => {
                     kotakNonHistorio.classList.remove('dragover');
                 });
-        
+
                 kotakNonHistorio.addEventListener('drop', (e) => {
                     e.preventDefault();
                     kotakNonHistorio.classList.remove('dragover');
-        
+
                     const jawabanId = e.dataTransfer.getData('text/plain');
                     const jawabanElement = document.getElementById(jawabanId);
-        
+
                     if (!jawabanElement.classList.contains('jawaban2')) {
                         return;
                     }
-        
+
                     kotakNonHistorio.appendChild(jawabanElement);
                     jawabanElement.draggable = false;
                     jawabanElement.classList.add('dragged');
                 });
-        
+
                 soalContainer2.addEventListener('dragover', (e) => {
                     e.preventDefault();
                     soalContainer2.classList.add('dragover');
                 });
-        
+
                 soalContainer2.addEventListener('dragleave', () => {
                     soalContainer2.classList.remove('dragover');
                 });
-        
+
                 soalContainer2.addEventListener('drop', (e) => {
                     e.preventDefault();
                     soalContainer2.classList.remove('dragover');
-        
+
                     const jawabanId = e.dataTransfer.getData('text/plain');
                     const jawabanElement = document.getElementById(jawabanId);
-        
+
                     if (jawabanElement.classList.contains('jawaban2')) {
                         soalContainer2.appendChild(jawabanElement);
                         jawabanElement.draggable = true;
                         jawabanElement.classList.remove('dragged');
                     }
                 });
-        
+
                 const submitBtn = document.getElementById('submitBtn');
                 const modal = document.getElementById('myModal');
                 const closeModalBtn = document.getElementById('closeModalBtn');
                 const nilaiTotalElement = document.getElementById('nilaiTotal');
-        
+
                 submitBtn.addEventListener('click', () => {
                     // Hitung nilai untuk bagian pertama
                     let bagianPertamaNilai = correctAnswers * 10; // Setiap jawaban benar bernilai 10
-        
+
                     // Hitung nilai untuk bagian historio dan non-historio
                     let historioNilai = 0;
                     let nonHistorioNilai = 0;
-        
+
                     const historioJawaban = document.querySelectorAll('#kotakHistorio .jawaban2[data-category="historio"]');
                     historioNilai = historioJawaban.length * 5; // Setiap jawaban benar bernilai 5
-        
+
                     const nonHistorioJawaban = document.querySelectorAll('#kotakNonHistorio .jawaban2[data-category="non-historio"]');
                     nonHistorioNilai = nonHistorioJawaban.length * 5; // Setiap jawaban benar bernilai 5
-        
+
                     const totalNilai = bagianPertamaNilai + historioNilai + nonHistorioNilai;
-        
+
                     // Masukkan total nilai ke dalam input hidden
                     document.getElementById('nilaiAkhirInput').value = totalNilai;
-        
+
                     // Tampilkan nilai di modal
                     nilaiTotalElement.textContent = `Total Nilai: ${totalNilai}`;
-        
+
                     // Tampilkan modal
                     modal.style.display = 'block';
                 });
-        
+
                 // Tutup modal saat pengguna klik tombol "Tutup"
                 closeModalBtn.addEventListener('click', () => {
                     modal.style.display = 'none';
                 });
-        
+
                 // Tutup modal saat pengguna klik di luar modal
                 window.addEventListener('click', (event) => {
                     if (event.target == modal) {
                         modal.style.display = 'none';
                     }
                 });
-        
-        
+
+
                 // Variabel untuk modal reset
                 const resetBtn = document.getElementById('resetBtn');
                 const resetModal = document.getElementById('resetModal');
                 const confirmResetBtn = document.getElementById('confirmResetBtn');
                 const cancelResetBtn = document.getElementById('cancelResetBtn');
-        
+
                 // Fungsi untuk menampilkan modal reset
                 resetBtn.addEventListener('click', () => {
                     resetModal.style.display = 'block';
                 });
-        
+
                 // Fungsi konfirmasi reset (ketika tombol "Ya, Reset" ditekan)
                 confirmResetBtn.addEventListener('click', () => {
                     // Reset jawaban dari bagian pertama
@@ -818,10 +821,10 @@
                             jawaban.classList.remove('dragged');
                         }
                     });
-        
+
                     // Reset counter correctAnswers
                     correctAnswers = 0;
-        
+
                     // Reset jawaban dari bagian historio dan non-historio
                     const jawaban2Elements = document.querySelectorAll('.jawaban2');
                     jawaban2Elements.forEach(jawaban2 => {
@@ -836,28 +839,28 @@
                             jawaban2.classList.remove('dragged');
                         }
                     });
-        
+
                     // Reset nilai yang ditampilkan
                     nilaiTotalElement.textContent = '';
-        
+
                     // Tutup modal reset
                     resetModal.style.display = 'none';
                 });
-        
+
                 // Fungsi untuk menutup modal reset jika tombol "Batal" ditekan
                 cancelResetBtn.addEventListener('click', () => {
                     resetModal.style.display = 'none'; // Hanya menutup modal tanpa reset
                 });
-        
+
                 // Tutup modal reset jika pengguna mengklik di luar modal
                 window.addEventListener('click', (event) => {
                     if (event.target == resetModal) {
                         resetModal.style.display = 'none';
                     }
                 });
-        
-        
-        
+
+
+
             </script>
         </div>
     </div>
@@ -886,22 +889,22 @@
     </div>
     <div class="row materi-b" id="lembar-analisa-kelompok">
         <div class="col">
-            <h3>LEMBAR ANALISA KELOMPOK</h3>
+            <h3>LEMBAR ANALISA INDIVIDU</h3>
             <p class="text-lg">AKTIVITAS EKSPLORASI MAHASISWA</p>
             <p>
                 Berdasarkan hasil identifikasi terkait objek kesejarahan yang ada di daerah kalian, petakanlah
                 objek-objek kesejarahan tersebut.
-                <br>Lakukanlah analisa secara berkelompok!
+                <br>Lakukanlah analisa secara individu!
             </p>
             <p class="kotak bg-warning-subtle">
                 Silahkan berselancar di dunia maya / lingkungan sekitar untuk melakuka analisis
             </p>
-            
+
             <div class="text-center bordered mb-3">
                 {{-- <video width="900" height="507" controls>
                     <source src="img/video_historiopreneurship.mp4" type="video/mp4">
-                    </video> --}}
-                    <iframe width="900" height="507" src="https://www.youtube.com/embed/P4B-OnP8ISc?si=YBNeIwxF_qJmlo3E"
+                </video> --}}
+                <iframe width="900" height="507" src="https://www.youtube.com/embed/P4B-OnP8ISc?si=YBNeIwxF_qJmlo3E"
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -1245,7 +1248,14 @@
             <button id="PostcheckBtn" onclick="PostcheckAnswer()">Periksa</button>
             <div class="feedback" id="PostfeedbackContainer"></div>
         </div>
+        <form id="postTestForm" action="{{ route('simpanNilaiPosttest') }}" method="POST" style="display: none;">
+            @csrf
+            <input type="hidden" name="email" id="email" value="{{ Auth::user()->email }}">
+            <input type="hidden" name="nilai_akhir" id="nilaiAkhir2">
+            <input type="hidden" name="aspek" value="post_test_kesejarahan">
+        </form>
     </div>
+
     <div class="row materi-b" id="refleksi">
         <div class="col">
             <h2>REFLEKSI</h2>
@@ -1361,6 +1371,7 @@
     <input type="hidden" name="halaman" value="materi_b">
     <input type="hidden" name="progress" id="halaman">
 </form>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     // Sistem poin
@@ -1400,9 +1411,9 @@
 
         if ($sub == 0) {
             document.getElementById('prev').disabled = true;
-        }else if ($sub == 7){
+        } else if ($sub == 7) {
             document.getElementById('next').innerHTML = "Latihan";
-            document.getElementById('next').addEventListener('click', function(){
+            document.getElementById('next').addEventListener('click', function () {
                 window.location.href = "dragndrop"
             })
         } else {
@@ -1493,24 +1504,24 @@
 <!-- SweatAlert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    document.getElementById('submitBtn').addEventListener('click', function (e) {
-        e.preventDefault();
+    // document.getElementById('submitBtn').addEventListener('click', function (e) {
+    //     e.preventDefault();
 
-        Swal.fire({
-            title: 'Apakah Anda yakin?',
-            text: "Pastikan semua jawaban sudah benar sebelum disimpan!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, simpan!',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.querySelector('form').submit();
-            }
-        });
-    });
+    //     Swal.fire({
+    //         title: 'Apakah Anda yakin?',
+    //         text: "Pastikan semua jawaban sudah benar sebelum disimpan!",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Ya, simpan!',
+    //         cancelButtonText: 'Batal'
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             document.querySelector('form').submit();
+    //         }
+    //     });
+    // });
 </script>
 <script>
     document.querySelectorAll('.submitBtn').forEach(function (button) {
@@ -1540,38 +1551,39 @@
     // Script Pre Test
     const questions = [
         {
-        question: "Museum Wasaka terletak di kota mana?",
-        options: ["Balikpapapan", "Samarinda", "Banjarmasin", "Palangka Raya"],
-        correct: 2,
-        explanation: ""
-    },
-    {
-        question: "Arti dari “Waja Sampai Ka Puting” dalam Bahasa Banjar adalah?",
-        options: ["Teguh sampai akhir", "Sejarah sampai selamanya", "Bersatu Menuju Kemenangan", "Berjuan tanpa henti"],
-        correct: 0,
-        explanation: ""
-    },
-    {
-        question: "Tugu 9 November Banjarmasin memiliki bentuk seperti apa?",
-        options: ["Monumen berbentuk lingkaran", "Menara yang menjulang tinggi", "Pahlawan sedang memegang bendera", "Pahlawan dengan pedang terhunus"],
-        correct: 1,
-        explanation: ""
-    },
-    {
-        question: "Apa nama kerajaan sebelum menjadi Kesultanan Banjar?",
-        options: ["Kerajaan Tanjungpura", "Kerajaan Daha", "Kerajaan Kutai", "Kerajaan Martapura"],
-        correct: 1,
-        explanation: ""
-    },
-    {
-        question: "Apa nama masjid terbesar di Banjarmasin yang menjadi ikon kota?",
-        options: ["Masjid Al-Falah", "Masjid Agung Al-Karomah", "Masjid Sabilal Muhtadin", "Masjid Jami Banjarmasin"],
-        correct: 2,
-        explanation: ""
-    }
+            question: "Museum Wasaka terletak di kota mana?",
+            options: ["Balikpapapan", "Samarinda", "Banjarmasin", "Palangka Raya"],
+            correct: 2,
+            explanation: ""
+        },
+        {
+            question: "Arti dari “Waja Sampai Ka Puting” dalam Bahasa Banjar adalah?",
+            options: ["Teguh sampai akhir", "Sejarah sampai selamanya", "Bersatu Menuju Kemenangan", "Berjuan tanpa henti"],
+            correct: 0,
+            explanation: ""
+        },
+        {
+            question: "Tugu 9 November Banjarmasin memiliki bentuk seperti apa?",
+            options: ["Monumen berbentuk lingkaran", "Menara yang menjulang tinggi", "Pahlawan sedang memegang bendera", "Pahlawan dengan pedang terhunus"],
+            correct: 1,
+            explanation: ""
+        },
+        {
+            question: "Apa nama kerajaan sebelum menjadi Kesultanan Banjar?",
+            options: ["Kerajaan Tanjungpura", "Kerajaan Daha", "Kerajaan Kutai", "Kerajaan Martapura"],
+            correct: 1,
+            explanation: ""
+        },
+        {
+            question: "Apa nama masjid terbesar di Banjarmasin yang menjadi ikon kota?",
+            options: ["Masjid Al-Falah", "Masjid Agung Al-Karomah", "Masjid Sabilal Muhtadin", "Masjid Jami Banjarmasin"],
+            correct: 2,
+            explanation: ""
+        }
     ];
 
     let currentQuestion = 0;
+    let correctCount = 0;
 
     function loadQuestion() {
         console.log("Load Question")
@@ -1583,8 +1595,8 @@
         // Reset question and feedback
         questionText.innerText = questions[currentQuestion].question;
         optionsContainer.innerHTML = '';
-        feedbackContainer.style.display = 'none'; // Hides feedback when loading a new question
-        feedbackContainer.innerHTML = ''; // Clears previous feedback content
+        feedbackContainer.style.display = 'none';
+        feedbackContainer.innerHTML = '';
         checkBtn.innerText = 'Periksa';
         checkBtn.disabled = false;
 
@@ -1602,7 +1614,7 @@
     }
 
     function checkAnswer() {
-        console.log('Cek Jawaban')
+        console.log('Cek Jawaban');
 
         const selectedOption = document.querySelector('input[name="option"]:checked');
         if (!selectedOption) return;
@@ -1613,9 +1625,10 @@
         const selectedValue = parseInt(selectedOption.value);
         const correctValue = questions[currentQuestion].correct;
 
-        feedbackContainer.style.display = 'block'; // Shows feedback after checking
+        feedbackContainer.style.display = 'block';
 
         if (selectedValue === correctValue) {
+            correctCount++;
             feedbackContainer.className = 'feedback correct';
             feedbackContainer.innerHTML = "✅ Jawaban benar! " + questions[currentQuestion].explanation;
         } else {
@@ -1631,54 +1644,65 @@
         currentQuestion++;
         if (currentQuestion < questions.length) {
             loadQuestion();
+            const checkBtn = document.getElementById("checkBtn");
             checkBtn.onclick = checkAnswer;
-            // checkAnswer();
+            checkBtn.innerText = "Periksa";
         } else {
-            alert("Pre-test selesai!");
-            const container = document.querySelector(".container");
+            // Tampilkan hasil dengan SweetAlert
+            Swal.fire({
+                title: "Pre-test selesai!",
+                text: "Jumlah jawaban benar: " + correctCount,
+                icon: "success",
+                confirmButtonText: "OK"
+            }).then(() => {
+                // Set nilai di form dan submit
+                document.getElementById("nilaiAkhir").value = correctCount;
+                document.getElementById("preTestForm").submit();
+            });
         }
     }
+
 
     loadQuestion();
 
     // Post Test
     const postTestQuestions = [
-    {
-        question: "Siapakah pendiri Kesultanan Banjar?",
-        options: ["Sultan Adam", "Sultan Suriansyah", "Pangeran Antasari", "Pangeran Hidayatullah"],
-        correct: 1,
-        explanation: "Sultan Suriansyah adalah pendiri Kesultanan Banjar dan raja pertama yang memeluk Islam."
-    },
-    {
-        question: "Perang Banjar terjadi pada tahun?",
-        options: ["1860-1865", "1859-1905", "1845-1862", "1870-1885"],
-        correct: 1,
-        explanation: "Perang Banjar dimulai pada tahun 1859 dan berlangsung hingga 1905 melawan kolonial Belanda."
-    },
-    {
-        question: "Siapa yang memimpin Perang Banjar setelah Pangeran Antasari?",
-        options: ["Sultan Adam", "Pangeran Hidayatullah", "Pangeran Diponegoro", "Sultan Suriansyah"],
-        correct: 1,
-        explanation: "Pangeran Hidayatullah melanjutkan kepemimpinan Perang Banjar setelah Pangeran Antasari wafat."
-    },
-    {
-        question: "Apa nama kerajaan sebelum menjadi Kesultanan Banjar?",
-        options: ["Kerajaan Tanjungpura", "Kerajaan Daha", "Kerajaan Kutai", "Kerajaan Martapura"],
-        correct: 1,
-        explanation: "Kerajaan Daha adalah kerajaan Hindu yang kemudian menjadi Kesultanan Banjar setelah Sultan Suriansyah memeluk Islam."
-    },
-    {
-        question: "Pahlawan nasional dari Kalimantan Selatan adalah?",
-        options: ["Pangeran Diponegoro", "Cut Nyak Dien", "Pangeran Antasari", "Sultan Hasanuddin"],
-        correct: 2,
-        explanation: "Pangeran Antasari adalah pahlawan nasional dari Kalimantan Selatan yang memimpin Perang Banjar."
-    }
-];
+        {
+            question: "Siapakah pendiri Kesultanan Banjar?",
+            options: ["Sultan Adam", "Sultan Suriansyah", "Pangeran Antasari", "Pangeran Hidayatullah"],
+            correct: 1,
+            explanation: "Sultan Suriansyah adalah pendiri Kesultanan Banjar dan raja pertama yang memeluk Islam."
+        },
+        {
+            question: "Perang Banjar terjadi pada tahun?",
+            options: ["1860-1865", "1859-1905", "1845-1862", "1870-1885"],
+            correct: 1,
+            explanation: "Perang Banjar dimulai pada tahun 1859 dan berlangsung hingga 1905 melawan kolonial Belanda."
+        },
+        {
+            question: "Siapa yang memimpin Perang Banjar setelah Pangeran Antasari?",
+            options: ["Sultan Adam", "Pangeran Hidayatullah", "Pangeran Diponegoro", "Sultan Suriansyah"],
+            correct: 1,
+            explanation: "Pangeran Hidayatullah melanjutkan kepemimpinan Perang Banjar setelah Pangeran Antasari wafat."
+        },
+        {
+            question: "Apa nama kerajaan sebelum menjadi Kesultanan Banjar?",
+            options: ["Kerajaan Tanjungpura", "Kerajaan Daha", "Kerajaan Kutai", "Kerajaan Martapura"],
+            correct: 1,
+            explanation: "Kerajaan Daha adalah kerajaan Hindu yang kemudian menjadi Kesultanan Banjar setelah Sultan Suriansyah memeluk Islam."
+        },
+        {
+            question: "Pahlawan nasional dari Kalimantan Selatan adalah?",
+            options: ["Pangeran Diponegoro", "Cut Nyak Dien", "Pangeran Antasari", "Sultan Hasanuddin"],
+            correct: 2,
+            explanation: "Pangeran Antasari adalah pahlawan nasional dari Kalimantan Selatan yang memimpin Perang Banjar."
+        }
+    ];
 
     let no_soal = 0;
+    let benarPostTest = 0;
 
     function PostloadQuestion() {
-        console.log("Load Question")
         const PostquestionText = document.getElementById("PostquestionText");
         const PostoptionsContainer = document.getElementById("PostoptionsContainer");
         const PostfeedbackContainer = document.getElementById("PostfeedbackContainer");
@@ -1687,8 +1711,8 @@
         // Reset question and feedback
         PostquestionText.innerText = postTestQuestions[no_soal].question;
         PostoptionsContainer.innerHTML = '';
-        PostfeedbackContainer.style.display = 'none'; // Hides feedback when loading a new question
-        PostfeedbackContainer.innerHTML = ''; // Clears previous feedback content
+        PostfeedbackContainer.style.display = 'none';
+        PostfeedbackContainer.innerHTML = '';
         PostcheckBtn.innerText = 'Periksa';
         PostcheckBtn.disabled = false;
 
@@ -1706,20 +1730,19 @@
     }
 
     function PostcheckAnswer() {
-        console.log('Cek Jawaban')
-
         const selectedOption = document.querySelector('input[name="option"]:checked');
         if (!selectedOption) return;
 
-        const feedbackContainer = document.getElementById("feedbackContainer");
-        const checkBtn = document.getElementById("checkBtn");
+        const PostfeedbackContainer = document.getElementById("PostfeedbackContainer");
+        const PostcheckBtn = document.getElementById("PostcheckBtn");
 
         const selectedValue = parseInt(selectedOption.value);
         const correctValue = postTestQuestions[no_soal].correct;
 
-        PostfeedbackContainer.style.display = 'block'; // Shows feedback after checking
+        PostfeedbackContainer.style.display = 'block';
 
         if (selectedValue === correctValue) {
+            benarPostTest++;
             PostfeedbackContainer.className = 'feedback correct';
             PostfeedbackContainer.innerHTML = "✅ Jawaban benar! " + postTestQuestions[no_soal].explanation;
         } else {
@@ -1735,15 +1758,24 @@
         no_soal++;
         if (no_soal < postTestQuestions.length) {
             PostloadQuestion();
-            PostcheckBtn.onclick = PostcheckAnswer;
-            // checkAnswer();
+            document.getElementById("PostcheckBtn").onclick = PostcheckAnswer;
+            document.getElementById("PostcheckBtn").innerText = "Periksa";
         } else {
-            alert("Post-test selesai!");
-            const container = document.querySelector(".container");
+            // Tampilkan hasil akhir dan submit form
+            Swal.fire({
+                title: "Post-test selesai!",
+                text: `Jumlah jawaban benar: ${benarPostTest} dari ${postTestQuestions.length}`,
+                icon: "success",
+                confirmButtonText: "OK"
+            }).then(() => {
+                document.getElementById("nilaiAkhir2").value = benarPostTest;
+                document.getElementById("postTestForm").submit();
+            });
         }
     }
 
     PostloadQuestion();
+
 </script>
 
 

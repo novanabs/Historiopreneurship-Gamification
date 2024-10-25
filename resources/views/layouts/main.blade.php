@@ -183,7 +183,7 @@
                 
             @endif
 
-            @if (auth()->user()->peran == 'siswa')
+            <!-- @if (auth()->user()->peran == 'siswa')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('evaluasi') }}">
                     <i class="bi bi-speedometer"></i>
@@ -223,7 +223,7 @@
                    <p>Materi</p>
                 </a>
             </li>
-            @endcan -->
+            @endcan  -->
 
 
         
