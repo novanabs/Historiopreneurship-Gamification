@@ -1412,9 +1412,9 @@
         if ($sub == 0) {
             document.getElementById('prev').disabled = true;
         } else if ($sub == 7) {
-            document.getElementById('next').innerHTML = "Latihan";
+            document.getElementById('next').innerHTML = "refleksi";
             document.getElementById('next').addEventListener('click', function () {
-                window.location.href = "dragndrop"
+                window.location.hash = "#refleksi"
             })
         } else {
             document.getElementById('next').innerHTML = "Selanjutnya";
@@ -1703,6 +1703,7 @@
     let benarPostTest = 0;
 
     function PostloadQuestion() {
+        console.log("Load Question")
         const PostquestionText = document.getElementById("PostquestionText");
         const PostoptionsContainer = document.getElementById("PostoptionsContainer");
         const PostfeedbackContainer = document.getElementById("PostfeedbackContainer");
@@ -1711,8 +1712,8 @@
         // Reset question and feedback
         PostquestionText.innerText = postTestQuestions[no_soal].question;
         PostoptionsContainer.innerHTML = '';
-        PostfeedbackContainer.style.display = 'none';
-        PostfeedbackContainer.innerHTML = '';
+        PostfeedbackContainer.style.display = 'none'; // Hides feedback when loading a new question
+        PostfeedbackContainer.innerHTML = ''; // Clears previous feedback content
         PostcheckBtn.innerText = 'Periksa';
         PostcheckBtn.disabled = false;
 
@@ -1730,16 +1731,18 @@
     }
 
     function PostcheckAnswer() {
+        console.log('Cek Jawaban')
+
         const selectedOption = document.querySelector('input[name="option"]:checked');
         if (!selectedOption) return;
 
-        const PostfeedbackContainer = document.getElementById("PostfeedbackContainer");
-        const PostcheckBtn = document.getElementById("PostcheckBtn");
+        const feedbackContainer = document.getElementById("feedbackContainer");
+        const checkBtn = document.getElementById("checkBtn");
 
         const selectedValue = parseInt(selectedOption.value);
         const correctValue = postTestQuestions[no_soal].correct;
 
-        PostfeedbackContainer.style.display = 'block';
+        PostfeedbackContainer.style.display = 'block'; // Shows feedback after checking
 
         if (selectedValue === correctValue) {
             benarPostTest++;
@@ -1758,16 +1761,21 @@
         no_soal++;
         if (no_soal < postTestQuestions.length) {
             PostloadQuestion();
-            document.getElementById("PostcheckBtn").onclick = PostcheckAnswer;
-            document.getElementById("PostcheckBtn").innerText = "Periksa";
+            const PostcheckBtn = document.getElementById("PostcheckBtn");
+            PostcheckBtn.onclick = PostcheckAnswer;
+            PostcheckBtn.innerText = "Periksa";
         } else {
-            // Tampilkan hasil akhir dan submit form
+            // Tampilkan hasil akhir dengan SweetAlert
             Swal.fire({
                 title: "Post-test selesai!",
                 text: `Jumlah jawaban benar: ${benarPostTest} dari ${postTestQuestions.length}`,
                 icon: "success",
                 confirmButtonText: "OK"
             }).then(() => {
+                // Tindakan tambahan setelah menutup alert, jika diperlukan
+                console.log("Post-test selesai, SweetAlert ditutup.");
+                // Misalnya: Redirect, submit hasil, dsb.
+                // Set nilai di form dan submit
                 document.getElementById("nilaiAkhir2").value = benarPostTest;
                 document.getElementById("postTestForm").submit();
             });
@@ -1775,7 +1783,6 @@
     }
 
     PostloadQuestion();
-
 </script>
 
 
