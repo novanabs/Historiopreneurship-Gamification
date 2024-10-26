@@ -13,17 +13,28 @@ use Illuminate\Support\Facades\DB;
 class nilaiController extends Controller
 {
     public function simpanNilaiIndividu(Request $request, $email)
-    {
-        // Validate the incoming request data
-        $validatedData = $request->validate([
-            'nilai_akhir' => 'required|integer',
-            'data_jawaban_penilai' => 'nullable|string',
+{
+    // Validate the incoming request data
+    $validatedData = $request->validate([
+        'nilai_akhir' => 'required|integer',
+        'data_jawaban_penilai' => 'nullable|string',
+    ]);
+
+    // Get the aspek value from the request
+    $aspek = $request->input('aspek');
+
+    // Check if a record with the same email and aspek exists
+    $nilai = Nilai::where('email', $email)->where('aspek', $aspek)->first();
+
+    if ($nilai) {
+        // If the record exists, update only specified fields
+        $nilai->update([
+            'data_jawaban_penilai' => $validatedData['data_jawaban_penilai'],
+            'nilai_akhir' => $validatedData['nilai_akhir'],
+            'waktu_selesai' => now(),  // Update completion time
         ]);
-
-        // Dapatkan nilai kategori dari input hidden
-        $aspek = $request->input('aspek');
-
-        // Save the data to the `nilai` table
+    } else {
+        // If no record exists, create a new one
         Nilai::create([
             'email' => $email,
             'id_soal' => null,  // If not applicable, otherwise populate accordingly
@@ -34,9 +45,11 @@ class nilaiController extends Controller
             'lama_waktu_pengerjaan' => null,  // Populate as needed
             'waktu_selesai' => now(),  // Set the completion time to the current time
         ]);
-
-        return redirect()->route('dataJawabanIndividu', ['email' => $email])->with('success', 'Nilai dan feedback berhasil disimpan.');
     }
+
+    return redirect()->route('dataJawabanIndividu', ['email' => $email])->with('success', 'Nilai dan feedback berhasil disimpan.');
+}
+
 
     public function simpanNilaiKelompok(Request $request, $id_kelompok)
     {
@@ -139,9 +152,18 @@ class nilaiController extends Controller
     
 
     public function simpanNilaiPosttest(Request $request) {
+        // Validasi input
+        $request->validate([
+            'email' => 'required|email',
+            'nilai_akhir' => 'required|numeric|min:0|max:100' // Sesuaikan dengan rentang nilai yang valid
+        ]);
+    
+        $aspek = 'post_test_kesejarahan';
+    
+        // Coba untuk memperbarui nilai
         $affected = DB::table('nilai')
             ->where('email', $request->email)
-            ->where('aspek', 'post_test_kesejarahan')
+            ->where('aspek', $aspek)
             ->update(['nilai_akhir' => $request->nilai_akhir]);
     
         // Jika tidak ada baris yang terpengaruh, buat record baru
@@ -149,15 +171,11 @@ class nilaiController extends Controller
             DB::table('nilai')->insert([
                 'email' => $request->email,
                 'nilai_akhir' => $request->nilai_akhir,
-                'aspek' => 'post_test_kesejarahan'
+                'aspek' => $aspek
             ]);
         }
     
         return redirect()->back()->with('success', 'Nilai post-test berhasil disimpan atau diperbarui');
     }
-    
-    
-    
-    
     
 }

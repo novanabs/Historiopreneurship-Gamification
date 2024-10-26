@@ -1656,7 +1656,7 @@
                 confirmButtonText: "OK"
             }).then(() => {
                 // Set nilai di form dan submit
-                document.getElementById("nilaiAkhir").value = correctCount;
+                document.getElementById("nilaiAkhir").value = correctCount *20;
                 document.getElementById("preTestForm").submit();
             });
         }
@@ -1776,7 +1776,7 @@
                 console.log("Post-test selesai, SweetAlert ditutup.");
                 // Misalnya: Redirect, submit hasil, dsb.
                 // Set nilai di form dan submit
-                document.getElementById("nilaiAkhir2").value = benarPostTest;
+                document.getElementById("nilaiAkhir2").value = benarPostTest*20;
                 document.getElementById("postTestForm").submit();
             });
         }
