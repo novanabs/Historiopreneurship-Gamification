@@ -373,7 +373,7 @@
 
             {{-- C. KWU & KEWIRAUSAHAAN --}}
             <li class="nav-item  {{ isset($halaman_terbuka) && $halaman_terbuka == 'C' ? 'menu-is-opening menu-open' : '' }}">
-              <a href="{{ route('pages.C') }}" class="nav-link bab disabled text-gray {{ session('active_menu') == 'pages.C' ? 'active' : '' }}" onclick="setSidebarStatus('kewirausahaan-dan-kepariwisataan', 'pages.C')">
+              <a href="{{ route('pages.C') }}" class="nav-link bab {{ session('active_menu') == 'pages.C' ? 'active' : '' }}" onclick="setSidebarStatus('kewirausahaan-dan-kepariwisataan', 'pages.C')">
                 {{-- <i class="bi bi-2-square-fill"></i> --}}
                 <i class="bi bi-lock"></i>
                 <p class="text-start">KWU & Kepariwisataan</p><i class="right bi bi-chevron-left"></i>
