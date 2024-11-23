@@ -448,7 +448,7 @@
             <li class="nav-item">
                 {{-- Admin tidak melihat ini --}}
                 @if (auth()->user()->peran != 'admin' and auth()->user()->peran != 'guru')
-                   <a href="{{ route('info') }}" class="nav-link disabled text-gray">
+                   <a href="{{ route('info') }}" class="nav-link ">
                 {{-- <i class="bi bi-layout-text-window-reverse"></i> --}}
                 <i class="bi bi-lock"></i>
                 <p>

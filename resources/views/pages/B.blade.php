@@ -309,7 +309,16 @@
         </div>
     </div>
     <div class="row materi-b" id="pre-test-1">
-        <h1>Pre Test Kesejarahan</h1>
+        <h3>Pre Test</h3>
+        <p>Kerjakanlah Pre Test berikut, untuk menguji pemahaman kamu terkait materi yang akan dipelajari.</p>
+        <p>Cara Pengerjaan:</p>
+        <div class="mr-3">
+            <ul>
+                <li>Baca soal dengan cermat</li>
+                <li>Tekan tombol periksa untuk memeriksa jawaban</li>
+                <li>Klik selanjutnya untuk ke soal berikutnya</li>
+            </ul>
+        </div>
         <div class="container">
             <div class="question" id="questionText"></div>
             <div class="options" id="optionsContainer"></div>
@@ -1241,7 +1250,16 @@
         </div>
     </div>
     <div class="row materi-b" id="post-test-1">
-        <h1>Post Test Kesejarahan</h1>
+        <h3>Post Test</h3>
+        <p>Kerjakanlah Post Test berikut, untuk menguji pemahaman kamu terkait materi yang telah dipelajari.</p>
+        <p>Cara Pengerjaan:</p>
+        <div class="mr-3">
+            <ul>
+                <li>Baca soal dengan cermat</li>
+                <li>Tekan tombol periksa untuk memeriksa jawaban</li>
+                <li>Klik selanjutnya untuk ke soal berikutnya</li>
+            </ul>
+        </div>
         <div class="container">
             <div class="question" id="PostquestionText"></div>
             <div class="options" id="PostoptionsContainer"></div>
@@ -1413,9 +1431,9 @@
             document.getElementById('prev').disabled = true;
         } else if ($sub == 7) {
             document.getElementById('next').innerHTML = "refleksi";
-            document.getElementById('next').addEventListener('click', function () {
-                window.location.hash = "#refleksi"
-            })
+            document.getElementById('next').disabled = false;
+        } else if ($sub == 8){
+            document.getElementById('next').disabled = true;
         } else {
             document.getElementById('next').innerHTML = "Selanjutnya";
             document.getElementById('prev').disabled = false;
@@ -1587,6 +1605,9 @@
 
     function loadQuestion() {
         console.log("Load Question")
+        if(currentQuestion == 4){
+            
+        }
         const questionText = document.getElementById("questionText");
         const optionsContainer = document.getElementById("optionsContainer");
         const feedbackContainer = document.getElementById("feedbackContainer");
@@ -1635,6 +1656,14 @@
             feedbackContainer.className = 'feedback wrong';
             feedbackContainer.innerHTML = "❌ Jawaban salah! " + questions[currentQuestion].explanation;
         }
+
+        // Mengunci semua jawaban radio
+        const pilihanOption = document.querySelectorAll('input[name="option"]');
+        // console.log('Ini pilihan option',pilihanOption)
+        pilihanOption.forEach(option => {
+            option.disabled = true; // Menambahkan atribut 'disabled' ke setiap input
+        });
+
 
         checkBtn.innerText = "Selanjutnya";
         checkBtn.onclick = nextQuestion;

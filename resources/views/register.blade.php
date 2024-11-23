@@ -144,6 +144,18 @@
                             @enderror
                         </div>
 
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="showPassword" onclick="togglePassword()">
+                        <label class="form-check-label" for="showPassword">Lihat Password</label>
+                        </div>
+
+                        <div class="row text-end">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary">Login</button>
+                                    <a href="{{ route('register.show') }}" class="btn btn-success">Register</a>
+                                </div>
+                            </div>
+
                         <div class="mb-3">
                             <label for="peranInput" class="form-label">Peran</label>
                             <div class="form-check">
@@ -199,6 +211,22 @@
     </script>
 
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('passwordInput');
+            const passwordInput_confirmation = document.getElementById('passwordInput_confirmation');
+            const checkbox = document.getElementById('showPassword');
+            
+            if (checkbox.checked) {
+                passwordInput.type = 'text';
+                passwordInput_confirmation.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+                passwordInput_confirmation.type = 'password';
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -73,7 +73,17 @@ aria-valuemax="100">
         </div>
     </div>
     <div class="row materi-c" id="pre-test-2">
-        <h1>Pre Test Kewirausahaan dan Kepariwisataan</h1>
+        <h3>Pre Test</h3>
+        <p>Kerjakanlah Pre Test berikut, untuk menguji pemahaman kamu terkait materi yang akan dipelajari.</p>
+        <p>Cara Pengerjaan:</p>
+        <div class="mr-3">
+            <ul>
+                <li>Baca soal dengan cermat</li>
+                <li>Tekan tombol periksa untuk memeriksa jawaban</li>
+                <li>Klik selanjutnya untuk ke soal berikutnya</li>
+            </ul>
+        </div>
+        
         <div class="container">
             <div class="question" id="questionText"></div>
             <div class="options" id="optionsContainer"></div>
@@ -992,7 +1002,16 @@ aria-valuemax="100">
     </div>
 
     <div class="row materi-c" id="post-test-2">
-        <h1>Post Test Kewirausahaan dan Kepariwisataan</h1>
+        <h3>Post Test</h3>
+        <p>Kerjakanlah Pre Test berikut, untuk menguji pemahaman kamu terkait materi yang telah dipelajari.</p>
+        <p>Cara Pengerjaan:</p>
+        <div class="mr-3">
+            <ul>
+                <li>Baca soal dengan cermat</li>
+                <li>Tekan tombol periksa untuk memeriksa jawaban</li>
+                <li>Klik selanjutnya untuk ke soal berikutnya</li>
+            </ul>
+        </div>
         <div class="container">
             <div class="question" id="PostquestionText"></div>
             <div class="options" id="PostoptionsContainer"></div>
@@ -1154,7 +1173,6 @@ aria-valuemax="100">
             document.getElementById('prev').disabled = true;
         } else if ($sub == 10){
             document.getElementById('next').disabled = true;
-            document.getElementById('latihan').style.display = "";
             document.getElementById('latihan').addEventListener('click', function(){
                 window.location.href = "latihan2"
             })

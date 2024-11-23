@@ -53,7 +53,7 @@
                             <div class="mb-3 ">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="text" class="form-control @error('email') is-invalid @enderror" id="email"
-                                    name="email" value="{{ old('email') }}">
+                                    name="email" value="{{ old('email') }}" placeholder="Email">
                                 @error('email')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -64,7 +64,8 @@
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                    id="password" name="password">
+                                    id="password" name="password"
+                                    placeholder="Password">
                                 @error('password')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -73,8 +74,8 @@
                             </div>
 
                             <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="checkRemember" name="checkRemember">
-                                <label class="form-check-label" for="checkRemember">Ingat Saya</label>
+                                <input type="checkbox" class="form-check-input" id="showPassword" onclick="togglePassword()">
+                            <label class="form-check-label" for="showPassword">Lihat Password</label>
                             </div>
 
                             <div class="row text-end">
@@ -93,5 +94,18 @@
 
 
 </body>
+
+<script>
+    function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const checkbox = document.getElementById('showPassword');
+        
+        if (checkbox.checked) {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+    }
+</script>
 
 </html>
