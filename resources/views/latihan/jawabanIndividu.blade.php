@@ -240,7 +240,8 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="row">
+                {{-- Di Hidden Dulu --}}
+                <div class="row" hidden>
                     <!-- Form untuk Kategori: Kegiatan Pembelajaran 3 -->
                     <div class="col-12 mb-4">
                         <div class="card text-center">
