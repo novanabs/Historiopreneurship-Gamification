@@ -2,33 +2,36 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\PoinController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\nilaiController;
-use App\Http\Controllers\HalamanController;
 
+use App\Http\Controllers\HalamanController;
 use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ContentAController;
 use App\Http\Controllers\ContentBController;
-use App\Http\Controllers\ContentCController;
 
+use App\Http\Controllers\ContentCController;
 use App\Http\Controllers\RefleksiController;
 use App\Http\Controllers\RegisterController;
+
 use App\Http\Controllers\DashboardController;
-
 use App\Http\Controllers\userBadgeController;
-use App\Http\Controllers\dataExportController;
 
+use App\Http\Controllers\dataExportController;
 use App\Http\Controllers\uploadFileController;
 use App\Http\Controllers\jawabanKelompokController;
 use App\Http\Controllers\AnalisisIndividuController;
 use App\Http\Controllers\UpdateAksesHalamanController;
 use App\Http\Controllers\RefleksiKesejarahanController;
 
+// Download
+Route::get('/download/{filename}', [FileController::class, 'download']);
 
 // Home Controller
 Route::get('/', [HomeController::class, 'beranda'])->name('beranda');

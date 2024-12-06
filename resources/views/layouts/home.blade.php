@@ -116,7 +116,55 @@
 
     {{-- Script untuk Pre Test dan Post Test --}}
     <script>
+        // Mengunci Test
+        let batas_test = document.getElementById('batas_test');
+        let mulai_test = document.getElementById('mulai_test');
+        if(batas_test.innerHTML == 0){
+            mulai_test.classList.add('disabled');
+            mulai_test.style.cursor = 'not-allowed';
+        }
+
+        let countdown;
+        let minutes = 45;
+        let seconds = 0;
+
+        function startCountdown() {
+            const checkBtn = document.getElementById("checkBtn");
+            countdown = setInterval(function() {
+                if (minutes === 0 && seconds === 0) {
+                    clearInterval(countdown); // Timer selesai
+                    alert("Waktu habis!");
+                    // Menampilkan Skor
+                    disableAllRadios();
+                    currentQuestion = 29;
+                    checkBtn.innerText = "Cek Skor!";
+                    nextQuestion(namaTest);
+                } else {
+                    if (seconds === 0) {
+                        minutes--;
+                        seconds = 59;
+                    } else {
+                        seconds--;
+                    }
+                    document.getElementById('timerText').innerText =
+                        String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+                }
+            }, 1000);
+        }
+
+        $soal_test = document.getElementById('soal-test');
+        $info_test = document.getElementById('info-test');
+
+        function mulai(){
+            $info_test.setAttribute('hidden', '');
+            $soal_test.removeAttribute('hidden');
+            // Memulai countdown saat halaman dimuat
+            startCountdown();
+        }
+
+
             function loadQuestion() {
+                
             console.log("Load Question")
             const questionText = document.getElementById("questionText");
             const optionsContainer = document.getElementById("optionsContainer");
@@ -153,10 +201,25 @@
             }
 
         function checkAnswer() {
-            console.log('Cek Jawaban');
+
+            
+            
+            console.log('Cek Jawaban', minutes);
+
+
 
             const selectedOption = document.querySelector('input[name="option"]:checked');
+
+            if(minutes === 0){
+                nextQuestion(namaTest);
+            }
+
             if (!selectedOption) return;
+
+
+            let $status_bar = document.getElementById('status_bar');
+            let no_soal = currentQuestion + 1;
+            $status_bar.style.width =  `${no_soal * 3.3333333}%`;
 
             const feedbackContainer = document.getElementById("feedbackContainer");
             const checkBtn = document.getElementById("checkBtn");
@@ -175,7 +238,7 @@
                 feedbackContainer.innerHTML = "❌ Jawaban salah! " + questions[currentQuestion].explanation;
             }
 
-            if(currentQuestion == 4){
+            if(currentQuestion == 29){
                 checkBtn.innerText = "Cek Skor!";
             } else {
                 checkBtn.innerText = "Berikutnya";
@@ -189,6 +252,7 @@
 
         function nextQuestion(nama) {
             currentQuestion++;
+
             if (currentQuestion < questions.length) {
                 loadQuestion();
                 const checkBtn = document.getElementById("checkBtn");
@@ -196,14 +260,15 @@
                 checkBtn.innerText = "Periksa";
             } else {
                 // Tampilkan hasil dengan SweetAlert
+                let hasil = correctCount * 3.33;
                 Swal.fire({
                     title: nama + " Selesai!",
-                    text: "Jumlah jawaban benar: " + correctCount,
+                    text: "Anda mendapatkan skor: " + Math.round(hasil),
                     icon: "success",
                     confirmButtonText: "OK"
                 }).then(() => {
                     // Set nilai di form dan submit
-                    document.getElementById("nilaiAkhir").value = correctCount * 20;
+                    document.getElementById("nilaiAkhir").value = Math.round(hasil);
                     document.getElementById("preTestForm").submit();
                 });
             }

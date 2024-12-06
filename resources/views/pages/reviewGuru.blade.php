@@ -27,7 +27,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Informasi</h5>
-            <p class="card-text">Anda belum sama sekali mengerjakan tugas.</p>
+            <p class="card-text">Tugas Anda belum dinilai.</p>
         </div>
     </div>
     @endif

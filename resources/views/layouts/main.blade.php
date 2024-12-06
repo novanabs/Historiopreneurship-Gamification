@@ -60,8 +60,10 @@
                 </div>
                 <div class="accordion-item" id="menuHeading2">
                     <h2 class="accordion-header" >
-                        <button class="accordion-button text-primary fw-bold {{ $activeMenu == 'menu2' ? '' : 'collapsed' }} text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#menuCollapse2" aria-expanded="true" aria-controls="menuCollapse2">
-                            <i class="bi bi-1-square"></i>
+                        
+                        <button class="accordion-button text-primary fw-bold {{ $activeMenu == 'menu2' ? '' : 'collapsed' }} text-muted" type="button" data-bs-toggle="collapse" data-bs-target="#menuCollapse2" aria-expanded="true" aria-controls="menuCollapse2" disabled> 
+                            {{-- <i class="bi bi-1-square"></i> --}}
+                            <i class="bi bi-lock"></i>
                             &nbsp;
                             Kesejarahan
                         </button>
@@ -103,26 +105,26 @@
                                 <span><i class="bi bi-dot"></i> Pre-Test</span></a>
                             <a href="/KWU-dan-Kepariwisataan/KWU-dan-Kepariwisataan" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-2') ? 'active' : '' }}">
                                 <span><i class="bi bi-dot"></i>  KWU & Kepariwisataan</span></a>
-                            <a href="/KWU-dan-Kepariwisataan/Kuis" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-3') ? 'active' : '' }}">
-                                <span><i class="bi bi-dot"></i>  Kuis KWU & Kepariwisataan</span></a>
-                            <a href="/KWU-dan-Kepariwisataan/Analisis-Kelompok-1" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-4') ? 'active' : '' }}">
-                                <span><i class="bi bi-dot"></i>  Analisa Kelompok 1</span></a>
-                            <a href="/KWU-dan-Kepariwisataan/Analisis-Kelompok-2" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-5') ? 'active' : '' }}">
-                                <span><i class="bi bi-dot"></i>  Analisa Kelompok 2</span></a>
-                            <a href="/KWU-dan-Kepariwisataan/Diskusi-Kelompok" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-6') ? 'active' : '' }}">
-                                <span><i class="bi bi-dot"></i>  Diskusi Kelompok</span></a>
+                            <a href="/KWU-dan-Kepariwisataan/Kuis" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-3') ? 'active' : '' }} disabled">
+                                <span><i class="bi bi-lock"></i>  Kuis KWU & Kepariwisataan</span></a>
+                            <a href="/KWU-dan-Kepariwisataan/Analisis-Kelompok-1" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-4') ? 'active' : '' }} disabled">
+                                <span><i class="bi bi-lock"></i>  Analisa Kelompok 1</span></a>
+                            <a href="/KWU-dan-Kepariwisataan/Analisis-Kelompok-2" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-5') ? 'active' : '' }} disabled">
+                                <span><i class="bi bi-lock"></i>  Analisa Kelompok 2</span></a>
+                            <a href="/KWU-dan-Kepariwisataan/Diskusi-Kelompok" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-6') ? 'active' : '' }} disabled">
+                                <span><i class="bi bi-lock"></i>  Diskusi Kelompok</span></a>
                             <a href="/KWU-dan-Kepariwisataan/Proyek-Individu" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-7') ? 'active' : '' }}">
                                 <span><i class="bi bi-dot"></i>  Proyek Individu</span></a>
                             <a href="/KWU-dan-Kepariwisataan/Refleksi-1" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-8') ? 'active' : '' }}">
                                 <span><i class="bi bi-dot"></i>  Refleksi 1</span></a>
-                            <a href="/KWU-dan-Kepariwisataan/Praktik-Lapangan-1" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-9') ? 'active' : '' }}">
-                                <span><i class="bi bi-dot"></i>  Praktik Lapangan 1</span></a>
-                            <a href="/KWU-dan-Kepariwisataan/Praktik-Lapangan-2" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-10') ? 'active' : '' }}">
-                                <span><i class="bi bi-dot"></i>  Praktik Lapangan 2</span></a>
+                            <a href="/KWU-dan-Kepariwisataan/Praktik-Lapangan-1" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-9') ? 'active' : '' }} disabled">
+                                <span><i class="bi bi-lock"></i>  Praktik Lapangan 1</span></a>
+                            <a href="/KWU-dan-Kepariwisataan/Praktik-Lapangan-2" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-10') ? 'active' : '' }} disabled">
+                                <span><i class="bi bi-lock"></i>  Praktik Lapangan 2</span></a>
                             <a href="/KWU-dan-Kepariwisataan/Post-Test" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-11') ? 'active' : '' }}">
                                 <span><i class="bi bi-dot"></i>  Post-Test</span></a>
-                            <a href="/KWU-dan-Kepariwisataan/Refleksi-2" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-12') ? 'active' : '' }}">
-                                <span><i class="bi bi-dot"></i>  Refleksi 2</span></a>
+                            <a href="/KWU-dan-Kepariwisataan/Refleksi-2" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-12') ? 'active' : '' }} disabled">
+                                <span><i class="bi bi-lock"></i>  Refleksi 2</span></a>
                         </div>
                     </div>
                 </div>
@@ -136,7 +138,7 @@
     <div class="bg-white text-dark border-top col-lg-9">
         <div class="p-3 bg-white border-bottom">
             <div class="progress">
-                <div role="progressbar" class="progress-bar bg-primary progress-bar-striped" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100" style="width: 0%" id="status_bar">0%</div>
+                <div role="progressbar" class="progress-bar bg-primary progress-bar-striped"  aria-valuemin="0" aria-valuemax="100" style="width: 0%" id="status_bar"></div>
             </div>
         </div>
         <div class="p-4 p-lg-5">

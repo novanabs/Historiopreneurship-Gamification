@@ -2,6 +2,14 @@
 
 @section('container-content')
 
+@if (session('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+@endif
+
+<form action="{{route('simpanJawabanIndividuKewirausahaan')}}" method="POST">
+    @csrf
 <h2>Proyek Individu</h2>
 <p class="text-lg">AKTIVITAS 4</p>
 <p class="text-sm">4 JP x @ 50 menit = 200 menit </p>
@@ -55,12 +63,12 @@
 <label for="produkJasa" class="mt-3 fw-semibold">
     Produk/Jasa yang akan dirancang
 </label><br>
-<textarea name="produkJasa" id="produkJasa" class="form-control w-100 mt-2" rows="5">
+<textarea name="produkJasa" id="produkJasa" class="form-control w-100 mt-2" rows="5">{{ old('produkJasa', $jawabanIndividu['produk atau jasa yang akan dirancang'] ?? '') }}
 </textarea>
 
 <label for="analisaProduk" class="mt-3 fw-semibold">Analisa produk/jasa yang digunakan:</label><br>
 <textarea name="analisaProduk" id="analisaProduk" class="form-control w-100 mt-2"
-    rows="5">
+    rows="5">{{ old('analisaProduk', $jawabanIndividu['Analisa produk atau jasa yang digunakan'] ?? '') }}
 </textarea>
 <hr>
 <p class="text-center"><b>Perencanaan Proyek</b></p>
@@ -71,9 +79,9 @@
 <!-- input individu 2 rancangan proyek -->
 <label for="langkahKerja" class="mt-3 fw-semibold">Langkah kerja:</label><br>
 <textarea name="langkahKerja" id="langkahKerja" class="form-control w-100 mt-2"
-    rows="5">
+    rows="5">{{ old('langkahKerja', $jawabanIndividu['langkah kerja'] ?? '') }}
 </textarea>
-<p class="text-lg text-center mt-4"><b>Penyusunan Jadwal Pelaksanaan Proyek</b></p>
+{{-- <p class="text-lg text-center mt-4"><b>Penyusunan Jadwal Pelaksanaan Proyek</b></p>
 <p>
     Susunlah jadwal penyelesaian proyek tersebut. Setelah itu tunjukkan pada dosen kalian agar diberikan persetujuan pembuatan proyek tersebut.
 </p>
@@ -233,14 +241,32 @@
                 <textarea class="form-control w-100 mt-2" name="perbaikanProyek" id="perbaikanProyek" rows="5"></textarea>
             </li>
         </div>
-    </div>
+    </div> --}}
     <div class="row mt-2">
         <div class="col">
-            <button type="submit" class="btn btn-primary">Simpan Jawaban</button>
+            <button type="submit" class="btn btn-primary my-3">Simpan Jawaban</button>
         </div>
     </div>
 </ol>
-<p class="text-lg">
+</form>
+<hr>
+<!-- Tombol Unduh -->
+<a href="{{ url('/download/' . $filename) }}" class="btn btn-primary my-2"><i class="bi bi-download"></i> Unduh Template Laporan</a>
+
+<!-- Form Upload Praktik Lapangan 1 -->
+<form method="post" action="{{ route('uploadFileKesejarahan') }}" enctype="multipart/form-data">
+    @csrf
+    <input type="hidden" name="category" value="kegiatan pembelajaran 3">
+    <div class="mb-3">
+        <label for="formFile1" class="form-label fw-semibold">Silahkan kumpulkan Lembar Proyek Individu</label>
+        <input class="form-control" type="file" id="formFile1" name="file" accept=".pdf,application/pdf">
+        <small>Kumpulkan dengan format .pdf</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kirim</button>
+</form>
+<hr>
+<p class="text-lg mt-2">
     <b>Belajar Karakter Berwirausaha</b>
 </p>
 

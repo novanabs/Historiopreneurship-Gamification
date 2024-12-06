@@ -42,7 +42,7 @@ class uploadFileController extends Controller
                 'size' => $file->getSize(),
             ]);
 
-            return redirect()->back()->with('success', 'File berhasil diperbarui!');
+            return redirect()->back()->with('success', 'File berhasil diupload!');
         } else {
             // Simpan file baru ke database
             uploadFile::create([

@@ -29,8 +29,8 @@ class AnalisisIndividuController extends Controller
                 'produk atau jasa yang akan dirancang',
                 'Analisa produk atau jasa yang digunakan',
                 'langkah kerja',
-                'pendapat tentang hasil proyek yang telah dibuat',
-                'Hal yang bisa dilakukan agar proyek menjadi lebih baik atau lebih sempurna'
+                // 'pendapat tentang hasil proyek yang telah dibuat',
+                // 'Hal yang bisa dilakukan agar proyek menjadi lebih baik atau lebih sempurna'
             ])
             ->get();
     
@@ -47,6 +47,7 @@ class AnalisisIndividuController extends Controller
 
     public function simpanJawabanIndividu(Request $request)
     {
+        
         // Validasi input
         $request->validate([
             'objekWisata' => 'required|string',
@@ -93,13 +94,14 @@ class AnalisisIndividuController extends Controller
 
     public function simpanJawabanIndividuKewirausahaan(Request $request)
     {
+        // dd($request);
         // Validasi input
         $request->validate([
             'produkJasa' => 'required|string',
             'analisaProduk' => 'required|string',
             'langkahKerja' => 'required|string',
-            'pendapatPengguna' => 'required|string',
-            'perbaikanProyek' => 'required|string',
+            // 'pendapatPengguna' => 'required|string',
+            // 'perbaikanProyek' => 'required|string',
 
         ]);
 
@@ -111,8 +113,8 @@ class AnalisisIndividuController extends Controller
             'produk atau jasa yang akan dirancang' => $request->input('produkJasa'),
             'Analisa produk atau jasa yang digunakan' => $request->input('analisaProduk'),
             'langkah kerja' => $request->input('langkahKerja'),
-            'pendapat tentang hasil proyek yang telah dibuat' => $request->input('pendapatPengguna'),
-            'Hal yang bisa dilakukan agar proyek menjadi lebih baik atau lebih sempurna' => $request->input('perbaikanProyek'),
+            // 'pendapat tentang hasil proyek yang telah dibuat' => $request->input('pendapatPengguna'),
+            // 'Hal yang bisa dilakukan agar proyek menjadi lebih baik atau lebih sempurna' => $request->input('perbaikanProyek'),
         ];
 
         // Simpan atau perbarui jawaban untuk setiap aspek
