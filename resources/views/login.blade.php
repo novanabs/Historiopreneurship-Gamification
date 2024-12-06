@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <style>
         .img-background {
             background-image: url("https://duniamasjid.islamic-center.or.id/wp-content/uploads/2014/05/masjid-sultan-suriansyah.jpg");

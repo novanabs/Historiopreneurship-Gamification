@@ -23,14 +23,14 @@ class UserRealSeeder extends Seeder
         //     'alamat' => 'Dijalan'
         // ]);
 
-        // User::create([
-        //     'nama_lengkap' => 'Guru',
-        //     'no_hp' => '082',
-        //     'peran' => 'guru',
-        //     'email' => 'guru@gmail.com',
-        //     'password' => Hash::make('123456789'),
-        //     'alamat' => 'Dijalan'
-        // ]);
+        User::create([
+            'nama_lengkap' => 'Guru',
+            'no_hp' => '082',
+            'peran' => 'guru',
+            'email' => 'guru@gmail.com',
+            'password' => Hash::make('123456789'),
+            'alamat' => 'Dijalan'
+        ]);
         // User::create([
         //     'nama_lengkap' => 'Madhan',
         //     'no_hp' => '0811',

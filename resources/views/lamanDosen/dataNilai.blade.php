@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
-@section('container')
+@section('container-content')
 <link rel="stylesheet" href="//cdn.datatables.net/2.1.2/css/dataTables.dataTables.min.css">
-<div class="mt-3">
-    <div class="row mt-3">
+<div class="">
+    <div class="row">
         <div class="col">
             <h2>Data Nilai</h2>
             <p>Tempat untuk menilai tugas yang dikerjakan oleh mahasiswa</p>

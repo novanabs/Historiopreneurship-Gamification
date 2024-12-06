@@ -1,10 +1,10 @@
 @extends('layouts.main')
 
-@section('container')
+@section('container-content')
 <link rel="stylesheet" href="//cdn.datatables.net/2.1.2/css/dataTables.dataTables.min.css">
 
-<div class="mt-3">
-    <div class="row mt-3">
+<div class="">
+    <div class="row">
         <div class="col">
             <h2>Data Kelas</h2>
             <p>Menampilkan data kelas A1 dan A2, jumlah orang, nilai rata-rata, jumlah laki-laki perempuan</p>

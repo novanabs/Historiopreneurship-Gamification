@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
@@ -22,6 +23,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Share user role to all views
+        View::composer('*', function ($view) {
+            // Tentukan role pengguna sementara
+            $userRole = 'siswa'; // Siswa atau Guru
+            $view->with('userRole', $userRole);
+        });
+
         Gate::define('admin', function(User $user){
             return $user->peran == 'admin';
         });

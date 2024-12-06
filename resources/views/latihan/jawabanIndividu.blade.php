@@ -1,8 +1,9 @@
 @extends('layouts.main')
 
-@section('container')
-<div class="container mt-5">
+@section('container-content')
+<div class="container">
     <h2>Jawaban Individu</h2>
+    <h4 class="mb-4">Nama : {{$user->nama_lengkap}}</h4>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="kesejarahan-tab" data-bs-toggle="tab" data-bs-target="#kesejarahan"

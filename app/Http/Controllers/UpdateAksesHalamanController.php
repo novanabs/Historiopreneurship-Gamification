@@ -10,6 +10,7 @@ class UpdateAksesHalamanController extends Controller
     function update (Request $request){
 
         // Kode untuk update halaman
+        // dd($request);
         $user = $request->user_id;
         $halaman = $request->halaman;
         $progress = $request->progress;

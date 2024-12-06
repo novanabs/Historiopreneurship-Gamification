@@ -14,10 +14,11 @@ class DosenController extends Controller
 {
     public function dataMahasiswa()
     {
+        $activeMenu = 'active';
         // Mengambil semua data kelompok beserta pengguna yang ada di dalamnya
         $Kelompoks = Kelompok::with('users')->get();
         $Mahasiswas = User::where('peran', 'siswa')->get(); // Filter users based on role
-        return view('lamanDosen.dataMahasiswa', compact('Mahasiswas', 'Kelompoks'));
+        return view('lamanDosen.dataMahasiswa', compact('Mahasiswas', 'Kelompoks', 'activeMenu'));
     }
 
     public function saveGroup(Request $request)
@@ -65,6 +66,7 @@ class DosenController extends Controller
 
     public function dataKelas()
     {
+        $activeMenu = 'active';
         // Mengambil data dari tabel users dan mengelompokkan berdasarkan kelas
         $kelasA1 = \DB::table('users')
             ->where('kelas', 'a1')
@@ -87,11 +89,12 @@ class DosenController extends Controller
         $totalKelasA2 = $kelasA2->count();
     
         // Mengirimkan data ke view
-        return view('lamanDosen.dataKelas', compact('jumlahLakiA1', 'jumlahPerempuanA1', 'jumlahLakiA2', 'jumlahPerempuanA2', 'totalKelasA1', 'totalKelasA2'));
+        return view('lamanDosen.dataKelas', compact('jumlahLakiA1', 'jumlahPerempuanA1', 'jumlahLakiA2', 'jumlahPerempuanA2', 'totalKelasA1', 'totalKelasA2', 'activeMenu'));
     }
     
     public function dataEvaluasi()
     {
+        $activeMenu = 'active';
         // Mengambil data mahasiswa dari tabel users yang memiliki peran 'mahasiswa'
         $mahasiswa = DB::table('users')
             ->join('nilai', 'users.email', '=', 'nilai.email')
@@ -101,19 +104,20 @@ class DosenController extends Controller
             ->get();
     
         // Mengirim data ke tampilan
-        return view('lamanDosen.dataEvaluasi', compact('mahasiswa'));
+        return view('lamanDosen.dataEvaluasi', compact('mahasiswa','activeMenu'));
     }
     
 
     public function dataNilai()
     {
+        $activeMenu = 'active';
         // Mengambil semua data kelompok beserta pengguna yang ada di dalamnya
         $Kelompoks = Kelompok::with('users')->orderBy('id_kelompok', 'asc')->get();
         // Mengambil data mahasiswa berdasarkan peran 'siswa'
         $Mahasiswas = User::where('peran', 'siswa')->get();
 
         // Mengirimkan kedua variabel ke view
-        return view('lamanDosen.dataNilai', compact('Mahasiswas', 'Kelompoks'));
+        return view('lamanDosen.dataNilai', compact('Mahasiswas', 'Kelompoks', 'activeMenu'));
     }
 
 

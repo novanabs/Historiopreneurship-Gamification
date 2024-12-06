@@ -1,44 +1,97 @@
 <?php
 
 
-use App\Http\Controllers\AnalisisIndividuController;
-use App\Http\Controllers\dataExportController;
-use App\Http\Controllers\jawabanKelompokController;
-use App\Http\Controllers\nilaiController;
-use App\Http\Controllers\RefleksiController;
-use App\Http\Controllers\RefleksiKesejarahanController;
-use App\Http\Controllers\uploadFileController;
-use App\Http\Controllers\userBadgeController;
-
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\PoinController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\LoginController;
-
+use App\Http\Controllers\nilaiController;
 use App\Http\Controllers\HalamanController;
+
 use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\ContentAController;
+use App\Http\Controllers\ContentBController;
+use App\Http\Controllers\ContentCController;
 
+use App\Http\Controllers\RefleksiController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 
+use App\Http\Controllers\userBadgeController;
+use App\Http\Controllers\dataExportController;
+
+use App\Http\Controllers\uploadFileController;
+use App\Http\Controllers\jawabanKelompokController;
+use App\Http\Controllers\AnalisisIndividuController;
 use App\Http\Controllers\UpdateAksesHalamanController;
+use App\Http\Controllers\RefleksiKesejarahanController;
+
+
+// Home Controller
+Route::get('/', [HomeController::class, 'beranda'])->name('beranda');
+Route::get('/materi', [HomeController::class, 'materi'])->name('materi');
+Route::get('/perihal', [HomeController::class, 'perihal'])->name('perihal');
+
+// Content A
+Route::controller(ContentAController::class)->group(function () {
+    Route::get('/Informasi/CPL', 'cpl')->name('A-1');
+    Route::get('/Informasi/CPMK', 'cpmk')->name('A-2');
+    Route::get('/Informasi/Peran-Dosen', 'peranDosen')->name('A-3');
+    Route::get('/Informasi/Sarana-Dan-Prasarana', 'saranaDanPrasarana')->name('A-4');
+    Route::get('/Informasi/Kolaborasi-Narasumber', 'kolaborasiNarasumber')->name('A-5');
+    Route::get('/Informasi/Cara-Penggunaan', 'caraPenggunaan')->name('A-6');
+    Route::get('/Informasi/Tahapan', 'tahapan')->name('A-7');
+});
+
+// Content B
+Route::controller(ContentBController::class)->group(function () {
+    Route::get('/Kesejarahan/Pre-Test', 'preTest')->name('B-1');
+    Route::get('/Kesejarahan/Kegiatan-Pembelajaran-1', 'kegiatanPembelajaran1')->name('B-2');
+    Route::get('/Kesejarahan/Kuis-Kesejarahan', 'kuisKesejarahan')->name('B-3');
+    Route::get('/Kesejarahan/Kegiatan-Pembelajaran-2', 'kegiatanPembelajaran2')->name('B-4');
+    Route::get('/Kesejarahan/Analisis-Kelompok', 'analisisKelompok')->name('B-5');
+    Route::get('/Kesejarahan/Analisi-Individu', 'analisisIndividu')->name('B-6');
+    Route::get('/Kesejarahan/Kegiatan-Pembelajaran-3', 'kegiatanPembelajaran3')->name('B-7');
+    Route::get('/Kesejarahan/Post-Test', 'postTest')->name('B-8');
+    Route::get('/Kesejarahan/Refleksi', 'refleksi')->name('B-9');
+});
+
+// Content C
+Route::controller(ContentCController::class)->group(function () {
+    Route::get('/KWU-dan-Kepariwisataan/Pre-Test', 'preTest')->name('C-1');
+    Route::get('/KWU-dan-Kepariwisataan/KWU-dan-Kepariwisataan', 'kwuDanKepariwisataan')->name('C-2');
+    Route::get('/KWU-dan-Kepariwisataan/Kuis', 'kuisKwuDanKepariwisataan')->name('C-3');
+    Route::get('/KWU-dan-Kepariwisataan/Analisis-Kelompok-1', 'analisisKelompok1')->name('C-4');
+    Route::get('/KWU-dan-Kepariwisataan/Analisis-Kelompok-2', 'analisisKelompok2')->name('C-5');
+    Route::get('/KWU-dan-Kepariwisataan/Diskusi-Kelompok', 'diskusiKelompok')->name('C-6');
+    Route::get('/KWU-dan-Kepariwisataan/Proyek-Individu', 'proyekIndividu')->name('C-7');
+    Route::get('/KWU-dan-Kepariwisataan/Refleksi-1', 'refleksi1')->name('C-8');
+    Route::get('/KWU-dan-Kepariwisataan/Praktik-Lapangan-1', 'praktikLapangan1')->name('C-9');
+    Route::get('/KWU-dan-Kepariwisataan/Praktik-Lapangan-2', 'praktikLapangan2')->name('C-10');
+    Route::get('/KWU-dan-Kepariwisataan/Post-Test', 'postTest')->name('C-11');
+    Route::get('/KWU-dan-Kepariwisataan/Refleksi-2', 'refleksi2')->name('C-12');
+});
+
+// Dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
 // Register
-Route::get('/register', [RegisterController::class, 'show'])->name('register.show');
+Route::get('/daftar', [RegisterController::class, 'show'])->name('register.show');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
 // Login
-Route::get('/login', [LoginController::class, 'show'])->name('login');
+Route::get('/masuk', [LoginController::class, 'show'])->name('login');
 Route::post('/login', [LoginController::class, 'auth'])->name('login.auth');
 
 // Middleware auth
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
     // Route untuk menampilkan dashboard
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+    // Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     // Route untuk klaim Master Badge
     Route::post('/klaim-master-badge', [UserBadgeController::class, 'awardMasterBadge'])->name('awardMasterBadge');
     Route::post('/klaim-penguasa-materi-badge', [UserBadgeController::class, 'awardPenguasaMateriBadge'])->name('awardPenguasaMateriBadge');
@@ -62,9 +115,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/C-Kewirausahaan-dan-Kepariwisataan/uploadFile', [uploadFileController::class, 'uploadFile'])->name('uploadFileKewirausahaan');
     Route::post('/C-Kewirausahaan-dan-Kepariwisataan/individu', [AnalisisIndividuController::class, 'simpanJawabanIndividuKewirausahaan'])->name('simpanJawabanIndividuKewirausahaan');
     Route::post('/C-Kewirausahaan-dan-Kepariwisataan/refleksi', [RefleksiController::class, 'simpanRefleksi'])->name('simpanRefleksiKewirausahaan');
-    Route::get('/materi', [HalamanController::class, 'materi'])->name('pages.materi');
+    // Route::get('/materi', [HalamanController::class, 'materi'])->name('pages.materi');
     Route::get('/Daftar-Pustaka', [HalamanController::class, 'daftarPustaka'])->name('pages.dafus');
-    Route::get('/reviewGuru', [HalamanController::class, 'review'])->name('pages.reviewGuru');
+    Route::get('/hasil', [HalamanController::class, 'review'])->name('hasil');
 });
 
 // Middleware admin
@@ -87,14 +140,14 @@ Route::get('/dragndrop', [LatihanController::class, 'dragndrop'])->name('dragndr
 Route::get('/latihan2', [LatihanController::class, 'latihan2'])->name('latihan2');
 
 // Controller Dosen
-Route::get('/dataKelas', [DosenController::class, 'datakelas'])->name('dataKelas');
-Route::get('/dataEvaluasi', [DosenController::class, 'dataEvaluasi'])->name('dataEvaluasi');
-Route::get('/dataMahasiswa', [DosenController::class, 'dataMahasiswa'])->name('dataMahasiswa');
+Route::get('/Data-Kelas', [DosenController::class, 'datakelas'])->name('data-kelas');
+Route::get('/Progress-Belajar', [DosenController::class, 'dataEvaluasi'])->name('progress-belajar');
+Route::get('/Data-Mahasiswa', [DosenController::class, 'dataMahasiswa'])->name('data-mahasiswa');
 Route::post('/dataMahasiswa/save', [DosenController::class, 'saveGroup'])->name('dataMahasiswa.saveGroup');
 Route::post('/dataMahasiswa/remove', [DosenController::class, 'removeFromGroup'])->name('dataMahasiswa.removeFromGroup');
 Route::post('/dataMahasiswa/autoAssignGroup', [DosenController::class, 'autoAssignGroup'])->name('dataMahasiswa.autoAssignGroup');
 
-Route::get('/dataNilai', [DosenController::class, 'dataNilai'])->name('dataNilai');
+Route::get('/Data-Nilai', [DosenController::class, 'dataNilai'])->name('data-nilai');
 
 // data jawaban individu
 Route::get('/jawabanIndividu/{email}', [AnalisisIndividuController::class, 'tampilkanJawabanIndividu'])->name('dataJawabanIndividu');

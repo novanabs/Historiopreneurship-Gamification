@@ -131,11 +131,12 @@ class HalamanController extends Controller
 
     function review()
     {
+        $activeMenu = 'active';
         $email = Auth::user()->email;
         $dataNilai = Nilai::where('email', $email)->get(['aspek', 'data_jawaban_penilai', 'nilai_akhir']);
     
         $hasData = $dataNilai->isNotEmpty();
     
-        return view('pages.reviewGuru', compact('dataNilai', 'hasData'));
+        return view('pages.reviewGuru', compact('dataNilai', 'hasData','activeMenu'));
     }
 }

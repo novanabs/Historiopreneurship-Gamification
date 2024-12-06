@@ -1,10 +1,11 @@
 @extends('layouts.main')
 
-@section('container')
+@section('container-content')
+
 <link rel="stylesheet" href="//cdn.datatables.net/2.1.2/css/dataTables.dataTables.min.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<div class="mt-3">
-    <div class="row mt-3">
+<div class="">
+    <div class="row">
         <div class="col">
             <h2>Data Mahasiswa</h2>
             <p>Menampilkan data mahasiswa keseluruhan, bisa di filter berdasarkan kelas</p>

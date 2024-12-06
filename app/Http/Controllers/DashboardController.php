@@ -17,7 +17,7 @@ class DashboardController extends Controller
         $email = auth()->user()->email;
         
         // Data tambahan untuk dashboard
-        $data['halaman_terbuka'] = 'dashboard';
+        $data['activeMenu'] = 'active';
         $data['users'] = User::where('peran', 'siswa')
             ->whereNotNull('poin')
             ->orderBy('poin', 'desc')

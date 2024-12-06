@@ -13,7 +13,7 @@ class LoginController extends Controller
 {
     public function show()
     {
-        return view('login');
+        return view('home/masuk');
     }
 
     public function auth(Request $request): RedirectResponse
@@ -43,13 +43,13 @@ class LoginController extends Controller
             Session::put('materi_c', $materi_c);
 
             // dd($credentials);
-            return redirect()->intended('/');
+            return redirect()->intended('/dashboard');
         }
 
        
 
         return back()->withErrors([
-            'email' => 'Tidak ada akun yang cocok dengan inputan anda'
+            'email' => 'Akun tidak ditemukan'
         ])->onlyInput('email');
     }
     public function logout(Request $request): RedirectResponse

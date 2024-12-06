@@ -268,26 +268,9 @@
         color: #721c24;
     }
 
-    .question {
-        margin-bottom: 20px;
-    }
 
     .options input {
         margin: 5px;
-    }
-
-    button {
-        margin-top: 10px;
-        padding: 10px;
-        border: none;
-        background-color: #007bff;
-        color: white;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-
-    button:disabled {
-        background-color: grey;
     }
 </style>
 

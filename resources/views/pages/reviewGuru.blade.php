@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('container')
+@section('container-content')
 <div class="content">
     @if($hasData)
     <div class="table-responsive">

@@ -120,7 +120,7 @@
             @if (auth()->user()->peran == 'guru')
             <li class="nav-header">MENU</li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('dataKelas') }}">
+                <a class="nav-link" href="/dataKelas">
                     <i class="bi bi-speedometer"></i>
                    <p>Data Kelas</p>
                 </a>

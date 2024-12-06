@@ -1,11 +1,11 @@
 @extends('layouts.main')
 
-@section('container')
+@section('container-content')
 <link rel="stylesheet" href="//cdn.datatables.net/2.1.2/css/dataTables.dataTables.min.css">
-<div class="mt-3">
-    <div class="row mt-3">
+<div class="">
+    <div class="row">
         <div class="col">
-            <h2>Data Evaluasi</h2>
+            <h2>Progress Belajar</h2>
             <p>Menampilkan data hasil Evaluasi, dosen dapat melakukan export dan menggunakan data table</p>
             <table class="table text-center" id="dataEvaluasiTable">
                 <thead>

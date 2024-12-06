@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Analisis_individu_kewirausahaan;
-use App\Models\AnalisisIndividuKesejarahan;
-use App\Models\AnalisisIndividuKesejeranhanII;
+use App\Models\User;
 use App\Models\uploadFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\AnalisisIndividuKesejarahan;
+use App\Models\AnalisisIndividuKesejeranhanII;
+use App\Models\Analisis_individu_kewirausahaan;
 
 class AnalisisIndividuController extends Controller
 {
-
+    
     public function tampilkanJawabanIndividu($email)
     {
+        $activeMenu = 'active';
+        $user = User::where('email', $email)->first();
         $jawabanIndividuII = AnalisisIndividuKesejeranhanII::where('created_by', $email)->get();
         // Mengambil jawaban dari tabel analisis_individu_kesejarahan berdasarkan aspek yang disebutkan
         $jawabanKesejarahanIndividu = AnalisisIndividuKesejarahan::where('created_by', $email)
@@ -37,7 +40,7 @@ class AnalisisIndividuController extends Controller
             ->get();
     
         // Mengirim data ke tampilan
-        return view('latihan.jawabanIndividu', compact('email',  'jawabanIndividuII','jawabanKesejarahanIndividu', 'jawabanKewirausahaanPariwisataIndividu', 'fileUploads'));
+        return view('latihan.jawabanIndividu', compact('email',  'jawabanIndividuII','jawabanKesejarahanIndividu', 'jawabanKewirausahaanPariwisataIndividu', 'fileUploads', 'activeMenu', 'user'));
     }
     
     
