@@ -23,9 +23,9 @@
                     <span><i class="bi bi-archive-fill"></i></i> Data Kelas</span></a>
                 <a href="/Data-Mahasiswa" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('data-mahasiswa') ? 'active' : '' }}">
                     <span><i class="bi bi-people-fill"></i> Data Mahasiswa</span></a>
-                <a href="Progress-Belajar" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('progress-belajar') ? 'active' : '' }}">
+                <a href="/Progress-Belajar" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('progress-belajar') ? 'active' : '' }}">
                     <span><i class="bi bi-list-ol"></i> Progress Belajar</span></a>
-                <a href="Data-Nilai" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('data-nilai') ? 'active' : '' }}">
+                <a href="/Data-Nilai" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('data-nilai') ? 'active' : '' }}">
                     <span><i class="bi bi-journal-text"></i> Data Nilai</span></a>
                 @endif
             </div>
