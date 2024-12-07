@@ -6,7 +6,7 @@
 <div class="p-5 p-sm-5 mb-5 mb-sm-0 flex-grow-1 container">
     <div class="d-md-flex gap-5 align-items-center">
         <img src="{{asset('img/login.png')}}" alt="Ilustrasi Login" class="img-fluid p-3 d-none d-sm-block" width="360" height="360">
-        <form class="w-100" method="post" action="{{ route('login.auth') }}">
+        <form class="w-100" method="POST" action="{{ route('login.auth') }}">
             @csrf
             <div class="mb-5">
                 <h2 class="fw-semibold text-primary">MASUK</h2>

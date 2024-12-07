@@ -37,7 +37,8 @@ class DashboardController extends Controller
             'analisa_kelompok_kewirausahaan_aktivitas3',
             'upload_file_pembelajaran3',
             'upload_file_aktivitas1',
-            'upload_file_aktivitas2'
+            'upload_file_aktivitas2',
+            'pre_test_kesejarahan',
         ];
         
         // Hitung total nilai untuk aspek yang ada

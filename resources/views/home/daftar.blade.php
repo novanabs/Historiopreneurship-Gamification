@@ -5,31 +5,54 @@
 <div class="p-5 p-sm-5 mb-5 mb-sm-0 flex-grow-1 container">
     <div class="d-md-flex gap-5 align-items-center">
         <img src="{{asset('img/register.png')}}" alt="Ilustrasi Register" class="img-fluid p-3 d-none d-sm-block" width="360" height="360">
-        <form class="w-100">
+        <form class="w-100" action="{{ route('register.store') }}"  method="POST">
+            @csrf
             <div class="mb-5">
                 <h2 class="fw-semibold text-primary">DAFTAR</h2>
             </div>
             <h6 class="mb-4 text-muted">Isi semua data di bawah ini dengan benar!</h6>
             <div class="mb-3">
-                <label for="nama-lengkap" class="form-label fw-semibold">Nama Lengkap</label>
-                <input type="text" name="nama-lengkap" placeholder="Nama Lengkap" class="form-control" required>
+                <label for="nama-lengkap" class="form-label fw-semibold" value="{{ old('namaInput') }}">Nama Lengkap</label>
+                <input type="text" name="namaInput" placeholder="Nama Lengkap" class="form-control" required>
             </div>
             <div class="mb-3">
-                <label for="no_hpInput" class="form-label fw-semibold">Nomor HP</label>
+                <label for="no_hpInput" class="form-label fw-semibold" value="{{ old('no_hpInput') }}">Nomor HP</label>
                 <input type="text" name="no_hpInput" placeholder="Nomor HP" class="form-control" required>
             </div>
             <div class="mb-3">
-                <label for="emailInput" class="form-label fw-semibold">Email</label>
+                <label for="emailInput" class="form-label fw-semibold" value="{{ old('emailInput') }}">Email</label>
                 <input type="text" name="emailInput" placeholder="Email" class="form-control" required>
             </div>
             <div class="mb-3">
-                <label for="alamatInput" class="form-label fw-semibold">Alamat</label>
+                <label for="alamatInput" class="form-label fw-semibold" value="{{ old('alamatInput') }}">Alamat</label>
                 <input type="text" name="alamatInput" placeholder="Email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="jenisKelamin" class="form-label">Jenis Kelamin</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="jenisKelamin" id="lakiLaki"
+                        value="L">
+                    <label class="form-check-label" for="lakiLaki">
+                        Laki-laki
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="jenisKelamin" id="perempuan"
+                        value="P">
+                    <label class="form-check-label" for="perempuan">
+                        Perempuan
+                    </label>
+                </div>
+                @error('jenisKelamin')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="Password" class="form-label fw-semibold">Password</label>
                 <div class="input-group">
-                    <input type="password" name="Password" placeholder="Password" class="form-control" id="password-input" required>
+                    <input type="password" name="passwordInput" placeholder="Password" class="form-control" id="password-input" required>
                     <button type="button" class="btn btn-outline-primary" id="toggle-password">
                         <i class="bi bi-eye-slash" id="toggle-icon"></i>
                     </button>
