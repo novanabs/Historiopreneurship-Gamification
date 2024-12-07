@@ -31,6 +31,12 @@ class RegisterController extends Controller
             'jenisKelamin' => 'required|in:L,P'
         ]);
 
+        // Menambahkan logika untuk menetapkan kelas "A1" jika peran adalah "guru"
+        if ($request->peranInput == 'guru') {
+            $kelas = 'A1';
+        } else {
+            $kelas = $request->kelasInput;
+        }
 
         
         $query = User::create([
