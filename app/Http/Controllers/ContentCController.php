@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nilai;
+use App\Models\Refleksi;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -103,7 +104,20 @@ class ContentCController extends Controller
         // $nextUrl = "/KWU-dan-Kepariwisataan/Praktik-Lapangan-1";
         $nextUrl = "/KWU-dan-Kepariwisataan/Post-Test";
         $activeMenu = 'menu3';
-        return view('content-C.refleksi1', compact('activeMenu','prevUrl','nextUrl','user'));
+
+        // Ambil jawaban refleksi dan pastikan jika tidak ada data, tetap hasilkan collection
+        $jawabanRefleksi = Refleksi::where('created_by', $user)
+        ->get()
+        ->groupBy('kategori')
+        ->map(function ($items) {
+            return $items->keyBy('aspek');
+        });
+
+        // Pastikan jawabanRefleksi bukan null dan set sebagai collection jika kosong
+        if (!$jawabanRefleksi || $jawabanRefleksi->isEmpty()) {
+            $jawabanRefleksi = collect();
+        }
+        return view('content-C.refleksi1', compact('activeMenu','prevUrl','nextUrl','user','jawabanRefleksi'));
     }
 
     public function praktikLapangan1()

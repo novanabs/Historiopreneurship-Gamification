@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\uploadFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AnalisisIndividuKesejarahan;
 use App\Models\AnalisisIndividuKesejeranhanII;
@@ -38,9 +39,15 @@ class AnalisisIndividuController extends Controller
         $fileUploads = UploadFile::where('created_by', $email)
             ->orderBy('kategori')
             ->get();
+
+        // Ini dengan nilai
+
+        $nilaiAnalisisIndividu = DB::table('nilai')->where('email', $email)->where('aspek', 'analisa_individu_kewirausahaan')->first();
+
+
     
         // Mengirim data ke tampilan
-        return view('latihan.jawabanIndividu', compact('email',  'jawabanIndividuII','jawabanKesejarahanIndividu', 'jawabanKewirausahaanPariwisataIndividu', 'fileUploads', 'activeMenu', 'user'));
+        return view('latihan.jawabanIndividu', compact('email',  'jawabanIndividuII','jawabanKesejarahanIndividu', 'jawabanKewirausahaanPariwisataIndividu', 'fileUploads', 'activeMenu', 'user', 'nilaiAnalisisIndividu'));
     }
     
     
@@ -90,6 +97,7 @@ class AnalisisIndividuController extends Controller
         // Redirect setelah data berhasil disimpan
         return redirect()->back()->with('success', 'Jawaban berhasil disimpan.');
     }
+    
 
 
     public function simpanJawabanIndividuKewirausahaan(Request $request)

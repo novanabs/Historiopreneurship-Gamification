@@ -9,6 +9,7 @@ class Nilai extends Model
 {
     use HasFactory;
     protected $table = 'nilai';
+    // protected $primaryKey = 'id_soal';
 
     protected $fillable = [
         'email',

@@ -11,6 +11,8 @@ class RefleksiController extends Controller
 {
     public function simpanRefleksi(Request $request)
     {
+        // dd($request);
+        
         // Validasi input
         $request->validate([
             'respon' => 'required|string',
@@ -20,6 +22,8 @@ class RefleksiController extends Controller
             'belum_dikuasai' => 'nullable|string',
             'upaya_menguasai' => 'nullable|string',
         ]);
+
+
 
         // Dapatkan email pengguna yang sedang login
         $userEmail = Auth::user()->email;
@@ -65,7 +69,7 @@ class RefleksiController extends Controller
             }
         }
 
-        // Redirect kembali ke halaman B dengan pesan sukses
-        return redirect()->route('pages.B')->with('success', 'Jawaban refleksi telah disimpan.');
+        return redirect()->back()->with('success', 'Jawaban refleksi telah disimpan.');
+
     }
 }

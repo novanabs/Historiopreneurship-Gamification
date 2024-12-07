@@ -1,6 +1,11 @@
 @extends('layouts.main')
 
 @section('container-content')
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 <div class="container">
     <h2>Jawaban Individu</h2>
     <h4 class="mb-4">Nama : {{$user->nama_lengkap}}</h4>
@@ -170,11 +175,11 @@
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
                                         <input type="text" class="form-control" name="nilai_akhir"
-                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ $nilaiAnalisisIndividu->nilai_akhir ?? '' }}">
                                     </div>
                                     <label for="feedbackIndividu">Feedback</label><br>
-                                    <textarea name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
-                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                    <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5">{{ $nilaiAnalisisIndividu->data_jawaban_penilai ?? '' }}</textarea>
+                                    <button type="submit" class="btn btn-primary mt-3">Kirim</button>
                                 </form>
                             </div>
                             <div class="card-footer text-muted">
