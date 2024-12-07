@@ -46,7 +46,7 @@ class RegisterController extends Controller
             'alamat' => $request->alamatInput,
             'peran' => $request->peranInput,
             'password' => Hash::make($request->passwordInput),
-            'kelas'=>$request->kelasInput,
+            'kelas'=>$kelas,
             'jenis_kelamin' => $request->jenisKelamin
         ]);
 
