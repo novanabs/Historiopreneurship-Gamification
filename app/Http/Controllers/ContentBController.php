@@ -102,11 +102,15 @@ class ContentBController extends Controller
 
         $jawabanIndividu = AnalisisIndividuKesejarahan::where('created_by', $user)->get();
 
+        if(!$jawabanIndividu->isEmpty()){
+
         // Menggunakan optional untuk menghindari error
         $objekWisata = optional($jawabanIndividu[0])->jawaban ?? '';
         $objekKesejarahan = optional($jawabanIndividu[1])->jawaban ?? '';
         $urgensiObjekKesejarahan = optional($jawabanIndividu[2])->jawaban ?? '';
         $urgensiKesejarahan = optional($jawabanIndividu[3])->jawaban ?? '';
+
+        }
 
         // Menentukan apakah input harus dinonaktifkan
         $isDisabled = !empty($objekWisata) || !empty($objekKesejarahan) || !empty($urgensiObjekKesejarahan) || !empty($urgensiKesejarahan);
