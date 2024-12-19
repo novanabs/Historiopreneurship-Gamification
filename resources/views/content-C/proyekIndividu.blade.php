@@ -260,7 +260,7 @@
     <div class="mb-3">
         <label for="formFile1" class="form-label fw-semibold">Silahkan kumpulkan Lembar Proyek Individu</label>
         <input class="form-control" type="file" id="formFile1" name="file" accept=".pdf,application/pdf">
-        <small>Kumpulkan dengan format .pdf</small>
+        <small>Kumpulkan dengan format <strong>.pdf</strong></small>
     </div>
 
     <button type="submit" class="btn btn-primary">Kirim</button>

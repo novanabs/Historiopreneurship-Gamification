@@ -19,7 +19,7 @@ class ContentCController extends Controller
         $activeMenu = 'menu3';
 
         $batas_test = Nilai::where('email', $user)
-            ->where('aspek', 'pre_test_kesejarahan')
+            ->where('aspek', 'pre_test_kwu')
             ->first();
 
         if ($batas_test) {
@@ -148,7 +148,7 @@ class ContentCController extends Controller
         $activeMenu = 'menu3';
 
         $batas_test = Nilai::where('email', $user)
-            ->where('aspek', 'post_test_kesejarahan')
+            ->where('aspek', 'post_test_kwu')
             ->first();
 
         if ($batas_test) {
@@ -160,6 +160,7 @@ class ContentCController extends Controller
             // Jika data tidak ada, set menjadi 1
             $batas_test_value = 1;
         }
+        
         return view('content-C.postTest', compact('activeMenu','prevUrl','nextUrl','user','batas_test_value','skor_test_value'));
     }
 

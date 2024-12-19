@@ -61,9 +61,8 @@
                 <div class="accordion-item" id="menuHeading2">
                     <h2 class="accordion-header" >
                         
-                        <button class="accordion-button text-primary fw-bold {{ $activeMenu == 'menu2' ? '' : 'collapsed' }} text-muted" type="button" data-bs-toggle="collapse" data-bs-target="#menuCollapse2" aria-expanded="true" aria-controls="menuCollapse2" disabled> 
-                            {{-- <i class="bi bi-1-square"></i> --}}
-                            <i class="bi bi-lock"></i>
+                        <button class="accordion-button text-primary fw-bold {{ $activeMenu == 'menu2' ? '' : 'collapsed' }} text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#menuCollapse2" aria-expanded="true" aria-controls="menuCollapse2"> 
+                            <i class="bi bi-1-square"></i>
                             &nbsp;
                             Kesejarahan
                         </button>
@@ -128,7 +127,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="list-group list-group-flush">
+                <div class="list-group list-group-flush" hidden>
                     <a href="/evaluasi" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('evaluasi') ? 'active' : '' }} disabled">
                         <span class=""><i class="bi bi-lock"></i> Evaluasi</span></a>
                 </div>

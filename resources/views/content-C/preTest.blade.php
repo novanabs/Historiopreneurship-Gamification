@@ -4,13 +4,18 @@
 
 <h2>Pre Test C. KWU dan Kepariwisataan</h2>
 
+@if (session('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+@endif
 
-<div class="shadow bg-light rounded p-3" style="height: 40vh; ; overflow-y: auto;" id="question-container">
+<div class="shadow bg-light rounded p-3" style="height: 50vh; overflow-y: auto;" id="question-container">
     <div id="soal-test" hidden>
         <div class="row position-relative">
         <!-- Timer Column (Right top corner) -->
         <div class="col-1 position-absolute top-0 end-0" id="timer">
-            <span id="timerText">45:00</span>
+            <span id="timerText">30:00</span>
         </div>
 
         <!-- Soal Content Column -->
@@ -27,7 +32,7 @@
     <div id="info-test">
         <p class="text-center"><b>Keterangan Test</b></p>
         <p class="text-center"><b>Jumlah Soal : </b>30</p>
-        <p class="text-center"><b>Durasi Pengerjaan : </b>45 Menit</p>
+        <p class="text-center"><b>Durasi Pengerjaan : </b>30 Menit</p>
         <p class="text-center"><b>Batas test : </b><span id="batas_test">{{$batas_test_value}}</span></p>
         <p class="text-center"><b>Skor Anda : </b><span id="skor_test">{{$skor_test_value}}</span></p>
         <p class="text-sm text-center">Waktu akan dimulai saat anda menekan tombol mulai</p>
@@ -41,7 +46,7 @@
         <input type="hidden" name="email" id="email" value="{{ Auth::user()->email }}">
         <!-- Ganti dengan email pengguna -->
         <input type="hidden" name="nilai_akhir" id="nilaiAkhir">
-        <input type="hidden" name="aspek" value="pre_test_kesejarahan">
+        <input type="hidden" name="aspek" value="pre_test_kwu">
     </form>
 </div>
 <script>

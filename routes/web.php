@@ -29,6 +29,7 @@ use App\Http\Controllers\jawabanKelompokController;
 use App\Http\Controllers\AnalisisIndividuController;
 use App\Http\Controllers\UpdateAksesHalamanController;
 use App\Http\Controllers\RefleksiKesejarahanController;
+use App\Http\Controllers\controllerSyaratKelayakanObjekKesejarahan;
 
 // Download
 Route::get('/download/{filename}', [FileController::class, 'download']);
@@ -122,6 +123,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/Daftar-Pustaka', [HalamanController::class, 'daftarPustaka'])->name('pages.dafus');
     Route::get('/hasil', [HalamanController::class, 'review'])->name('hasil');
 });
+
+// Menyimpan Data Syarat Kelayakan Objek Kesejarahan
+Route::post('/B-Kesejarahan/inputFormKelayakan', [controllerSyaratKelayakanObjekKesejarahan::class, 'store'])->name('simpanFormKelayakan');
 
 // Middleware admin
 Route::group(['middleware' => ['admin']], function () {

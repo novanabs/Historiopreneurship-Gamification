@@ -2,6 +2,12 @@
 
 @section('container-content')
 
+@if (session('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+@endif
+
 <h2>ANALISA KELOMPOK</h2>
 <p class="text-lg">AKTIVITAS EKSPLORASI MAHASISWA</p>
 <p>
@@ -26,49 +32,34 @@
         </div>
     </div>
     <h4 class="mt-4">Temukanlah 10 Objek Kesejarahan yang ada di daerah kalian.</h4>
-    <form class="w-100">
-        <div class="mb-3">
-            <label for="objek-1" class="form-label fw-bold mt-2">Objek 1</label>
-            <input type="text" name="objek-1" placeholder="Objek 1" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="objek-2" class="form-label fw-bold mt-2">Objek 2</label>
-            <input type="text" name="objek-2" placeholder="Objek 2" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="objek-3" class="form-label fw-bold mt-2">Objek 3</label>
-            <input type="text" name="objek-3" placeholder="Objek 3" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="objek-4" class="form-label fw-bold mt-2">Objek 4</label>
-            <input type="text" name="objek-4" placeholder="Objek 4" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="objek-5" class="form-label fw-bold mt-2">Objek 5</label>
-            <input type="text" name="objek-5" placeholder="Objek 5" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="objek-6" class="form-label fw-bold mt-2">Objek 6</label>
-            <input type="text" name="objek-6" placeholder="Objek 6" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="objek-7" class="form-label fw-bold mt-2">Objek 7</label>
-            <input type="text" name="objek-7" placeholder="Objek 7" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="objek-8" class="form-label fw-bold mt-2">Objek 8</label>
-            <input type="text" name="objek-8" placeholder="Objek 8" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="objek-9" class="form-label fw-bold mt-2">Objek 9</label>
-            <input type="text" name="objek-9" placeholder="Objek 9" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="objek-10" class="form-label fw-bold mt-2">Objek 10</label>
-            <input type="text" name="objek-10" placeholder="Objek 10" class="form-control">
-        </div>
+    <form class="w-100" method="post" id="formIndividu" action="{{ route('simpanJawabanIndividu2') }}">
+        @csrf
+            @foreach (range(1, 10) as $i)
+                <div class="row mt-3">
+                    <div class="col">
+                        <label for="objek{{ $i }}" data-value="{{ $i }}" class="form-label fw-bold mt-2">Objek {{ $i }}</label>
+                        <br>
+
+                        @php
+                            // Mencari jawaban berdasarkan no_objek
+                            $jawaban = $jawabanIndividuII->where('no_objek', $i)->first();
+                            // Mengambil nilai jawaban atau string kosong jika tidak ada
+                            $jawabanValue = $jawaban ? $jawaban->jawaban : '';
+                            // Menentukan apakah input harus dinonaktifkan
+                            $isDisabled = !empty($jawabanValue);
+                        @endphp
+
+                        <input name="objek{{ $i }}" id="objek{{ $i }}"
+                            rows="5" class="form-control" 
+                            value="{{ old('objek' . $i, $jawabanValue) }}" 
+                            {{ $isDisabled ? 'disabled' : '' }}>
+
+                    </div>
+                </div>
+            @endforeach
+
         <div class="mt-4">
-            <button type="submit" class="me-2 btn btn-primary">SIMPAN JAWABAN</button>
+            <button type="submit" class="me-2 btn btn-primary" {{ $isDisabled ? 'disabled' : '' }}>SIMPAN JAWABAN</button>
         </div>
 </div>
 

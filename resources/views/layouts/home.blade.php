@@ -125,7 +125,7 @@
         }
 
         let countdown;
-        let minutes = 45;
+        let minutes = 30;
         let seconds = 0;
 
         function startCountdown() {

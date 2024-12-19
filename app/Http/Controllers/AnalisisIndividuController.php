@@ -196,7 +196,7 @@ class AnalisisIndividuController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', 'Jawaban berhasil disimpan dan diperbarui.');
+        return redirect()->back()->with('success', 'Jawaban berhasil terkirim');
     }
 
 }
