@@ -110,6 +110,11 @@ class ContentBController extends Controller
         $urgensiObjekKesejarahan = optional($jawabanIndividu[2])->jawaban ?? '';
         $urgensiKesejarahan = optional($jawabanIndividu[3])->jawaban ?? '';
 
+        } else {
+            $objekWisata = '';
+            $objekKesejarahan = '';
+            $urgensiObjekKesejarahan = '';
+            $urgensiKesejarahan = '';
         }
 
         // Menentukan apakah input harus dinonaktifkan
