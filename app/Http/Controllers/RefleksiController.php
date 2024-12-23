@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Refleksi;
-use App\Models\RefleksiKesejarahan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,5 +71,28 @@ class RefleksiController extends Controller
 
         return redirect()->back()->with('success', 'Jawaban refleksi telah disimpan.');
 
+    }
+
+    public function tampilkanJawabanRefleksi($email)
+    {
+        $activeMenu = 'active';
+        $user = User::where('email', $email)->first();
+
+        $refleksiKesejarahan = Refleksi::where('created_by', $email)->where('kategori', 'refleksi kesejarahan')->get();
+        $refleksiKewirausahaan = Refleksi::where('created_by', $email)->where('kategori', 'refleksi kewirausahaan')->get();
+        $refleksiKepariwisataan = Refleksi::where('created_by', $email)->where('kategori', 'refleksi kepariwisataan')->get();
+        // dd($refleksiKesejarahan, $refleksiKewirausahaan, $refleksiKepariwisataan);
+
+        // dd($refleksiKesejarahan[0]->respon);
+
+
+
+
+    
+
+        // Mengirim data ke tampilan
+        return view('latihan.jawabanRefleksi', compact('activeMenu', 'user', 'refleksiKesejarahan', 'refleksiKewirausahaan', 'refleksiKepariwisataan'
+    
+    ));
     }
 }

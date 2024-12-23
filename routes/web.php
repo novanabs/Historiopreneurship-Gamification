@@ -155,9 +155,12 @@ Route::post('/dataMahasiswa/remove', [DosenController::class, 'removeFromGroup']
 Route::post('/dataMahasiswa/autoAssignGroup', [DosenController::class, 'autoAssignGroup'])->name('dataMahasiswa.autoAssignGroup');
 
 Route::get('/Data-Nilai', [DosenController::class, 'dataNilai'])->name('data-nilai');
+Route::get('/Data-Refleksi', [DosenController::class, 'dataRefleksi'])->name('data-refleksi');
 
 // data jawaban individu
 Route::get('/jawabanIndividu/{email}', [AnalisisIndividuController::class, 'tampilkanJawabanIndividu'])->name('dataJawabanIndividu');
+// data jawaban Refleksi
+Route::get('/jawabanRefleksi/{email}', [RefleksiController::class, 'tampilkanJawabanRefleksi'])->name('dataJawabanRefleksi');
 // Route to handle the POST request for saving individual answers
 Route::post('/jawabanIndividu/{email}', [nilaiController::class, 'simpanNilaiIndividu'])->name('kirimJawabanIndividu');
 
