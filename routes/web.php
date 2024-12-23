@@ -176,8 +176,8 @@ Route::get('/updateAksesHalaman', [UpdateAksesHalamanController::class, 'update'
 
 
 // Poin DND dan TTS
-Route::post('/DND', [PoinController::class, 'DND'])->name('DND');
-Route::post('/TTS', [PoinController::class, 'TTS'])->name('TTS');
+Route::post('/DND1', [PoinController::class, 'DND1'])->name('DND1');
+Route::post('/DND2', [PoinController::class, 'DND2'])->name('DND2');
 
 // Export Data
 Route::get('/export-evaluasi', [dataExportController::class, 'exportEvaluasi'])->name('export.evaluasi');

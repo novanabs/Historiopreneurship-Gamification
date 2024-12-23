@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
-@section('container')
+@section('container-content')
+
 <div class="mt-3">
     <div class="row mt-3">
         <div class="col">
@@ -27,7 +28,6 @@
                 </li>
             </ul>
 
-            Tab Content
             <div class="tab-content mt-3" id="myTabContent">
                 <!-- Tab Kesejarahan -->
                 <!-- <div class="tab-pane fade show active" id="sejarahan" role="tabpanel" aria-labelledby="sejarahan-tab">
@@ -42,15 +42,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($jawabanKesejarahan as $item)
-                                <tr>
-                                    <td>Kelompok {{ $item->id_kelompok }}</td>
-                                    <td>{{ $item->no_objek }}</td>
-                                    <td>{{ $item->jawaban }}</td>
-                                    <td>{{ $item->created_by }}</td>
-                                    <td>{{ $item->created_at }}</td>
-                                </tr>
-                            @endforeach
                         </tbody>
                     </table>
                     <div class="row">

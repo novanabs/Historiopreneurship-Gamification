@@ -254,9 +254,9 @@
 <a href="{{ url('/download/' . $filename) }}" class="btn btn-primary my-2"><i class="bi bi-download"></i> Unduh Template Laporan</a>
 
 <!-- Form Upload Praktik Lapangan 1 -->
-<form method="post" action="{{ route('uploadFileKesejarahan') }}" enctype="multipart/form-data">
+<form method="post" action="{{ route('uploadFileKewirausahaan') }}" enctype="multipart/form-data">
     @csrf
-    <input type="hidden" name="category" value="kegiatan pembelajaran 3">
+    <input type="hidden" name="category" value="proyek individu">
     <div class="mb-3">
         <label for="formFile1" class="form-label fw-semibold">Silahkan kumpulkan Lembar Proyek Individu</label>
         <input class="form-control" type="file" id="formFile1" name="file" accept=".pdf,application/pdf">

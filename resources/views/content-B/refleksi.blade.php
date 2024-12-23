@@ -8,6 +8,12 @@
     </div>
 @endif
 
+@if (session('error'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('error') }}
+    </div>
+@endif
+
 <h2>Refleksi B.</h2>
 <p>
     Setelah mempelajari materi ini, bagaimana pemahaman kalian terhadap materi? Isilah penilaian diri ini dengan sejujur-jujurnya dan sebenar-benarnya sesuai dengan perasaan kalian ketika mengerjakan suplemen bahan materi ini! Bubuhkanlah tanda centang (√) pada salah satu gambar yang dapat mewakili perasaan kalian setelah mempelajari materi ini!
@@ -35,24 +41,6 @@
     </table>
 </div>
 
-<script>
-    const radios = document.querySelectorAll('input[name="respon"]');
-    const icons = document.querySelectorAll('.icon');
-
-    
-
-    radios.forEach((radio, index) => {
-      radio.addEventListener('change', () => {
-        // Hapus class text-primary dari semua ikon
-        icons.forEach(icon => icon.classList.remove('text-primary'));
-        
-        // Tambahkan class text-primary ke ikon yang sesuai
-        if (radio.checked) {
-          icons[index].classList.add('text-primary');
-        }
-      });
-    });
-</script>
 
 
 
@@ -89,5 +77,34 @@
         </div>
     </div>
 </form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const radios = document.querySelectorAll('input[name="respon"]');
+    const icons = document.querySelectorAll('.icon');
+
+    // Fungsi untuk memperbarui ikon berdasarkan radio yang diceklis
+    const updateIcons = () => {
+        // Hapus kelas 'text-primary' dari semua ikon
+        icons.forEach(icon => icon.classList.remove('text-primary'));
+
+        // Tambahkan kelas 'text-primary' ke ikon yang sesuai dengan radio yang diceklis
+        radios.forEach((radio, index) => {
+            if (radio.checked) {
+                icons[index].classList.add('text-primary');
+            }
+        });
+    };
+
+    // Jalankan fungsi saat halaman dimuat untuk sinkronisasi awal
+    updateIcons();
+
+    // Tambahkan event listener ke setiap radio button
+    radios.forEach(radio => {
+        radio.addEventListener('change', updateIcons);
+    });
+});
+
+</script>
 
 @endsection

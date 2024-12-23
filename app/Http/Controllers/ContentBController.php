@@ -54,7 +54,7 @@ class ContentBController extends Controller
         $activeMenu = 'menu2';
 
         $batas_test = Nilai::where('email', $user)
-            ->where('aspek', 'poin_DND')
+            ->where('aspek', 'poin_DND_Kesejarahan')
             ->first();
 
         if ($batas_test) {

@@ -21,8 +21,16 @@
             <li>Tekan Submit ketika jawaban sudah dirasa benar</li>
             <li>Tekan Reset ketika Anda ingin mengulang </li>
         </ol>
+        <p class="fw-semibold">Keterangan:</p>
+        <ul>
+            <li>Status : <span class="fw-bold">{{ $batas_test_value == 0 ? 'Sudah dikerjakan' : 'Belum dikerjakan' }}</span></li>
+            <li>Skor Kuis : <span class="fw-bold">{{$skor_test_value}}</span></li>
+        </ul>
     </div>
 </div>
+
+<div {{ $batas_test_value == 0 ? 'hidden' : '' }}>
+
 <div class="soal2">
     <div class="jawaban2" draggable="true" id="jawaban11" data-category="historio">
         <img src="{{asset('img/MasjidSultanSuriansyah.jpg')}}" alt="Masjid Sultan Suriansyah">
@@ -82,10 +90,10 @@
             <div class="modal-content">
                 <h2>Hasil</h2>
                 <p id="nilaiTotal" class="nilai-text">Total Nilai: 0</p>
-                <form id="tutupForm" action="{{ route('DND') }}" method="POST">
+                <form id="tutupForm" action="{{ route('DND2') }}" method="POST">
                     @csrf
                     <input type="hidden" id="nilaiAkhirInput" name="nilai_akhir">
-                    <input type="hidden" name="aspek" value="poin_DND">
+                    <input type="hidden" name="aspek" value="poin_DND_KWU">
                     <button type="submit" id="closeModalBtn" class="btn btn-primary">Tutup</button>
                 </form>
             </div>
@@ -100,6 +108,8 @@
                 <button id="cancelResetBtn" class="btn btn-secondary">Batal</button>
             </div>
         </div>
+
+</div>
 
 <script src="{{asset('js/test.js')}}"></script>
 <script src="{{asset('js/kuis2.js')}}"></script>

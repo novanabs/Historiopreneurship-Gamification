@@ -208,7 +208,7 @@
                     </thead>
                     <tbody>
                         @foreach($fileUploads as $index => $file)
-                            @if(in_array($file->kategori, ['kegiatan pembelajaran 3', 'praktik lapangan 1', 'praktik lapangan 2']))
+                            @if(in_array($file->kategori, ['kegiatan pembelajaran 3', 'praktik lapangan 1', 'proyek individu', 'praktik lapangan 2']))
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $file->kategori }}</td>

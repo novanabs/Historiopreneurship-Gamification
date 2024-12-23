@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nilai;
+use App\Models\Kelompok;
 use App\Models\Refleksi;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\AnalisisKelompokKewirausahaan;
 use App\Models\Analisis_individu_kewirausahaan;
 
 class ContentCController extends Controller
@@ -38,8 +40,8 @@ class ContentCController extends Controller
     {
         $user = Auth::user()->email;
         $prevUrl = "/KWU-dan-Kepariwisataan/Pre-Test"; 
-        // $nextUrl = "/KWU-dan-Kepariwisataan/Kuis";
-        $nextUrl = "/KWU-dan-Kepariwisataan/Proyek-Individu";
+        $nextUrl = "/KWU-dan-Kepariwisataan/Kuis";
+        // $nextUrl = "/KWU-dan-Kepariwisataan/Proyek-Individu";
         $activeMenu = 'menu3';
         return view('content-C.kwuDanKepariwisataan', compact('activeMenu','prevUrl','nextUrl','user'));
     }
@@ -49,8 +51,23 @@ class ContentCController extends Controller
         $user = Auth::user()->email;
         $prevUrl = "/KWU-dan-Kepariwisataan/KWU-dan-Kepariwisataan"; 
         $nextUrl = "/KWU-dan-Kepariwisataan/Analisis-Kelompok-1";
+
+        $batas_test = Nilai::where('email', $user)
+            ->where('aspek', 'poin_DND_KWU')
+            ->first();
+
+        if ($batas_test) {
+            $skor_test_value = $batas_test->nilai_akhir;
+            // Jika data sudah ada (batas_test ditemukan), set menjadi 0
+            $batas_test_value = 0;
+        } else {
+            $skor_test_value = "-";
+            // Jika data tidak ada, set menjadi 1
+            $batas_test_value = 1;
+        }
+
         $activeMenu = 'menu3';
-        return view('content-C.kuisKwuDanKepariwisataan', compact('activeMenu','prevUrl','nextUrl','user'));
+        return view('content-C.kuisKwuDanKepariwisataan', compact('activeMenu','prevUrl','nextUrl','user','batas_test_value','skor_test_value'));
     }
 
     public function analisisKelompok1()
@@ -59,7 +76,28 @@ class ContentCController extends Controller
         $prevUrl = "/KWU-dan-Kepariwisataan/Kuis"; 
         $nextUrl = "/KWU-dan-Kepariwisataan/Analisis-Kelompok-2";
         $activeMenu = 'menu3';
-        return view('content-C.analisisKelompok1', compact('activeMenu','prevUrl','nextUrl','user'));
+
+         // Dapatkan id_kelompok dari tabel kelompok berdasarkan email pengguna
+         $kelompok = Kelompok::where('email', $user)->first();
+ 
+         if ($kelompok) {
+             $id_kelompok = $kelompok->id_kelompok;
+ 
+             // Ambil semua anggota kelompok berdasarkan id_kelompok dengan join ke tabel users
+             $anggotaKelompok = Kelompok::where('id_kelompok', $id_kelompok)
+                 ->join('users', 'kelompok.email', '=', 'users.email')
+                 ->select('kelompok.*', 'users.nama_lengkap')
+                 ->get(); // Convert to collection
+ 
+             // Ambil jawaban berdasarkan id_kelompok untuk halaman C
+             $jawabanKelompok = AnalisisKelompokKewirausahaan::where('id_kelompok', $id_kelompok)->get();
+         } else {
+             $id_kelompok = null;
+             $anggotaKelompok = collect(); // Kosongkan jika id_kelompok tidak ditemukan
+             $jawabanKelompok = collect(); // Kosongkan jika id_kelompok tidak ditemukan
+         };
+
+            return view('content-C.analisisKelompok1', compact('activeMenu','prevUrl','nextUrl','user','jawabanKelompok', 'id_kelompok', 'anggotaKelompok'));
     }
 
     public function analisisKelompok2()
@@ -68,7 +106,28 @@ class ContentCController extends Controller
         $prevUrl = "/KWU-dan-Kepariwisataan/Analisis-Kelompok-1"; 
         $nextUrl = "/KWU-dan-Kepariwisataan/Diskusi-Kelompok";
         $activeMenu = 'menu3';
-        return view('content-C.analisisKelompok2', compact('activeMenu','prevUrl','nextUrl','user'));
+
+        // Dapatkan id_kelompok dari tabel kelompok berdasarkan email pengguna
+        $kelompok = Kelompok::where('email', $user)->first();
+ 
+        if ($kelompok) {
+            $id_kelompok = $kelompok->id_kelompok;
+
+            // Ambil semua anggota kelompok berdasarkan id_kelompok dengan join ke tabel users
+            $anggotaKelompok = Kelompok::where('id_kelompok', $id_kelompok)
+                ->join('users', 'kelompok.email', '=', 'users.email')
+                ->select('kelompok.*', 'users.nama_lengkap')
+                ->get(); // Convert to collection
+
+            // Ambil jawaban berdasarkan id_kelompok untuk halaman C
+            $jawabanKelompok = AnalisisKelompokKewirausahaan::where('id_kelompok', $id_kelompok)->get();
+        } else {
+            $id_kelompok = null;
+            $anggotaKelompok = collect(); // Kosongkan jika id_kelompok tidak ditemukan
+            $jawabanKelompok = collect(); // Kosongkan jika id_kelompok tidak ditemukan
+        };
+
+        return view('content-C.analisisKelompok2', compact('activeMenu','prevUrl','nextUrl','user','jawabanKelompok', 'id_kelompok', 'anggotaKelompok'));
     }
 
     public function diskusiKelompok()
@@ -77,15 +136,36 @@ class ContentCController extends Controller
         $prevUrl = "/KWU-dan-Kepariwisataan/Analisis-Kelompok-2"; 
         $nextUrl = "/KWU-dan-Kepariwisataan/Proyek-Individu";
         $activeMenu = 'menu3';
-        return view('content-C.diskusiKelompok', compact('activeMenu','prevUrl','nextUrl','user'));
+
+        // Dapatkan id_kelompok dari tabel kelompok berdasarkan email pengguna
+        $kelompok = Kelompok::where('email', $user)->first();
+ 
+        if ($kelompok) {
+            $id_kelompok = $kelompok->id_kelompok;
+
+            // Ambil semua anggota kelompok berdasarkan id_kelompok dengan join ke tabel users
+            $anggotaKelompok = Kelompok::where('id_kelompok', $id_kelompok)
+                ->join('users', 'kelompok.email', '=', 'users.email')
+                ->select('kelompok.*', 'users.nama_lengkap')
+                ->get(); // Convert to collection
+
+            // Ambil jawaban berdasarkan id_kelompok untuk halaman C
+            $jawabanKelompok = AnalisisKelompokKewirausahaan::where('id_kelompok', $id_kelompok)->get();
+        } else {
+            $id_kelompok = null;
+            $anggotaKelompok = collect(); // Kosongkan jika id_kelompok tidak ditemukan
+            $jawabanKelompok = collect(); // Kosongkan jika id_kelompok tidak ditemukan
+        };
+
+        return view('content-C.diskusiKelompok', compact('activeMenu','prevUrl','nextUrl','user','jawabanKelompok', 'id_kelompok', 'anggotaKelompok'));
     }
 
     public function proyekIndividu()
     {
         $filename = "PROYEK_INDIVIDU_HISTORIOPRENEURSHIP.docx";
         $user = Auth::user()->email;
-        // $prevUrl = "/KWU-dan-Kepariwisataan/Diskusi-Kelompok"; 
-        $prevUrl = "/KWU-dan-Kepariwisataan/KWU-dan-Kepariwisataan"; 
+        $prevUrl = "/KWU-dan-Kepariwisataan/Diskusi-Kelompok"; 
+        // $prevUrl = "/KWU-dan-Kepariwisataan/KWU-dan-Kepariwisataan"; 
         $nextUrl = "/KWU-dan-Kepariwisataan/Refleksi-1";
         $activeMenu = 'menu3';
 
@@ -101,12 +181,12 @@ class ContentCController extends Controller
     {
         $user = Auth::user()->email;
         $prevUrl = "/KWU-dan-Kepariwisataan/Proyek-Individu"; 
-        // $nextUrl = "/KWU-dan-Kepariwisataan/Praktik-Lapangan-1";
-        $nextUrl = "/KWU-dan-Kepariwisataan/Post-Test";
+        $nextUrl = "/KWU-dan-Kepariwisataan/Praktik-Lapangan-1";
+        // $nextUrl = "/KWU-dan-Kepariwisataan/Post-Test";
         $activeMenu = 'menu3';
 
         // Ambil jawaban refleksi dan pastikan jika tidak ada data, tetap hasilkan collection
-        $jawabanRefleksi = Refleksi::where('created_by', $user)
+        $jawabanRefleksi = Refleksi::where('created_by', $user)->where('kategori', 'refleksi kewirausahaan')
         ->get()
         ->groupBy('kategori')
         ->map(function ($items) {
@@ -141,10 +221,10 @@ class ContentCController extends Controller
     public function postTest()
     {
         $user = Auth::user()->email;
-        // $prevUrl = "/KWU-dan-Kepariwisataan/Praktik-Lapangan-2"; 
-        $prevUrl = "/KWU-dan-Kepariwisataan/Refleksi-1"; 
-        // $nextUrl = "/KWU-dan-Kepariwisataan/Refleksi-2";
-        $nextUrl = null;
+        $prevUrl = "/KWU-dan-Kepariwisataan/Praktik-Lapangan-2"; 
+        // $prevUrl = "/KWU-dan-Kepariwisataan/Refleksi-1"; 
+        $nextUrl = "/KWU-dan-Kepariwisataan/Refleksi-2";
+        // $nextUrl = null;
         $activeMenu = 'menu3';
 
         $batas_test = Nilai::where('email', $user)
@@ -170,6 +250,20 @@ class ContentCController extends Controller
         $prevUrl = "/KWU-dan-Kepariwisataan/Post-Test"; 
         $nextUrl = null;
         $activeMenu = 'menu3';
-        return view('content-C.refleksi2', compact('activeMenu','prevUrl','nextUrl','user'));
+
+        // Ambil jawaban refleksi dan pastikan jika tidak ada data, tetap hasilkan collection
+        $jawabanRefleksi = Refleksi::where('created_by', $user)->where('kategori', 'refleksi kepariwisataan')
+        ->get()
+        ->groupBy('kategori')
+        ->map(function ($items) {
+            return $items->keyBy('aspek');
+        });
+
+        // Pastikan jawabanRefleksi bukan null dan set sebagai collection jika kosong
+        if (!$jawabanRefleksi || $jawabanRefleksi->isEmpty()) {
+            $jawabanRefleksi = collect();
+        }
+
+        return view('content-C.refleksi2', compact('activeMenu','prevUrl','nextUrl','user','jawabanRefleksi'));
     }
 }
