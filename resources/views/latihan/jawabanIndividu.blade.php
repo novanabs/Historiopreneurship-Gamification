@@ -10,19 +10,20 @@
     <h2>Jawaban Individu</h2>
     <h4 class="mb-4">Nama : {{$user->nama_lengkap}}</h4>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
+        
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="kesejarahan-tab" data-bs-toggle="tab" data-bs-target="#kesejarahan"
-                type="button" role="tab" aria-controls="kesejarahan" aria-selected="true">Kesejarahan</button>
+            <button class="nav-link active" id="kesejarahan-ii-tab" data-bs-toggle="tab" data-bs-target="#kesejarahan-ii"
+                type="button" role="tab" aria-controls="kesejarahan-ii" aria-selected="true">Analisis Kelompok Kesejarahan</button>
         </li>
-        <!-- Add a new tab for Analisis Kesejarahan II -->
+
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="kesejarahan-ii-tab" data-bs-toggle="tab" data-bs-target="#kesejarahan-ii"
-                type="button" role="tab" aria-controls="kesejarahan-ii" aria-selected="false">Kesejarahan II</button>
+            <button class="nav-link" id="kesejarahan-tab" data-bs-toggle="tab" data-bs-target="#kesejarahan"
+                type="button" role="tab" aria-controls="kesejarahan" aria-selected="false">Analisis Individu Kesejarahan</button>
         </li>
 
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="kewirausahaan-tab" data-bs-toggle="tab" data-bs-target="#kewirausahaan"
-                type="button" role="tab" aria-controls="kewirausahaan" aria-selected="false">Kewirausahaan</button>
+                type="button" role="tab" aria-controls="kewirausahaan" aria-selected="false">Proyek Individu Kewirausahaan</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="file-upload-tab" data-bs-toggle="tab" data-bs-target="#file-upload"
@@ -33,7 +34,7 @@
     <div class="tab-content" id="myTabContent">
 
         <!-- Tab Kesejarahan II -->
-        <div class="tab-pane fade" id="kesejarahan-ii" role="tabpanel" aria-labelledby="kesejarahan-ii-tab">
+        <div class="tab-pane fade show active" id="kesejarahan-ii" role="tabpanel" aria-labelledby="kesejarahan-ii-tab">
             <h3 class="mt-3">Jawaban Kesejarahan II</h3>
             @if($jawabanIndividuII->isEmpty())
                 <p>Tidak ada jawaban yang ditemukan untuk Kesejarahan II.</p>
@@ -67,11 +68,11 @@
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
                                         <input type="text" class="form-control" name="nilai_akhir"
-                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ $nilaiAnalisisIndividuKesejarahan_II->nilai_akhir ?? '' }}" {{ $nilaiAnalisisIndividuKesejarahan_II ? 'disabled' : '' }}>
                                     </div>
                                     <label for="feedbackIndividu">Feedback</label><br>
-                                    <textarea name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
-                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                    <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5" {{ $nilaiAnalisisIndividuKesejarahan_II ? 'disabled' : '' }}>{{ $nilaiAnalisisIndividuKesejarahan_II->data_jawaban_penilai ?? '' }}</textarea>
+                                    <button type="submit" class="btn btn-primary mt-3">Kirim</button>
                                 </form>
                             </div>
                             <div class="card-footer text-muted">
@@ -84,8 +85,8 @@
         </div>
 
         <!-- Tab Kesejarahan -->
-        <div class="tab-pane fade show active" id="kesejarahan" role="tabpanel" aria-labelledby="kesejarahan-tab">
-            <h3 class="mt-3">Jawaban Kesejarahan</h3>
+        <div class="tab-pane fade" id="kesejarahan" role="tabpanel" aria-labelledby="kesejarahan-tab">
+            <h3 class="mt-3">Jawaban Analisiss Individu Kesejarahan</h3>
             @if($jawabanKesejarahanIndividu->isEmpty())
                 <p>Tidak ada jawaban yang ditemukan untuk Kesejarahan.</p>
             @else
@@ -107,6 +108,123 @@
                         @endforeach
                     </tbody>
                 </table>
+                
+                <h3 class="mt-3">Jawaban Form Syarat Kelayakan Objek Kesejarahan</h3>
+                @if($jawabanFormKelayakan->isEmpty())
+                    <p>Belum mengisi Form Kelayakan</p>
+                @else
+                <table class="table text-center table-bordered">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Aspek</th>
+                            <th>Sub Aspek</th>
+                            <th>Skor</th>
+                            <th>Alasan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="4">1</td>
+                            <td rowspan="4">Daya Tarik</td>
+                            <td>{{$jawabanFormKelayakan[0]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[0]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[0]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{$jawabanFormKelayakan[1]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[1]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[1]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{$jawabanFormKelayakan[2]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[2]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[2]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{$jawabanFormKelayakan[3]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[3]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[3]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">2</td>
+                            <td rowspan="3">Aksesbilitas</td>
+                            <td>{{$jawabanFormKelayakan[4]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[4]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[4]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{$jawabanFormKelayakan[5]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[5]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[5]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{$jawabanFormKelayakan[6]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[6]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[6]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4">3</td>
+                            <td rowspan="4">Sarana Prasarana</td>
+                            <td>{{$jawabanFormKelayakan[7]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[7]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[7]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{$jawabanFormKelayakan[8]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[8]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[8]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{$jawabanFormKelayakan[9]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[9]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[9]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{$jawabanFormKelayakan[10]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[10]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[10]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="7">4</td>
+                            <td rowspan="7">Partisipasi Masyarakat</td>
+                            <td>{{$jawabanFormKelayakan[11]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[11]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[11]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{$jawabanFormKelayakan[12]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[12]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[12]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{$jawabanFormKelayakan[13]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[13]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[13]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{$jawabanFormKelayakan[14]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[14]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[14]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{$jawabanFormKelayakan[15]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[15]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[15]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{$jawabanFormKelayakan[16]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[16]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[16]->reason}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{$jawabanFormKelayakan[17]->sub_aspect}}</td>
+                            <td>{{$jawabanFormKelayakan[17]->score}}</td>
+                            <td>{{$jawabanFormKelayakan[17]->reason}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                @endif
                 <div class="row">
                     <div class="col">
                         <div class="card text-center">
@@ -120,11 +238,11 @@
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
                                         <input type="text" class="form-control" name="nilai_akhir"
-                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ $nilaiAnalisisIndividuKesejarahan->nilai_akhir ?? '' }}" {{ $nilaiAnalisisIndividuKesejarahan ? 'disabled' : '' }}>
                                     </div>
                                     <label for="feedbackIndividu">Feedback</label><br>
-                                    <textarea name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
-                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                    <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5" {{ $nilaiAnalisisIndividuKesejarahan ? 'disabled' : '' }}>{{ $nilaiAnalisisIndividuKesejarahan->data_jawaban_penilai ?? '' }}</textarea>
+                                    <button type="submit" class="btn btn-primary mt-3">Kirim</button>
                                 </form>
                             </div>
                             <div class="card-footer text-muted">
@@ -175,10 +293,10 @@
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
                                         <input type="text" class="form-control" name="nilai_akhir"
-                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ $nilaiAnalisisIndividu->nilai_akhir ?? '' }}">
+                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ $nilaiAnalisisIndividuKWU->nilai_akhir ?? '' }}" {{ $nilaiAnalisisIndividuKWU ? 'disabled' : '' }}>
                                     </div>
                                     <label for="feedbackIndividu">Feedback</label><br>
-                                    <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5">{{ $nilaiAnalisisIndividu->data_jawaban_penilai ?? '' }}</textarea>
+                                    <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5" {{ $nilaiAnalisisIndividuKWU ? 'disabled' : '' }}>{{ $nilaiAnalisisIndividuKWU->data_jawaban_penilai ?? '' }}</textarea>
                                     <button type="submit" class="btn btn-primary mt-3">Kirim</button>
                                 </form>
                             </div>
@@ -261,7 +379,7 @@
                                             aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                                     </div>
                                     <label for="feedbackIndividu">Feedback</label><br>
-                                    <textarea name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
+                                    <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
                                     <button type="submit" class="btn btn-primary">Kirim</button>
                                 </form>
                             </div>
@@ -282,7 +400,7 @@
                                             aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                                     </div>
                                     <label for="feedbackIndividu">Feedback</label><br>
-                                    <textarea name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
+                                    <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
                                     <button type="submit" class="btn btn-primary">Kirim</button>
                                 </form>
                             </div>
@@ -303,7 +421,7 @@
                                             aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                                     </div>
                                     <label for="feedbackIndividu">Feedback</label><br>
-                                    <textarea name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
+                                    <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
                                     <button type="submit" class="btn btn-primary">Kirim</button>
                                 </form>
                             </div>

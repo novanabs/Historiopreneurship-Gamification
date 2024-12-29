@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Nilai;
 use App\Models\User;
-use App\Models\AksesHalaman;
+use App\Models\Nilai;
 use App\Models\userBadge;
+use App\Models\AksesHalaman;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
@@ -25,6 +26,8 @@ class DashboardController extends Controller
         $data['materi_a'] = AksesHalaman::where('email', $email)->value('materi_a');
         $data['materi_b'] = AksesHalaman::where('email', $email)->value('materi_b');
         $data['materi_c'] = AksesHalaman::where('email', $email)->value('materi_c');
+
+
         
         // Aspek yang harus dipenuhi
         $aspects = [
@@ -40,11 +43,11 @@ class DashboardController extends Controller
             'upload_file_aktivitas2',
             'pre_test_kesejarahan',
         ];
+
+        $data['perolehanNilai'] = Nilai::where('email', $email)->sum('nilai_akhir');
         
         // Hitung total nilai untuk aspek yang ada
-        $totalNilai = Nilai::where('email', $email)
-            ->whereIn('aspek', $aspects)
-            ->sum('nilai_akhir');
+        $totalNilai = Nilai::where('email', $email)->sum('nilai_akhir');
         
         // Hitung jumlah aspek yang ada nilainya
         $fulfilledAspectsCount = Nilai::where('email', $email)
@@ -112,6 +115,16 @@ class DashboardController extends Controller
             ->join('badge', 'user_badge.id_badge', '=', 'badge.id')
             ->select('badge.link_gambar', 'badge.deskripsi')
             ->get();
+
+        $data['leaderboard'] = DB::table('users')
+        ->join('nilai', 'users.email', '=', 'nilai.email')
+        ->select('users.email', 'users.nama_lengkap', DB::raw('SUM(nilai.nilai_akhir) as poin'))
+        ->where('users.peran', 'siswa') // Hanya ambil siswa
+        ->groupBy('users.email', 'users.nama_lengkap') // Mengelompokkan berdasarkan email dan nama_lengkap
+        ->orderBy('poin', 'desc') // Urutkan berdasarkan total poin
+        ->limit(20) // Ambil 20 besar
+        ->get();
+        
         
         $data['claimedBadges'] = $claimedBadges;
         return view('dashboard', $data);

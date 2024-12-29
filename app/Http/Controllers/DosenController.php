@@ -120,6 +120,16 @@ class DosenController extends Controller
         return view('lamanDosen.dataNilai', compact('Mahasiswas', 'Kelompoks', 'activeMenu'));
     }
 
+    public function dataNilaiTest()
+    {
+        $activeMenu = 'active';
+        // Mengambil data mahasiswa berdasarkan peran 'siswa'
+        $Mahasiswas = User::where('peran', 'siswa')->get();
+
+        // Mengirimkan kedua variabel ke view
+        return view('lamanDosen.dataNilaiTest', compact('Mahasiswas', 'activeMenu'));
+    }
+
     public function dataRefleksi()
     {
         $activeMenu = 'active';

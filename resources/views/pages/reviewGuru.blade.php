@@ -15,7 +15,13 @@
             <tbody>
                 @foreach($dataNilai as $nilai)
                 <tr>
-                    <td>{{ $nilai->aspek }}</td>
+                    <td>
+                        {{ 
+                            $nilai->aspek == 'analisa_individu_kesejarahan_II' ? 'Analisis Kelompok Kesejarahan' :
+                            ($nilai->aspek == 'analisa_individu_kesejarahan' ? 'Analisis Individu Kesejarahan' :
+                            ($nilai->aspek == 'analisa_individu_kewirausahaan' ? 'Proyek Individu KWU' : $nilai->aspek))
+                        }}
+                    </td>
                     <td>{{ $nilai->data_jawaban_penilai }}</td>
                     <td>{{ $nilai->nilai_akhir }}</td>
                 </tr>

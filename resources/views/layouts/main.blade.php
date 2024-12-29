@@ -25,6 +25,8 @@
                     <span><i class="bi bi-people-fill"></i> Data Mahasiswa</span></a>
                 <a href="/Data-Nilai" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ (Route::is('data-nilai') || Route::is('dataJawabanIndividu')) ? 'active' : '' }}">
                     <span><i class="bi bi-journal-text"></i> Data Nilai</span></a>
+                <a href="/Data-Nilai-Test" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ (Route::is('data-hasil-test') || Route::is('dataJawabanTest')) ? 'active' : '' }}">
+                    <span><i class="bi bi-bezier2"></i> Hasil Test & Kuis</span></a>
                 <a href="/Data-Refleksi" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('data-refleksi') ? 'active' : '' }} {{ Route::is('dataJawabanRefleksi') ? 'active' : '' }}">
                     <span><i class="bi bi-list-ol"></i> Refleksi Siswa</span></a>
                 {{-- <a href="/Progress-Belajar" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('progress-belajar') ? 'active' : '' }}">

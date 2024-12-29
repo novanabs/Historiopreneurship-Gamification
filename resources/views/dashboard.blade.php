@@ -145,8 +145,8 @@
             <div class="col-md-6 mb-4">
                 <div class="card p-4">
                     <div class="card-body">
-                        <h5 class="card-title">Poin</h5>
-                        <p class="card-text display-6">{{ auth()->user()->poin ?? 0 }}</p>
+                        <h5 class="card-title">Total Nilai Kamu</h5>
+                        <p class="card-text display-6">{{ $perolehanNilai ?? 0 }}</p>
                     </div>
                     {{-- <div class="card-body">
                         <h5 class="card-title">Progress</h5>
@@ -184,7 +184,7 @@
                             @php
                                 $n = 1;
                             @endphp
-                            @foreach ($users as $user)
+                            @foreach ($leaderboard as $user)
                             <tr>
                                 <th scope="row">{{ $n }}</th>
                                 <td>{{ $user->nama_lengkap }}</td>
