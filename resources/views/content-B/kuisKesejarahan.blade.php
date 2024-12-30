@@ -25,6 +25,7 @@
         </ol>
         <p class="fw-semibold">Keterangan:</p>
         <ul>
+            <li>Batas pengerjaan kuis hanya satu kali</li>
             <li>Status : <span class="fw-bold">{{ $batas_test_value == 0 ? 'Sudah dikerjakan' : 'Belum dikerjakan' }}</span></li>
             <li>Skor Kuis : <span class="fw-bold">{{$skor_test_value}}</span></li>
         </ul>

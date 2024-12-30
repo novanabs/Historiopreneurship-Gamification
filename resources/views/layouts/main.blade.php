@@ -140,11 +140,19 @@
         </div>
     </div>
     <div class="bg-white text-dark border-top col-lg-9">
-        <div class="p-3 bg-white border-bottom">
-            <div class="progress">
-                <div role="progressbar" class="progress-bar bg-primary progress-bar-striped"  aria-valuemin="0" aria-valuemax="100" style="width: 0%" id="status_bar"></div>
+        @php
+            $routesToShowDiv = ['B-1', 'B-8', 'C-1', 'C-11'];
+        @endphp
+
+        {{-- Progress bar hanya akan tampil pada Pre Test dan Post Test --}}
+        @if (Route::is($routesToShowDiv))
+            <div class="p-3 bg-white border-bottom">
+                <div class="progress">
+                    <div role="progressbar" class="progress-bar bg-primary progress-bar-striped fw-semibold"  aria-valuemin="0" aria-valuemax="100" style="width: 0%" id="status_bar"></div>
+                </div>
             </div>
-        </div>
+        @endif
+        
         <div class="p-4 p-lg-5">
             @yield('container-content')
                 {{-- Tombol Sebelumnya --}}
@@ -333,10 +341,12 @@
     var $progress = 0;
     var $sub = document.getElementById('progress_halaman').innerHTML;
     // Status Bar -> Perlu diatur B dan C nya
-    const status_bar = document.getElementById('status_bar');
+    let status_bar = document.getElementById('status_bar');
     function update_status() {
         let persen = $sub * 12.5;
         status_bar.style.width = `${persen}%`;
+        status_bar.innerHTML = persen + "%";
+
     }
     update_status();
 

@@ -58,8 +58,12 @@
                 </div>
             @endforeach
 
+        <p class="border rounded p-2 bg-warning-subtle mt-4 fw-semibold">
+            Note: Tugas ini tidak dapat di edit setelah disimpan
+        </p>
+
         <div class="mt-4">
-            <button type="submit" class="me-2 btn btn-primary" {{ $isDisabled ? 'disabled' : '' }}>SIMPAN JAWABAN</button>
+            <button type="submit" class="me-2 btn btn-primary" {{ $isDisabled ? 'hidden' : '' }}>SIMPAN JAWABAN</button>
         </div>
 </div>
 

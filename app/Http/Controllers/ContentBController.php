@@ -103,6 +103,8 @@ class ContentBController extends Controller
         $jawabanIndividu = AnalisisIndividuKesejarahan::where('created_by', $user)->get();
 
         if(!$jawabanIndividu->isEmpty()){
+        
+        $statusJawabanIndividu = "Selesai";
 
         // Menggunakan optional untuk menghindari error
         $objekWisata = optional($jawabanIndividu[0])->jawaban ?? '';
@@ -111,6 +113,7 @@ class ContentBController extends Controller
         $urgensiKesejarahan = optional($jawabanIndividu[3])->jawaban ?? '';
 
         } else {
+            $statusJawabanIndividu = "Belum dikerjakan";
             $objekWisata = '';
             $objekKesejarahan = '';
             $urgensiObjekKesejarahan = '';
@@ -127,7 +130,7 @@ class ContentBController extends Controller
         $formKelayakanPartisipasiMasyarakat = FormKelayakan::where('email', $user)->where('aspect','Partisipasi Masyarakat')->get();
 
         if(!$formKelayakanDayaTarik->isEmpty()){
-
+            $statusFormKelayakan = "Selesai";
 
         // Menentukan apakah input harus dinonaktifkan
         $isDisabledForm = True;
@@ -203,6 +206,8 @@ class ContentBController extends Controller
         $formKelayakanPartisipasiMasyarakat4_7_score = $formKelayakanPartisipasiMasyarakat[6]->score;
         $formKelayakanPartisipasiMasyarakat4_7_reason = $formKelayakanPartisipasiMasyarakat[6]->reason;
         }else{
+
+            $statusFormKelayakan = "Belum dikerjakan";
             // Menentukan apakah input harus dinonaktifkan
         $isDisabledForm = False;
             // 1-1
@@ -282,6 +287,8 @@ class ContentBController extends Controller
 
         
         return view('content-B.analisisIndividu', compact('activeMenu','prevUrl','nextUrl','user','objekWisata','objekKesejarahan','urgensiObjekKesejarahan','urgensiKesejarahan', 'isDisabled','isDisabledForm', 
+
+        'statusJawabanIndividu', 'statusFormKelayakan',
         
         'formKelayakanDayaTarik1_1_score',
         'formKelayakanDayaTarik1_1_reason',
