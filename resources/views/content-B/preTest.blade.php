@@ -90,7 +90,7 @@
     {
         question: "Mengapa Sultan Suriansyah memeluk Islam?",
         options: ["Untuk mendapatkan kekuasaan", "Pengaruh dari pedagang", "Untuk menyatukan rakyat", "Tekanan dari Belanda"],
-        correct: 2,
+        correct: 1,
         explanation: ""
     },
     {

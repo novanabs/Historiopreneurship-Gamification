@@ -91,7 +91,7 @@
     {
         question: "Mengapa Sultan Suriansyah memeluk Islam?",
         options: ["Untuk mendapatkan kekuasaan", "Pengaruh dari pedagang", "Untuk menyatukan rakyat", "Tekanan dari Belanda"],
-        correct: 2,
+        correct: 1,
         explanation: "Sultan Suriansyah memeluk Islam karena pengaruh dari pedagang yang datang ke wilayah tersebut."
     },
     {
