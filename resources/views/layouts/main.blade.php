@@ -12,21 +12,21 @@
             <div class="list-group list-group-flush">
                 @if($userRole === 'siswa' || $userRole === 'guru')
                 <a href="/dashboard" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('dashboard') ? 'active' : '' }}">
-                    <span><i class="bi bi-speedometer"></i> Dashboard</span></a>
+                        <span><i class="bi bi-speedometer"></i> Dashboard</span></a>
                 @endif
                 @if (auth()->user()->peran == 'siswa')
                 <a href="/hasil" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('hasil') ? 'active' : '' }}">
-                    <span><i class="bi bi-journal-check"></i> Hasil</span></a>
+                        <span><i class="bi bi-journal-check"></i> Hasil</span></a>
                 @endif
                 @if (auth()->user()->peran == 'guru')
                 <a href="/Data-Kelas" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('data-kelas') ? 'active' : '' }}">
-                    <span><i class="bi bi-archive-fill"></i></i> Data Kelas</span></a>
+                        <span><i class="bi bi-archive-fill"></i></i> Data Kelas</span></a>
                 <a href="/Data-Mahasiswa" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('data-mahasiswa') ? 'active' : '' }}">
-                    <span><i class="bi bi-people-fill"></i> Data Mahasiswa</span></a>
+                        <span><i class="bi bi-people-fill"></i> Data Mahasiswa</span></a>
                 <a href="/Progress-Belajar" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('progress-belajar') ? 'active' : '' }}">
-                    <span><i class="bi bi-list-ol"></i> Progress Belajar</span></a>
+                        <span><i class="bi bi-list-ol"></i> Progress Belajar</span></a>
                 <a href="/Data-Nilai" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ (Route::is('data-nilai') || Route::is('dataJawabanIndividu')) ? 'active' : '' }}">
-                    <span><i class="bi bi-journal-text"></i> Data Nilai</span></a>
+                        <span><i class="bi bi-journal-text"></i> Data Nilai</span></a>
                 @endif
             </div>
             <h5 class="active text-primary text-center p-3 mb-0">MATERI</h5>
@@ -34,7 +34,7 @@
                 <div class="accordion-item" id="menuHeading1">
                     <h2 class="accordion-header" >
                         <button class="accordion-button text-primary fw-bold {{ $activeMenu == 'menu1' ? '' : 'collapsed' }} text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#menuCollapse1" aria-expanded="true" aria-controls="menuCollapse1">
-                            <i class="bi bi-info-circle"></i> 
+                            <i class="bi bi-info-circle"></i>
                             &nbsp;
                             Informasi Umum
                         </button>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="accordion-item" id="menuHeading2">
                     <h2 class="accordion-header" >
-                        
+
                         <button class="accordion-button text-primary fw-bold {{ $activeMenu == 'menu2' ? '' : 'collapsed' }} text-muted" type="button" data-bs-toggle="collapse" data-bs-target="#menuCollapse2" aria-expanded="true" aria-controls="menuCollapse2" disabled> 
                             {{-- <i class="bi bi-1-square"></i> --}}
                             <i class="bi bi-lock"></i>
@@ -143,33 +143,33 @@
         </div>
         <div class="p-4 p-lg-5">
             @yield('container-content')
-                {{-- Tombol Sebelumnya --}}
+            {{-- Tombol Sebelumnya --}}
                 @if(request()->routeIs('A-*') || 
-                request()->routeIs('B-*') || 
+                    request()->routeIs('B-*') ||
                 request()->routeIs('C-*'))
-                <div class="w-100 py-5 d-flex align-items-center justify-content-between bottom-0  ">
-                    {{-- Tombol Sebelumnya --}}
-                    @if($prevUrl)
+                            <div class="w-100 py-5 d-flex align-items-center justify-content-between bottom-0  ">
+                                {{-- Tombol Sebelumnya --}}
+                                @if($prevUrl)
                         <a href="{{ $prevUrl }}" class="d-flex align-items-center py-2 px-3 text-white btn btn-danger" id="prevButton">
-                            <i class="bi bi-chevron-double-left"></i> Sebelumnya
-                        </a>
-                    @else
-                        <span class="d-flex align-items-center py-2 px-3 text-white btn btn-danger disabled">
-                            <i class="bi bi-chevron-double-left"></i> Sebelumnya
-                        </span>
-                    @endif
-                    
-                    {{-- Tombol Selanjutnya --}}
-                    @if($nextUrl)
+                                        <i class="bi bi-chevron-double-left"></i> Sebelumnya
+                                    </a>
+                                @else
+                                    <span class="d-flex align-items-center py-2 px-3 text-white btn btn-danger disabled">
+                                        <i class="bi bi-chevron-double-left"></i> Sebelumnya
+                                    </span>
+                                @endif
+
+                                {{-- Tombol Selanjutnya --}}
+                                @if($nextUrl)
                     <a href="{{ $nextUrl }}" class="d-flex align-items-center py-2 px-3 text-white btn btn-success" id="nextButton">
-                        Selanjutnya <i class="bi bi-chevron-double-right"></i>
-                    </a>
-                    @else
-                        <span class="d-flex align-items-center py-2 px-3 text-white btn btn-success disabled">
-                            Selanjutnya <i class="bi bi-chevron-double-right"></i>
-                        </span>
-                    @endif
-                </div>
+                                        Selanjutnya <i class="bi bi-chevron-double-right"></i>
+                                    </a>
+                                @else
+                                    <span class="d-flex align-items-center py-2 px-3 text-white btn btn-success disabled">
+                                        Selanjutnya <i class="bi bi-chevron-double-right"></i>
+                                    </span>
+                                @endif
+                            </div>
             @endif
         </div>
     </div>
@@ -179,7 +179,7 @@
 <!-- data tables -->
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
-<script> 
+<script>
     // Ambil bab dan 
     const $bab = document.getElementsByClassName('bab');
     // const $get_ = document.getElementsByClassName('');
@@ -225,7 +225,7 @@
         hide_semua_();
         document.getElementById(event.currentTarget.name).style.display = 'block';
     }
-    
+
 
     nav_link.forEach(nav_link => {
         nav_link.addEventListener('click', cekking)
@@ -242,7 +242,7 @@
         if(info == 'nav'){
             click_sound.play()
         }
-        
+
         // matikan_active();
         nav_link.forEach(element => {
             if(element.name == materi_a[$].id){
@@ -259,52 +259,52 @@
                 element.classList.remove('active');
             }
         });
-        
+
     }
 
     active_()
-    
+
     // Mempertahankan progress halaman
     // Index dimulai dari 0
 
     let $progress_a = {{session('materi_a') ?? 0}}
-    let $progress_b = {{session('materi_b') ?? 0}}
-    let $progress_c = {{session('materi_c') ?? 0}}
+        let $progress_b = {{session('materi_b') ?? 0}}
+            let $progress_c = {{session('materi_c') ?? 0}}
 
     function buka_($side, $bab){
-        console.log('MAU BUKA  YAAA', $side)
+                console.log('MAU BUKA  YAAA', $side)
         if($bab == "A"){
             for(let i=0; i<=$progress_a;i++){
-                console.log($progress_a)
-                $side[i].querySelector('a').classList.remove('disabled');
-                $side[i].querySelector('a').classList.remove('text-gray');
+                        console.log($progress_a)
+                        $side[i].querySelector('a').classList.remove('disabled');
+                        $side[i].querySelector('a').classList.remove('text-gray');
 
-                // Mengubah lock menjadi dot
-                $side[i].querySelector('i').classList.remove('bi-lock')
-                $side[i].querySelector('i').classList.add('bi-dot')
-            }
+                        // Mengubah lock menjadi dot
+                        $side[i].querySelector('i').classList.remove('bi-lock')
+                        $side[i].querySelector('i').classList.add('bi-dot')
+                    }
         }else if($bab == "B"){
             for(let i=0; i<=$progress_b;i++){
-                console.log($progress_b)
-                $side[i].querySelector('a').classList.remove('disabled');
-                $side[i].querySelector('a').classList.remove('text-gray');
+                        console.log($progress_b)
+                        $side[i].querySelector('a').classList.remove('disabled');
+                        $side[i].querySelector('a').classList.remove('text-gray');
 
-                // Mengubah lock menjadi dot
-                $side[i].querySelector('i').classList.remove('bi-lock')
-                $side[i].querySelector('i').classList.add('bi-dot')
-            }
+                        // Mengubah lock menjadi dot
+                        $side[i].querySelector('i').classList.remove('bi-lock')
+                        $side[i].querySelector('i').classList.add('bi-dot')
+                    }
         }else if($bab == "C"){
             for(let i=0; i<=$progress_c;i++){
-                console.log($progress_c)
-                $side[i].querySelector('a').classList.remove('disabled');
-                $side[i].querySelector('a').classList.remove('text-gray');
+                        console.log($progress_c)
+                        $side[i].querySelector('a').classList.remove('disabled');
+                        $side[i].querySelector('a').classList.remove('text-gray');
 
-                // Mengubah lock menjadi dot
-                $side[i].querySelector('i').classList.remove('bi-lock')
-                $side[i].querySelector('i').classList.add('bi-dot')
+                        // Mengubah lock menjadi dot
+                        $side[i].querySelector('i').classList.remove('bi-lock')
+                        $side[i].querySelector('i').classList.add('bi-dot')
+                    }
+                }
             }
-        }
-    }
 
     let $side_A = document.querySelectorAll('#side_A li')
     let $side_B = document.querySelectorAll('#side_B li')
@@ -312,8 +312,8 @@
     buka_($side_A, 'A')
     buka_($side_B, 'B')
     buka_($side_C, 'C')
-    
-    
+
+
 
 </script>
 
@@ -354,7 +354,7 @@
     // });
 
     function next() {
-        
+
         $sub++;
         console.log('Selanjutnya', $sub, $progress)
         if ($sub > $progress) {
@@ -363,7 +363,7 @@
             updateHalaman.submit()
 
         }
-        
+
     }
 
     function prev() {

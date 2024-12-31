@@ -10,7 +10,7 @@
         <div class="mb-0 h5 fw-semibold card-title">
             <i class="bi bi-pencil"></i> Kuis: Kelompokkan Objek Historio dan Non-Historio!
         </div>
-    </div>
+            </div>
     <div class="p-4 card-body">
         <p class="fw-semibold">Panduan Pengerjaan:</p>
         <ol>
@@ -21,12 +21,12 @@
             <li>Tekan Submit ketika jawaban sudah dirasa benar</li>
             <li>Tekan Reset ketika Anda ingin mengulang </li>
         </ol>
-    </div>
-</div>
+                </div>
+            </div>
 <div class="soal2">
     <div class="jawaban2" draggable="true" id="jawaban11" data-category="historio">
         <img src="{{asset('img/MasjidSultanSuriansyah.jpg')}}" alt="Masjid Sultan Suriansyah">
-    </div>
+        </div>
     <div class="jawaban2" draggable="true" id="jawaban12" data-category="non-historio">
         <img src="{{asset('img/bajuin.jpg')}}" alt="Air Terjun Bajuin">
     </div>
@@ -53,29 +53,29 @@
     </div>
     <div class="jawaban2" draggable="true" id="jawaban20" data-category="non-historio">
         <img src="{{asset('img/pantaiAngsana.jpg')}}" alt="Pantai Angsana">
-    </div>
-</div>
+            </div>
+        </div>
 
 <div class="jawaban-container">
     <!-- Kotak Historio -->
     <div class="jawaban-item">
         <h3 class="judul-historio">Historio</h3>
         <div class="kotakJawaban2 historio" id="kotakHistorio"></div>
-    </div>
+                    </div>
 
     <!-- Kotak Non-Historio -->
     <div class="jawaban-item">
         <h3 class="judul-non-historio">Non-Historio</h3>
         <div class="kotakJawaban2 non-historio" id="kotakNonHistorio"></div>
-    </div>
-</div>
+                            </div>
+                        </div>
 
 {{-- END --}}
 
 <div class="text-center">
     <button id="submitBtn" class="btn btn-primary">Submit</button>
     <button id="resetBtn" class="btn btn-warning">Reset</button>
-</div>
+                    </div>
 
  <!-- Modal untuk menampilkan nilai -->
         <div id="myModal" class="modal">
@@ -83,13 +83,13 @@
                 <h2>Hasil</h2>
                 <p id="nilaiTotal" class="nilai-text">Total Nilai: 0</p>
                 <form id="tutupForm" action="{{ route('DND') }}" method="POST">
-                    @csrf
-                    <input type="hidden" id="nilaiAkhirInput" name="nilai_akhir">
+                            @csrf
+                            <input type="hidden" id="nilaiAkhirInput" name="nilai_akhir">
                     <input type="hidden" name="aspek" value="poin_DND">
                     <button type="submit" id="closeModalBtn" class="btn btn-primary">Tutup</button>
-                </form>
-            </div>
-        </div>
+                        </form>
+                    </div>
+                </div>
         {{-- End --}}
 
         <!-- Modal untuk konfirmasi reset -->
