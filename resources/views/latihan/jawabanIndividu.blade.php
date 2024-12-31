@@ -1,11 +1,13 @@
 @extends('layouts.main')
 
 @section('container-content')
+
 @if(session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
 @endif
+
 <div class="container">
     <h2>Jawaban Individu</h2>
     <h4 class="mb-4">Nama : {{$user->nama_lengkap}}</h4>
@@ -67,7 +69,7 @@
                                     <input type="hidden" name="aspek" value="analisa_individu_kesejarahan_II">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
-                                        <input type="text" class="form-control" name="nilai_akhir"
+                                        <input type="number" class="form-control" name="nilai_akhir" min="0" max="100" required 
                                             aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ $nilaiAnalisisIndividuKesejarahan_II->nilai_akhir ?? '' }}" {{ $nilaiAnalisisIndividuKesejarahan_II ? 'disabled' : '' }}>
                                     </div>
                                     <label for="feedbackIndividu">Feedback</label><br>
@@ -237,7 +239,7 @@
                                     <input type="hidden" name="aspek" value="analisa_individu_kesejarahan">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
-                                        <input type="text" class="form-control" name="nilai_akhir"
+                                        <input type="number" class="form-control" name="nilai_akhir" min="0" max="100" required 
                                             aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ $nilaiAnalisisIndividuKesejarahan->nilai_akhir ?? '' }}" {{ $nilaiAnalisisIndividuKesejarahan ? 'disabled' : '' }}>
                                     </div>
                                     <label for="feedbackIndividu">Feedback</label><br>
@@ -292,7 +294,7 @@
                                     <input type="hidden" name="aspek" value="analisa_individu_kewirausahaan">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
-                                        <input type="text" class="form-control" name="nilai_akhir"
+                                        <input type="number" class="form-control" name="nilai_akhir"  min="0" max="100" required 
                                             aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ $nilaiAnalisisIndividuKWU->nilai_akhir ?? '' }}" {{ $nilaiAnalisisIndividuKWU ? 'disabled' : '' }}>
                                     </div>
                                     <label for="feedbackIndividu">Feedback</label><br>

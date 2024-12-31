@@ -69,11 +69,11 @@ class nilaiController extends Controller
         foreach ($anggotaKelompok as $anggota) {
             Nilai::create([
                 'email' => $anggota->email,
-                'id_soal' => null,  // Jika tidak ada, biarkan null
+                'id_soal' => null,
                 'aspek' => $aspek,
                 'data_jawaban_penilai' => $validatedData['data_jawaban_penilai'],
                 'nilai_akhir' => $validatedData['nilai_akhir'],
-                'percobaan_ke' => null,  // Isi jika ada
+                'percobaan_ke' => $id_kelompok,
                 'lama_waktu_pengerjaan' => null,  // Isi jika ada
                 'waktu_selesai' => now(),  // Set waktu selesai ke waktu saat ini
             ]);

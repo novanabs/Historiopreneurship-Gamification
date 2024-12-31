@@ -1,6 +1,7 @@
 @extends('layouts.home')
 
 @section('container')
+
 <div class="d-md-flex flex-md-row-reverse text-center text-md-start align-items-center justify-content-between">
     <img src="{{asset('img/hero.png')}}" alt="Landing Page Ilustration" width="500" height="500" decoding="async" class="img-fluid p-3">
     <div class="d-flex flex-column gap-3">
@@ -18,4 +19,5 @@
         </div>
     </div>
 </div>
+
 @endsection
