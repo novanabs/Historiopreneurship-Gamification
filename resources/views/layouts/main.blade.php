@@ -22,11 +22,11 @@
                 <a href="/Data-Kelas" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('data-kelas') ? 'active' : '' }}">
                         <span><i class="bi bi-archive-fill"></i></i> Data Kelas</span></a>
                 <a href="/Data-Mahasiswa" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('data-mahasiswa') ? 'active' : '' }}">
-                        <span><i class="bi bi-people-fill"></i> Data Mahasiswa</span></a>
+                    <span><i class="bi bi-people-fill"></i> Data Mahasiswa</span></a>
                 <a href="/Progress-Belajar" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('progress-belajar') ? 'active' : '' }}">
-                        <span><i class="bi bi-list-ol"></i> Progress Belajar</span></a>
+                    <span><i class="bi bi-list-ol"></i> Progress Belajar</span></a>
                 <a href="/Data-Nilai" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ (Route::is('data-nilai') || Route::is('dataJawabanIndividu')) ? 'active' : '' }}">
-                        <span><i class="bi bi-journal-text"></i> Data Nilai</span></a>
+                    <span><i class="bi bi-journal-text"></i> Data Nilai</span></a>
                 @endif
             </div>
             <h5 class="active text-primary text-center p-3 mb-0">MATERI</h5>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="accordion-item" id="menuHeading2">
                     <h2 class="accordion-header" >
-
+                        
                         <button class="accordion-button text-primary fw-bold {{ $activeMenu == 'menu2' ? '' : 'collapsed' }} text-muted" type="button" data-bs-toggle="collapse" data-bs-target="#menuCollapse2" aria-expanded="true" aria-controls="menuCollapse2" disabled> 
                             {{-- <i class="bi bi-1-square"></i> --}}
                             <i class="bi bi-lock"></i>
@@ -105,30 +105,30 @@
                                 <span><i class="bi bi-dot"></i> Pre-Test</span></a>
                             <a href="/KWU-dan-Kepariwisataan/KWU-dan-Kepariwisataan" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-2') ? 'active' : '' }}">
                                 <span><i class="bi bi-dot"></i>  KWU & Kepariwisataan</span></a>
-                            <a href="/KWU-dan-Kepariwisataan/Kuis" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-3') ? 'active' : '' }} disabled">
-                                <span><i class="bi bi-lock"></i>  Kuis KWU & Kepariwisataan</span></a>
-                            <a href="/KWU-dan-Kepariwisataan/Analisis-Kelompok-1" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-4') ? 'active' : '' }} disabled">
-                                <span><i class="bi bi-lock"></i>  Analisa Kelompok 1</span></a>
-                            <a href="/KWU-dan-Kepariwisataan/Analisis-Kelompok-2" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-5') ? 'active' : '' }} disabled">
-                                <span><i class="bi bi-lock"></i>  Analisa Kelompok 2</span></a>
-                            <a href="/KWU-dan-Kepariwisataan/Diskusi-Kelompok" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-6') ? 'active' : '' }} disabled">
-                                <span><i class="bi bi-lock"></i>  Diskusi Kelompok</span></a>
+                            <a href="/KWU-dan-Kepariwisataan/Kuis" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-3') ? 'active' : '' }}">
+                                <span><i class="bi bi-dot"></i>  Kuis KWU & Kepariwisataan</span></a>
+                            <a href="/KWU-dan-Kepariwisataan/Analisis-Kelompok-1" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-4') ? 'active' : '' }}">
+                                <span><i class="bi bi-dot"></i>  Analisa Kelompok 1</span></a>
+                            <a href="/KWU-dan-Kepariwisataan/Analisis-Kelompok-2" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-5') ? 'active' : '' }}">
+                                <span><i class="bi bi-dot"></i>  Analisa Kelompok 2</span></a>
+                            <a href="/KWU-dan-Kepariwisataan/Diskusi-Kelompok" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-6') ? 'active' : '' }}">
+                                <span><i class="bi bi-dot"></i>  Diskusi Kelompok</span></a>
                             <a href="/KWU-dan-Kepariwisataan/Proyek-Individu" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-7') ? 'active' : '' }}">
                                 <span><i class="bi bi-dot"></i>  Proyek Individu</span></a>
                             <a href="/KWU-dan-Kepariwisataan/Refleksi-1" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-8') ? 'active' : '' }}">
                                 <span><i class="bi bi-dot"></i>  Refleksi 1</span></a>
-                            <a href="/KWU-dan-Kepariwisataan/Praktik-Lapangan-1" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-9') ? 'active' : '' }} disabled">
-                                <span><i class="bi bi-lock"></i>  Praktik Lapangan 1</span></a>
-                            <a href="/KWU-dan-Kepariwisataan/Praktik-Lapangan-2" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-10') ? 'active' : '' }} disabled">
-                                <span><i class="bi bi-lock"></i>  Praktik Lapangan 2</span></a>
+                            <a href="/KWU-dan-Kepariwisataan/Praktik-Lapangan-1" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-9') ? 'active' : '' }}">
+                                <span><i class="bi bi-dot"></i>  Praktik Lapangan 1</span></a>
+                            <a href="/KWU-dan-Kepariwisataan/Praktik-Lapangan-2" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-10') ? 'active' : '' }}">
+                                <span><i class="bi bi-dot"></i>  Praktik Lapangan 2</span></a>
                             <a href="/KWU-dan-Kepariwisataan/Post-Test" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-11') ? 'active' : '' }}">
                                 <span><i class="bi bi-dot"></i>  Post-Test</span></a>
-                            <a href="/KWU-dan-Kepariwisataan/Refleksi-2" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-12') ? 'active' : '' }} disabled">
-                                <span><i class="bi bi-lock"></i>  Refleksi 2</span></a>
+                            <a href="/KWU-dan-Kepariwisataan/Refleksi-2" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('C-12') ? 'active' : '' }}">
+                                <span><i class="bi bi-dot"></i>  Refleksi 2</span></a>
                         </div>
                     </div>
                 </div>
-                <div class="list-group list-group-flush">
+                <div class="list-group list-group-flush" hidden>
                     <a href="/evaluasi" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('evaluasi') ? 'active' : '' }} disabled">
                         <span class=""><i class="bi bi-lock"></i> Evaluasi</span></a>
                 </div>
@@ -136,11 +136,19 @@
         </div>
     </div>
     <div class="bg-white text-dark border-top col-lg-9">
-        <div class="p-3 bg-white border-bottom">
-            <div class="progress">
-                <div role="progressbar" class="progress-bar bg-primary progress-bar-striped"  aria-valuemin="0" aria-valuemax="100" style="width: 0%" id="status_bar"></div>
+        @php
+            $routesToShowDiv = ['B-1', 'B-8', 'C-1', 'C-11'];
+        @endphp
+
+        {{-- Progress bar hanya akan tampil pada Pre Test dan Post Test --}}
+        @if (Route::is($routesToShowDiv))
+            <div class="p-3 bg-white border-bottom">
+                <div class="progress">
+                    <div role="progressbar" class="progress-bar bg-primary progress-bar-striped fw-semibold"  aria-valuemin="0" aria-valuemax="100" style="width: 0%" id="status_bar"></div>
+                </div>
             </div>
-        </div>
+        @endif
+        
         <div class="p-4 p-lg-5">
             @yield('container-content')
             {{-- Tombol Sebelumnya --}}
@@ -329,10 +337,12 @@
     var $progress = 0;
     var $sub = document.getElementById('progress_halaman').innerHTML;
     // Status Bar -> Perlu diatur B dan C nya
-    const status_bar = document.getElementById('status_bar');
+    let status_bar = document.getElementById('status_bar');
     function update_status() {
         let persen = $sub * 12.5;
         status_bar.style.width = `${persen}%`;
+        status_bar.innerHTML = persen + "%";
+
     }
     update_status();
 

@@ -2,6 +2,12 @@
 
 @section('container-content')
 
+@if (session('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+@endif
+
 <h2>Praktik Lapangan 2</h2>
 <p class="text-lg">AKTIVITAS 6</p>
 <p class="text-sm">2 JP x @ 50 menit = 100 menit</p>
@@ -12,10 +18,11 @@
 <!-- Form Upload Praktik Lapangan 2 -->
 <form method="post" action="{{ route('uploadFileKesejarahan') }}" enctype="multipart/form-data">
     @csrf
-    <input type="hidden" name="category" value="kegiatan pembelajaran 3">
+    <input type="hidden" name="category" value="praktik lapangan 2">
     <div class="mb-3">
         <label for="formFile1" class="form-label fw-semibold">Silahkan kumpulkan tugas untuk Praktik Lapangan 2!</label>
-        <input class="form-control" type="file" id="formFile1" name="file">
+        <input class="form-control" type="file" id="formFile1" name="file" accept=".pdf,application/pdf">
+        <small>Kumpulkan dengan format <strong>.pdf</strong></small>
     </div>
     <button type="submit" class="btn btn-primary">Kirim</button>
 </form>

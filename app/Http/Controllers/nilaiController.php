@@ -12,8 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class nilaiController extends Controller
 {
-    public function simpanNilaiIndividu(Request $request, $email)
-{
+    public function simpanNilaiIndividu(Request $request, $email){
     // Validate the incoming request data
     $validatedData = $request->validate([
         'nilai_akhir' => 'required|integer',
@@ -51,8 +50,7 @@ class nilaiController extends Controller
 }
 
 
-    public function simpanNilaiKelompok(Request $request, $id_kelompok)
-    {
+    public function simpanNilaiKelompok(Request $request, $id_kelompok){
         // Validasi data yang diterima dari form
         $validatedData = $request->validate([
             'nilai_akhir' => 'required|integer',
@@ -85,8 +83,7 @@ class nilaiController extends Controller
         return redirect()->route('dataJawabanKelompok', ['id_kelompok' => $id_kelompok])->with('success', 'Nilai dan feedback berhasil disimpan untuk seluruh anggota kelompok.');
     }
 
-    public function simpanNilai(Request $request)
-    {
+    public function simpanNilai(Request $request){
         // Validasi data yang masuk
         $request->validate([
             'email' => 'required|email',
@@ -133,32 +130,37 @@ class nilaiController extends Controller
         ]);
         
     }
+    
     public function simpanNilaiPretest(Request $request) {
+        
+        $aspek = $request->aspek;
+
         $affected = DB::table('nilai')
             ->where('email', $request->email)
-            ->where('aspek', 'pre_test_kesejarahan')
+            ->where('aspek', $aspek)
             ->update(['nilai_akhir' => $request->nilai_akhir]);
     
         if ($affected === 0) {
             DB::table('nilai')->insert([
                 'email' => $request->email,
                 'nilai_akhir' => $request->nilai_akhir,
-                'aspek' => 'pre_test_kesejarahan'
+                'aspek' => $aspek
             ]);
         }
     
-        return redirect()->back()->with('success', 'Nilai pre-test berhasil disimpan atau diperbarui');
+        return redirect()->back()->with('success', 'Nilai Pre-Test berhasil disimpan');
     }
     
 
     public function simpanNilaiPosttest(Request $request) {
+        
         // Validasi input
         $request->validate([
             'email' => 'required|email',
             'nilai_akhir' => 'required|numeric|min:0|max:100' // Sesuaikan dengan rentang nilai yang valid
         ]);
     
-        $aspek = 'post_test_kesejarahan';
+        $aspek = $request->aspek;
     
         // Coba untuk memperbarui nilai
         $affected = DB::table('nilai')
@@ -175,7 +177,7 @@ class nilaiController extends Controller
             ]);
         }
     
-        return redirect()->back()->with('success', 'Nilai post-test berhasil disimpan atau diperbarui');
+        return redirect()->back()->with('success', 'Nilai Post-Test berhasil disimpan');
     }
     
 }

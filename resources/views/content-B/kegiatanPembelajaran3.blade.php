@@ -2,6 +2,12 @@
 
 @section('container-content')
 
+@if (session('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+@endif
+
 <h2>Kegiatan Pembelajaran 3</h2>
 <p class="text-sm">4 JP x @50 menit = 200 menit </p>
 <p><b>CPMK:</b></p>
@@ -22,7 +28,8 @@
     <input type="hidden" name="category" value="kegiatan pembelajaran 3">
     <div class="mb-3">
         <label for="formFile1" class="form-label fw-semibold">Silahkan kumpulkan tugas untuk Kegiatan Pembelajaran 3!</label>
-        <input class="form-control" type="file" id="formFile1" name="file">
+        <input class="form-control" type="file" id="formFile1" name="file" accept=".pdf,application/pdf">
+        <small>Kumpulkan dengan format <strong>.pdf</strong></small>
     </div>
     <button type="submit" class="btn btn-primary">Kirim</button>
 </form>

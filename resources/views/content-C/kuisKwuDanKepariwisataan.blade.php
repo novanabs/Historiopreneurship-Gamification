@@ -21,8 +21,8 @@
             <li>Tekan Submit ketika jawaban sudah dirasa benar</li>
             <li>Tekan Reset ketika Anda ingin mengulang </li>
         </ol>
-                </div>
-            </div>
+    </div>
+</div>
 <div class="soal2">
     <div class="jawaban2" draggable="true" id="jawaban11" data-category="historio">
         <img src="{{asset('img/MasjidSultanSuriansyah.jpg')}}" alt="Masjid Sultan Suriansyah">
@@ -83,8 +83,8 @@
                 <h2>Hasil</h2>
                 <p id="nilaiTotal" class="nilai-text">Total Nilai: 0</p>
                 <form id="tutupForm" action="{{ route('DND') }}" method="POST">
-                            @csrf
-                            <input type="hidden" id="nilaiAkhirInput" name="nilai_akhir">
+                    @csrf
+                    <input type="hidden" id="nilaiAkhirInput" name="nilai_akhir">
                     <input type="hidden" name="aspek" value="poin_DND">
                     <button type="submit" id="closeModalBtn" class="btn btn-primary">Tutup</button>
                         </form>
@@ -100,6 +100,8 @@
                 <button id="cancelResetBtn" class="btn btn-secondary">Batal</button>
             </div>
         </div>
+
+</div>
 
 <script src="{{asset('js/test.js')}}"></script>
 <script src="{{asset('js/kuis2.js')}}"></script>

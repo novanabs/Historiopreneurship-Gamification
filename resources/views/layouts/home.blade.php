@@ -125,7 +125,7 @@
         }
 
         let countdown;
-        let minutes = 45;
+        let minutes = 30;
         let seconds = 0;
 
         function startCountdown() {
@@ -172,7 +172,7 @@
             const checkBtn = document.getElementById("checkBtn");
 
             // Reset question and feedback
-            questionText.innerText = questions[currentQuestion].question;
+            questionText.innerText =  currentQuestion + 1 + ". " + questions[currentQuestion].question;
             optionsContainer.innerHTML = '';
             feedbackContainer.style.display = 'none';
             feedbackContainer.innerHTML = '';
@@ -220,6 +220,7 @@
             let $status_bar = document.getElementById('status_bar');
             let no_soal = currentQuestion + 1;
             $status_bar.style.width =  `${no_soal * 3.3333333}%`;
+            $status_bar.innerHTML =  Math.round(no_soal * 3.3333333) + "%";
 
             const feedbackContainer = document.getElementById("feedbackContainer");
             const checkBtn = document.getElementById("checkBtn");

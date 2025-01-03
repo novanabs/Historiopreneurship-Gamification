@@ -42,7 +42,7 @@ class DosenController extends Controller
             ]);
         }
 
-        return redirect()->route('dataMahasiswa')->with('success', 'Kelompok berhasil diupdate!');
+        return redirect()->route('data-mahasiswa')->with('success', 'Kelompok berhasil diupdate!');
     }
 
     public function removeFromGroup(Request $request)
@@ -61,7 +61,7 @@ class DosenController extends Controller
             $kelompok->save();
         }
 
-        return redirect()->route('dataMahasiswa')->with('status', 'Mahasiswa berhasil dikeluarkan dari kelompok');
+        return redirect()->route('data-mahasiswa')->with('status', 'Mahasiswa berhasil dikeluarkan dari kelompok');
     }
 
     public function dataKelas()
@@ -118,6 +118,26 @@ class DosenController extends Controller
 
         // Mengirimkan kedua variabel ke view
         return view('lamanDosen.dataNilai', compact('Mahasiswas', 'Kelompoks', 'activeMenu'));
+    }
+
+    public function dataNilaiTest()
+    {
+        $activeMenu = 'active';
+        // Mengambil data mahasiswa berdasarkan peran 'siswa'
+        $Mahasiswas = User::where('peran', 'siswa')->get();
+
+        // Mengirimkan kedua variabel ke view
+        return view('lamanDosen.dataNilaiTest', compact('Mahasiswas', 'activeMenu'));
+    }
+
+    public function dataRefleksi()
+    {
+        $activeMenu = 'active';
+        // Mengambil data mahasiswa berdasarkan peran 'siswa'
+        $Mahasiswas = User::where('peran', 'siswa')->get();
+
+        // Mengirimkan kedua variabel ke view
+        return view('lamanDosen.dataRefleksi', compact('Mahasiswas', 'activeMenu'));
     }
 
 
@@ -191,7 +211,7 @@ class DosenController extends Controller
             }
         }
 
-        return redirect()->route('dataMahasiswa')->with('success', 'Kelompok berhasil diatur otomatis!');
+        return redirect()->route('data-mahasiswa')->with('success', 'Kelompok berhasil diatur otomatis!');
     }
 
 

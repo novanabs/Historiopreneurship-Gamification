@@ -25,10 +25,12 @@ use App\Http\Controllers\userBadgeController;
 
 use App\Http\Controllers\dataExportController;
 use App\Http\Controllers\uploadFileController;
+use App\Http\Controllers\jawabanTestController;
 use App\Http\Controllers\jawabanKelompokController;
 use App\Http\Controllers\AnalisisIndividuController;
 use App\Http\Controllers\UpdateAksesHalamanController;
 use App\Http\Controllers\RefleksiKesejarahanController;
+use App\Http\Controllers\controllerSyaratKelayakanObjekKesejarahan;
 
 // Download
 Route::get('/download/{filename}', [FileController::class, 'download']);
@@ -123,6 +125,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/hasil', [HalamanController::class, 'review'])->name('hasil');
 });
 
+// Menyimpan Data Syarat Kelayakan Objek Kesejarahan
+Route::post('/B-Kesejarahan/inputFormKelayakan', [controllerSyaratKelayakanObjekKesejarahan::class, 'store'])->name('simpanFormKelayakan');
+
 // Middleware admin
 Route::group(['middleware' => ['admin']], function () {
     Route::get('/data-pengguna', [DashboardController::class, 'showUser'])->name('dashboard.showUser');
@@ -151,9 +156,17 @@ Route::post('/dataMahasiswa/remove', [DosenController::class, 'removeFromGroup']
 Route::post('/dataMahasiswa/autoAssignGroup', [DosenController::class, 'autoAssignGroup'])->name('dataMahasiswa.autoAssignGroup');
 
 Route::get('/Data-Nilai', [DosenController::class, 'dataNilai'])->name('data-nilai');
+Route::get('/Data-Nilai-Test', [DosenController::class, 'dataNilaiTest'])->name('data-hasil-test');
+Route::get('/Data-Refleksi', [DosenController::class, 'dataRefleksi'])->name('data-refleksi');
 
 // data jawaban individu
 Route::get('/jawabanIndividu/{email}', [AnalisisIndividuController::class, 'tampilkanJawabanIndividu'])->name('dataJawabanIndividu');
+
+// data jawaban Test
+Route::get('/jawabanTest/{email}', [jawabanTestController::class, 'tampilkanJawabanTest'])->name('dataJawabanTest');
+
+// data jawaban Refleksi
+Route::get('/jawabanRefleksi/{email}', [RefleksiController::class, 'tampilkanJawabanRefleksi'])->name('dataJawabanRefleksi');
 // Route to handle the POST request for saving individual answers
 Route::post('/jawabanIndividu/{email}', [nilaiController::class, 'simpanNilaiIndividu'])->name('kirimJawabanIndividu');
 
@@ -172,8 +185,8 @@ Route::get('/updateAksesHalaman', [UpdateAksesHalamanController::class, 'update'
 
 
 // Poin DND dan TTS
-Route::post('/DND', [PoinController::class, 'DND'])->name('DND');
-Route::post('/TTS', [PoinController::class, 'TTS'])->name('TTS');
+Route::post('/DND1', [PoinController::class, 'DND1'])->name('DND1');
+Route::post('/DND2', [PoinController::class, 'DND2'])->name('DND2');
 
 // Export Data
 Route::get('/export-evaluasi', [dataExportController::class, 'exportEvaluasi'])->name('export.evaluasi');

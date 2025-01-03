@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\uploadFile;
 use Illuminate\Http\Request;
+use App\Models\FormKelayakan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AnalisisIndividuKesejarahan;
@@ -41,13 +42,14 @@ class AnalisisIndividuController extends Controller
             ->get();
 
         // Ini dengan nilai
+        $jawabanFormKelayakan = FormKelayakan::where('email', $email)->get();
+        // dd($jawabanFormKelayakan[0]->aspect,$jawabanFormKelayakan[0]->sub_aspect,$jawabanFormKelayakan[0]->score);
 
-        $nilaiAnalisisIndividu = DB::table('nilai')->where('email', $email)->where('aspek', 'analisa_individu_kewirausahaan')->first();
-
-
-    
+        $nilaiAnalisisIndividuKWU = DB::table('nilai')->where('email', $email)->where('aspek', 'analisa_individu_kewirausahaan')->first();
+        $nilaiAnalisisIndividuKesejarahan_II = DB::table('nilai')->where('email', $email)->where('aspek', 'analisa_individu_kesejarahan_II')->first();
+        $nilaiAnalisisIndividuKesejarahan = DB::table('nilai')->where('email', $email)->where('aspek', 'analisa_individu_kesejarahan')->first();
         // Mengirim data ke tampilan
-        return view('latihan.jawabanIndividu', compact('email',  'jawabanIndividuII','jawabanKesejarahanIndividu', 'jawabanKewirausahaanPariwisataIndividu', 'fileUploads', 'activeMenu', 'user', 'nilaiAnalisisIndividu'));
+        return view('latihan.jawabanIndividu', compact('email',  'jawabanIndividuII','jawabanKesejarahanIndividu', 'jawabanKewirausahaanPariwisataIndividu', 'fileUploads', 'activeMenu', 'user', 'nilaiAnalisisIndividuKWU','jawabanFormKelayakan','nilaiAnalisisIndividuKesejarahan_II','nilaiAnalisisIndividuKesejarahan'));
     }
     
     
@@ -196,7 +198,7 @@ class AnalisisIndividuController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', 'Jawaban berhasil disimpan dan diperbarui.');
+        return redirect()->back()->with('success', 'Jawaban berhasil terkirim');
     }
 
 }

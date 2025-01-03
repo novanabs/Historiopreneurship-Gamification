@@ -25,7 +25,7 @@
             </div>
             <div class="mb-3">
                 <label for="alamatInput" class="form-label fw-semibold" value="{{ old('alamatInput') }}">Alamat</label>
-                <input type="text" name="alamatInput" placeholder="Email" class="form-control" required>
+                <input type="text" name="alamatInput" placeholder="Alamat" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="jenisKelamin" class="form-label">Jenis Kelamin</label>

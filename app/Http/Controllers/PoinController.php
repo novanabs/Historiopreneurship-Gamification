@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class PoinController extends Controller
 {
-    public function DND(Request $request)
+    public function DND1(Request $request)
     {
         // Mengambil email pengguna yang sedang login
         $user_email = Auth::user()->email;
@@ -47,7 +47,7 @@ class PoinController extends Controller
         return redirect()->back()->with('success', 'Nilai berhasil disimpan');
     }
 
-    public function TTS(Request $request)
+    public function DND2(Request $request)
     {
         // Mengambil email pengguna yang sedang login
         $user_email = Auth::user()->email;

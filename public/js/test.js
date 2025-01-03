@@ -15,10 +15,10 @@ submitBtn.addEventListener('click', () => {
     let nonHistorioNilai = 0;
 
     const historioJawaban = document.querySelectorAll('#kotakHistorio .jawaban2[data-category="historio"]');
-    historioNilai = historioJawaban.length * 5; // Setiap jawaban benar bernilai 5
+    historioNilai = historioJawaban.length * 10; // Setiap jawaban benar bernilai 10
 
     const nonHistorioJawaban = document.querySelectorAll('#kotakNonHistorio .jawaban2[data-category="non-historio"]');
-    nonHistorioNilai = nonHistorioJawaban.length * 5; // Setiap jawaban benar bernilai 5
+    nonHistorioNilai = nonHistorioJawaban.length * 10; // Setiap jawaban benar bernilai 10
 
     const totalNilai = bagianPertamaNilai + historioNilai + nonHistorioNilai;
 

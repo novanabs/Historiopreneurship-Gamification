@@ -13,6 +13,7 @@ class jawabanKelompokController extends Controller
 {
     public function lihatJawaban($id_kelompok)
     {
+        $activeMenu = 'active';
         // Mengambil jawaban dari tabel analisis_kelompok_kewirausahaan berdasarkan id_kelompok dan kategori
         $jawabanKewirausahaan1 = AnalisisKelompokKewirausahaan::where('id_kelompok', $id_kelompok)
             ->where('kategori', 'aktivitas 1')
@@ -30,19 +31,20 @@ class jawabanKelompokController extends Controller
             ->get();
 
         // Mengembalikan tampilan dengan data
-        return view('latihan.jawabanKelompok', compact('id_kelompok', 'jawabanKesejarahan', 'jawabanKewirausahaan1', 'jawabanKewirausahaan2', 'jawabanKewirausahaan3'));
+        return view('latihan.jawabanKelompok', compact('id_kelompok', 'jawabanKewirausahaan1', 'jawabanKewirausahaan2', 'jawabanKewirausahaan3','activeMenu'));
     }
 
 
     public function simpanAktivitas(Request $request)
     {
+        // dd($request);
         // Dapatkan email pengguna yang sedang login
         $userEmail = Auth::user()->email;
 
         // Dapatkan id_kelompok dari tabel kelompok berdasarkan email pengguna
         $kelompok = Kelompok::where('email', $userEmail)->first();
         if (!$kelompok) {
-            return redirect()->back()->withErrors(['message' => 'Kelompok tidak ditemukan untuk pengguna ini.']);
+            return redirect()->back()->with(['error' => 'Gagal mengirim jawaban, kamu belum memiliki kelompok.']);
         }
 
         $id_kelompok = $kelompok->id_kelompok;
