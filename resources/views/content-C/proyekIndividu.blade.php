@@ -186,7 +186,12 @@
         <textarea name="produkJasa" id="produkJasa" class="form-control w-100 mt-2" rows="5">{{ old('produkJasa', $jawabanIndividu['produk atau jasa yang akan dirancang'] ?? '') }}</textarea>
 
         <label for="analisaProduk" class="mt-3 fw-semibold">Analisa produk/jasa yang digunakan:</label><br>
+
         <textarea name="analisaProduk" id="analisaProduk" class="form-control w-100 mt-2" rows="5">{{ old('analisaProduk', $jawabanIndividu['Analisa produk atau jasa yang digunakan'] ?? '') }}</textarea>
+
+        <textarea name="analisaProduk" id="analisaProduk" class="form-control w-100 mt-2"
+            rows="5">{{ old('analisaProduk', $jawabanIndividu['Analisa produk atau jasa yang digunakan'] ?? '') }}</textarea>
+
         <hr>
         <p class="text-center"><b>Perencanaan Proyek</b></p>
         <p>
@@ -195,7 +200,12 @@
 
         <!-- input individu 2 rancangan proyek -->
         <label for="langkahKerja" class="mt-3 fw-semibold">Langkah kerja:</label><br>
+
         <textarea name="langkahKerja" id="langkahKerja" class="form-control w-100 mt-2" rows="5">{{ old('langkahKerja', $jawabanIndividu['langkah kerja'] ?? '') }}</textarea>
+
+        <textarea name="langkahKerja" id="langkahKerja" class="form-control w-100 mt-2"
+            rows="5">{{ old('langkahKerja', $jawabanIndividu['langkah kerja'] ?? '') }}</textarea>
+
             <div class="row mt-2">
                 <div class="col">
                     <button type="submit" class="btn btn-primary my-3">Simpan Jawaban</button>

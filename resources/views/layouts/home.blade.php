@@ -75,7 +75,7 @@
             </div>
         </section>
         @if(View::hasSection('container'))
-        <section class="bg-white text-dark p-3 p-sm-5 mb-5 mb-sm-0 flex-grow-1">
+        <section class=" text-dark p-3 p-sm-5 mb-5 mb-sm-0 flex-grow-1">
             <div class="container">
                 @yield('container')
             </div>

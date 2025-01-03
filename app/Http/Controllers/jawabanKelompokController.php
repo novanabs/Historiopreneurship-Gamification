@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AnalisisIndividuKesejeranhanII;
-use App\Models\AnalisisKelompokKesejarahan;
-use App\Models\AnalisisKelompokKewirausahaan;
 use App\Models\Kelompok;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\AnalisisKelompokKesejarahan;
+use App\Models\AnalisisKelompokKewirausahaan;
+use App\Models\AnalisisIndividuKesejeranhanII;
 
 class jawabanKelompokController extends Controller
 {
@@ -30,8 +32,13 @@ class jawabanKelompokController extends Controller
             ->where('aspek', 'Hasil analisa kelompok')
             ->get();
 
+        // Mengambil nilai Aktivitas
+        $nilaiAktivitas1= DB::table('nilai')->where('percobaan_ke', $id_kelompok)->where('aspek', 'analisa_kelompok_kewirausahaan_aktivitas1')->first();
+        $nilaiAktivitas2= DB::table('nilai')->where('percobaan_ke', $id_kelompok)->where('aspek', 'analisa_kelompok_kewirausahaan_aktivitas2')->first();
+        $nilaiAktivitas3= DB::table('nilai')->where('percobaan_ke', $id_kelompok)->where('aspek', 'analisa_kelompok_kewirausahaan_aktivitas3')->first();
+
         // Mengembalikan tampilan dengan data
-        return view('latihan.jawabanKelompok', compact('id_kelompok', 'jawabanKewirausahaan1', 'jawabanKewirausahaan2', 'jawabanKewirausahaan3','activeMenu'));
+        return view('latihan.jawabanKelompok', compact('id_kelompok', 'jawabanKewirausahaan1', 'jawabanKewirausahaan2', 'jawabanKewirausahaan3','activeMenu', 'nilaiAktivitas1', 'nilaiAktivitas2', 'nilaiAktivitas3'));
     }
 
 

@@ -2,7 +2,7 @@
 
 @section('container-content')
 
-<h2>Tahapan Kegiatan Pembelajaran Projeck Based Learning</h2>
+<h2>Tahapan Kegiatan Pembelajaran <i>Project Based Learning</i></h2>
 <p class="mt-3"><b>Merdeka Belajar</b></p>
 <ol>
     <li>
