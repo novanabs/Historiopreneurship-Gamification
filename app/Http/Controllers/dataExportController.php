@@ -102,4 +102,66 @@ class dataExportController extends Controller
         // Kirim file sebagai respon download dan hapus setelah dikirim
         return response()->download(storage_path('app/' . $filePath))->deleteFileAfterSend(true);
     }
+
+    public function exportNilai()
+    {
+        // Mengambil data nilai dari tabel
+        $mahasiswa = \DB::table('users')
+            ->join('nilai', 'users.email', '=', 'nilai.email')
+            ->where('users.peran', 'siswa')
+            ->select(
+                'users.nama_lengkap',
+                'users.kelas',
+                \DB::raw("
+            MAX(CASE WHEN nilai.aspek = 'pre_test_kesejarahan' THEN nilai.nilai_akhir END) AS pre_test_kesejarahan,
+            MAX(CASE WHEN nilai.aspek = 'post_test_kesejarahan' THEN nilai.nilai_akhir END) AS post_test_kesejarahan,
+            MAX(CASE WHEN nilai.aspek = 'poin_DND_kesejarahan' THEN nilai.nilai_akhir END) AS poin_DND_kesejarahan,
+            MAX(CASE WHEN nilai.aspek = 'pre_test_KWU' THEN nilai.nilai_akhir END) AS pre_test_KWU,
+            MAX(CASE WHEN nilai.aspek = 'post_test_KWU' THEN nilai.nilai_akhir END) AS post_test_KWU,
+            MAX(CASE WHEN nilai.aspek = 'poin_DND_KWU' THEN nilai.nilai_akhir END) AS poin_DND_KWU
+        ")
+            )
+            ->groupBy('users.nama_lengkap', 'users.kelas')
+            ->get();
+
+        // Membuat Spreadsheet baru
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        // Menambahkan header
+        $sheet->setCellValue('A1', 'Nomor');
+        $sheet->setCellValue('B1', 'Nama Lengkap');
+        $sheet->setCellValue('C1', 'Kelas');
+        $sheet->setCellValue('D1', 'Pre Test Kesejarahan');
+        $sheet->setCellValue('E1', 'Post Test Kesejarahan');
+        $sheet->setCellValue('F1', 'Poin DND Kesejarahan');
+        $sheet->setCellValue('G1', 'Pre Test KWU');
+        $sheet->setCellValue('H1', 'Post Test KWU');
+        $sheet->setCellValue('I1', 'Poin DND KWU');
+
+        // Menambahkan data ke sheet
+        $row = 2;
+        foreach ($mahasiswa as $key => $data) {
+            $sheet->setCellValue('A' . $row, $key + 1);
+            $sheet->setCellValue('B' . $row, $data->nama_lengkap);
+            $sheet->setCellValue('C' . $row, $data->kelas);
+            $sheet->setCellValue('D' . $row, $data->pre_test_kesejarahan);
+            $sheet->setCellValue('E' . $row, $data->post_test_kesejarahan);
+            $sheet->setCellValue('F' . $row, $data->poin_DND_kesejarahan);
+            $sheet->setCellValue('G' . $row, $data->pre_test_KWU);
+            $sheet->setCellValue('H' . $row, $data->post_test_KWU);
+            $sheet->setCellValue('I' . $row, $data->poin_DND_KWU);
+            $row++;
+        }
+
+        // Membuat Writer untuk menyimpan file Excel
+        $writer = new Xlsx($spreadsheet);
+        $filePath = 'exports/data_nilai.xlsx';
+
+        // Simpan file ke storage sementara
+        $writer->save(storage_path('app/' . $filePath));
+
+        // Kirim file sebagai respon download dan hapus setelah dikirim
+        return response()->download(storage_path('app/' . $filePath))->deleteFileAfterSend(true);
+    }
 }

@@ -27,6 +27,8 @@
                     <span><i class="bi bi-list-ol"></i> Progress Belajar</span></a>
                 <a href="/Data-Nilai" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ (Route::is('data-nilai') || Route::is('dataJawabanIndividu')) ? 'active' : '' }}">
                     <span><i class="bi bi-journal-text"></i> Data Nilai</span></a>
+                <a href="/data-export-nilai" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ (Route::is('data-export-nilai') || Route::is('dataJawabanIndividu')) ? 'active' : '' }}">
+                    <span><i class="bi bi-download"></i> Export Nilai</span></a>
                 @endif
             </div>
             <h5 class="active text-primary text-center p-3 mb-0">MATERI</h5>
@@ -39,7 +41,7 @@
                             Informasi Umum
                         </button>
                     </h2>
-                    <div id="menuCollapse1" class="accordion-collapse collapse collapse {{ $activeMenu == 'menu1' ? 'show' : '' }}" aria-labelledby="menuHeading1" data-bs-parent="#sidebarAccordion">
+                    <div id="menuCollapse1" class="accordion-collapse collapse  {{ $activeMenu == 'menu1' ? 'show' : '' }}" aria-labelledby="menuHeading1" data-bs-parent="#sidebarAccordion">
                         <div class="list-group list-group-flush">
                             <a href="/Informasi/CPL" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('A-1') ? 'active' : '' }}">
                                 <span><i class="bi bi-dot"></i> CPL</span></a>
@@ -61,9 +63,9 @@
                 <div class="accordion-item" id="menuHeading2">
                     <h2 class="accordion-header" >
                         
-                        <button class="accordion-button text-primary fw-bold {{ $activeMenu == 'menu2' ? '' : 'collapsed' }} text-muted" type="button" data-bs-toggle="collapse" data-bs-target="#menuCollapse2" aria-expanded="true" aria-controls="menuCollapse2" disabled> 
+                        <button class="accordion-button text-primary fw-bold {{ $activeMenu == 'menu2' ? '' : 'collapsed' }} text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#menuCollapse2" aria-expanded="true" aria-controls="menuCollapse2"> 
                             {{-- <i class="bi bi-1-square"></i> --}}
-                            <i class="bi bi-lock"></i>
+                            <i class="bi bi-1-square"></i>
                             &nbsp;
                             Kesejarahan
                         </button>
@@ -79,7 +81,7 @@
                             <a href="/Kesejarahan/Kegiatan-Pembelajaran-2" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('B-4') ? 'active' : '' }}">
                                 <span><i class="bi bi-dot"></i>  Kegiatan Pembelajaran 2</span></a>
                             <a href="/Kesejarahan/Analisis-Kelompok" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('B-5') ? 'active' : '' }}">
-                                <span><i class="bi bi-dot"></i>  Analisis Kelompok</span></a>
+                                <span><i class="bi bi-dot"></i>  Analisis Individu</span></a>
                             <a href="/Kesejarahan/Analisi-Individu" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('B-6') ? 'active' : '' }}">
                                 <span><i class="bi bi-dot"></i>  Analisis Individu</span></a>
                             <a href="/Kesejarahan/Kegiatan-Pembelajaran-3" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('B-7') ? 'active' : '' }}">

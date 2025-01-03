@@ -28,8 +28,8 @@ return new class extends Migration {
                     'upload_file_pembelajaran3',
                     'upload_file_aktivitas1',
                     'upload_file_aktivitas2',
-                    'poin_DND',
-                    'poin_TTS',
+                    'poin_DND_Kesejarahan',
+                    'poin_TTS_KWU',
                     'analisa_individu_kesejarahan_II',
                     'pre_test_kesejarahan',
                     'post_test_kesejarahan'

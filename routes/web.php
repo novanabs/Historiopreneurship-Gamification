@@ -151,6 +151,7 @@ Route::get('/latihan2', [LatihanController::class, 'latihan2'])->name('latihan2'
 Route::get('/Data-Kelas', [DosenController::class, 'datakelas'])->name('data-kelas');
 Route::get('/Progress-Belajar', [DosenController::class, 'dataEvaluasi'])->name('progress-belajar');
 Route::get('/Data-Mahasiswa', [DosenController::class, 'dataMahasiswa'])->name('data-mahasiswa');
+Route::get('/data-export-nilai', [DosenController::class, 'dataExportNilai'])->name('data.export.nilai');
 Route::post('/dataMahasiswa/save', [DosenController::class, 'saveGroup'])->name('dataMahasiswa.saveGroup');
 Route::post('/dataMahasiswa/remove', [DosenController::class, 'removeFromGroup'])->name('dataMahasiswa.removeFromGroup');
 Route::post('/dataMahasiswa/autoAssignGroup', [DosenController::class, 'autoAssignGroup'])->name('dataMahasiswa.autoAssignGroup');
@@ -184,13 +185,14 @@ Route::post('/lamanSub', [SessionController::class, 'lamanSub'])->name('lamanSub
 Route::get('/updateAksesHalaman', [UpdateAksesHalamanController::class, 'update'])->name('updateAksesHalaman');
 
 
-// Poin DND dan TTS
+// Poin DND 
 Route::post('/DND1', [PoinController::class, 'DND1'])->name('DND1');
 Route::post('/DND2', [PoinController::class, 'DND2'])->name('DND2');
 
 // Export Data
 Route::get('/export-evaluasi', [dataExportController::class, 'exportEvaluasi'])->name('export.evaluasi');
 Route::get('/export-kelas', [dataExportController::class, 'exportKelas'])->name('export.kelas');
+Route::get('/export-nilai', [dataExportController::class, 'exportNilai'])->name('export.nilai');
 
 
 

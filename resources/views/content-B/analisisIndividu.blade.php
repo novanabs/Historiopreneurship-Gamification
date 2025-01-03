@@ -299,7 +299,7 @@
                         <td><textarea name="alasan4-4" class="form-control" rows="3" {{ $isDisabledForm ? 'disabled' : '' }}>{{ $formKelayakanPartisipasiMasyarakat4_4_reason }}</textarea></td>
                     </tr>
                     <tr>
-                        <td>5. Pelaku wisata berasal dari masyarak lokal</td>
+                        <td>5. Pelaku wisata berasal dari masyarakat lokal</td>
                         <td><input type="radio" class="form-check-input" name="nomor4-5" id="no2-1" value="2-1" {{$formKelayakanPartisipasiMasyarakat4_5_score == 1 ? 'checked' : ''}} {{ $isDisabledForm ? 'disabled' : '' }}></td>
                         <td><input type="radio" class="form-check-input" name="nomor4-5" id="no2-2" value="2-2" {{$formKelayakanPartisipasiMasyarakat4_5_score == 2 ? 'checked' : ''}} {{ $isDisabledForm ? 'disabled' : '' }}></td>
                         <td><input type="radio" class="form-check-input" name="nomor4-5" id="no2-3" value="2-3" {{$formKelayakanPartisipasiMasyarakat4_5_score == 3 ? 'checked' : ''}} {{ $isDisabledForm ? 'disabled' : '' }}></td>

@@ -140,6 +140,33 @@ class DosenController extends Controller
         return view('lamanDosen.dataRefleksi', compact('Mahasiswas', 'activeMenu'));
     }
 
+    public function dataExportNilai() {
+        $activeMenu = 'active';
+    
+        // Ambil data dari tabel users dan tabel nilai dengan aspek yang sesuai
+        $mahasiswa = DB::table('users')
+            ->join('nilai', 'users.email', '=', 'nilai.email')
+            ->where('users.peran', 'siswa')
+            ->select(
+                'users.nama_lengkap',
+                'users.kelas',
+                DB::raw("
+                    MAX(CASE WHEN nilai.aspek = 'pre_test_kesejarahan' THEN nilai.nilai_akhir END) AS pre_test_kesejarahan,
+                    MAX(CASE WHEN nilai.aspek = 'post_test_kesejarahan' THEN nilai.nilai_akhir END) AS post_test_kesejarahan,
+                    MAX(CASE WHEN nilai.aspek = 'poin_DND_kesejarahan' THEN nilai.nilai_akhir END) AS poin_DND_kesejarahan,
+                    MAX(CASE WHEN nilai.aspek = 'pre_test_KWU' THEN nilai.nilai_akhir END) AS pre_test_KWU,
+                    MAX(CASE WHEN nilai.aspek = 'post_test_KWU' THEN nilai.nilai_akhir END) AS post_test_KWU,
+                    MAX(CASE WHEN nilai.aspek = 'poin_DND_KWU' THEN nilai.nilai_akhir END) AS poin_DND_KWU
+                ")
+            )
+            ->groupBy('users.nama_lengkap', 'users.kelas')
+            ->get();
+    
+        return view('lamanDosen.exportNilai', compact('mahasiswa', 'activeMenu'));
+    }
+    
+    
+
 
     public function autoAssignGroup()
     {

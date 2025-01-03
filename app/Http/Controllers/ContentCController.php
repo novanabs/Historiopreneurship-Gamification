@@ -202,13 +202,20 @@ class ContentCController extends Controller
 
     public function praktikLapangan1()
     {
-        $user = Auth::user()->email;
+        $user = Auth::user()->email; // Mendapatkan email pengguna saat ini
         $prevUrl = "/KWU-dan-Kepariwisataan/Refleksi-1"; 
         $nextUrl = "/KWU-dan-Kepariwisataan/Praktik-Lapangan-2";
         $activeMenu = 'menu3';
-        return view('content-C.praktikLapangan1', compact('activeMenu','prevUrl','nextUrl','user'));
+    
+        // Mengambil file yang diunggah untuk kategori 'praktik lapangan 1' oleh pengguna
+        $uploadedFile = \DB::table('upload_file_tugas')
+            ->where('kategori', 'praktik lapangan 1')
+            ->where('created_by', $user) // Sesuaikan jika hanya file pengguna ini yang ingin ditampilkan
+            ->first();
+    
+        return view('content-C.praktikLapangan1', compact('activeMenu', 'prevUrl', 'nextUrl', 'user', 'uploadedFile'));
     }
-
+    
     public function praktikLapangan2()
     {
         $user = Auth::user()->email;

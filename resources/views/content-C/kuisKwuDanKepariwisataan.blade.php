@@ -82,10 +82,10 @@
             <div class="modal-content">
                 <h2>Hasil</h2>
                 <p id="nilaiTotal" class="nilai-text">Total Nilai: 0</p>
-                <form id="tutupForm" action="{{ route('DND') }}" method="POST">
+                <form id="tutupForm" action="{{ route('DND2') }}" method="POST">
                     @csrf
                     <input type="hidden" id="nilaiAkhirInput" name="nilai_akhir">
-                    <input type="hidden" name="aspek" value="poin_DND">
+                    <input type="hidden" name="aspek" value="poin_DND_KWU">
                     <button type="submit" id="closeModalBtn" class="btn btn-primary">Tutup</button>
                         </form>
                     </div>
