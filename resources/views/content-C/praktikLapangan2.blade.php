@@ -60,5 +60,34 @@
         <td></td>
     </tr>
 </table>
+<!-- Menampilkan File PDF -->
+@if (!empty($uploadedFile))
+    <div class="mt-4">
+        <h5>File yang Sudah Diunggah:</h5>
+
+        <!-- Tombol untuk membuka modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pdfModal">
+            Lihat File
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="pdfModalLabel">File PDF</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <embed src="{{ asset('storage/' . $uploadedFile->file_path) }}" 
+                               type="application/pdf" 
+                               width="100%" 
+                               height="600px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 
 @endsection

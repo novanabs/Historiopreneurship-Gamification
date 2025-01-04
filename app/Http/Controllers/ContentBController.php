@@ -375,7 +375,11 @@ class ContentBController extends Controller
         $prevUrl = "/Kesejarahan/Analisi-Individu"; 
         $nextUrl = "/Kesejarahan/Post-Test";
         $activeMenu = 'menu2';
-        return view('content-B.kegiatanPembelajaran3', compact('activeMenu','prevUrl','nextUrl','user'));
+        $uploadedFile = \DB::table('upload_file_tugas')
+            ->where('kategori', 'kegiatan pembelajaran 3')
+            ->where('created_by', $user)
+            ->first();
+        return view('content-B.kegiatanPembelajaran3', compact('activeMenu','prevUrl','nextUrl','user','uploadedFile'));
     }
 
     public function postTest()

@@ -247,8 +247,12 @@ class ContentCController extends Controller
         $jawabanIndividu = Analisis_individu_kewirausahaan::where('created_by', $user)
         ->pluck('jawaban', 'aspek')
         ->toArray();
+        $uploadedFile = \DB::table('upload_file_tugas')
+            ->where('kategori', 'proyek individu')
+            ->where('created_by', $user)
+            ->first();
 
-        return view('content-C.proyekIndividu', compact('activeMenu','prevUrl','nextUrl','user','filename','jawabanIndividu'));
+        return view('content-C.proyekIndividu', compact('activeMenu','prevUrl','nextUrl','user','filename','jawabanIndividu','uploadedFile'));
     }
 
     public function refleksi1()
@@ -276,19 +280,22 @@ class ContentCController extends Controller
 
     public function praktikLapangan1()
     {
-        $user = Auth::user()->email; // Mendapatkan email pengguna saat ini
-        $prevUrl = "/KWU-dan-Kepariwisataan/Refleksi-1"; 
+        $user = Auth::user()->email;
+        $prevUrl = "/KWU-dan-Kepariwisataan/Refleksi-1";
         $nextUrl = "/KWU-dan-Kepariwisataan/Praktik-Lapangan-2";
         $activeMenu = 'menu3';
     
-        // Mengambil file yang diunggah untuk kategori 'praktik lapangan 1' oleh pengguna
         $uploadedFile = \DB::table('upload_file_tugas')
             ->where('kategori', 'praktik lapangan 1')
-            ->where('created_by', $user) // Sesuaikan jika hanya file pengguna ini yang ingin ditampilkan
+            ->where('created_by', $user)
             ->first();
+    
+        // Tambahkan log untuk debugging
+        // dd($uploadedFile); // Menampilkan data di browser untuk memastikan hasil query
     
         return view('content-C.praktikLapangan1', compact('activeMenu', 'prevUrl', 'nextUrl', 'user', 'uploadedFile'));
     }
+    
     
     public function praktikLapangan2()
     {
@@ -296,7 +303,11 @@ class ContentCController extends Controller
         $prevUrl = "/KWU-dan-Kepariwisataan/Praktik-Lapangan-1"; 
         $nextUrl = "/KWU-dan-Kepariwisataan/Post-Test";
         $activeMenu = 'menu3';
-        return view('content-C.praktikLapangan2', compact('activeMenu','prevUrl','nextUrl','user'));
+        $uploadedFile = \DB::table('upload_file_tugas')
+        ->where('kategori', 'praktik lapangan 2')
+        ->where('created_by', $user)
+        ->first();
+        return view('content-C.praktikLapangan2', compact('activeMenu','prevUrl','nextUrl','user','uploadedFile'));
     }
 
     public function postTest()

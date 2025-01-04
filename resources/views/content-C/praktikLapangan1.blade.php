@@ -28,12 +28,12 @@
 </form>
 
 <!-- Menampilkan File PDF -->
-@if (!empty($uploadedFile) && file_exists(storage_path('app/' . $uploadedFile->file_path)))
+@if (!empty($uploadedFile))
     <div class="mt-4">
         <h5>File yang Sudah Diunggah:</h5>
 
         <!-- Tombol untuk membuka modal -->
-        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#pdfModal">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pdfModal">
             Lihat File
         </button>
 
