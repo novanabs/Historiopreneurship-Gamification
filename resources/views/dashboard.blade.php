@@ -66,7 +66,7 @@
                                 </div>
                             @endif
                         </div>
-                        <button type="button" class="btn btn-primary disabled" data-bs-toggle="modal" data-bs-target="#badgeModal">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#badgeModal">
                             Cek Badge
                         </button>
                     </div>
@@ -90,7 +90,7 @@
                                 <div class="col-md-6 d-flex align-items-center">
                                     <form action="{{ route('awardHighRankBadge') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-success" id="claimButton" {{ $allAspectsFulfilled && !$highRankBadgeClaimed ? '' : 'disabled' }}>
+                                        <button type="submit" class="btn btn-success" id="claimButton" {{ !$highRankBadgeClaimed ? '' : 'disabled' }}>
                                             Klaim Badge
                                         </button>
                                     </form>
@@ -101,9 +101,9 @@
                                     <img src="{{ asset('img/master.png') }}" alt="Master Badge" width="100px">
                                 </div>
                                 <div class="col-md-6 d-flex align-items-center">
-                                    <form action="{{ route('awardMasterBadge') }}" method="POST">
+                                    <form action="{{ route('awardHistoricalBadge') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-success" id="claimButton" {{ $allAspectsFulfilled && !$badgeMasterClaimed ? '' : 'disabled' }}>
+                                        <button type="submit" class="btn btn-success" id="claimButton" {{!$badgeKesejarahanClaimed ? '' : 'disabled' }}>
                                             Klaim Badge
                                         </button>
                                     </form>
@@ -117,7 +117,7 @@
                                 <div class="col-md-6 d-flex align-items-center">
                                     <form action="{{ route('awardSiCepatBadge') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-success" id="claimButton" {{ $allAspectsFulfilled && !$siCepatBadgeClaimed ? '' : 'disabled' }}>
+                                        <button type="submit" class="btn btn-success" id="claimButton" {{!$siCepatBadgeClaimed ? '' : 'disabled' }}>
                                             Klaim Badge
                                         </button>
                                     </form>
@@ -129,9 +129,23 @@
                                         width="100px">
                                 </div>
                                 <div class="col-md-6 d-flex align-items-center">
-                                    <form action="{{ route('awardPenguasaMateriBadge') }}" method="POST">
+                                    <form action="{{ route('awardEntrepreneurialBadge') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-success" id="claimButton" {{ $allAspectsFulfilled && !$badgePenguasaMateriClaimed ? '' : 'disabled' }}>
+                                        <button type="submit" class="btn btn-success" id="claimButton" {{!$badgeKwuClaimed ? '' : 'disabled' }}>
+                                            Klaim Badge
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <img src="{{ asset('img/PenguasaMateri_gold.png') }}" alt="Master of Material Badge"
+                                        width="100px">
+                                </div>
+                                <div class="col-md-6 d-flex align-items-center">
+                                    <form action="{{ route('awardCombinedBadge') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success" id="claimButton" {{!$badgeTamatClaimed ? '' : 'disabled' }}>
                                             Klaim Badge
                                         </button>
                                     </form>

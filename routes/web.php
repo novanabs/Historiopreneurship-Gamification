@@ -98,8 +98,9 @@ Route::group(['middleware' => ['auth']], function () {
     // Route untuk menampilkan dashboard
     // Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     // Route untuk klaim Master Badge
-    Route::post('/klaim-master-badge', [UserBadgeController::class, 'awardMasterBadge'])->name('awardMasterBadge');
-    Route::post('/klaim-penguasa-materi-badge', [UserBadgeController::class, 'awardPenguasaMateriBadge'])->name('awardPenguasaMateriBadge');
+    Route::post('/klaim-master-badge', [UserBadgeController::class, 'awardHistoricalBadge'])->name('awardHistoricalBadge');
+    Route::post('/klaim-penguasa-materi-badge', [UserBadgeController::class, 'awardEntrepreneurialBadge'])->name('awardEntrepreneurialBadge');
+    Route::post('/selesaiMateri', [UserBadgeController::class, 'awardCombinedBadge'])->name('awardCombinedBadge');
     Route::post('/klaim-high-rank-badge', [UserBadgeController::class, 'awardHighRankBadge'])->name('awardHighRankBadge');
     Route::post('/klaim-siCepat-badge', [UserBadgeController::class, 'awardSiCepatBadge'])->name('awardSiCepatBadge');
     Route::get('/data-pengguna', [DashboardController::class, 'showUser'])->name('dashboard.showUser')->middleware('admin');

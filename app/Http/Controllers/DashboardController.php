@@ -27,64 +27,20 @@ class DashboardController extends Controller
         $data['materi_b'] = AksesHalaman::where('email', $email)->value('materi_b');
         $data['materi_c'] = AksesHalaman::where('email', $email)->value('materi_c');
 
+        // Badge Kesejarahan
+        $badgeKWUId = 4; // ID untuk badge "kwu"
+        $userBadgeKWU = userBadge::where('email', $email)->where('id_badge', $badgeKWUId)->first();
+        $data['badgeKwuClaimed'] = $userBadgeKWU ? $userBadgeKWU->status === 'claimed' : false;
 
+        // Badge Kesejarahan
+        $badgeTamat = 5; // ID untuk badge "kwu"
+        $userTamat = userBadge::where('email', $email)->where('id_badge', $badgeTamat)->first();
+        $data['badgeTamatClaimed'] = $userTamat ? $userTamat->status === 'claimed' : false;
         
-        // Aspek yang harus dipenuhi
-        $aspects = [
-            'evaluasi',
-            'analisa_individu_kesejarahan',
-            'analisa_individu_kewirausahaan',
-            'analisa_kelompok_kesejarahan',
-            'analisa_kelompok_kewirausahaan_aktivitas1',
-            'analisa_kelompok_kewirausahaan_aktivitas2',
-            'analisa_kelompok_kewirausahaan_aktivitas3',
-            'upload_file_pembelajaran3',
-            'upload_file_aktivitas1',
-            'upload_file_aktivitas2',
-            'pre_test_kesejarahan',
-        ];
-
-        $data['perolehanNilai'] = Nilai::where('email', $email)->sum('nilai_akhir');
-        
-        // Hitung total nilai untuk aspek yang ada
-        $totalNilai = Nilai::where('email', $email)->sum('nilai_akhir');
-        
-        // Hitung jumlah aspek yang ada nilainya
-        $fulfilledAspectsCount = Nilai::where('email', $email)
-            ->whereIn('aspek', $aspects)
-            ->whereNotNull('nilai_akhir')
-            ->distinct('aspek')
-            ->count();
-        
-        // Tentukan apakah semua aspek terpenuhi
-        $data['allAspectsFulfilled'] = $fulfilledAspectsCount === count($aspects);
-        
-        if ($data['allAspectsFulfilled']) {
-            // Hitung rata-rata nilai
-            $average = $totalNilai / count($aspects);
-            
-            // Tentukan ID badge berdasarkan rata-rata nilai
-            if ($average >= 90) {
-                $badgeIdPenguasaMateri = 4; // Badge untuk nilai >= 90
-            } elseif ($average >= 80) {
-                $badgeIdPenguasaMateri = 5; // Badge untuk nilai >= 80
-            } else {
-                $badgeIdPenguasaMateri = 6; // Badge untuk nilai < 80
-            }
-    
-            // Badge Penguasa materi
-            $userBadgePenguasaMateri = userBadge::where('email', $email)->where('id_badge', $badgeIdPenguasaMateri)->first();
-            $data['badgePenguasaMateriClaimed'] = $userBadgePenguasaMateri ? $userBadgePenguasaMateri->status === 'claimed' : false;
-        } else {
-            // Jika tidak memenuhi syarat, atur rata-rata nilai ke null
-            $average = null;
-            $data['badgePenguasaMateriClaimed'] = false;
-        }
-        
-        // Badge Master
-        $badgeMasterId = 2; // ID untuk badge "Master"
-        $userBadgeMaster = userBadge::where('email', $email)->where('id_badge', $badgeMasterId)->first();
-        $data['badgeMasterClaimed'] = $userBadgeMaster ? $userBadgeMaster->status === 'claimed' : false;
+        // Badge Kesejarahan
+        $badgeKesejarahanId = 2; // ID untuk badge "Master"
+        $userBadgeKesejarahan = userBadge::where('email', $email)->where('id_badge', $badgeKesejarahanId)->first();
+        $data['badgeKesejarahanClaimed'] = $userBadgeKesejarahan ? $userBadgeKesejarahan->status === 'claimed' : false;
         
         // Badge High Rank
         $highRankBadgeId = 1; // ID untuk badge "High Rank"
@@ -116,6 +72,7 @@ class DashboardController extends Controller
             ->select('badge.link_gambar', 'badge.deskripsi')
             ->get();
 
+        //leaderboard
         $data['leaderboard'] = DB::table('users')
         ->join('nilai', 'users.email', '=', 'nilai.email')
         ->select('users.email', 'users.nama_lengkap', DB::raw('SUM(nilai.nilai_akhir) as poin'))

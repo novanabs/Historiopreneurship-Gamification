@@ -14,39 +14,37 @@ class HitungPoinListener
         $email = $event->email;
 
         // Ambil data nilai berdasarkan email dari tabel 'nilai'
-
-        $nilai_dnd = DB::table('nilai')->where('email', $email)->where('aspek', 'poin_DND')->first();
-        $nilai_tts = DB::table('nilai')->where('email', $email)->where('aspek', 'poin_TTS')->first();
-        $nilai_evaluasi = DB::table('nilai')->where('email', $email)->where('aspek', 'evaluasi')->first();
-        $pretestKesejarahan = DB::table('nilai')->where('email', $email)->where('aspek', 'pre_test_kesejarahan')->first();
-        $posttestKesejarahan = DB::table('nilai')->where('email', $email)->where('aspek', 'post_test_kesejarahan')->first();
+        $nilai_pretest_kesejarahan = DB::table('nilai')->where('email', $email)->where('aspek', 'pre_test_kesejarahan')->first();
+        $nilai_posttest_kesejarahan_dnd = DB::table('nilai')->where('email', $email)->where('aspek', 'post_test_kesejarahan_poin_DND_kesejarahan')->first();
+        $nilai_pretest_kwu = DB::table('nilai')->where('email', $email)->where('aspek', 'pre_test_KWU')->first();
+        $nilai_posttest_kwu = DB::table('nilai')->where('email', $email)->where('aspek', 'post_test_KWU')->first();
+        $nilai_dnd_kwu = DB::table('nilai')->where('email', $email)->where('aspek', 'poin_DND_KWU')->first();
 
         // Jika data tidak ada, set nilai default 0
-        $poin_dnd = $nilai_dnd->nilai_akhir ?? 0; // Ganti 'nilai_akhir' sesuai dengan nama kolom yang tepat
-        $poin_tts = $nilai_tts->nilai_akhir ?? 0; // Ganti 'nilai_akhir' sesuai dengan nama kolom yang tepat
-        $evaluasi = $nilai_evaluasi->nilai_akhir ?? 0; // Ganti 'nilai_akhir' sesuai dengan nama kolom yang tepat
-        $pretestKesejarahan = $pretestKesejarahan->nilai_akhir ?? 0; // Ganti 'nilai_akhir' sesuai dengan nama kolom yang tepat
-        $posttestKesejarahan = $posttestKesejarahan->nilai_akhir ?? 0; // Ganti 'nilai_akhir' sesuai dengan nama kolom yang tepat
-        
+        $pretest_kesejarahan = $nilai_pretest_kesejarahan->nilai_akhir ?? 0;
+        $posttest_kesejarahan_dnd = $nilai_posttest_kesejarahan_dnd->nilai_akhir ?? 0;
+        $pretest_kwu = $nilai_pretest_kwu->nilai_akhir ?? 0;
+        $posttest_kwu = $nilai_posttest_kwu->nilai_akhir ?? 0;
+        $dnd_kwu = $nilai_dnd_kwu->nilai_akhir ?? 0;
 
         // Hitung aspek yang tersedia
         $aspek_tersedia = 0;
-        if ($poin_dnd > 0)
+        if ($pretest_kesejarahan > 0)
             $aspek_tersedia++;
-        if ($poin_tts > 0)
+        if ($posttest_kesejarahan_dnd > 0)
             $aspek_tersedia++;
-        if ($evaluasi > 0)
+        if ($pretest_kwu > 0)
             $aspek_tersedia++;
-        if ($pretestKesejarahan > 0)
+        if ($posttest_kwu > 0)
             $aspek_tersedia++;
-        if ($posttestKesejarahan > 0)
+        if ($dnd_kwu > 0)
             $aspek_tersedia++;
+
         // Jika ada aspek yang tersedia, hitung rata-rata poin
         $total_poin = $aspek_tersedia > 0
-            ? ($poin_dnd + $poin_tts + $evaluasi + $pretestKesejarahan + $posttestKesejarahan) / $aspek_tersedia
+            ? ($pretest_kesejarahan + $posttest_kesejarahan_dnd + $pretest_kwu + $posttest_kwu + $dnd_kwu) / $aspek_tersedia
             : 0;
 
-        
         // Update nilai poin di tabel 'users' hanya jika peran adalah 'siswa'
         $user = DB::table('users')->where('email', $email)->first();
         if ($user && $user->peran === 'siswa') {
