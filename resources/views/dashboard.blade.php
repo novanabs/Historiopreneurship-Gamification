@@ -50,7 +50,7 @@
                 <div class="card p-4">
                     <div class="card-body">
                         <h5 class="card-title">Badge</h5>
-                        <p class="card-text">Perolehan Badge ({{ $claimedBadges->count() }}/4)</p>
+                        <p class="card-text">Perolehan Badge ({{ $claimedBadges->count() }}/5)</p>
                         <!-- Display claimed badges -->
                         <div class="row">
                             @foreach ($claimedBadges as $badge)
@@ -90,7 +90,7 @@
                                 <div class="col-md-6 d-flex align-items-center">
                                     <form action="{{ route('awardHighRankBadge') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-success" id="claimButton" {{ !$highRankBadgeClaimed ? '' : 'disabled' }}>
+                                        <button type="submit" class="btn btn-success" id="claimButton" {{ $highRankBadgeClaimed || !$eligibleForHighRankBadge ? 'disabled' : '' }}>
                                             Klaim Badge
                                         </button>
                                     </form>
@@ -103,7 +103,7 @@
                                 <div class="col-md-6 d-flex align-items-center">
                                     <form action="{{ route('awardHistoricalBadge') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-success" id="claimButton" {{!$badgeKesejarahanClaimed ? '' : 'disabled' }}>
+                                        <button type="submit" class="btn btn-success" id="claimButton" {{$badgeKesejarahanClaimed || !$eligibleForBadgeKesejarahan ? 'disabled' : '' }}>
                                             Klaim Badge
                                         </button>
                                     </form>
@@ -117,7 +117,7 @@
                                 <div class="col-md-6 d-flex align-items-center">
                                     <form action="{{ route('awardSiCepatBadge') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-success" id="claimButton" {{!$siCepatBadgeClaimed ? '' : 'disabled' }}>
+                                        <button type="submit" class="btn btn-success" id="claimButton" {{$siCepatBadgeClaimed || !$eligibleForCepat ? 'disabled' : '' }}>
                                             Klaim Badge
                                         </button>
                                     </form>
@@ -131,7 +131,7 @@
                                 <div class="col-md-6 d-flex align-items-center">
                                     <form action="{{ route('awardEntrepreneurialBadge') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-success" id="claimButton" {{!$badgeKwuClaimed ? '' : 'disabled' }}>
+                                        <button type="submit" class="btn btn-success" id="claimButton" {{$badgeKwuClaimed || !$eligibleForBadgeKWU ? 'disabled' : ''  }}>
                                             Klaim Badge
                                         </button>
                                     </form>
@@ -145,7 +145,7 @@
                                 <div class="col-md-6 d-flex align-items-center">
                                     <form action="{{ route('awardCombinedBadge') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-success" id="claimButton" {{$allAspectsFulfilled && !$badgeTamatClaimed ? '' : 'disabled' }}>
+                                        <button type="submit" class="btn btn-success" id="claimButton" {{$badgeTamatClaimed || !$eligibleForTamat ? 'disabled' : ''  }}                                        >
                                             Klaim Badge
                                         </button>
                                     </form>

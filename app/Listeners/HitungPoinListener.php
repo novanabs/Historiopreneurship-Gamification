@@ -15,14 +15,16 @@ class HitungPoinListener
 
         // Ambil data nilai berdasarkan email dari tabel 'nilai'
         $nilai_pretest_kesejarahan = DB::table('nilai')->where('email', $email)->where('aspek', 'pre_test_kesejarahan')->first();
-        $nilai_posttest_kesejarahan_dnd = DB::table('nilai')->where('email', $email)->where('aspek', 'post_test_kesejarahan_poin_DND_kesejarahan')->first();
+        $nilai_posttest_kesejarahan = DB::table('nilai')->where('email', $email)->where('aspek', 'post_test_kesejarahan')->first();
+        $nilai_dnd_kesejarahan = DB::table('nilai')->where('email', $email)->where('aspek', 'poin_DND_kesejarahan')->first();
         $nilai_pretest_kwu = DB::table('nilai')->where('email', $email)->where('aspek', 'pre_test_KWU')->first();
         $nilai_posttest_kwu = DB::table('nilai')->where('email', $email)->where('aspek', 'post_test_KWU')->first();
         $nilai_dnd_kwu = DB::table('nilai')->where('email', $email)->where('aspek', 'poin_DND_KWU')->first();
 
         // Jika data tidak ada, set nilai default 0
         $pretest_kesejarahan = $nilai_pretest_kesejarahan->nilai_akhir ?? 0;
-        $posttest_kesejarahan_dnd = $nilai_posttest_kesejarahan_dnd->nilai_akhir ?? 0;
+        $posttest_kesejarahan = $nilai_posttest_kesejarahan->nilai_akhir ?? 0;
+        $dnd_kesejarahan = $nilai_dnd_kesejarahan->nilai_akhiir??0;
         $pretest_kwu = $nilai_pretest_kwu->nilai_akhir ?? 0;
         $posttest_kwu = $nilai_posttest_kwu->nilai_akhir ?? 0;
         $dnd_kwu = $nilai_dnd_kwu->nilai_akhir ?? 0;
@@ -31,7 +33,9 @@ class HitungPoinListener
         $aspek_tersedia = 0;
         if ($pretest_kesejarahan > 0)
             $aspek_tersedia++;
-        if ($posttest_kesejarahan_dnd > 0)
+        if ($posttest_kesejarahan > 0)
+            $aspek_tersedia++;
+        if ($dnd_kesejarahan > 0)
             $aspek_tersedia++;
         if ($pretest_kwu > 0)
             $aspek_tersedia++;
@@ -42,7 +46,7 @@ class HitungPoinListener
 
         // Jika ada aspek yang tersedia, hitung rata-rata poin
         $total_poin = $aspek_tersedia > 0
-            ? ($pretest_kesejarahan + $posttest_kesejarahan_dnd + $pretest_kwu + $posttest_kwu + $dnd_kwu) / $aspek_tersedia
+            ? ($pretest_kesejarahan + $posttest_kesejarahan + $pretest_kwu + $posttest_kwu + $dnd_kwu + $dnd_kesejarahan) 
             : 0;
 
         // Update nilai poin di tabel 'users' hanya jika peran adalah 'siswa'

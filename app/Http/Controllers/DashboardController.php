@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AnalisisIndividuKesejarahan;
+use App\Models\AnalisisIndividuKesejeranhanII;
+use App\Models\AnalisisKelompokKewirausahaan;
+use App\Models\Refleksi;
+use App\Models\uploadFile;
 use App\Models\User;
 use App\Models\Nilai;
 use App\Models\userBadge;
@@ -16,7 +21,7 @@ class DashboardController extends Controller
     public function index()
     {
         $email = auth()->user()->email;
-        
+
         // Data tambahan untuk dashboard
         $data['activeMenu'] = 'active';
         $data['users'] = User::where('peran', 'siswa')
@@ -27,45 +32,122 @@ class DashboardController extends Controller
         $data['materi_b'] = AksesHalaman::where('email', $email)->value('materi_b');
         $data['materi_c'] = AksesHalaman::where('email', $email)->value('materi_c');
 
-        // Badge Kesejarahan
-        $badgeKWUId = 4; // ID untuk badge "kwu"
-        $userBadgeKWU = userBadge::where('email', $email)->where('id_badge', $badgeKWUId)->first();
+
+        // ID Badge "kesejarahan"
+        $badgeKesejarahanId = 2;
+
+        // Cek status badge "kesejarahan"
+        $userBadgeKesejarahan = UserBadge::where('email', $email)->where('id_badge', $badgeKesejarahanId)->first();
+        $data['badgeKesejarahanClaimed'] = $userBadgeKesejarahan ? $userBadgeKesejarahan->status === 'claimed' : false;
+
+        // Cek eligibility untuk badge "kesejarahan"
+        $nilaiAspectsKesejarahan = ['pre_test_kesejarahan', 'poin_DND_kesejarahan', 'post_test_kesejarahan'];
+        // Cek tabel nilai untuk aspek yang harus terpenuhi
+        $nilaiFulfilled = Nilai::where('email', $email)
+            ->whereIn('aspek', $nilaiAspectsKesejarahan)
+            ->distinct('aspek')
+            ->count() === count($nilaiAspectsKesejarahan);
+
+        // Cek tabel analisis_individu_kesejarahanii dan analisis_individu_kesejarahan
+        $analysisFulfilled = AnalisisIndividuKesejeranhanII::where('created_by', $email)->exists() &&
+            AnalisisIndividuKesejarahan::where('created_by', $email)->exists();
+
+        // Cek tabel upload_file_tugas untuk kategori 'kegiatan pembelajaran 3'
+        $uploadFulfilled = uploadFile::where('created_by', $email)
+            ->where('kategori', 'kegiatan pembelajaran 3')
+            ->exists();
+
+        // Cek tabel jawaban_refleksi untuk kategori 'refleksi kesejarahan'
+        $reflectionFulfilled = Refleksi::where('created_by', $email)
+            ->where('kategori', 'refleksi kesejarahan')
+            ->exists();
+
+        // Tentukan apakah pengguna memenuhi semua kriteria
+        $data['eligibleForBadgeKesejarahan'] = $nilaiFulfilled && $analysisFulfilled && $uploadFulfilled && $reflectionFulfilled;
+
+        // Badge Kwu
+        // ID untuk badge "KWU"
+        $badgeKWUId = 4;
+
+        // Cek apakah badge KWU sudah diklaim
+        $userBadgeKWU = UserBadge::where('email', $email)->where('id_badge', $badgeKWUId)->first();
         $data['badgeKwuClaimed'] = $userBadgeKWU ? $userBadgeKWU->status === 'claimed' : false;
 
+        // Aspek nilai yang harus terpenuhi untuk badge KWU
+        $nilaiAspectsKWU = ['pre_test_KWU', 'poin_DND_KWU', 'post_test_KWU'];
+        $nilaiFulfilledKWU = Nilai::where('email', $email)
+            ->whereIn('aspek', $nilaiAspectsKWU)
+            ->distinct('aspek')
+            ->count() === count($nilaiAspectsKWU);
+
+        // Cek kondisi lain yang harus terpenuhi
+        $requiredConditions = [
+            'analisis_kelompok_kewirausahaan' => ['kategori' => ['aktivitas 1', 'aktivitas 2', 'aktivitas 3']],
+            'upload_file_tugas' => ['kategori' => ['praktik lapangan 1', 'praktik lapangan 2', 'proyek individu']],
+            'jawaban_refleksi' => ['kategori' => ['refleksi kewirausahaan', 'refleksi kepariwisataan']],
+        ];
+
+        $groupAnalysisFulfilled = AnalisisKelompokKewirausahaan::where('created_by', $email)
+            ->whereIn('kategori', $requiredConditions['analisis_kelompok_kewirausahaan']['kategori'])
+            ->exists();
+
+        $uploadFulfilledKWU = uploadFile::where('created_by', $email)
+            ->whereIn('kategori', $requiredConditions['upload_file_tugas']['kategori'])
+            ->exists();
+
+        $reflectionFulfilledKWU = Refleksi::where('created_by', $email)
+            ->whereIn('kategori', $requiredConditions['jawaban_refleksi']['kategori'])
+            ->exists();
+
+        // Tentukan apakah pengguna memenuhi semua kriteria
+        $data['eligibleForBadgeKWU'] = $nilaiFulfilledKWU && $groupAnalysisFulfilled && $uploadFulfilledKWU && $reflectionFulfilledKWU;
+
         // Badge Kesejarahan
-        $badgeTamat = 5; // ID untuk badge "kwu"
+        $badgeTamat = 5; // ID untuk badge "tamat"
         $userTamat = userBadge::where('email', $email)->where('id_badge', $badgeTamat)->first();
         $data['badgeTamatClaimed'] = $userTamat ? $userTamat->status === 'claimed' : false;
-        
-        // Badge Kesejarahan
-        $badgeKesejarahanId = 2; // ID untuk badge "Master"
-        $userBadgeKesejarahan = userBadge::where('email', $email)->where('id_badge', $badgeKesejarahanId)->first();
-        $data['badgeKesejarahanClaimed'] = $userBadgeKesejarahan ? $userBadgeKesejarahan->status === 'claimed' : false;
-        
+        $data['eligibleForTamat'] = $data['eligibleForBadgeKesejarahan'] && $data['eligibleForBadgeKWU'];
+
         // Badge High Rank
         $highRankBadgeId = 1; // ID untuk badge "High Rank"
         $userRank = User::whereNotNull('poin')
             ->orderBy('poin', 'desc')
             ->pluck('email')
             ->search($email) + 1; // Peringkat dimulai dari 1
-        
+
         // Cek status badge High Rank
         $userBadgeHighRank = userBadge::where('email', $email)->where('id_badge', $highRankBadgeId)->first();
         $data['highRankBadgeClaimed'] = $userBadgeHighRank ? $userBadgeHighRank->status === 'claimed' : false;
         $data['eligibleForHighRankBadge'] = $userRank <= 3;
-        
+
         // Ambil lama waktu pengerjaan dari tabel nilai
-        $lamaWaktuPengerjaan = Nilai::where('email', $email)->value('lama_waktu_pengerjaan');
-        
+        $lamaWaktuPengerjaan = Nilai::where('email', $email)
+            ->whereIn('aspek', [
+                'pre_test_kesejarahan',
+                'post_test_kesejarahan',
+                'pre_test_KWU',
+                'post_test_KWU',
+            ])
+            ->whereNotNull('lama_waktu_pengerjaan') // Pastikan hanya mengambil data yang memiliki nilai
+            ->pluck('lama_waktu_pengerjaan', 'aspek');
+
+        // Tentukan eligibility untuk siCepat Badge
+        $data['eligibleForCepat'] = $lamaWaktuPengerjaan->filter(fn($value) => $value < 900)->isNotEmpty();
+
         // Badge siCepat
         $siCepatBadgeId = 3; // ID untuk badge "siCepat"
-        if ($lamaWaktuPengerjaan !== null && $lamaWaktuPengerjaan <= 600) {
-            $userBadgeSiCepat = userBadge::where('email', $email)->where('id_badge', $siCepatBadgeId)->first();
-            $data['siCepatBadgeClaimed'] = $userBadgeSiCepat ? $userBadgeSiCepat->status === 'claimed' : false;
+
+        // Pastikan lamaWaktuPengerjaan tidak null dan memenuhi syarat
+        if ($lamaWaktuPengerjaan->isNotEmpty() && $data['eligibleForCepat']) {
+            // Cek apakah user sudah memiliki badge siCepat
+            $userBadgeSiCepat = UserBadge::where('email', $email)->where('id_badge', $siCepatBadgeId)->first();
+            $data['siCepatBadgeClaimed'] = $userBadgeSiCepat && $userBadgeSiCepat->status === 'claimed';
         } else {
             $data['siCepatBadgeClaimed'] = false;
         }
-        
+
+
+
         // Ambil badge yang diklaim
         $claimedBadges = userBadge::where('email', $email)
             ->join('badge', 'user_badge.id_badge', '=', 'badge.id')
@@ -74,21 +156,18 @@ class DashboardController extends Controller
 
         //leaderboard
         $data['leaderboard'] = DB::table('users')
-        ->join('nilai', 'users.email', '=', 'nilai.email')
-        ->select('users.email', 'users.nama_lengkap', DB::raw('SUM(nilai.nilai_akhir) as poin'))
-        ->where('users.peran', 'siswa') // Hanya ambil siswa
-        ->groupBy('users.email', 'users.nama_lengkap') // Mengelompokkan berdasarkan email dan nama_lengkap
-        ->orderBy('poin', 'desc') // Urutkan berdasarkan total poin
-        ->limit(10) // Ambil 20 besar
-        ->get();
-        
-        
+            ->join('nilai', 'users.email', '=', 'nilai.email')
+            ->select('users.email', 'users.nama_lengkap', DB::raw('SUM(nilai.nilai_akhir) as poin'))
+            ->where('users.peran', 'siswa') // Hanya ambil siswa
+            ->groupBy('users.email', 'users.nama_lengkap') // Mengelompokkan berdasarkan email dan nama_lengkap
+            ->orderBy('poin', 'desc') // Urutkan berdasarkan total poin
+            ->limit(10) // Ambil 20 besar
+            ->get();
+
+        //dd($data['leaderboard']);
         $data['claimedBadges'] = $claimedBadges;
         return view('dashboard', $data);
     }
-    
-    
-
 
 
     public function showUser()
