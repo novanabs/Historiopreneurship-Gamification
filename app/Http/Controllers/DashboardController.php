@@ -79,7 +79,7 @@ class DashboardController extends Controller
         ->where('users.peran', 'siswa') // Hanya ambil siswa
         ->groupBy('users.email', 'users.nama_lengkap') // Mengelompokkan berdasarkan email dan nama_lengkap
         ->orderBy('poin', 'desc') // Urutkan berdasarkan total poin
-        ->limit(20) // Ambil 20 besar
+        ->limit(10) // Ambil 20 besar
         ->get();
         
         

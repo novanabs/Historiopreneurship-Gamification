@@ -145,7 +145,7 @@
                                 <div class="col-md-6 d-flex align-items-center">
                                     <form action="{{ route('awardCombinedBadge') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-success" id="claimButton" {{!$badgeTamatClaimed ? '' : 'disabled' }}>
+                                        <button type="submit" class="btn btn-success" id="claimButton" {{$allAspectsFulfilled && !$badgeTamatClaimed ? '' : 'disabled' }}>
                                             Klaim Badge
                                         </button>
                                     </form>
