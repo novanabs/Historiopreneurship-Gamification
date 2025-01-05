@@ -110,15 +110,44 @@ class DashboardController extends Controller
 
         // Badge High Rank
         $highRankBadgeId = 1; // ID untuk badge "High Rank"
-        $userRank = User::whereNotNull('poin')
-            ->orderBy('poin', 'desc')
-            ->pluck('email')
-            ->search($email) + 1; // Peringkat dimulai dari 1
 
-        // Cek status badge High Rank
-        $userBadgeHighRank = userBadge::where('email', $email)->where('id_badge', $highRankBadgeId)->first();
-        $data['highRankBadgeClaimed'] = $userBadgeHighRank ? $userBadgeHighRank->status === 'claimed' : false;
-        $data['eligibleForHighRankBadge'] = $userRank <= 3;
+        // Ambil semua pengguna yang memiliki poin lebih dari nol, urutkan berdasarkan poin dari terbesar ke terkecil
+        $rankedUsers = User::whereNotNull('poin')
+            ->where('poin', '>', 0) // Hanya pengguna dengan poin lebih dari nol
+            ->orderBy('poin', 'desc')
+            ->get();
+
+        // Temukan pengguna saat ini berdasarkan email
+        $currentUser = $rankedUsers->firstWhere('email', $email);
+
+        // Default eligibility dan klaim badge
+        $data['eligibleForHighRankBadge'] = false;
+        $data['highRankBadgeClaimed'] = false;
+
+        // Jika pengguna ditemukan di daftar ranking
+        if ($currentUser) {
+            // Cari peringkat pengguna
+            $userRank = $rankedUsers->search(function ($user) use ($email) {
+                return $user->email === $email;
+            });
+
+            // Jika peringkat ditemukan, tambahkan 1 karena peringkat dimulai dari 0
+            if ($userRank !== false) {
+                $userRank += 1;
+
+                // Periksa apakah pengguna berada di peringkat 1, 2, atau 3
+                $data['eligibleForHighRankBadge'] = $userRank <= 3;
+
+                // Cek status badge High Rank
+                $userBadgeHighRank = UserBadge::where('email', $email)
+                    ->where('id_badge', $highRankBadgeId)
+                    ->first();
+
+                // Periksa apakah badge sudah diklaim
+                $data['highRankBadgeClaimed'] = $userBadgeHighRank ? $userBadgeHighRank->status === 'claimed' : false;
+            }
+        }
+
 
         // Ambil lama waktu pengerjaan dari tabel nilai
         $lamaWaktuPengerjaan = Nilai::where('email', $email)
