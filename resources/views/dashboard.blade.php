@@ -98,19 +98,6 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <img src="{{ asset('img/master.png') }}" alt="Master Badge" width="100px">
-                                </div>
-                                <div class="col-md-6 d-flex align-items-center">
-                                    <form action="{{ route('awardHistoricalBadge') }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-success" id="claimButton" {{$badgeKesejarahanClaimed || !$eligibleForBadgeKesejarahan ? 'disabled' : '' }}>
-                                            Klaim Badge
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
                                     <img src="{{ asset('img/pembelajar_cepat.png') }}" alt="Fast Learner Badge"
                                         width="100px">
                                 </div>
@@ -125,7 +112,20 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <img src="{{ asset('img/PenguasaMateri_gold.png') }}" alt="Master of Material Badge"
+                                    <img src="{{ asset('img/masterkesejarahan.png') }}" alt="Master Badge" width="100px">
+                                </div>
+                                <div class="col-md-6 d-flex align-items-center">
+                                    <form action="{{ route('awardHistoricalBadge') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success" id="claimButton" {{$badgeKesejarahanClaimed || !$eligibleForBadgeKesejarahan ? 'disabled' : '' }}>
+                                            Klaim Badge
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <img src="{{ asset('img/masterkewirausahaan.png') }}" alt="Master of Material Badge"
                                         width="100px">
                                 </div>
                                 <div class="col-md-6 d-flex align-items-center">
@@ -139,7 +139,7 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <img src="{{ asset('img/PenguasaMateri_gold.png') }}" alt="Master of Material Badge"
+                                    <img src="{{ asset('img/masterhistorio.png') }}" alt="Master of Material Badge"
                                         width="100px">
                                 </div>
                                 <div class="col-md-6 d-flex align-items-center">
