@@ -270,6 +270,8 @@
                 }).then(() => {
                     // Set nilai di form dan submit
                     document.getElementById("nilaiAkhir").value = Math.round(hasil);
+                    console.log(minutes);
+                    document.getElementById("lama_waktu_pengerjaan").value = minutes;
                     document.getElementById("preTestForm").submit();
                 });
             }

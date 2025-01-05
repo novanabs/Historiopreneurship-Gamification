@@ -144,6 +144,7 @@ class nilaiController extends Controller
             DB::table('nilai')->insert([
                 'email' => $request->email,
                 'nilai_akhir' => $request->nilai_akhir,
+                'lama_waktu_pengerjaan' => $request->lama_waktu_pengerjaan,
                 'aspek' => $aspek
             ]);
         }
@@ -173,6 +174,7 @@ class nilaiController extends Controller
             DB::table('nilai')->insert([
                 'email' => $request->email,
                 'nilai_akhir' => $request->nilai_akhir,
+                'lama_waktu_pengerjaan' => $request->lama_waktu_pengerjaan,
                 'aspek' => $aspek
             ]);
         }

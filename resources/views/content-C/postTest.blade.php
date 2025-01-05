@@ -46,6 +46,7 @@
         <input type="hidden" name="email" id="email" value="{{ Auth::user()->email }}">
         <!-- Ganti dengan email pengguna -->
         <input type="hidden" name="nilai_akhir" id="nilaiAkhir">
+        <input type="hidden" name="lama_waktu_pengerjaan" id="lama_waktu_pengerjaan">
         <input type="hidden" name="aspek" value="post_test_kwu">
     </form>
 
