@@ -175,7 +175,15 @@ class DashboardController extends Controller
             $data['siCepatBadgeClaimed'] = false;
         }
 
-
+        // Aspek untuk nilai aspek
+        $nilaiAspek = [
+            'pre_test_kesejarahan',
+            'poin_DND_kesejarahan',
+            'post_test_kesejarahan',
+            'pre_test_KWU',
+            'poin_DND_KWU',
+            'post_test_KWU',
+        ];
 
         // Ambil badge yang diklaim
         $claimedBadges = userBadge::where('email', $email)
@@ -183,14 +191,18 @@ class DashboardController extends Controller
             ->select('badge.link_gambar', 'badge.deskripsi')
             ->get();
 
-        //leaderboard
+        // Buat query untuk leaderboard
         $data['leaderboard'] = DB::table('users')
             ->join('nilai', 'users.email', '=', 'nilai.email')
-            ->select('users.email', 'users.nama_lengkap', DB::raw('SUM(nilai.nilai_akhir) as poin'))
+            ->select(
+                'users.email',
+                'users.nama_lengkap',
+                DB::raw('SUM(CASE WHEN nilai.aspek IN ("' . implode('", "', $nilaiAspek) . '") THEN nilai.nilai_akhir ELSE 0 END) as poin')
+            )
             ->where('users.peran', 'siswa') // Hanya ambil siswa
             ->groupBy('users.email', 'users.nama_lengkap') // Mengelompokkan berdasarkan email dan nama_lengkap
             ->orderBy('poin', 'desc') // Urutkan berdasarkan total poin
-            ->limit(10) // Ambil 20 besar
+            ->limit(10) // Ambil 10 besar
             ->get();
 
         //dd($data['leaderboard']);
