@@ -61,4 +61,20 @@
     </li>
 </ol>
 
+@if(
+        !empty($jawabanKelompok->where('kategori', 'aktivitas 3')->where('aspek', 'Hasil analisa kelompok')->first()->jawaban)
+    )
+    <div class="card-body mt-3">
+        <label for="nilaiIndividu" class="mb-2">Nilai diperoleh</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
+            <input type="number" class="form-control" name="nilai_akhir" min="0" max="100" required
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                value="{{ $nilaiKelompokAktivitas3->nilai_akhir ?? '' }}" {{ $nilaiKelompokAktivitas3 ? 'disabled' : '' }}>
+        </div>
+        <label for="feedbackIndividu">Feedback dari dosen</label><br>
+        <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5" {{ $nilaiKelompokAktivitas3 ? 'disabled' : '' }}>{{ $nilaiKelompokAktivitas3->data_jawaban_penilai ?? '' }}</textarea>
+    </div>
+@endif
+
 @endsection

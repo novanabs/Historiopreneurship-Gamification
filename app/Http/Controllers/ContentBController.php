@@ -10,6 +10,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AnalisisIndividuKesejarahan;
 use App\Models\AnalisisIndividuKesejeranhanII;
+use Illuminate\Support\Facades\DB;
 
 class ContentBController extends Controller
 {
@@ -112,8 +113,9 @@ class ContentBController extends Controller
 
         // Retrieve individual answers from AnalisisIndividuKesejarahanII
         $jawabanIndividuII = AnalisisIndividuKesejeranhanII::where('created_by', $user)->get();
+        $nilaiJawabanIndividuKesejarahan = DB::table('nilai')->where('email', $user)->where('aspek', 'analisa_individu_kesejarahan_II')->first();
 
-        return view('content-B.analisisKelompok', compact('activeMenu','prevUrl','nextUrl','user','jawabanIndividuII'));
+        return view('content-B.analisisKelompok', compact('activeMenu','prevUrl','nextUrl','user','jawabanIndividuII','nilaiJawabanIndividuKesejarahan'));
     }
 
     public function analisisIndividu()
@@ -124,6 +126,7 @@ class ContentBController extends Controller
         $activeMenu = 'menu2';
 
         $jawabanIndividu = AnalisisIndividuKesejarahan::where('created_by', $user)->get();
+        $nilaiJawabanIndividuKesejarahanII = DB::table('nilai')->where('email', $user)->where('aspek', 'analisa_individu_kesejarahan')->first();
 
         if(!$jawabanIndividu->isEmpty()){
         
@@ -366,6 +369,7 @@ class ContentBController extends Controller
 
         'formKelayakanPartisipasiMasyarakat4_7_reason',
         'formKelayakanPartisipasiMasyarakat4_7_score',
+        'nilaiJawabanIndividuKesejarahanII'
     ));
     }
 
@@ -379,7 +383,8 @@ class ContentBController extends Controller
             ->where('kategori', 'kegiatan pembelajaran 3')
             ->where('created_by', $user)
             ->first();
-        return view('content-B.kegiatanPembelajaran3', compact('activeMenu','prevUrl','nextUrl','user','uploadedFile'));
+        $nilaiUploadKegiatanPembelajaran3 = DB::table('nilai')->where('email', $user)->where('aspek', 'upload_file_pembelajaran3')->first();
+        return view('content-B.kegiatanPembelajaran3', compact('activeMenu','prevUrl','nextUrl','user','uploadedFile','nilaiUploadKegiatanPembelajaran3'));
     }
 
     public function postTest()

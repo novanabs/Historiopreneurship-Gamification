@@ -335,7 +335,7 @@
                                     <td>{{ $file->original_name }}</td>
                                     <td>
                                         <!-- Button to trigger modal -->
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#pdfModal{{ $index }}">
                                             Lihat
                                         </button>
@@ -365,67 +365,108 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{-- Di Hidden Dulu --}}
-                <div class="row" hidden>
-                    <!-- Form untuk Kategori: Kegiatan Pembelajaran 3 -->
-                    <div class="col-12 mb-4">
+                <div class="row">
+                    <div class="col">
                         <div class="card text-center">
-                            <h5 class="card-header">Penilaian Kegiatan Pembelajaran 3</h5>
+                            <h5 class="card-header">
+                                Penilaian Kegiatan Pembelajaran 3
+                            </h5>
                             <div class="card-body">
                                 <form action="{{ route('kirimJawabanIndividu', ['email' => $email]) }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="aspek" value="upload_file_pembelajaran3">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
-                                        <input type="text" class="form-control" name="nilai_akhir"
-                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        <input type="number" class="form-control" name="nilai_akhir"  min="0" max="100" required 
+                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ $nilaiUploadKegiatanPembelajaran3->nilai_akhir ?? '' }}" {{ $nilaiUploadKegiatanPembelajaran3 ? 'disabled' : '' }}>
                                     </div>
                                     <label for="feedbackIndividu">Feedback</label><br>
-                                    <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
-                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                    <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5" {{ $nilaiUploadKegiatanPembelajaran3 ? 'disabled' : '' }}>{{ $nilaiUploadKegiatanPembelajaran3->data_jawaban_penilai ?? '' }}</textarea>
+                                    <button type="submit" class="btn btn-primary mt-3">Kirim</button>
                                 </form>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Semangat dalam menilai !
                             </div>
                         </div>
                     </div>
-
-                    <!-- Form untuk Kategori: Praktik Lapangan 1 -->
-                    <div class="col-12 mb-4">
+                </div>
+                <div class="row mt-5">
+                    <div class="col">
                         <div class="card text-center">
-                            <h5 class="card-header">Penilaian Praktik Lapangan 1</h5>
+                            <h5 class="card-header">
+                                Penilaian Kegiatan Aktivitas 1
+                            </h5>
                             <div class="card-body">
                                 <form action="{{ route('kirimJawabanIndividu', ['email' => $email]) }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="aspek" value="upload_file_aktivitas1">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
-                                        <input type="text" class="form-control" name="nilai_akhir"
-                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        <input type="number" class="form-control" name="nilai_akhir"  min="0" max="100" required 
+                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ $nilaiUploadAktivitas1->nilai_akhir ?? '' }}" {{ $nilaiUploadAktivitas1 ? 'disabled' : '' }}>
                                     </div>
                                     <label for="feedbackIndividu">Feedback</label><br>
-                                    <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
-                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                    <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5" {{ $nilaiUploadAktivitas1 ? 'disabled' : '' }}>{{ $nilaiUploadAktivitas1->data_jawaban_penilai ?? '' }}</textarea>
+                                    <button type="submit" class="btn btn-primary mt-3">Kirim</button>
                                 </form>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Semangat dalam menilai !
                             </div>
                         </div>
                     </div>
-
-                    <!-- Form untuk Kategori: Praktik Lapangan 2 -->
-                    <div class="col-12 mb-4">
+                </div>
+                <!-- aktivitas 2 -->
+                <div class="row mt-5">
+                    <div class="col">
                         <div class="card text-center">
-                            <h5 class="card-header">Penilaian Praktik Lapangan 2</h5>
+                            <h5 class="card-header">
+                                Penilaian Kegiatan Aktivitas 2
+                            </h5>
                             <div class="card-body">
                                 <form action="{{ route('kirimJawabanIndividu', ['email' => $email]) }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="aspek" value="upload_file_aktivitas2">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
-                                        <input type="text" class="form-control" name="nilai_akhir"
-                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        <input type="number" class="form-control" name="nilai_akhir"  min="0" max="100" required 
+                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ $nilaiUploadAktivitas2->nilai_akhir ?? '' }}" {{ $nilaiUploadAktivitas2 ? 'disabled' : '' }}>
                                     </div>
                                     <label for="feedbackIndividu">Feedback</label><br>
-                                    <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5"></textarea>
-                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                    <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5" {{ $nilaiUploadAktivitas2 ? 'disabled' : '' }}>{{ $nilaiUploadAktivitas2->data_jawaban_penilai ?? '' }}</textarea>
+                                    <button type="submit" class="btn btn-primary mt-3">Kirim</button>
                                 </form>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Semangat dalam menilai !
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Proyek Individu -->
+                <div class="row mt-5">
+                    <div class="col">
+                        <div class="card text-center">
+                            <h5 class="card-header">
+                                Penilaian Proyek Individu
+                            </h5>
+                            <div class="card-body">
+                                <form action="{{ route('kirimJawabanIndividu', ['email' => $email]) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="aspek" value="upload_file_proyekIndividu">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
+                                        <input type="number" class="form-control" name="nilai_akhir"  min="0" max="100" required 
+                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="{{ $nilaiUploadProyekIndividu->nilai_akhir ?? '' }}" {{ $nilaiUploadProyekIndividu ? 'disabled' : '' }}>
+                                    </div>
+                                    <label for="feedbackIndividu">Feedback</label><br>
+                                    <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5" {{ $nilaiUploadProyekIndividu ? 'disabled' : '' }}>{{ $nilaiUploadProyekIndividu->data_jawaban_penilai ?? '' }}</textarea>
+                                    <button type="submit" class="btn btn-primary mt-3">Kirim</button>
+                                </form>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Semangat dalam menilai !
                             </div>
                         </div>
                     </div>

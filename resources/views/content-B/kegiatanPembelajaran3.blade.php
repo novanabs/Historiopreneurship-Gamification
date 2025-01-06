@@ -13,13 +13,15 @@
 <p><b>CPMK:</b></p>
 <ol>
     <li>
-        Mahasiswa mampu menyusun laporan terkait rambu-rambu wisata kesejarahan berbasis kewirausahaan berdasarkan hasil observasi lapangan.
+        Mahasiswa mampu menyusun laporan terkait rambu-rambu wisata kesejarahan berbasis kewirausahaan berdasarkan hasil
+        observasi lapangan.
     </li>
 </ol>
 <p class="text-lg">LAPORAN KEGIATAN</p>
 <p>AKTIVITAS UNJUK KERJA</p>
 <p>
-    Berdasarkan hasil penilaian kelayakan objek sejarah yang dipilih dari setiap kelompok, buatlah laporan kegiatan tersebut dengan memuat “object pattern and feasibility”, selanjutnya diskusikan di kelas.
+    Berdasarkan hasil penilaian kelayakan objek sejarah yang dipilih dari setiap kelompok, buatlah laporan kegiatan
+    tersebut dengan memuat “object pattern and feasibility”, selanjutnya diskusikan di kelas.
 </p>
 
 <!-- Form Upload Kegiatan Pembelajaran 3 -->
@@ -27,7 +29,8 @@
     @csrf
     <input type="hidden" name="category" value="kegiatan pembelajaran 3">
     <div class="mb-3">
-        <label for="formFile1" class="form-label fw-semibold">Silahkan kumpulkan tugas untuk Kegiatan Pembelajaran 3!</label>
+        <label for="formFile1" class="form-label fw-semibold">Silahkan kumpulkan tugas untuk Kegiatan Pembelajaran
+            3!</label>
         <input class="form-control" type="file" id="formFile1" name="file" accept=".pdf,application/pdf">
         <small>Kumpulkan dengan format <strong>.pdf</strong></small>
     </div>
@@ -52,13 +55,23 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <embed src="{{ asset('storage/' . $uploadedFile->file_path) }}" 
-                               type="application/pdf" 
-                               width="100%" 
-                               height="600px" />
+                        <embed src="{{ asset('storage/' . $uploadedFile->file_path) }}" type="application/pdf" width="100%"
+                            height="600px" />
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="card-body mt-3">
+            <label for="nilaiIndividu" class="mb-2">Nilai diperoleh</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Nilai</span>
+                <input type="number" class="form-control" name="nilai_akhir" min="0" max="100" required
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                    value="{{ $nilaiUploadKegiatanPembelajaran3->nilai_akhir ?? '' }}" {{ $nilaiUploadKegiatanPembelajaran3 ? 'disabled' : '' }}>
+            </div>
+            <label for="feedbackIndividu">Feedback dari dosen</label><br>
+            <textarea class="form-control w-100 mt-2" name="data_jawaban_penilai" id="feedbackIndividu" rows="5" {{ $nilaiUploadKegiatanPembelajaran3 ? 'disabled' : '' }}>{{ $nilaiUploadKegiatanPembelajaran3->data_jawaban_penilai ?? '' }}</textarea>
         </div>
     </div>
 @endif

@@ -48,8 +48,12 @@ class AnalisisIndividuController extends Controller
         $nilaiAnalisisIndividuKWU = DB::table('nilai')->where('email', $email)->where('aspek', 'analisa_individu_kewirausahaan')->first();
         $nilaiAnalisisIndividuKesejarahan_II = DB::table('nilai')->where('email', $email)->where('aspek', 'analisa_individu_kesejarahan_II')->first();
         $nilaiAnalisisIndividuKesejarahan = DB::table('nilai')->where('email', $email)->where('aspek', 'analisa_individu_kesejarahan')->first();
+        $nilaiUploadKegiatanPembelajaran3 = DB::table('nilai')->where('email', $email)->where('aspek', 'upload_file_pembelajaran3')->first();
+        $nilaiUploadAktivitas1 = DB::table('nilai')->where('email', $email)->where('aspek', 'upload_file_aktivitas1')->first();
+        $nilaiUploadAktivitas2 = DB::table('nilai')->where('email', $email)->where('aspek', 'upload_file_aktivitas2')->first();
+        $nilaiUploadProyekIndividu = DB::table('nilai')->where('email', $email)->where('aspek', 'upload_file_proyekIndividu')->first();
         // Mengirim data ke tampilan
-        return view('latihan.jawabanIndividu', compact('email',  'jawabanIndividuII','jawabanKesejarahanIndividu', 'jawabanKewirausahaanPariwisataIndividu', 'fileUploads', 'activeMenu', 'user', 'nilaiAnalisisIndividuKWU','jawabanFormKelayakan','nilaiAnalisisIndividuKesejarahan_II','nilaiAnalisisIndividuKesejarahan'));
+        return view('latihan.jawabanIndividu', compact('email',  'jawabanIndividuII','jawabanKesejarahanIndividu', 'jawabanKewirausahaanPariwisataIndividu', 'fileUploads', 'activeMenu', 'user', 'nilaiAnalisisIndividuKWU','jawabanFormKelayakan','nilaiAnalisisIndividuKesejarahan_II','nilaiAnalisisIndividuKesejarahan','nilaiUploadKegiatanPembelajaran3','nilaiUploadAktivitas1','nilaiUploadAktivitas2','nilaiUploadProyekIndividu'));
     }
     
     
