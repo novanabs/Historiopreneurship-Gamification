@@ -159,8 +159,8 @@
             <div class="col-md-6 mb-4">
                 <div class="card p-4">
                     <div class="card-body">
-                        <h5 class="card-title">Total Nilai Kamu</h5>
-                        <p class="card-text display-6">{{ $perolehanNilai ?? 0 }}</p>
+                        <h5 class="card-title">Poin Kamu</h5>
+                        <p class="card-text display-6">{{ $perolehanNilai->poin ?? 0 }}</p>
                     </div>
                     {{-- <div class="card-body">
                         <h5 class="card-title">Progress</h5>
