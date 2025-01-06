@@ -54,7 +54,7 @@
                             </tr>
                             <tr>
                                 <td><p class="me-5 mb-2">Kontak</p></td>
-                                <td><p class="mb-2">: <a href="mailto:dwi.atmono@ulm.ac.id">dwi.atmono@ulm.ac.id</a></p></td>
+                                <td><p class="mb-2">: <a href="mailto:dwiatmono@ulm.ac.id">dwiatmono@ulm.ac.id</a></p></td>
                             </tr>
                         </tbody>
                     </table>
