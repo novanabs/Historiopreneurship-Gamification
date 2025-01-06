@@ -34,7 +34,7 @@
                             </tr>
                             <tr>
                                 <td><p class="me-5 mb-2"></p></td>
-                                <td><p class="mb-2">: <span class="fw-semibold">Rizky Febrianti Putri</span> (Pendidikan Ekonomi)</p></td>
+                                <td><p class="mb-2">: <span class="fw-semibold">Rizky Febrianti Putri</span> (Pendidikan IPA)</p></td>
                             </tr>
                             <tr>
                                 <td><p class="me-5 mb-2"></p></td>
