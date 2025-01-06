@@ -21,8 +21,15 @@
             <li>Tekan Submit ketika jawaban sudah dirasa benar</li>
             <li>Tekan Reset ketika Anda ingin mengulang </li>
         </ol>
+        <p class="fw-semibold">Keterangan:</p>
+        <ul>
+            <li>Batas pengerjaan kuis hanya satu kali</li>
+            <li>Status : <span class="fw-bold">{{ $batas_test_value == 0 ? 'Sudah dikerjakan' : 'Belum dikerjakan' }}</span></li>
+            <li>Skor Kuis : <span class="fw-bold">{{$skor_test_value}}</span></li>
+        </ul>
     </div>
 </div>
+<div {{ $batas_test_value == 0 ? 'hidden' : '' }}>
 <div class="soal2">
     <div class="jawaban2" draggable="true" id="jawaban11" data-category="historio">
         <img src="{{asset('img/MasjidSultanSuriansyah.jpg')}}" alt="Masjid Sultan Suriansyah">
