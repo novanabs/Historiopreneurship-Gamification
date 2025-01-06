@@ -223,10 +223,13 @@ class DashboardController extends Controller
             ->limit(10) // Ambil 10 besar
             ->get();
 
+        
+
         //dd($data['leaderboard']);
         $data['claimedBadges'] = $claimedBadges;
         return view('dashboard', $data);
     }
+
 
 
     public function showUser()
