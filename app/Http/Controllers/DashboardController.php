@@ -117,6 +117,7 @@ class DashboardController extends Controller
             ->orderBy('poin', 'desc')
             ->get();
 
+
         // Temukan pengguna saat ini berdasarkan email
         $currentUser = $rankedUsers->firstWhere('email', $email);
 
@@ -183,6 +184,20 @@ class DashboardController extends Controller
             ->select('badge.link_gambar', 'badge.deskripsi')
             ->get();
 
+        // Aspek untuk nilai kesejarahan
+        $nilaiHistoricalAspects = [
+            'pre_test_kesejarahan',
+            'poin_DND_kesejarahan',
+            'post_test_kesejarahan',
+        ];
+
+        // Aspek untuk nilai kewirausahaan
+        $nilaiEntrepreneurialAspects = [
+            'pre_test_KWU',
+            'poin_DND_KWU',
+            'post_test_KWU',
+        ];
+        
         //leaderboard
         $data['leaderboard'] = DB::table('users')
             ->join('nilai', 'users.email', '=', 'nilai.email')
