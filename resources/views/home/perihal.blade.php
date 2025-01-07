@@ -10,6 +10,7 @@
 
         .primary-gsholar {
             background-color: #007bff;
+            color: white;
         }
 
         .card-body {
@@ -60,7 +61,7 @@
                                 <h6 class="">Ketua Peneliti</h6>
                                 <p class="">Program Studi Pendidikan Ekonomi</p>
                                 <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
-                                    <a type="button" class="btn btn-primary"
+                                    <a type="button" class="btn primary-gsholar"
                                         href="https://scholar.google.co.id/citations?user=0_PpL-4AAAAJ&hl=id"
                                         target="_blank">G.Scholar</a>
                                     <a type="button" class="btn btn-success"
@@ -82,7 +83,7 @@
                                 <h6 class="">Anggota Peneliti</h6>
                                 <p class="">Program Studi Pendidikan Ekonomi</p>
                                 <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
-                                    <a type="button" class="btn btn-primary"
+                                    <a type="button" class="btn primary-gsholar"
                                         href="https://scholar.google.com/citations?user=VzGEbD8AAAAJ&hl=en"
                                         target="_blank">G.Scholar</a>
                                     <a type="button" class="btn btn-success"
@@ -104,7 +105,7 @@
                                 <h6 class="">Anggota Peneliti</h6>
                                 <p class="">Program Studi Pendidikan Ekonomi</p>
                                 <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
-                                    <a type="button" class="btn btn-primary"
+                                    <a type="button" class="btn primary-gsholar"
                                         href="https://scholar.google.com/citations?user=B2fwuhEAAAAJ&hl=id"
                                         target="_blank">G.Scholar</a>
                                     <a type="button" class="btn btn-success"
@@ -114,7 +115,7 @@
                                         target="_blank">Scopus</a>
                                 </div>
                                 <!-- <div class="social-buttons">
-                                    <a href="https://scholar.google.com" target="_blank" class="btn btn-primary btn-sm">G.
+                                    <a href="https://scholar.google.com" target="_blank" class="btn primary-gsholar btn-sm">G.
                                         Scholar</a>
                                     <a href="https://sinta.kemdikbud.go.id" target="_blank"
                                         class="btn btn-success btn-sm">SINTA</a>
@@ -133,7 +134,7 @@
                                 <h6 class="">Anggota Peneliti</h6>
                                 <p class="">Program Studi Pendidikan IPA</p>
                                 <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
-                                    <a type="button" class="btn btn-primary"
+                                    <a type="button" class="btn primary-gsholar"
                                         href="https://scholar.google.com/citations?user=xiDpDlQAAAAJ&hl=id"
                                         target="_blank">G.Scholar</a>
                                     <a type="button" class="btn btn-success"
@@ -153,7 +154,7 @@
                                 <h6 class="">Anggota Peneliti</h6>
                                 <p class="">Program Studi Pendidikan Komputer</p>
                                 <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
-                                    <a type="button" class="btn btn-primary"
+                                    <a type="button" class="btn primary-gsholar"
                                         href="https://scholar.google.com/citations?user=sEOvgeoAAAAJ&hl=id&authuser=2"
                                         target="_blank">G.Scholar</a>
                                     <a type="button" class="btn btn-success"
@@ -175,7 +176,7 @@
                                 <h6 class="">Anggota Peneliti/Mahasiswa</h6>
                                 <p class="">Program Studi Pendidikan Komputer</p>
                                 <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
-                                    <a type="button" class="btn btn-primary" href="#" target="_blank">G.Scholar</a>
+                                    <a type="button" class="btn primary-gsholar" href="#" target="_blank">G.Scholar</a>
                                     <!-- <a type="button" class="btn btn-success" href="#" target="_blank">SINTA</a>
                                     <a type="button" class="btn btn-warning" href="#" target="_blank">Scopus</a> -->
                                 </div>
@@ -192,12 +193,12 @@
                                 <h6 class="">Anggota Peneliti/Mahasiswa</h6>
                                 <p class="">Program Studi Pendidikan Komputer</p>
                                 <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
-                                    <a type="button" class="btn btn-primary" href="https://scholar.google.co.id/citations?hl=en&user=Dz18STEAAAAJ" target="_blank">G.Scholar</a>
+                                    <a type="button" class="btn primary-gsholar" href="https://scholar.google.co.id/citations?hl=en&user=Dz18STEAAAAJ" target="_blank">G.Scholar</a>
                                     <!-- <a type="button" class="btn btn-success" href="#" target="_blank">SINTA</a> -->
                                     <!-- <a type="button" class="btn btn-warning" href="#" target="_blank">Scopus</a> -->
                                 </div>
                                 <!-- <div class="social-buttons">
-                                    <a href="https://scholar.google.com" target="_blank" class="btn btn-primary btn-sm">G.
+                                    <a href="https://scholar.google.com" target="_blank" class="btn primary-gsholar btn-sm">G.
                                         Scholar</a>
                                     <a href="https://sinta.kemdikbud.go.id" target="_blank"
                                         class="btn btn-success btn-sm">SINTA</a>
@@ -216,7 +217,7 @@
                                 <h6 class="">Anggota Peneliti/Mahasiswa</h6>
                                 <p class="">Program Studi Pendidikan Ekonomi</p>
                                 <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
-                                    <a type="button" class="btn btn-primary" href="#" target="_blank">G.Scholar</a>
+                                    <a type="button" class="btn primary-gsholar" href="#" target="_blank">G.Scholar</a>
                                     <!-- <a type="button" class="btn btn-success" href="#" target="_blank">SINTA</a> -->
                                     <!-- <a type="button" class="btn btn-warning" href="#" target="_blank">Scopus</a> -->
                                 </div>
