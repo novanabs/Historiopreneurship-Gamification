@@ -1,6 +1,28 @@
 @extends('layouts.home')
 
 @section('container')
+<head>
+    <style>
+        .card {
+            height: 100%;
+            /* Set height statis untuk card */
+        }
+
+        .primary-gsholar {
+            background-color: #007bff;
+        }
+
+        .card-body {
+            flex-direction: column;
+            justify-content: space-between;
+            /* Memastikan konten terdistribusi merata */
+        }
+
+        .btn-group>.btn {
+            font-size: small;
+        }
+    </style>
+</head>
 <h1>Perihal</h1>
 <div class="mt-4 row">
     <div class="mb-5 col-lg-12">
@@ -13,51 +35,191 @@
             <div class="p-4 card-body">
                 <p class="mb-4 card-text text-center">Media pembelajaran ini dibuat dalam rangka penelitian kolaboratif pada tema Lahan Basah dengan judul:</p>
                 <p class="fw-semibold fs-5 text-center card-text">MEDIA PEMBELAJARAN INTERAKTIF BERBASIS WEB PADA MATA KULIAH HISTORIOPRENEURSHIP DENGAN PENDEKATAN GAMIFIKASI</p>
-                <div class="overflow-auto">
-                    <table class="mt-5">
-                        <tbody>
-                            <tr>
-                                <td><p class="me-5 mb-2">Kolaborator</p></td>
-                                <td><p class="mb-2">: <span class="fw-semibold">Dwi Atmono</span> (Pendidikan Ekonomi)</p></td>
-                            </tr>
-                            <tr>
-                                <td><p class="me-5 mb-2"></p></td>
-                                <td><p class="mb-2">: <span class="fw-semibold">Muhammad Rahmatullah</span> (Pendidikan Ekonomi)</p></td>
-                            </tr>
-                            <tr>
-                                <td><p class="me-5 mb-2"></p></td>
-                                <td><p class="mb-2">: <span class="fw-semibold">Ananda Setiawan</span> (Pendidikan Ekonomi)</p></td>
-                            </tr>
-                            <tr>
-                                <td><p class="me-5 mb-2"></p></td>
-                                <td><p class="mb-2">: <span class="fw-semibold">Novan Alkaf Bahrain Saputra</span> (Pendidikan Komputer)</p></td>
-                            </tr>
-                            <tr>
-                                <td><p class="me-5 mb-2"></p></td>
-                                <td><p class="mb-2">: <span class="fw-semibold">Rizky Febrianti Putri</span> (Pendidikan IPA)</p></td>
-                            </tr>
-                            <tr>
-                                <td><p class="me-5 mb-2"></p></td>
-                                <td><p class="mb-2">: <span class="fw-semibold">Muhammad Ramadhani</span> (Pendidikan Komputer)</p></td>
-                            </tr>
-                            <tr>
-                                <td><p class="me-5 mb-2"></p></td>
-                                <td><p class="mb-2">: <span class="fw-semibold">Muhammad Salman 'Anshari Rizky</span> (Pendidikan Komputer)</p></td>
-                            </tr>
-                            <tr>
-                                <td><p class="me-5 mb-2">Fakultas</p></td>
-                                <td><p class="mb-2">: Keguruan dan Ilmu Pendidikan</p></td>
-                            </tr>
-                            <tr>
-                                <td><p class="me-5 mb-2">Instansi</p></td>
-                                <td><p class="mb-2">: Universitas Lambung Mangkurat</p></td>
-                            </tr>
-                            <tr>
-                                <td><p class="me-5 mb-2">Kontak</p></td>
-                                <td><p class="mb-2">: <a href="mailto:dwiatmono@ulm.ac.id">dwiatmono@ulm.ac.id</a></p></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            </div>
+        </div>
+    </div>
+    <div class="mb-5 col-lg-12">
+        <div class="card">
+            <div class="p-4 d-flex align-items-center card-header">
+                <div class="mb-0 h5 fw-semibold card-title">
+                    <i class="bi bi-people"></i> KOLABORATOR
+                </div>
+            </div>
+            <div class="p-4 card-body">
+                <div class="row">
+                    <!-- Card 1 : DWI-->
+                    <div class="col-md-3 mb-4">
+                        <div class="card text-center">
+                            <img src="{{asset('img/kolaborator/dwi.png')}}" alt="Researcher Photo" class="card-img-top rounded-circle mx-auto"
+                                style="width: 150px; ">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Prof. Dr, Dwi Atmono., M.Pd., M.Si.</h5>
+                                <h6 class="">Ketua Peneliti</h6>
+                                <p class="">Program Studi Pendidikan Ekonomi</p>
+                                <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
+                                    <a type="button" class="btn btn-primary"
+                                        href="https://scholar.google.co.id/citations?user=0_PpL-4AAAAJ&hl=id"
+                                        target="_blank">G.Scholar</a>
+                                    <a type="button" class="btn btn-success"
+                                        href="https://sinta.kemdikbud.go.id/authors/profile/6042714" target="_blank">SINTA</a>
+                                    <a type="button" class="btn btn-warning"
+                                        href="https://www.scopus.com/authid/detail.uri?authorId=57193211690&origin=resultslist"
+                                        target="_blank">Scopus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 : RAHMAT-->
+                    <div class="col-md-3 mb-4">
+                        <div class="card text-center">
+                            <img src="{{asset('img/kolaborator/rahmat.png')}}" alt="Researcher Photo" class="card-img-top rounded-circle mx-auto"
+                                style="width: 150px; ">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Dr. Muhammad Rahmattullah, M.Pd.</h5>
+                                <h6 class="">Anggota Peneliti</h6>
+                                <p class="">Program Studi Pendidikan Ekonomi</p>
+                                <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
+                                    <a type="button" class="btn btn-primary"
+                                        href="https://scholar.google.com/citations?user=VzGEbD8AAAAJ&hl=en"
+                                        target="_blank">G.Scholar</a>
+                                    <a type="button" class="btn btn-success"
+                                        href="https://sinta.kemdikbud.go.id/authors/profile/6020858" target="_blank">SINTA</a>
+                                    <a type="button" class="btn btn-warning"
+                                        href="https://www.scopus.com/authid/detail.uri?authorId=57193210630&origin=resultslist"
+                                        target="_blank">Scopus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 : ANANDA-->
+                    <div class="col-md-3 mb-4">
+                        <div class="card text-center">
+                            <img src="{{asset('img/kolaborator/ananda.png')}}" alt="Researcher Photo" class="card-img-top rounded-circle mx-auto"
+                                style="width: 150px; ">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Dr. Ananda Setiawan, M.Pd.</h5>
+                                <h6 class="">Anggota Peneliti</h6>
+                                <p class="">Program Studi Pendidikan Ekonomi</p>
+                                <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
+                                    <a type="button" class="btn btn-primary"
+                                        href="https://scholar.google.com/citations?user=B2fwuhEAAAAJ&hl=id"
+                                        target="_blank">G.Scholar</a>
+                                    <a type="button" class="btn btn-success"
+                                        href="https://sinta.kemdikbud.go.id/authors/profile/6730780" target="_blank">SINTA</a>
+                                    <a type="button" class="btn btn-warning"
+                                        href="https://www.scopus.com/authid/detail.uri?authorId=57218902315&origin=resultslist"
+                                        target="_blank">Scopus</a>
+                                </div>
+                                <!-- <div class="social-buttons">
+                                    <a href="https://scholar.google.com" target="_blank" class="btn btn-primary btn-sm">G.
+                                        Scholar</a>
+                                    <a href="https://sinta.kemdikbud.go.id" target="_blank"
+                                        class="btn btn-success btn-sm">SINTA</a>
+                                    <a href="https://www.scopus.com" target="_blank" class="btn btn-info btn-sm">Scopus</a>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 4 : FEBY-->
+                    <div class="col-md-3 mb-4">
+                        <div class="card text-center">
+                            <img src="{{asset('img/kolaborator/feby.png')}}" alt="Researcher Photo" class="card-img-top rounded-circle mx-auto"
+                                style="width: 150px; ">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Rizky Febrianti Putri, M.Pd.</h5>
+                                <h6 class="">Anggota Peneliti</h6>
+                                <p class="">Program Studi Pendidikan IPA</p>
+                                <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
+                                    <a type="button" class="btn btn-primary"
+                                        href="https://scholar.google.com/citations?user=xiDpDlQAAAAJ&hl=id"
+                                        target="_blank">G.Scholar</a>
+                                    <a type="button" class="btn btn-success"
+                                        href="https://sinta.kemdikbud.go.id/authors/profile/6699782" target="_blank">SINTA</a>
+                                    <a type="button" class="btn btn-warning" href="#" target="_blank">Scopus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 5 : NOVAN-->
+                    <div class="col-md-3 mb-4">
+                        <div class="card text-center">
+                            <img src="{{asset('img/kolaborator/novan.png')}}" alt="Researcher Photo" class="card-img-top rounded-circle mx-auto"
+                                style="width: 150px; ">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Novan Alkaf Bahraini Saputra, S.Kom., M.T.</h5>
+                                <h6 class="">Anggota Peneliti</h6>
+                                <p class="">Program Studi Pendidikan Komputer</p>
+                                <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
+                                    <a type="button" class="btn btn-primary"
+                                        href="https://scholar.google.com/citations?user=sEOvgeoAAAAJ&hl=id&authuser=2"
+                                        target="_blank">G.Scholar</a>
+                                    <a type="button" class="btn btn-success"
+                                        href="https://sinta.kemdikbud.go.id/authors/profile/6758494" target="_blank">SINTA</a>
+                                    <a type="button" class="btn btn-warning"
+                                        href="https://www.scopus.com/authid/detail.uri?authorId=57216964088&origin=resultslist"
+                                        target="_blank">Scopus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 6 : MADHAN-->
+                    <div class="col-md-3 mb-4">
+                        <div class="card text-center">
+                            <img src="{{asset('img/kolaborator/ramadhan.png')}}" alt="Researcher Photo" class="card-img-top rounded-circle mx-auto"
+                                style="width: 150px; ">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Muhammad Ramadhani</h5>
+                                <h6 class="">Anggota Peneliti/Mahasiswa</h6>
+                                <p class="">Program Studi Pendidikan Komputer</p>
+                                <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
+                                    <a type="button" class="btn btn-primary" href="#" target="_blank">G.Scholar</a>
+                                    <!-- <a type="button" class="btn btn-success" href="#" target="_blank">SINTA</a>
+                                    <a type="button" class="btn btn-warning" href="#" target="_blank">Scopus</a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 7 : SALMAN-->
+                    <div class="col-md-3 mb-4">
+                        <div class="card text-center">
+                            <img src="{{asset('img/kolaborator/salman.png')}}" alt="Researcher Photo" class="card-img-top rounded-circle mx-auto"
+                                style="width: 150px; ">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Muhammad Salman 'Anshari Rizky</h5>
+                                <h6 class="">Anggota Peneliti/Mahasiswa</h6>
+                                <p class="">Program Studi Pendidikan Komputer</p>
+                                <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
+                                    <a type="button" class="btn btn-primary" href="https://scholar.google.co.id/citations?hl=en&user=Dz18STEAAAAJ" target="_blank">G.Scholar</a>
+                                    <!-- <a type="button" class="btn btn-success" href="#" target="_blank">SINTA</a> -->
+                                    <!-- <a type="button" class="btn btn-warning" href="#" target="_blank">Scopus</a> -->
+                                </div>
+                                <!-- <div class="social-buttons">
+                                    <a href="https://scholar.google.com" target="_blank" class="btn btn-primary btn-sm">G.
+                                        Scholar</a>
+                                    <a href="https://sinta.kemdikbud.go.id" target="_blank"
+                                        class="btn btn-success btn-sm">SINTA</a>
+                                    <a href="https://www.scopus.com" target="_blank" class="btn btn-info btn-sm">Scopus</a>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 8 : LENI-->
+                    <div class="col-md-3 mb-4">
+                        <div class="card text-center">
+                            <img src="{{asset('img/kolaborator/leni.png')}}" alt="Researcher Photo" class="card-img-top rounded-circle mx-auto"
+                                style="width: 150px; ">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Leni Susanti</h5>
+                                <h6 class="">Anggota Peneliti/Mahasiswa</h6>
+                                <p class="">Program Studi Pendidikan Ekonomi</p>
+                                <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
+                                    <a type="button" class="btn btn-primary" href="#" target="_blank">G.Scholar</a>
+                                    <!-- <a type="button" class="btn btn-success" href="#" target="_blank">SINTA</a> -->
+                                    <!-- <a type="button" class="btn btn-warning" href="#" target="_blank">Scopus</a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
