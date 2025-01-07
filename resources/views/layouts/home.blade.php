@@ -8,6 +8,8 @@
     <title>HISTORIOPRENEURSHIP</title>
     {{-- Bootstrap Lokal --}}
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    {{-- fav icon --}}
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/icon.ico') }}">
     {{-- Bootstrap Icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- data table -->
