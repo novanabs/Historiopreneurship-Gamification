@@ -68,7 +68,7 @@ class ContentCController extends Controller
 </p>
 <figure>
 <img class="d-block mx-auto img-fluid my-3 shadow" src="https://files.planet.ung.ac.id/univ/img-20220119-wa0003-19.01.2022.14.37.18.jpg" alt="Pasar Terapung" style="width: 500px; height: auto;">
-<figcaption class="text-center">Sumber: https://files.planet.ung.ac.id</figcaption>
+<figcaption class="text-center">Sumber: https://ung.ac.id/</figcaption>
 </figure>
 <p>
     Secara etimologi, kewirausahaan berasal dari kata wira dan usaha. Wira berarti peluang, pahlawan, manusia unggul, teladan, dan berbudi luhur. Wirausaha adalah orang yang pandai mengenali produk baru, menyusun cara produksi, mengatur permodalan, serta memasarkan produk (Rusdiana, 2014).
