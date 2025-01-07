@@ -33,8 +33,11 @@
                 </div>
             </div>
             <div class="p-4 card-body">
-                <p class="mb-4 card-text text-center">Media pembelajaran ini dibuat dalam rangka penelitian kolaboratif pada tema Lahan Basah dengan judul:</p>
-                <p class="fw-semibold fs-5 text-center card-text">MEDIA PEMBELAJARAN INTERAKTIF BERBASIS WEB PADA MATA KULIAH HISTORIOPRENEURSHIP DENGAN PENDEKATAN GAMIFIKASI</p>
+                <p class="mb-4 card-text text-center ">Media pembelajaran ini dibuat dalam rangka penelitian kolaboratif pada tema Lahan Basah dengan judul:</p>
+                <p class="fw-semibold fs-3 text-center card-text">MEDIA PEMBELAJARAN INTERAKTIF BERBASIS WEB PADA MATA KULIAH HISTORIOPRENEURSHIP DENGAN PENDEKATAN GAMIFIKASI</p>
+                <p class="fw-semibold fs-5 text-center card-text">FAKULTAS KEGURUAN DAN ILMU PENDIDIKAN</p>
+                <p class="fw-semibold fs-5 text-center card-text">UNIVERSITAS LAMBUNG MANGKURAT</p>
+                <p class="fs-6 text-center card-text">Kontak: <a href="mailto:dwiatmono@ulm.ac.id">dwiatmono@ulm.ac.id</a></p>
             </div>
         </div>
     </div>
