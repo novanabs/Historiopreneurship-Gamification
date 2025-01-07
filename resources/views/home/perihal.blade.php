@@ -135,7 +135,7 @@
                             <img src="{{asset('img/kolaborator/feby.png')}}" alt="Researcher Photo" class="card-img-top rounded-circle mx-auto"
                                 style="width: 150px; ">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Rizky Febrianti Putri, M.Pd.</h5>
+                                <h5 class="card-title">Rizky Febriyani Putri, M.Pd.</h5>
                                 <h6 class="">Anggota Peneliti</h6>
                                 <p class="">Program Studi Pendidikan IPA</p>
                                 <div class="btn-group mt-auto" role="group" aria-label="Basic outlined example">
