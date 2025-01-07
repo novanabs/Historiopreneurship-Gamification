@@ -81,9 +81,9 @@
                             <a href="/Kesejarahan/Kegiatan-Pembelajaran-2" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('B-4') ? 'active' : '' }}">
                                 <span><i class="bi bi-dot"></i>  Kegiatan Pembelajaran 2</span></a>
                             <a href="/Kesejarahan/Analisis-Kelompok" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('B-5') ? 'active' : '' }}">
-                                <span><i class="bi bi-dot"></i>  Analisis Individu</span></a>
+                                <span><i class="bi bi-dot"></i>  Analisis Individu 1</span></a>
                             <a href="/Kesejarahan/Analisi-Individu" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('B-6') ? 'active' : '' }}">
-                                <span><i class="bi bi-dot"></i>  Analisis Individu</span></a>
+                                <span><i class="bi bi-dot"></i>  Analisis Individu 2</span></a>
                             <a href="/Kesejarahan/Kegiatan-Pembelajaran-3" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('B-7') ? 'active' : '' }}">
                                 <span><i class="bi bi-dot"></i>  Kegiatan Pembelajaran 3</span></a>
                             <a href="/Kesejarahan/Post-Test" class="py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('B-8') ? 'active' : '' }}">
@@ -130,9 +130,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="list-group list-group-flush" hidden>
-                    <a href="/evaluasi" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('evaluasi') ? 'active' : '' }} disabled">
-                        <span class=""><i class="bi bi-lock"></i> Evaluasi</span></a>
+                <div class="list-group list-group-flush">
+                    <a href="/bahan-bacaan" class="border rounded py-3 d-flex align-items-center justify-content-between small bg-primary-light text-primary-dark false list-group-item {{ Route::is('sumber') ? 'active' : '' }}">
+                        <span class=""><i class="bi bi-book"></i> Bahan Bacaan</span></a>
                 </div>
             </div>
         </div>

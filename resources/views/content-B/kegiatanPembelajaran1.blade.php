@@ -5,7 +5,6 @@
 <h2>Kegiatan Pembelajaran 1</h2>
 <p class="text-sm">2 JP x @50 menit = 100 menit.</p>
 
-
 @foreach ($currentContent as $paragraph)
     {!! $paragraph !!}
 @endforeach

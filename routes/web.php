@@ -39,6 +39,7 @@ Route::get('/download/{filename}', [FileController::class, 'download']);
 Route::get('/', [HomeController::class, 'beranda'])->name('beranda');
 Route::get('/materi', [HomeController::class, 'materi'])->name('materi');
 Route::get('/perihal', [HomeController::class, 'perihal'])->name('perihal');
+Route::get('/bahan-bacaan', [HomeController::class, 'sumber'])->name('sumber');
 
 // Content A
 Route::controller(ContentAController::class)->group(function () {

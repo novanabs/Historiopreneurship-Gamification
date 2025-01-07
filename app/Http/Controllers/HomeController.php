@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public function sumber()
+    {
+        $activeMenu = 'menu3';
+        return view('home.sumber',compact('activeMenu'));
+    }
     public function beranda()
     {
         $userRole = 'siswa';

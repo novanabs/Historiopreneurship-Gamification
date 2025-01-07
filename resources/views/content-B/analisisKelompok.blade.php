@@ -8,7 +8,7 @@
     </div>
 @endif
 
-<h2>ANALISA INDIVIDU</h2>
+<h2>ANALISA INDIVIDU 1</h2>
 <p class="text-lg">AKTIVITAS EKSPLORASI MAHASISWA</p>
 <p>
     Berdasarkan hasil identifikasi terkait objek kesejarahan yang ada di daerah kalian, petakanlah objek-objek kesejarahan tersebut.
