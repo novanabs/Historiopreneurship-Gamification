@@ -261,8 +261,9 @@ class ContentCController extends Controller
             ->where('kategori', 'proyek individu')
             ->where('created_by', $user)
             ->first();
+        $nilaiAnalisisIndividuKWU = DB::table('nilai')->where('email', $user)->where('aspek', 'analisa_individu_kewirausahaan')->first();
         $nilaiUploadProyekIndividu = DB::table('nilai')->where('email', $user)->where('aspek', 'upload_file_proyekIndividu')->first();
-        return view('content-C.proyekIndividu', compact('activeMenu', 'prevUrl', 'nextUrl', 'user', 'filename', 'jawabanIndividu', 'uploadedFile', 'nilaiUploadProyekIndividu'));
+        return view('content-C.proyekIndividu', compact('activeMenu', 'prevUrl', 'nextUrl', 'user', 'filename', 'jawabanIndividu', 'uploadedFile', 'nilaiUploadProyekIndividu','nilaiAnalisisIndividuKWU'));
     }
 
     public function refleksi1()
