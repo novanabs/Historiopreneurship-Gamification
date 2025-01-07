@@ -9,7 +9,7 @@
     </div>
 @endif
 
-<h2>ANALISA INDIVIDU</h2>
+<h2>ANALISA INDIVIDU 2</h2>
 <p>
     Berdasarkan hasil identifikasi dari setiap kelompok, analisa dan asesmen lah hasil pemetaan tersebut dengan
     melengkapi kolom di bawah ini. Selanjutnya, diskusikan di kelas.
