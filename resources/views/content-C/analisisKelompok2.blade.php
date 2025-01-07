@@ -63,10 +63,10 @@
 </form>
 
 @if(
-        !empty($jawabanKelompok->where('kategori', 'aktivitas 2')->where('aspek', 'Jenis-jenis teknologi')->first()->jawaban  &&
-        $jawabanKelompok->where('kategori', 'aktivitas 2')->where('aspek', 'Pengaruh Teknologi')->first()->jawaban &&
-        $jawabanKelompok->where('kategori', 'aktivitas 2')->where('aspek', 'Kelebihan dan Kekurangan penggunaan teknologi')->first()->jawaban &&
-        $jawabanKelompok->where('kategori', 'aktivitas 2')->where('aspek', 'kondisi proses sebelum dan sesudah')->first()->jawaban)
+        !empty($jawabanKelompok->where('kategori', 'aktivitas 2')->where('aspek', 'Jenis-jenis teknologi')->first()?->jawaban  &&
+        $jawabanKelompok->where('kategori', 'aktivitas 2')->where('aspek', 'Pengaruh Teknologi')->first()?->jawaban &&
+        $jawabanKelompok->where('kategori', 'aktivitas 2')->where('aspek', 'Kelebihan dan Kekurangan penggunaan teknologi')->first()?->jawaban &&
+        $jawabanKelompok->where('kategori', 'aktivitas 2')->where('aspek', 'kondisi proses sebelum dan sesudah')->first()?->jawaban)
     )
     <div class="card-body mt-3">
         <label for="nilaiIndividu" class="mb-2">Nilai diperoleh</label>
