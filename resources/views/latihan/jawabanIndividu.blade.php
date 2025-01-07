@@ -11,6 +11,7 @@
 <div class="container">
     <h2>Jawaban Individu</h2>
     <h4 class="mb-4">Nama : {{$user->nama_lengkap}}</h4>
+    <a href="/Data-Nilai" class="btn btn-primary mb-3">Kembali</a>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
 
         <li class="nav-item" role="presentation">

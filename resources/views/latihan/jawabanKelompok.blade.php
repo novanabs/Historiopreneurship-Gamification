@@ -13,6 +13,7 @@
         <div class="col">
             <h2>Data Jawaban Kelompok</h2>
             <p>Tempat untuk menilai tugas yang dikerjakan oleh mahasiswa</p>
+            <a href="/Data-Nilai" class="btn btn-primary mb-3">Kembali</a>
 
             <!-- Nav Tabs -->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
