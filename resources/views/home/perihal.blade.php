@@ -13,6 +13,11 @@
             color: white;
         }
 
+        .primary-gsholar:hover {
+            background-color: #005bbc;
+            color: white;
+        }
+
         .card-body {
             flex-direction: column;
             justify-content: space-between;
