@@ -27,6 +27,15 @@
         .btn-group>.btn {
             font-size: small;
         }
+
+        .card-img-top{
+            transition: transform 0.5s ease;
+        }
+
+        .card-img-top:hover{
+            transform: scale(1.1);
+            cursor: pointer;
+        }
     </style>
 </head>
 <h1>Perihal</h1>
