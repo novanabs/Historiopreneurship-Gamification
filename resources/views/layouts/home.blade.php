@@ -32,6 +32,8 @@
     </style>
 </head>
 <body>
+    <!-- Google Translate -->
+    <div id="google_translate_element" style="position: fixed; top: 10px; left: 10px; z-index: 9999;"></div>
     <div class="min-vh-100 d-flex flex-column">
         <nav class="navbar navbar-expand-md bg-white">
             <div class="py-2 mx-2 mx-sm-auto container">
@@ -282,6 +284,17 @@
             loadQuestion();
         }
     </script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'id',
+                includedLanguages: 'id,en,es,ko,ar,tl', // tambahkan sesuai kebutuhan
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
 
 <script src="https://kit.fontawesome.com/c39daf280c.js" crossorigin="anonymous"></script>
 
